@@ -8,11 +8,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class AnimalController {
-    public Animal findById(int id) throws SQLException{
-            try(Connection c = new ConnectionPool().getConnection()){
-                   // return new AnimalDAO(c).findById(id);
-            }
-            return null;
+    public Animal find(int id) throws SQLException{
+        try(Connection c = new ConnectionPool().getConnection()){
+               return new AnimalDAO(c).find(id);
+        }
+           
     }
 
     public void save(Animal a) throws SQLException{

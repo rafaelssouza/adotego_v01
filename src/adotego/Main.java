@@ -1,35 +1,34 @@
 package adotego;
 
-import adotego.modelos.Endereco;
+import adotego.modelos.Animal;
+ 
+import adotego.modelos.Porte_enum;
+import adotego.modelos.Situacao_enum;
 import adotego.modelos.Usuario;
+import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
-    public static void main(String[] args) {
-        Usuario u =  new adotego.controller.UsuarioController().find(1);
-       
-        System.out.println(u);
+    public static void main(String[] args) throws SQLException {
+        Animal findById = new adotego.controller.AnimalController().find(1);
+        
+        System.out.println(findById);
     }
     
     public static void testInsert(){
-         Usuario u = new Usuario();
-        Calendar data = Calendar.getInstance();
-
-        u.setNome("thomaz");
-        u.setCpf("3223232");
-        u.setEmail("fdjfoidjfod");
-        u.setTelefone_celular("2121");
-        u.setTelefone_fixo("23232");
-        u.setData_nascimento(data);
-
-        Endereco end = new Endereco();
-        end.setBairro("campeche");
-        end.setCep("88048390");
-        end.setNumero(2);
-        end.setCidade("fplois");
-        end.setRua("jades");
-        end.setUf("sc");
-        u.setEndereco(end);
-          new adotego.controller.UsuarioController().salvar(u);
+        Animal animal = new Animal();
+            animal.setNome("Nica");
+            animal.setDescricao("bem velho e gordo");
+            animal.setPorte(Porte_enum.PEQUENO);
+            animal.setData_entrada(Calendar.getInstance());
+            animal.setSituacao(Situacao_enum.ADOTADO);
+            
+        try {
+            new adotego.controller.AnimalController().save(animal);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
