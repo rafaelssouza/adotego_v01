@@ -14,7 +14,8 @@ public class Animal {
 	private int idPessoa;
 	private Situacao_enum situacao;
 
-        public Animal(int id, String nome, java.sql.Date data_entrada, String porte, String descricao) {
+        public Animal(int id, String nome, java.sql.Date data_entrada, 
+                String porte, String descricao) {
             this.id = id;
             this.nome = nome;
            
@@ -89,7 +90,10 @@ public class Animal {
         @Override
         public String toString() {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return "Animal{" + "id=" + id + ", nome=" + nome + ", data_entrada=" + sdf.format(data_entrada.getTime()) + ", porte=" + porte + ", descricao=" + descricao + ", idPessoa=" + idPessoa + ", situacao=" + situacao + '}';
+            return "Animal{" + "id=" + id + ", nome=" + nome + ", data_entrada="
+                    + sdf.format(data_entrada.getTime()) + ", porte=" + porte + 
+                    ", descricao=" + descricao + ", idPessoa=" + idPessoa 
+                    + ", situacao=" + situacao + '}';
         }
         
         

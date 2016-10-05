@@ -6,14 +6,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/*
+    Classe responsável pelo acesso aos dados do ojeto Animal no banco de dados.
+    Possui os metodos de CREATE, REMOVE, UPDATE, DELETE
+*/
 public class AnimalDAO {
+    
+    /*
+        Objeto de conexão com todas as propriedades necessárias para o acesso 
+        aos dados no banco.
+    */  
     private final Connection c;
 
     public AnimalDAO(Connection conn) {
             this.c = conn;
     }
 
+    /*
+        Metodos responsável por salvar um objeto java do tipo Animal no banco
+        de dados, especificamente na tabela Animal.
+    */
     public void save(Animal a) throws SQLException{
         String sql = "insert into Animal(nome,data_entrada,descricao, porte,"
                 + "Situacao_idSituacao, Raca_idRaca,Especie_idEspecie) values" +
@@ -31,6 +43,10 @@ public class AnimalDAO {
         }
     }
     
+    /*
+        Metodos responsável por buscar um objeto Animal no bando de dados de acordo
+        com o id passado como parametro
+    */
     public Animal find(int id) throws SQLException{
         String sql = "select * from Animal where idAnimal = ?";
          try(PreparedStatement stmt = c.prepareStatement(sql)){

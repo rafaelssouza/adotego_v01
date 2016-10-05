@@ -6,15 +6,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/*
+    Classe responsável pelo acesso aos dados do objeto Usuario no banco de dados.
+    Possui os metodos de CREATE, REMOVE, UPDATE, DELETE
+*/
 public class UsuarioDAO {
-      
+    /*
+        Objeto de conexão com todas as propriedades necessárias para o acesso 
+        aos dados no banco.
+    */  
     private final Connection conn;
 
     public UsuarioDAO(Connection c) {
             conn = c;
     }
     
+    /*
+        Metodos responsável por salvar um objeto java do tipo Usuario no banco
+        de dados, especificamente na tabela Usuario.
+    */
     public void save(Usuario pessoa) throws SQLException {
         String sql = "INSERT INTO Usuario" +
                         "(nome,email,telefone_fixo,telefone_celular," +
@@ -39,6 +49,10 @@ public class UsuarioDAO {
 
     }
 
+    /*
+        Metodos responsável por buscar um usuario no bando de dados de acordo
+        com o id passado como parametro
+    */
     public Usuario find(int id) throws SQLException{
         Usuario usuario = new Usuario();
         Endereco end = new Endereco();

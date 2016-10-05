@@ -115,7 +115,11 @@ public class Usuario {
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return "Usuario{" + "id=" + id + ", \nnome=" + nome + ", email=" + email + ", \ntelefone_fixo=" + telefone_fixo + ", telefone_celular=" + telefone_celular + ", \ndata_nascimento=" + sdf.format(data_nascimento.getTime()) + ", cpf=" + cpf + ", \nendereco=" + endereco + '}';
+        return "Usuario{" + "id=" + id + ", \nnome=" + nome + ", email=" 
+                + email + ", \ntelefone_fixo=" + telefone_fixo
+                + ", telefone_celular=" + telefone_celular + ", \ndata_nascimento="
+                + sdf.format(data_nascimento.getTime()) + ", cpf=" + cpf 
+                + ", \nendereco=" + endereco + '}';
     }
 
         
