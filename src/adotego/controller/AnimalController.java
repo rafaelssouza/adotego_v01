@@ -18,7 +18,7 @@ public class AnimalController {
     */
     public Animal find(int id) throws SQLException{
         try(Connection c = new ConnectionPool().getConnection()){
-               return new AnimalDAO(c).find(id);
+            return new AnimalDAO(c).find(id);
         }
            
     }
@@ -29,7 +29,13 @@ public class AnimalController {
     */
     public void save(Animal a) throws SQLException{
         try(Connection c = new ConnectionPool().getConnection()){
-                new AnimalDAO(c).save(a);
+            new AnimalDAO(c).save(a);
+        }
+    }
+    
+    public void delete(int id) throws SQLException{
+        try(Connection c = new ConnectionPool().getConnection()){
+            new AnimalDAO(c).delete(id);
         }
     }
 }

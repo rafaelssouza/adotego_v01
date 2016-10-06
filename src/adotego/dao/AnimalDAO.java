@@ -16,10 +16,10 @@ public class AnimalDAO {
         Objeto de conexão com todas as propriedades necessárias para o acesso 
         aos dados no banco.
     */  
-    private final Connection c;
+    private final Connection conn;
 
     public AnimalDAO(Connection conn) {
-            this.c = conn;
+            this.conn = conn;
     }
 
     /*
@@ -31,7 +31,7 @@ public class AnimalDAO {
                 + "Situacao_idSituacao, Raca_idRaca,Especie_idEspecie) values" +
                         "(?,?,?,?,?,?,?);";
 
-        try(PreparedStatement stmt = c.prepareStatement(sql)){
+        try(PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, a.getNome());
             stmt.setDate(2, a.getData_entradaSQL());
             stmt.setString(3, a.getDescricao());
@@ -49,7 +49,7 @@ public class AnimalDAO {
     */
     public Animal find(int id) throws SQLException{
         String sql = "select * from Animal where idAnimal = ?";
-         try(PreparedStatement stmt = c.prepareStatement(sql)){
+         try(PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setInt(1 ,id);
             stmt.executeQuery();
             
@@ -67,5 +67,14 @@ public class AnimalDAO {
             }
         }
          return null;
+    }
+    
+     public void delete(int id) throws SQLException{
+        String sql = "delete from Animal where idAnimal = ?";
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, id);
+            ps.execute();
+            
+        }
     }
 }

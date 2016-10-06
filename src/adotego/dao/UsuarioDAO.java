@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 /*
     Classe responsável pelo acesso aos dados do objeto Usuario no banco de dados.
     Possui os metodos de CREATE, REMOVE, UPDATE, DELETE
@@ -86,4 +88,44 @@ public class UsuarioDAO {
         return usuario;
     }
 
+    /*
+        Método responsável por retornar todos os usuarios cadastrados no banco
+        de dados
+    */
+    public List<Usuario> findAll() throws SQLException{
+        String sql = "select * from Usuario";
+        List<Usuario> lista_usuarios = new ArrayList<>();
+        try(PreparedStatement st = conn.prepareStatement(sql)){
+            st.executeQuery();
+            
+            try(ResultSet rs = st.getResultSet()){
+                while(rs.next()){
+                    Usuario usuario = new Usuario();
+                        usuario.setId(rs.getInt("idUsuario"));
+                        usuario.setNome(rs.getString("nome"));
+                        usuario.setEmail(rs.getString("email"));
+                        usuario.setTelefone_fixo("telefone_fixo");
+                        usuario.setTelefone_celular("telefone_celular");
+                        usuario.setCpf("cpf");   
+                        usuario.setData_nascimento_from_SQL(rs.getDate("data_nascimento"));
+                    lista_usuarios.add(usuario);
+                }
+            }
+        }
+        return lista_usuarios;
+    }
+    /*
+        Metodos responsável por deletar um usuario no bando de dados de acordo
+        com o id passado como parametro
+    */
+    public void delete(int id) throws SQLException{
+        String sql = "delete from Usuario where idUsuario = ?";
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, id);
+            ps.execute();
+            
+        }
+    }
+    
+    
 }
