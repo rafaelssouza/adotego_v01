@@ -6,6 +6,7 @@ import adotego.jdbc.ConnectionPool;
 import adotego.modelos.Animal;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /*
     Classe responsável por criar umm objeto Connection.sql e envia-lo para o dao
@@ -36,6 +37,12 @@ public class AnimalController {
     public void delete(int id) throws SQLException{
         try(Connection c = new ConnectionPool().getConnection()){
             new AnimalDAO(c).delete(id);
+        }
+    }
+
+    public List<Animal> findAll() throws SQLException {
+        try(Connection c = new ConnectionPool().getConnection()){
+            return new AnimalDAO(c).findAll();
         }
     }
 }

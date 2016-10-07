@@ -5,10 +5,15 @@
  */
 package adotego.view;
 
+import adotego.controller.EspecieController;
 import adotego.controller.RacaController;
 import adotego.controller.UsuarioController;
+import adotego.modelos.Animal;
 import adotego.modelos.Endereco;
+import adotego.modelos.Especie;
+import adotego.modelos.Porte_enum;
 import adotego.modelos.Raca;
+import adotego.modelos.Tabela_animais;
 import adotego.modelos.Tabela_usuarios;
 import adotego.modelos.Usuario;
 import java.sql.SQLException;
@@ -27,6 +32,7 @@ import java.util.logging.Logger;
 public class PrincipalUI extends javax.swing.JFrame {
     
     private Tabela_usuarios model_tabela_usuarios;
+    private Tabela_animais model_tabela_animais;
     
     /**
      * Creates new form PrincipalUI
@@ -34,11 +40,17 @@ public class PrincipalUI extends javax.swing.JFrame {
     public PrincipalUI() {
         initComponents();
         
-        init_JCombo_box();
-        
+        init_JCombo_box_especie();
+        init_jCombo_box_porte();
         model_tabela_usuarios = new Tabela_usuarios();
-        jTable_usuarios.setModel(model_tabela_usuarios);
+        try {
+            model_tabela_animais = new Tabela_animais();
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+        jTable_usuarios.setModel(model_tabela_usuarios);
+        jTable_animais.setModel(model_tabela_animais);
     }
 
     /**
@@ -103,11 +115,17 @@ public class PrincipalUI extends javax.swing.JFrame {
         txt_nome_animal = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_descricao = new javax.swing.JTextArea();
         jLabel22 = new javax.swing.JLabel();
         jComboBox_raca = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
-        jComboBox_raca1 = new javax.swing.JComboBox<>();
+        jComboBox_especie = new javax.swing.JComboBox<>();
+        btn_cadastrar_animal = new javax.swing.JButton();
+        btn_cancelar_animal = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        jComboBox_porte_animal = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_animais = new javax.swing.JTable();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_nova_especie = new javax.swing.JMenu();
@@ -438,7 +456,7 @@ public class PrincipalUI extends javax.swing.JFrame {
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame2Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 798, Short.MAX_VALUE))
+                .addGap(0, 822, Short.MAX_VALUE))
         );
         jInternalFrame2Layout.setVerticalGroup(
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,13 +487,30 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         jLabel21.setText("Descrição");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txt_descricao.setColumns(20);
+        txt_descricao.setRows(5);
+        jScrollPane2.setViewportView(txt_descricao);
 
         jLabel22.setText("Raça");
 
         jLabel23.setText("Especie");
+
+        jComboBox_especie.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox_especieItemStateChanged(evt);
+            }
+        });
+
+        btn_cadastrar_animal.setText("Cadastrar");
+        btn_cadastrar_animal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cadastrar_animalActionPerformed(evt);
+            }
+        });
+
+        btn_cancelar_animal.setText("Cancelar");
+
+        jLabel24.setText("Porte");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -483,20 +518,30 @@ public class PrincipalUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox_raca1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel20)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel19)
-                        .addGap(73, 73, 73)
-                        .addComponent(jLabel1))
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel22)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jComboBox_raca, javax.swing.GroupLayout.Alignment.LEADING, 0, 189, Short.MAX_VALUE)
-                        .addComponent(txt_nome_animal, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(btn_cancelar_animal)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_cadastrar_animal))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel20)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel19)
+                            .addGap(73, 73, 73)
+                            .addComponent(jLabel1))
+                        .addComponent(jLabel21)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                        .addComponent(txt_nome_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel22)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel23)
+                                .addComponent(jComboBox_especie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(27, 27, 27)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel24)
+                                .addComponent(jComboBox_porte_animal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jComboBox_raca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(103, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -511,19 +556,40 @@ public class PrincipalUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_nome_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel23)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox_raca1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel22)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox_especie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_porte_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jLabel22)
+                .addGap(8, 8, 8)
                 .addComponent(jComboBox_raca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_cadastrar_animal)
+                    .addComponent(btn_cancelar_animal))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
+
+        jTable_animais.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable_animais);
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -531,11 +597,17 @@ public class PrincipalUI extends javax.swing.JFrame {
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 741, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(128, 128, 128))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -543,12 +615,14 @@ public class PrincipalUI extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addComponent(jInternalFrame1)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jInternalFrame1))
         );
 
         jTabbedPane1.addTab("Animais", jPanel3);
@@ -578,12 +652,11 @@ public class PrincipalUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1250, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -591,7 +664,7 @@ public class PrincipalUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
@@ -661,6 +734,50 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void jMenuItem_nova_especieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_especieActionPerformed
         new Nova_especie().setVisible(true);
     }//GEN-LAST:event_jMenuItem_nova_especieActionPerformed
+
+    private void jComboBox_especieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_especieItemStateChanged
+        String item_selected = String.valueOf(jComboBox_especie.getSelectedItem());        
+        
+        try {
+            
+            if(item_selected.length() > 1){
+            Especie id_selected = new adotego.controller.EspecieController()
+                    .getByName(item_selected);           
+            System.out.println(id_selected.getId());
+            atualizar_jComboBox_raca(id_selected.getId());
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBox_especieItemStateChanged
+
+    private void btn_cadastrar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_animalActionPerformed
+      try {
+          String nome = txt_nome_animal.getText();
+          String descricao = txt_descricao.getText();
+          Especie especie = new adotego.controller.EspecieController()
+                    .getByName(String.valueOf(jComboBox_especie
+                            .getSelectedItem()));
+            
+            
+         Raca raca = new adotego.controller.RacaController()
+                    .getByName(String.valueOf(jComboBox_raca
+                            .getSelectedItem()));
+          
+          Porte_enum porte = getPorte(String.valueOf(jComboBox_porte_animal
+                  .getSelectedItem()));
+          
+          Animal animal = new Animal(nome, Calendar.getInstance()
+                  ,especie, raca,descricao,Porte_enum.GRANDE);
+            
+          new adotego.controller.AnimalController().save(animal);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_cadastrar_animalActionPerformed
     /*
         Este método retorna true se algum dos valores do formulários de 
         cadastro de usuarios esteja vazio
@@ -681,6 +798,10 @@ public class PrincipalUI extends javax.swing.JFrame {
     }
     
     
+    /*
+        Método responsável por atualizar os campor do formulário com os valores
+        do usuario passado como parâmetro.
+    */
     private void setarCamposComUsuario(Usuario u) {
         SimpleDateFormat sdf = new SimpleDateFormat();
             txt_nome.setText(u.getNome());
@@ -698,12 +819,13 @@ public class PrincipalUI extends javax.swing.JFrame {
             jCheckBox_modo_de_edicao.setSelected(true);
     }
 
-    private void init_JCombo_box() {
+    //Inicializa o JComoBox_especie com aos dados cadastradas no banco de dados.
+    private void init_JCombo_box_especie() {
         try {
-            List<Raca> lista_racas = new RacaController().findAll();
+            List<Especie> lista_especie = new EspecieController().findAll();
             
-            for (Raca raca : lista_racas) {
-                 jComboBox_raca.addItem(raca.getNome());
+            for (Especie especie : lista_especie) {
+                jComboBox_especie.addItem(especie.getNome());
             }
             
             
@@ -711,7 +833,36 @@ public class PrincipalUI extends javax.swing.JFrame {
             Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    /*
+        Atualiza o JComboBox de raças com a especia passada como parametro.
+    */
+    private void atualizar_jComboBox_raca(int idEspecie) throws SQLException {
+        List<Raca> lista_raca = new adotego.controller.RacaController().findByEspecie(idEspecie);
+        jComboBox_raca.removeAllItems();
+        
+          for (Raca raca : lista_raca) {             
+              jComboBox_raca.addItem(raca.getNome());
+              
+          }
+    }
     
+     private void init_jCombo_box_porte() {
+        
+        Porte_enum[] portes = Porte_enum.values();
+        
+        for (Porte_enum porte : portes) {
+            jComboBox_porte_animal.addItem(porte.toString());
+        }
+        }
+     
+        public Porte_enum getPorte(String nome){
+               switch(nome){
+                   case "PEQUENO": return Porte_enum.PEQUENO;
+                   case "GRANDE": return Porte_enum.GRANDE;
+                   case "MEDIO": return Porte_enum.MEDIO;
+                   default:return Porte_enum.MEDIO;
+               } 
+        }
     /**
      * @param args the command line arguments
      */
@@ -748,13 +899,16 @@ public class PrincipalUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cadastrar_animal;
     private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_cancelar_animal;
     private javax.swing.JButton btn_editar_usuario;
     private javax.swing.JButton btn_excluir_usuario;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JCheckBox jCheckBox_modo_de_edicao;
+    private javax.swing.JComboBox<String> jComboBox_especie;
+    private javax.swing.JComboBox<String> jComboBox_porte_animal;
     private javax.swing.JComboBox<String> jComboBox_raca;
-    private javax.swing.JComboBox<String> jComboBox_raca1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JInternalFrame jInternalFrame3;
@@ -774,6 +928,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -795,15 +950,17 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTable jTable_animais;
     private javax.swing.JTable jTable_usuarios;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txt_bairro;
     private javax.swing.JTextField txt_cep;
     private javax.swing.JTextField txt_cidade;
     private javax.swing.JTextField txt_cpf;
     private javax.swing.JTextField txt_data_nascimento;
+    private javax.swing.JTextArea txt_descricao;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_nome;
     private javax.swing.JTextField txt_nome_animal;
@@ -813,6 +970,10 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JTextField txt_telefone_fixo;
     private javax.swing.JTextField txt_uf;
     // End of variables declaration//GEN-END:variables
+
+   
+
+  
 
     
 

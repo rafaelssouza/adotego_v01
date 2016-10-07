@@ -17,4 +17,24 @@ public class RacaController {
             return new RacaDAO(conn).findAll();
         }
     }
+    
+    public Raca find(int aInt) throws SQLException {
+       try(Connection conn = new ConnectionPool().getConnection()){
+            return new RacaDAO(conn).find(aInt);
+        }
+    }
+    
+    public List<Raca> findByEspecie(int idEspecie) throws SQLException{
+        try(Connection conn = new ConnectionPool().getConnection()){
+            return new RacaDAO(conn).findByEspecie(idEspecie);
+        }
+    }
+    
+    public Raca getByName(String name) throws SQLException{
+        try(Connection conn = new ConnectionPool().getConnection()){
+            return new RacaDAO(conn).getByName(name);
+        }
+    }
+
+    
 }
