@@ -12,6 +12,12 @@ import java.util.List;
  * @author tmichelini
  */
 public class RacaController {
+    
+    public void save(Raca raca) throws SQLException{
+        try(Connection conn = new ConnectionPool().getConnection()){
+          new RacaDAO(conn).save(raca);
+        }
+    }
     public List<Raca> findAll() throws SQLException{
         try(Connection conn = new ConnectionPool().getConnection()){
             return new RacaDAO(conn).findAll();
@@ -36,5 +42,21 @@ public class RacaController {
         }
     }
 
+    public boolean ifExist(Raca raca) throws SQLException{
+        try(Connection conn = new ConnectionPool().getConnection()){
+            return new RacaDAO(conn).ifExist(raca);
+        }
+    }
     
+    public boolean ifExistByName(String nome) throws SQLException{
+        try(Connection conn = new ConnectionPool().getConnection()){
+            return new RacaDAO(conn).ifExistByName(nome);
+        }
+    }
+    
+    public List<Raca> findRacaByEspecieName(String nome) throws SQLException{
+        try(Connection conn = new ConnectionPool().getConnection()){
+            return new RacaDAO(conn).findRacaByEspecieName(nome);
+        }
+    }
 }

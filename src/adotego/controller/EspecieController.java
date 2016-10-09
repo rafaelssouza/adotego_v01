@@ -15,9 +15,9 @@ public class EspecieController {
     
     public Especie find(int id) throws SQLException{
         try(Connection conn = new ConnectionPool().getConnection()){
-            new adotego.dao.EspecieDAO(conn).find(id);
+            return new adotego.dao.EspecieDAO(conn).find(id);
         }
-        return null;
+        
     }
     
     public List<Especie> findAll() throws SQLException{

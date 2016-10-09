@@ -4,6 +4,7 @@ package adotego.controller;
 import adotego.dao.AnimalDAO;
 import adotego.jdbc.ConnectionPool;
 import adotego.modelos.Animal;
+import adotego.modelos.Especie;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -21,9 +22,9 @@ public class AnimalController {
         try(Connection c = new ConnectionPool().getConnection()){
             return new AnimalDAO(c).find(id);
         }
-           
     }
 
+  
      /*
         Metodos responsável por criar uma conexao e chamar o metodo save() do
         DAO Usuario, 
@@ -45,4 +46,10 @@ public class AnimalController {
             return new AnimalDAO(c).findAll();
         }
     }
+    
+      public List<Animal> findByEspecieName(String nome) throws SQLException{
+           try(Connection c = new ConnectionPool().getConnection()){
+            return new AnimalDAO(c).findByEspecieName(nome);
+        }
+      }
 }

@@ -31,21 +31,6 @@ public class Animal {
             this.especie =especie;
             this.raca =raca;
         }
-
-        public Animal(int id, String nome, Date data_entrada, String descricao, String porte, int idSituacao, int idRaca, int especieId) throws SQLException {
-            this.id = id;
-            this.nome = nome;
-            this.setData_nascimento_from_SQL(data_entrada);
-            this.descricao = descricao;
-            this.setPorte_com_string(porte);
-            this.setSituacao(new adotego.controller.SituacaoController().find(idSituacao));
-            this.setRaca(new adotego.controller.RacaController().find(idRaca));
-            
-            this.setEspecie(new adotego.controller.EspecieController().find(especieId));
-            
-        }
-
-        
         public int getId() {
             return id;
         }
@@ -125,9 +110,11 @@ public class Animal {
         public String toString() {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             return "Animal{" + "id=" + id + ", nome=" + nome + ", data_entrada="
-                    + sdf.format(data_entrada.getTime()) + ", porte=" + porte + 
+                    + sdf.format(getData_entrada().getTime()) 
+                    + ", porte=" + porte.toString() + 
                     ", descricao=" + descricao + ", idPessoa=" + idPessoa 
-                    + ", situacao=" + situacao + '}';
+                    + ", situacao=" + situacao.toString()
+                    + "\nEspecie = "+especie+'}';
         }
         
         

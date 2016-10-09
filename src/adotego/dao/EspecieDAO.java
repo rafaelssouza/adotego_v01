@@ -25,19 +25,20 @@ public class EspecieDAO {
     
     public Especie find(int id) throws SQLException{
         String sql = "select * from Especie where idEspecie = ?";
+        Especie especie = null;
         try(PreparedStatement st = connection.prepareStatement(sql)){
             st.setInt(1, id);
             st.executeQuery();
             
             try(ResultSet rs = st.getResultSet()){
-                while(rs.next()){
-                    return new Especie(rs.getInt("idEspecie"),
-                            rs.getString("nome"));
-                    
+                while(rs.next()){                    
+                    especie = new Especie(rs.getInt("idEspecie"),
+                            rs.getString("nome"));                    
+                    return especie;
                 }
             }
         }
-        return null;
+      return null;
     }
     
     public List<Especie> findAll() throws SQLException{
