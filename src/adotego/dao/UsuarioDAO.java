@@ -68,8 +68,8 @@ public class UsuarioDAO {
                     usuario.setId(rs.getInt("idUsuario"));
                     usuario.setNome(rs.getString("nome"));
                     usuario.setEmail(rs.getString("email"));
-                    usuario.setTelefone_fixo("telefone_fixo");
-                    usuario.setTelefone_celular("telefone_celular");
+                    usuario.setTelefone_fixo(rs.getString("telefone_fixo"));
+                    usuario.setTelefone_celular(rs.getString("telefone_celular"));
                     usuario.setCpf("cpf");                    
                     usuario.setData_nascimento_from_SQL(rs.getDate(5));
                     end.setRua(rs.getString("rua"));
@@ -104,8 +104,8 @@ public class UsuarioDAO {
                         usuario.setId(rs.getInt("idUsuario"));
                         usuario.setNome(rs.getString("nome"));
                         usuario.setEmail(rs.getString("email"));
-                        usuario.setTelefone_fixo("telefone_fixo");
-                        usuario.setTelefone_celular("telefone_celular");
+                        usuario.setTelefone_fixo(rs.getString("telefone_fixo"));
+                        usuario.setTelefone_celular(rs.getString("telefone_celular"));
                         usuario.setCpf("cpf");   
                         usuario.setData_nascimento_from_SQL(rs.getDate("data_nascimento"));
                     lista_usuarios.add(usuario);

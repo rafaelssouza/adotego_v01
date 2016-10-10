@@ -3,7 +3,10 @@ package adotego.dao;
 import adotego.modelos.Especie;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EspecieDAO {
     private Connection connection ;
@@ -19,4 +22,55 @@ public class EspecieDAO {
             st.execute();
         }
     }
+    
+    public Especie find(int id) throws SQLException{
+        String sql = "select * from Especie where idEspecie = ?";
+        Especie especie = null;
+        try(PreparedStatement st = connection.prepareStatement(sql)){
+            st.setInt(1, id);
+            st.executeQuery();
+            
+            try(ResultSet rs = st.getResultSet()){
+                while(rs.next()){                    
+                    especie = new Especie(rs.getInt("idEspecie"),
+                            rs.getString("nome"));                    
+                    return especie;
+                }
+            }
+        }
+      return null;
+    }
+    
+    public List<Especie> findAll() throws SQLException{
+        String sql = "select * from Especie";
+        List<Especie> lista_especie = new ArrayList<>();
+        try(PreparedStatement st = connection.prepareStatement(sql)){
+            st.executeQuery();
+            
+            try(ResultSet rs = st.getResultSet()){
+                while(rs.next()){
+                    lista_especie.add(new Especie(rs.getInt("idEspecie"), 
+                            rs.getString("nome")));
+                }
+            }
+        }
+        return lista_especie;
+    }
+
+    public Especie findByName(String nome) throws SQLException {
+        String sql = "select * from Especie e where e.nome = ?";
+        try(PreparedStatement st = connection.prepareStatement(sql)){
+            st.setString(1, nome);
+            st.executeQuery();
+            
+            try(ResultSet rs = st.getResultSet()){
+                while(rs.next()){
+                    return  new Especie(rs.getInt("idEspecie"),rs.getString("nome"));
+                }
+            }
+        }
+        return null;
+    }
+    
+    
 }

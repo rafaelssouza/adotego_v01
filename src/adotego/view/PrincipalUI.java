@@ -5,10 +5,15 @@
  */
 package adotego.view;
 
-import adotego.controller.RacaController;
+import adotego.controller.EspecieController;
 import adotego.controller.UsuarioController;
+import adotego.modelos.Animal;
 import adotego.modelos.Endereco;
+import adotego.modelos.Especie;
+import adotego.modelos.Porte_enum;
 import adotego.modelos.Raca;
+import adotego.modelos.Situacao_enum;
+import adotego.modelos.Tabela_animais;
 import adotego.modelos.Tabela_usuarios;
 import adotego.modelos.Usuario;
 import java.sql.SQLException;
@@ -16,9 +21,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -27,18 +34,23 @@ import java.util.logging.Logger;
 public class PrincipalUI extends javax.swing.JFrame {
     
     private Tabela_usuarios model_tabela_usuarios;
+    private Tabela_animais model_tabela_animais;
     
     /**
      * Creates new form PrincipalUI
      */
     public PrincipalUI() {
-        initComponents();
-        
-        init_JCombo_box();
-        
-        model_tabela_usuarios = new Tabela_usuarios();
-        jTable_usuarios.setModel(model_tabela_usuarios);
-        
+        try {
+            initComponents();
+            init_JCombo_box_especie();
+            init_jCombo_box_porte();
+            init_jCombo_box_especie_pesquisa();
+            init_jCombo_box_raca_pesquisa();
+            iniciar_tabelas();
+            init_situacao_pesquisa();
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -103,12 +115,28 @@ public class PrincipalUI extends javax.swing.JFrame {
         txt_nome_animal = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_descricao = new javax.swing.JTextArea();
         jLabel22 = new javax.swing.JLabel();
         jComboBox_raca = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
-        jComboBox_raca1 = new javax.swing.JComboBox<>();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jComboBox_especie = new javax.swing.JComboBox<>();
+        btn_cadastrar_animal = new javax.swing.JButton();
+        btn_cancelar_animal = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        jComboBox_porte_animal = new javax.swing.JComboBox<>();
+        jCheckBox_edicao_animal = new javax.swing.JCheckBox();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_animais = new javax.swing.JTable();
+        btn_editar_animal = new javax.swing.JButton();
+        btn_excluir_animal = new javax.swing.JButton();
+        btn_filtrar_animais = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        jCombo_box_especie_pesquisa = new javax.swing.JComboBox<>();
+        jLabel26 = new javax.swing.JLabel();
+        jCombo_box_raca_pesquisa = new javax.swing.JComboBox<>();
+        jLabel27 = new javax.swing.JLabel();
+        jComboBox_situacao_pesquisa = new javax.swing.JComboBox<>();
+        jLabel28 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_nova_especie = new javax.swing.JMenu();
         jMenuItem_nova_raca = new javax.swing.JMenuItem();
@@ -130,36 +158,20 @@ public class PrincipalUI extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel5.setText("Nome");
 
-        txt_nome.setText("Teste");
-
-        txt_email.setText("teste@teste.com.br");
-
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel6.setText("Email");
-
-        txt_telefone_fixo.setText("3232332");
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel7.setText("Telefone-fixo");
 
-        txt_telefone_celular.setText("2235455");
-
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel8.setText("Celular");
-
-        txt_data_nascimento.setText("05/01/1993");
 
         jLabel9.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel9.setText("Data Nascimento");
 
-        txt_cpf.setText("3249989");
-
         jLabel10.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel10.setText("CPF");
-
-        txt_cidade.setText("fpolis");
-
-        txt_uf.setText("sc");
 
         jLabel11.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel11.setText("Cidade");
@@ -170,22 +182,20 @@ public class PrincipalUI extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel13.setText("Dados Pessoais");
 
-        txt_bairro.setText("cmpeche");
+        txt_bairro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_bairroActionPerformed(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel14.setText("Bairro");
 
-        txt_rua.setText("avorada");
-
         jLabel15.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel15.setText("Rua");
 
-        txt_numero.setText("32");
-
         jLabel16.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel16.setText("Nº");
-
-        txt_cep.setText("88093");
 
         jLabel17.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel17.setText("CEP");
@@ -438,7 +448,7 @@ public class PrincipalUI extends javax.swing.JFrame {
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame2Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 798, Short.MAX_VALUE))
+                .addGap(0, 870, Short.MAX_VALUE))
         );
         jInternalFrame2Layout.setVerticalGroup(
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,19 +473,38 @@ public class PrincipalUI extends javax.swing.JFrame {
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel19.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel19.setText("Novo Cadastro");
+        jLabel19.setText("Novo Animal");
 
         jLabel20.setText("Nome");
 
         jLabel21.setText("Descrição");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txt_descricao.setColumns(20);
+        txt_descricao.setRows(5);
+        jScrollPane2.setViewportView(txt_descricao);
 
         jLabel22.setText("Raça");
 
         jLabel23.setText("Especie");
+
+        jComboBox_especie.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox_especieItemStateChanged(evt);
+            }
+        });
+
+        btn_cadastrar_animal.setText("Cadastrar");
+        btn_cadastrar_animal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cadastrar_animalActionPerformed(evt);
+            }
+        });
+
+        btn_cancelar_animal.setText("Cancelar");
+
+        jLabel24.setText("Porte");
+
+        jCheckBox_edicao_animal.setText("modo edição");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -483,47 +512,126 @@ public class PrincipalUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox_raca1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel20)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel20)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel19)
+                            .addGap(73, 73, 73)
+                            .addComponent(jLabel1))
+                        .addComponent(jLabel21)
+                        .addComponent(jScrollPane2)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(txt_nome_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                            .addComponent(jCheckBox_edicao_animal))
+                        .addComponent(jLabel22)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel23)
+                                .addComponent(jComboBox_especie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(27, 27, 27)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel24)
+                                .addComponent(jComboBox_porte_animal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jComboBox_raca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel19)
-                        .addGap(73, 73, 73)
-                        .addComponent(jLabel1))
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel22)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jComboBox_raca, javax.swing.GroupLayout.Alignment.LEADING, 0, 189, Short.MAX_VALUE)
-                        .addComponent(txt_nome_animal, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(103, Short.MAX_VALUE))
+                        .addComponent(btn_cadastrar_animal)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_cancelar_animal)
+                        .addGap(46, 46, 46)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(25, 25, 25)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel1)
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_nome_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_nome_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox_edicao_animal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel23)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox_raca1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel22)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox_especie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_porte_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jLabel22)
+                .addGap(8, 8, 8)
                 .addComponent(jComboBox_raca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_cadastrar_animal)
+                    .addComponent(btn_cancelar_animal))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
+
+        jTable_animais.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable_animais);
+
+        btn_editar_animal.setText("Editar");
+        btn_editar_animal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editar_animalActionPerformed(evt);
+            }
+        });
+
+        btn_excluir_animal.setText("Excluir");
+        btn_excluir_animal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluir_animalActionPerformed(evt);
+            }
+        });
+
+        btn_filtrar_animais.setText("Filtrar");
+        btn_filtrar_animais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_filtrar_animaisActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setText("Pesquisar");
+
+        jCombo_box_especie_pesquisa.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCombo_box_especie_pesquisaItemStateChanged(evt);
+            }
+        });
+
+        jLabel26.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel26.setText("Especie");
+
+        jLabel27.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel27.setText("Raça");
+
+        jLabel28.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel28.setText("Situação");
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -531,20 +639,71 @@ public class PrincipalUI extends javax.swing.JFrame {
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 741, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addComponent(jLabel25)
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addGap(536, 536, 536)
+                                .addComponent(btn_excluir_animal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_editar_animal))
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCombo_box_especie_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jLabel26)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCombo_box_raca_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(jLabel27)))
+                                .addGap(40, 40, 40)
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 109, Short.MAX_VALUE))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 28, Short.MAX_VALUE))))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(jCombo_box_especie_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCombo_box_raca_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_filtrar_animais)
+                    .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_editar_animal)
+                    .addComponent(btn_excluir_animal))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+            .addComponent(jInternalFrame1)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -556,6 +715,11 @@ public class PrincipalUI extends javax.swing.JFrame {
         jMenu_nova_especie.setText("Arquivo");
 
         jMenuItem_nova_raca.setText("Nova Raça");
+        jMenuItem_nova_raca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_nova_racaActionPerformed(evt);
+            }
+        });
         jMenu_nova_especie.add(jMenuItem_nova_raca);
 
         jMenuItem_nova_especie.setText("Nova Especie");
@@ -577,21 +741,14 @@ public class PrincipalUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(25, 25, 25)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
@@ -599,6 +756,18 @@ public class PrincipalUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void iniciar_tabelas(){
+         model_tabela_usuarios = new Tabela_usuarios();
+        try {
+            model_tabela_animais = new Tabela_animais();
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        jTable_usuarios.setModel(model_tabela_usuarios);
+        jTable_animais.setModel(model_tabela_animais);
+    }
+    
     private void btn_excluir_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_usuarioActionPerformed
         int id_selected = model_tabela_usuarios.getIdIntoTheRow(jTable_usuarios);
         
@@ -661,57 +830,142 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void jMenuItem_nova_especieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_especieActionPerformed
         new Nova_especie().setVisible(true);
     }//GEN-LAST:event_jMenuItem_nova_especieActionPerformed
-    /*
-        Este método retorna true se algum dos valores do formulários de 
-        cadastro de usuarios esteja vazio
-    */
-    private boolean campos_validos() {
-        return !(txt_nome.getText() == null 
-                    || txt_email.getText() == null
-                    || txt_telefone_fixo.getText() == null 
-                    || txt_telefone_celular.getText() == null
-                    || txt_data_nascimento.getText() == null
-                    || txt_bairro.getText() == null
-                    || txt_cep.getText() == null
-                    || txt_uf.getText() == null
-                    || txt_cidade.getText() == null
-                    || txt_rua.getText() == null
-                    || txt_numero.getText() == null
-                    || txt_cpf.getText() ==null );
-    }
-    
-    
-    private void setarCamposComUsuario(Usuario u) {
-        SimpleDateFormat sdf = new SimpleDateFormat();
-            txt_nome.setText(u.getNome());
-            txt_email.setText(u.getEmail());
-            txt_cpf.setText(u.getCpf());
-            txt_telefone_fixo.setText(u.getTelefone_fixo());
-            txt_telefone_celular.setText(u.getTelefone_celular());
-            txt_data_nascimento.setText(sdf.format(u.getData_nascimento().getTime()));
-            txt_cidade.setText(u.getEndereco().getCidade());
-            txt_bairro.setText(u.getEndereco().getBairro());
-            txt_cep.setText(u.getEndereco().getCep());
-            txt_rua.setText(u.getEndereco().getRua());
-            txt_uf.setText(u.getEndereco().getUf());
-            txt_numero.setText(String.valueOf(u.getEndereco().getNumero()));
-            jCheckBox_modo_de_edicao.setSelected(true);
-    }
 
-    private void init_JCombo_box() {
+    private void jComboBox_especieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_especieItemStateChanged
+        String item_selected = String.valueOf(jComboBox_especie.getSelectedItem());        
+        
         try {
-            List<Raca> lista_racas = new RacaController().findAll();
             
-            for (Raca raca : lista_racas) {
-                 jComboBox_raca.addItem(raca.getNome());
+            if(item_selected.length() > 0){
+            Especie id_selected = new adotego.controller.EspecieController()
+                    .getByName(item_selected);           
+                
+            atualizar_jComboBox_raca(id_selected.getId());
             }
             
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBox_especieItemStateChanged
+
+    private void btn_cadastrar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_animalActionPerformed
+      try {
+          String nome = txt_nome_animal.getText();
+          String descricao = txt_descricao.getText();
+          Especie especie = new adotego.controller.EspecieController()
+                    .getByName(String.valueOf(jComboBox_especie
+                            .getSelectedItem()));
             
+            
+         Raca raca = new adotego.controller.RacaController()
+                    .getByName(String.valueOf(jComboBox_raca
+                            .getSelectedItem()));
+          
+          Porte_enum porte = getPorte(String.valueOf(jComboBox_porte_animal
+                  .getSelectedItem()));
+          
+          Animal animal = new Animal(nome, Calendar.getInstance()
+                  ,especie, raca,descricao,porte);
+           
+          new adotego.controller.AnimalController().save(animal);
+          
+          model_tabela_animais.atualizar_tabela();
+          resetCamposAnimal();
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE
+                    , null, ex);
+        }
+    }//GEN-LAST:event_btn_cadastrar_animalActionPerformed
+    private void resetCamposAnimal() {
+            txt_nome_animal.setText("");
+            jComboBox_especie.setSelectedIndex(0);
+            jComboBox_porte_animal.setSelectedItem(0);
+            jComboBox_raca.setSelectedItem(0);
+            txt_descricao.setText("");
+        }
+    private void jMenuItem_nova_racaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_racaActionPerformed
+        new Nova_raca().setVisible(true);
+    }//GEN-LAST:event_jMenuItem_nova_racaActionPerformed
+
+    private void btn_editar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_animalActionPerformed
+       
+        int id_animal_selected =  model_tabela_animais.getSelectedIndex(jTable_animais);
+        Animal animal = model_tabela_animais.getAnimalByIndex(id_animal_selected);
+        setarCamposAnimal(animal);
+
+       
+    }//GEN-LAST:event_btn_editar_animalActionPerformed
+
+    private void btn_filtrar_animaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrar_animaisActionPerformed
+       int indexSelecionado = jCombo_box_especie_pesquisa.getSelectedIndex();
+       try {
+            if(indexSelecionado > 0){
+          
+               String especie_name_selected =  String.valueOf(jCombo_box_especie_pesquisa
+                       .getSelectedItem());
+               
+               List<Animal> animais_lista = new adotego.controller.AnimalController()
+                       .findByEspecieName(especie_name_selected);
+               
+              if(jCombo_box_raca_pesquisa.getSelectedIndex()>0){
+                  String raca = String.valueOf(jCombo_box_raca_pesquisa.getSelectedItem());
+                   //remover os animais que possuir raca diferente da selecionada
+                   Iterator<Animal> iterator = animais_lista.iterator();
+                   while (iterator.hasNext()) {
+                      Animal animal = iterator.next();
+                      if(!animal.getRaca().getNome().equalsIgnoreCase(raca)){
+                          iterator.remove();
+                      }
+                  }
+              }
+              
+               model_tabela_animais.atualizar_tabela(animais_lista);
+               
+          
+       
+             }else if(indexSelecionado == 0){
+                 model_tabela_animais.atualizar_tabela();
+              }
+         } catch (SQLException ex) {
+               Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       
+    }//GEN-LAST:event_btn_filtrar_animaisActionPerformed
+
+    private void jCombo_box_especie_pesquisaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCombo_box_especie_pesquisaItemStateChanged
+      
+    try {
+       if(jCombo_box_especie_pesquisa.getSelectedIndex() != 0){
+            String especie_name_selected =  String.valueOf(jCombo_box_especie_pesquisa
+                      .getSelectedItem());
+
+
+           List<Raca> lista_raca = new adotego.controller.RacaController()
+                   .findRacaByEspecieName(especie_name_selected);
+           refresh_JCombo_box_raca_pesquisa(lista_raca);
+           
+       }
+    } catch (SQLException ex) {
+           Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }//GEN-LAST:event_jCombo_box_especie_pesquisaItemStateChanged
+
+    private void btn_excluir_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_animalActionPerformed
+        try {
+            int id = model_tabela_animais.getIdIntoTheRow(jTable_animais);
+            
+            new adotego.controller.AnimalController().delete(id);
+            model_tabela_animais.atualizar_tabela();
         } catch (SQLException ex) {
             Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
+    }//GEN-LAST:event_btn_excluir_animalActionPerformed
+
+    private void txt_bairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bairroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_bairroActionPerformed
+   
     /**
      * @param args the command line arguments
      */
@@ -748,13 +1002,23 @@ public class PrincipalUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cadastrar_animal;
     private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_cancelar_animal;
+    private javax.swing.JButton btn_editar_animal;
     private javax.swing.JButton btn_editar_usuario;
+    private javax.swing.JButton btn_excluir_animal;
     private javax.swing.JButton btn_excluir_usuario;
+    private javax.swing.JButton btn_filtrar_animais;
     private javax.swing.JButton btn_salvar;
+    private javax.swing.JCheckBox jCheckBox_edicao_animal;
     private javax.swing.JCheckBox jCheckBox_modo_de_edicao;
+    private javax.swing.JComboBox<String> jComboBox_especie;
+    private javax.swing.JComboBox<String> jComboBox_porte_animal;
     private javax.swing.JComboBox<String> jComboBox_raca;
-    private javax.swing.JComboBox<String> jComboBox_raca1;
+    private javax.swing.JComboBox<String> jComboBox_situacao_pesquisa;
+    private javax.swing.JComboBox<String> jCombo_box_especie_pesquisa;
+    private javax.swing.JComboBox<String> jCombo_box_raca_pesquisa;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JInternalFrame jInternalFrame3;
@@ -774,6 +1038,11 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -795,15 +1064,16 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTable jTable_animais;
     private javax.swing.JTable jTable_usuarios;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txt_bairro;
     private javax.swing.JTextField txt_cep;
     private javax.swing.JTextField txt_cidade;
     private javax.swing.JTextField txt_cpf;
     private javax.swing.JTextField txt_data_nascimento;
+    private javax.swing.JTextArea txt_descricao;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_nome;
     private javax.swing.JTextField txt_nome_animal;
@@ -813,6 +1083,136 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JTextField txt_telefone_fixo;
     private javax.swing.JTextField txt_uf;
     // End of variables declaration//GEN-END:variables
+
+    private void init_jCombo_box_especie_pesquisa() throws SQLException {
+        List<Especie> especies = new adotego.controller.EspecieController().findAll();
+        jCombo_box_especie_pesquisa.addItem("Tudo");
+        for (Especie especie : especies) {
+            jCombo_box_especie_pesquisa.addItem(especie.getNome());
+        }
+    }
+
+    private void refresh_JCombo_box_raca_pesquisa(List<Raca> lista){
+       jCombo_box_raca_pesquisa.removeAllItems();
+       jCombo_box_raca_pesquisa.addItem("Tudo");
+        for (Raca raca : lista) {
+            
+            jCombo_box_raca_pesquisa.addItem(raca.getNome());
+        }
+    }
+
+    private void init_jCombo_box_raca_pesquisa() {
+        jCombo_box_raca_pesquisa.addItem("Tudo");
+    }
+
+    
+     /*
+        Este método retorna true se algum dos valores do formulários de 
+        cadastro de usuarios estiver vazio
+    */
+    private boolean campos_validos() {
+        return !(txt_nome.getText() == null 
+                    || txt_email.getText() == null
+                    || txt_telefone_fixo.getText() == null 
+                    || txt_telefone_celular.getText() == null
+                    || txt_data_nascimento.getText() == null
+                    || txt_bairro.getText() == null
+                    || txt_cep.getText() == null
+                    || txt_uf.getText() == null
+                    || txt_cidade.getText() == null
+                    || txt_rua.getText() == null
+                    || txt_numero.getText() == null
+                    || txt_cpf.getText() ==null );
+    }
+    
+    
+    /*
+        Método responsável por atualizar os campor do formulário com os valores
+        do usuario passado como parâmetro.
+    */
+    private void setarCamposComUsuario(Usuario u) {
+        SimpleDateFormat sdf = new SimpleDateFormat();
+            txt_nome.setText(u.getNome());
+            txt_email.setText(u.getEmail());
+            txt_cpf.setText(u.getCpf());
+            txt_telefone_fixo.setText(u.getTelefone_fixo());
+            txt_telefone_celular.setText(u.getTelefone_celular());
+            txt_data_nascimento.setText(sdf.format(u.getData_nascimento()
+                    .getTime()));
+            txt_cidade.setText(u.getEndereco().getCidade());
+            txt_bairro.setText(u.getEndereco().getBairro());
+            txt_cep.setText(u.getEndereco().getCep());
+            txt_rua.setText(u.getEndereco().getRua());
+            txt_uf.setText(u.getEndereco().getUf());
+            txt_numero.setText(String.valueOf(u.getEndereco().getNumero()));
+            jCheckBox_modo_de_edicao.setSelected(true);
+    }
+
+    private void setarCamposAnimal(Animal animal){
+        
+        txt_nome_animal.setText(animal.getNome());
+        jCheckBox_edicao_animal.setSelected(true);
+        jComboBox_especie.setSelectedItem(animal.getEspecie().getNome());
+        jComboBox_raca.setSelectedItem(animal.getRaca().getNome());
+        txt_descricao.setText(animal.getDescricao());
+    }
+    
+    
+    //Inicializa o JComoBox_especie com aos dados cadastradas no banco de dados.
+    private void init_JCombo_box_especie() {
+        try {
+            List<Especie> lista_especie = new EspecieController().findAll();
+            
+            for (Especie especie : lista_especie) {
+                jComboBox_especie.addItem(especie.getNome());
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    /*
+        Atualiza o JComboBox de raças com a especia passada como parametro.
+    */
+    private void atualizar_jComboBox_raca(int idEspecie) throws SQLException {
+        List<Raca> lista_raca = new adotego.controller.RacaController().findByEspecie(idEspecie);
+        jComboBox_raca.removeAllItems();
+        
+          for (Raca raca : lista_raca) {             
+              jComboBox_raca.addItem(raca.getNome());
+              
+          }
+    }
+    
+     private void init_jCombo_box_porte() {
+        
+        Porte_enum[] portes = Porte_enum.values();
+        
+        for (Porte_enum porte : portes) {
+            jComboBox_porte_animal.addItem(porte.toString());
+        }
+    }
+     
+        public Porte_enum getPorte(String nome){
+               switch(nome){
+                   case "PEQUENO": return Porte_enum.PEQUENO;
+                   case "GRANDE": return Porte_enum.GRANDE;
+                   case "MEDIO": return Porte_enum.MEDIO;
+                   default:return Porte_enum.MEDIO;
+               } 
+        }
+
+    private void init_situacao_pesquisa() {
+        Situacao_enum[] situacoes = adotego.modelos.Situacao_enum.values();
+        
+        for(int c=0; c< situacoes.length; c++){
+            jComboBox_situacao_pesquisa.addItem(situacoes[c].toString());
+        }
+    }
+   
+
+  
 
     
 

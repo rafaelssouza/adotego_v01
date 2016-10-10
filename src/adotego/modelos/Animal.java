@@ -1,6 +1,8 @@
  
 package adotego.modelos;
  
+import java.sql.Date;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -13,24 +15,22 @@ public class Animal {
 	private String descricao;
 	private int idPessoa;
 	private Situacao_enum situacao;
+        private Especie especie;
+        private Raca  raca;
 
-        public Animal(int id, String nome, java.sql.Date data_entrada, 
-                String porte, String descricao) {
-            this.id = id;
-            this.nome = nome;
-           
-            this.setData_nascimento_from_SQL(data_entrada);
-            this.setPorte_com_string(porte);
-            this.descricao = descricao;
-            this.idPessoa = idPessoa;
-            this.situacao = situacao;
+        public Animal() {
+
         }
 
-    public Animal() {
-        
-    }
-
-        
+        public Animal(String nome, Calendar instance, Especie especie, Raca raca,
+                String descricao, Porte_enum porte) {
+            this.nome = nome;
+            this.porte = porte;
+            this.descricao = descricao;
+            this.data_entrada = instance;
+            this.especie =especie;
+            this.raca =raca;
+        }
         public int getId() {
             return id;
         }
@@ -87,13 +87,34 @@ public class Animal {
             this.data_entrada = data_entrada;
         }
 
+        public Especie getEspecie() {
+            return especie;
+        }
+
+        public void setEspecie(Especie especie) {
+            this.especie = especie;
+        }
+
+        public Raca getRaca() {
+            return raca;
+        }
+
+        public void setRaca(Raca raca) {
+            this.raca = raca;
+        }
+
+      
+
+        
         @Override
         public String toString() {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             return "Animal{" + "id=" + id + ", nome=" + nome + ", data_entrada="
-                    + sdf.format(data_entrada.getTime()) + ", porte=" + porte + 
+                    + sdf.format(getData_entrada().getTime()) 
+                    + ", porte=" + porte.toString() + 
                     ", descricao=" + descricao + ", idPessoa=" + idPessoa 
-                    + ", situacao=" + situacao + '}';
+                    + ", situacao=" + situacao.toString()
+                    + "\nEspecie = "+especie+'}';
         }
         
         
@@ -119,4 +140,8 @@ public class Animal {
                 default: this.setPorte(Porte_enum.MEDIO);
             }
         }
+
+    private void setSituacao_com_string() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
