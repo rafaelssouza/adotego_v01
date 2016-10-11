@@ -14,8 +14,7 @@ public class Tabela_usuarios extends AbstractTableModel{
     
         usuarios = new adotego.controller.UsuarioController().findAll();
     }
-    
-    
+        
     @Override
     public int getRowCount() {
         return usuarios.size();

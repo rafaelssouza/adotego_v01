@@ -46,7 +46,7 @@ public class RacaDAO {
     }
 
     public List<Raca> findByEspecie(int idEspecie) throws SQLException {
-        String sql = "select * from Raca where Especie_idEspecie = ? ";
+        String sql = "select * from Raca where raca_idEspecie = ? ";
         List<Raca> lista_racas = new ArrayList<>();
         try(PreparedStatement st = connection.prepareStatement(sql)){
             st.setInt(1, idEspecie);
