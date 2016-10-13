@@ -28,9 +28,9 @@ public class UsuarioDAO {
         de dados, especificamente na tabela Usuario.
     */
     public void save(Usuario pessoa) throws SQLException {
-        String sql = "INSERT INTO Usuario" +
+        String sql = "INSERT INTO Pessoa" +
                         "(nome,email,telefone_fixo,telefone_celular," +
-                        "data_nascimento,cpf,rua,cidade,bairro,numero ,uf,cep)" +
+                        "data_nascimento,cpf_cnpj,rua,cidade,bairro,numero ,uf,cep)" +
                         "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try(PreparedStatement pstm = conn.prepareStatement(sql)){	
@@ -43,7 +43,7 @@ public class UsuarioDAO {
                 pstm.setString(7, pessoa.getEndereco().getRua());
                 pstm.setString(8, pessoa.getEndereco().getCidade());
                 pstm.setString(9, pessoa.getEndereco().getBairro());
-                pstm.setInt(10, pessoa.getEndereco().getNumero());
+                pstm.setString(10, String.valueOf(pessoa.getEndereco().getNumero()));
                 pstm.setString(11, pessoa.getEndereco().getUf());
                 pstm.setString(12, pessoa.getEndereco().getCep());
                 pstm.execute();
@@ -58,19 +58,19 @@ public class UsuarioDAO {
     public Usuario find(int id) throws SQLException{
         Usuario usuario = new Usuario();
         Endereco end = new Endereco();
-        String sql = "select * from Usuario where idUsuario = ? ";
+        String sql = "select * from Pessoa where idPessoa = ? ";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setInt(1, id);
                 ps.executeQuery();                
             try(ResultSet rs = ps.getResultSet()){
                 while(rs.next()){
                     
-                    usuario.setId(rs.getInt("idUsuario"));
+                    usuario.setId(rs.getInt("idPessoa"));
                     usuario.setNome(rs.getString("nome"));
                     usuario.setEmail(rs.getString("email"));
                     usuario.setTelefone_fixo(rs.getString("telefone_fixo"));
                     usuario.setTelefone_celular(rs.getString("telefone_celular"));
-                    usuario.setCpf("cpf");                    
+                    usuario.setCpf(rs.getString("cpf_cnpj"));                    
                     usuario.setData_nascimento_from_SQL(rs.getDate(5));
                     end.setRua(rs.getString("rua"));
                     end.setCidade(rs.getString("cidade"));
@@ -93,7 +93,7 @@ public class UsuarioDAO {
         de dados
     */
     public List<Usuario> findAll() throws SQLException{
-        String sql = "select * from pessoa";
+        String sql = "select * from Pessoa";
         List<Usuario> lista_usuarios = new ArrayList<>();
         try(PreparedStatement st = conn.prepareStatement(sql)){
             st.executeQuery();
@@ -101,13 +101,22 @@ public class UsuarioDAO {
             try(ResultSet rs = st.getResultSet()){
                 while(rs.next()){
                     Usuario usuario = new Usuario();
-                        usuario.setId(rs.getInt("idUsuario"));
+                        usuario.setId(rs.getInt("idPessoa"));
                         usuario.setNome(rs.getString("nome"));
                         usuario.setEmail(rs.getString("email"));
                         usuario.setTelefone_fixo(rs.getString("telefone_fixo"));
                         usuario.setTelefone_celular(rs.getString("telefone_celular"));
-                        usuario.setCpf("cpf");   
+                        usuario.setCpf(rs.getString("cpf_cnpj"));   
                         usuario.setData_nascimento_from_SQL(rs.getDate("data_nascimento"));
+                            usuario.setEndereco(new Endereco());
+                            usuario.getEndereco().setCidade(rs.getString("cidade"));
+                            usuario.getEndereco().setCep(rs.getString("cep"));
+                            usuario.getEndereco().setBairro(rs.getString("bairro"));
+                            usuario.getEndereco().setNumero(Integer
+                                    .parseInt(rs.getString("numero")));
+                            usuario.getEndereco().setUf(rs.getString("uf"));
+                            usuario.getEndereco().setRua(rs.getString("rua"));
+                        
                     lista_usuarios.add(usuario);
                 }
             }
@@ -119,7 +128,7 @@ public class UsuarioDAO {
         com o id passado como parametro
     */
     public void delete(int id) throws SQLException{
-        String sql = "delete from Usuario where idUsuario = ?";
+        String sql = "delete from Usuario where idPessoa = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, id);
             ps.execute();

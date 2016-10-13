@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class Tabela_animais extends AbstractTableModel{
     private List<Animal> linhas_animal = new ArrayList<>();
-    private final String[] colunas = new String[]{"Id","Nome", "Especie", "Raça","Situação"};
+    private final String[] colunas = new String[]{"Código","Nome", "Especie", "Raça","Situação"};
 
     public Tabela_animais() throws SQLException {
         linhas_animal = new adotego.controller.AnimalController().findAll();
@@ -47,7 +47,7 @@ public class Tabela_animais extends AbstractTableModel{
     @Override
     public String getColumnName(int column) {
         switch(column){
-            case 0: return "Id";
+            case 0: return "Código";
             case 1: return "Nome";
             case 2: return "Especie";
             case 3: return "Raca";
@@ -61,6 +61,10 @@ public class Tabela_animais extends AbstractTableModel{
         int row =table.getSelectedRow();
         String val = String.valueOf(table.getValueAt(row, 0));
         return Integer.parseInt(val);
+    }
+    public void inserirAnimal(Animal animal){
+        linhas_animal.add(animal);
+        this.fireTableDataChanged();
     }
     
     public void atualizar_tabela() throws SQLException{

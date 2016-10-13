@@ -8,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 public class Tabela_usuarios extends AbstractTableModel{
 
     List<Usuario> usuarios;
-    private final String[] colunas =new String[]{"id", "nome", "telefones", "Data Nascimento", "CPF"}; 
+    private final String[] colunas =new String[]{"id", "nome"}; 
 
     public Tabela_usuarios() {
     
@@ -31,10 +31,7 @@ public class Tabela_usuarios extends AbstractTableModel{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         switch(columnIndex){
             case 0: return usuario.getId();
-            case 1: return usuario.getNome();
-            case 2: return usuario.getTelefone_celular()+"/"+usuario.getTelefone_fixo();
-            case 3: return sdf.format(usuario.getData_nascimento().getTime());
-            case 4: return usuario.getCpf();
+            case 1: return usuario.getNome();                       
             default: throw new IndexOutOfBoundsException("Erro ao identificar coluna");
         }
     }

@@ -19,7 +19,7 @@ public class RacaDAO {
     }
 
     public void save(Raca raca) throws SQLException{
-        String sql = "insert into Raca (nome, Especie_idEspecie)values(?,?)";
+        String sql = "insert into Raca (nome, raca_idEspecie)values(?,?)";
         try(PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setString(1, raca.getNome());
             ps.setInt(2, raca.getEspecie().getId());
@@ -126,7 +126,7 @@ public class RacaDAO {
     public List<Raca> findRacaByEspecieName(String nome) throws SQLException{
         String sql = "select r.idRaca , r.nome from Raca r " +
                      "join Especie e " +
-                     "on r.Especie_idEspecie = e.idEspecie " +
+                     "on r idEspecie = e.idEspecie " +
                      "where e.nome = ?";
         
         List<Raca> animal_lista = new ArrayList<>();

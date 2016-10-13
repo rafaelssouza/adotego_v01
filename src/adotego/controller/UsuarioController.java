@@ -22,6 +22,7 @@ public class UsuarioController {
         try(Connection c = new ConnectionPool().getConnection()){
                 new UsuarioDAO(c).save(p);
         } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     

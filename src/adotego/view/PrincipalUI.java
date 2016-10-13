@@ -14,8 +14,10 @@ import adotego.modelos.Porte_enum;
 import adotego.modelos.Raca;
 import adotego.modelos.Situacao_enum;
 import adotego.modelos.Tabela_animais;
+import adotego.modelos.Tabela_usuario_completa;
 import adotego.modelos.Tabela_usuarios;
 import adotego.modelos.Usuario;
+import java.awt.Frame;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,7 +35,7 @@ import javax.swing.table.TableColumn;
  */
 public class PrincipalUI extends javax.swing.JFrame {
     
-    private Tabela_usuarios model_tabela_usuarios;
+    private Tabela_usuario_completa model_tabela_usuarios_completa;
     private Tabela_animais model_tabela_animais;
     
     /**
@@ -41,6 +43,8 @@ public class PrincipalUI extends javax.swing.JFrame {
      */
     public PrincipalUI() {
         try {
+            this.setExtendedState(Frame.MAXIMIZED_BOTH);
+            
             initComponents();
             init_JCombo_box_especie();
             init_jCombo_box_porte();
@@ -50,6 +54,7 @@ public class PrincipalUI extends javax.swing.JFrame {
             init_situacao_pesquisa();
         } catch (SQLException ex) {
             Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
 
@@ -66,46 +71,11 @@ public class PrincipalUI extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jInternalFrame3 = new javax.swing.JInternalFrame();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txt_nome = new javax.swing.JTextField();
-        txt_email = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txt_telefone_fixo = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txt_telefone_celular = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txt_data_nascimento = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txt_cpf = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txt_cidade = new javax.swing.JTextField();
-        txt_uf = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        txt_bairro = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        txt_rua = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        txt_numero = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        txt_cep = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        btn_cancelar = new javax.swing.JButton();
-        btn_salvar = new javax.swing.JButton();
-        jCheckBox_modo_de_edicao = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_usuarios = new javax.swing.JTable();
         btn_excluir_usuario = new javax.swing.JButton();
         btn_editar_usuario = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jInternalFrame2 = new javax.swing.JInternalFrame();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel4 = new javax.swing.JPanel();
@@ -141,6 +111,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         jMenu_nova_especie = new javax.swing.JMenu();
         jMenuItem_nova_raca = new javax.swing.JMenuItem();
         jMenuItem_nova_especie = new javax.swing.JMenuItem();
+        btn_novo_usuario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         jRadioButtonMenuItem1.setSelected(true);
@@ -149,206 +120,6 @@ public class PrincipalUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jInternalFrame3.setVisible(true);
-
-        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel4.setText("Novo Cadastro");
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel5.setText("Nome");
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel6.setText("Email");
-
-        jLabel7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel7.setText("Telefone-fixo");
-
-        jLabel8.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel8.setText("Celular");
-
-        jLabel9.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel9.setText("Data Nascimento");
-
-        jLabel10.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel10.setText("CPF");
-
-        jLabel11.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel11.setText("Cidade");
-
-        jLabel12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel12.setText("Uf");
-
-        jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel13.setText("Dados Pessoais");
-
-        txt_bairro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_bairroActionPerformed(evt);
-            }
-        });
-
-        jLabel14.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel14.setText("Bairro");
-
-        jLabel15.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel15.setText("Rua");
-
-        jLabel16.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel16.setText("Nº");
-
-        jLabel17.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel17.setText("CEP");
-
-        jLabel18.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel18.setText("Endereço");
-
-        btn_cancelar.setText("Cancelar");
-
-        btn_salvar.setText("Salvar");
-        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_salvarActionPerformed(evt);
-            }
-        });
-
-        jCheckBox_modo_de_edicao.setText("modo de edição");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)
-                            .addComponent(txt_rua, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(txt_uf, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_numero, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addComponent(txt_bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_cep, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17)))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_salvar)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(46, 46, 46)
-                        .addComponent(btn_cancelar))
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jCheckBox_modo_de_edicao)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txt_telefone_fixo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel7)
-                                .addComponent(txt_data_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel9))
-                            .addGap(35, 35, 35)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txt_telefone_celular, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8)
-                                .addComponent(txt_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10)
-                                .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox_modo_de_edicao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_telefone_fixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_telefone_celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_data_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_rua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_uf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_cancelar)
-                    .addComponent(btn_salvar))
-                .addGap(39, 39, 39))
-        );
 
         jTable_usuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -361,6 +132,11 @@ public class PrincipalUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable_usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_usuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable_usuarios);
 
         btn_excluir_usuario.setText("Excluir");
@@ -381,12 +157,11 @@ public class PrincipalUI extends javax.swing.JFrame {
         jInternalFrame3.getContentPane().setLayout(jInternalFrame3Layout);
         jInternalFrame3Layout.setHorizontalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
+                    .addGroup(jInternalFrame3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_editar_usuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -395,78 +170,41 @@ public class PrincipalUI extends javax.swing.JFrame {
         );
         jInternalFrame3Layout.setVerticalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(204, 204, 204)
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_excluir_usuario)
                     .addComponent(btn_editar_usuario))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jInternalFrame3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jInternalFrame3)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jInternalFrame3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jInternalFrame3)
         );
 
         jTabbedPane1.addTab("Usuarios", jPanel1);
-
-        jInternalFrame2.setVisible(true);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(181, 181, 181)
-                .addComponent(jLabel2)
-                .addContainerGap(232, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2)
-                .addContainerGap(462, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
-        jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
-        jInternalFrame2Layout.setHorizontalGroup(
-            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 870, Short.MAX_VALUE))
-        );
-        jInternalFrame2Layout.setVerticalGroup(
-            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGap(0, 1274, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Arrecadações", jPanel2);
+        jTabbedPane1.addTab("Controle FInanceiro", jPanel2);
 
         jInternalFrame1.setVisible(true);
 
@@ -579,7 +317,7 @@ public class PrincipalUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cadastrar_animal)
                     .addComponent(btn_cancelar_animal))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         jTable_animais.setModel(new javax.swing.table.DefaultTableModel(
@@ -647,7 +385,7 @@ public class PrincipalUI extends javax.swing.JFrame {
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addGap(536, 536, 536)
                                 .addComponent(btn_excluir_animal)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btn_editar_animal))
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -665,14 +403,12 @@ public class PrincipalUI extends javax.swing.JFrame {
                                 .addGap(40, 40, 40)
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel28)
-                                    .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(0, 109, Short.MAX_VALUE))
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 28, Short.MAX_VALUE))))
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                        .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 82, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -714,6 +450,7 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         jMenu_nova_especie.setText("Arquivo");
 
+        jMenuItem_nova_raca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMenuItem_nova_raca.setText("Nova Raça");
         jMenuItem_nova_raca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -722,6 +459,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         });
         jMenu_nova_especie.add(jMenuItem_nova_raca);
 
+        jMenuItem_nova_especie.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMenuItem_nova_especie.setText("Nova Especie");
         jMenuItem_nova_especie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -729,6 +467,15 @@ public class PrincipalUI extends javax.swing.JFrame {
             }
         });
         jMenu_nova_especie.add(jMenuItem_nova_especie);
+
+        btn_novo_usuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btn_novo_usuario.setText("Novo Usuario");
+        btn_novo_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_novo_usuarioActionPerformed(evt);
+            }
+        });
+        jMenu_nova_especie.add(btn_novo_usuario);
 
         jMenuBar1.add(jMenu_nova_especie);
 
@@ -757,126 +504,20 @@ public class PrincipalUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void iniciar_tabelas(){
-         model_tabela_usuarios = new Tabela_usuarios();
+         model_tabela_usuarios_completa = new Tabela_usuario_completa();
         try {
             model_tabela_animais = new Tabela_animais();
         } catch (SQLException ex) {
             Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        jTable_usuarios.setModel(model_tabela_usuarios);
+        jTable_usuarios.setModel(model_tabela_usuarios_completa);
         jTable_animais.setModel(model_tabela_animais);
     }
     
-    private void btn_excluir_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_usuarioActionPerformed
-        int id_selected = model_tabela_usuarios.getIdIntoTheRow(jTable_usuarios);
-        
-        new UsuarioController().delete(id_selected);
-        model_tabela_usuarios.atualizarTabela();
-    }//GEN-LAST:event_btn_excluir_usuarioActionPerformed
-
-    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
-        
-            
-        if(jCheckBox_modo_de_edicao.isSelected()){
-            //fazerUpdate
-        }else{
-            if(campos_validos()){
-                Usuario usuario = new Usuario();
-                Endereco end = new Endereco();
-                try {
-                    usuario.setNome(txt_nome.getText());
-                    usuario.setEmail(txt_email.getText());
-                    usuario.setTelefone_fixo(txt_telefone_fixo.getText());
-                    usuario.setTelefone_celular(txt_telefone_celular.getText());              
-
-                    usuario.setCpf(txt_cpf.getText());
-
-                    end.setBairro(txt_bairro.getText());
-                    end.setCep(txt_cep.getText());
-                    end.setCidade(txt_cidade.getText());
-                    end.setUf(txt_uf.getText());
-                    end.setNumero(Integer.parseInt(txt_numero.getText()));
-                    end.setRua(txt_rua.getText());
-
-                    usuario.setEndereco(end);
-
-                    SimpleDateFormat df =  new SimpleDateFormat("dd/MM/yyyy");
-                    Date date_parse = df.parse(txt_data_nascimento.getText());
-                    Calendar cal =Calendar.getInstance();
-                    cal.setTime(date_parse);
-                    usuario.setData_nascimento(cal);
-
-
-                    new adotego.controller.UsuarioController().salvar(usuario);
-                    model_tabela_usuarios.atualizarTabela();
-                } catch (ParseException ex) {
-                    Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE,
-                            null, ex);
-                }
-            }
-        }
-    }//GEN-LAST:event_btn_salvarActionPerformed
-
-    private void btn_editar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_usuarioActionPerformed
-        int id_select = model_tabela_usuarios.getIdIntoTheRow(jTable_usuarios);
-        
-        Usuario u = new adotego.controller.UsuarioController().find(id_select);
-        
-        setarCamposComUsuario(u);
-        
-    }//GEN-LAST:event_btn_editar_usuarioActionPerformed
-
     private void jMenuItem_nova_especieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_especieActionPerformed
         new Nova_especie().setVisible(true);
     }//GEN-LAST:event_jMenuItem_nova_especieActionPerformed
-
-    private void jComboBox_especieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_especieItemStateChanged
-        String item_selected = String.valueOf(jComboBox_especie.getSelectedItem());        
-        
-        try {
-            
-            if(item_selected.length() > 0){
-            Especie id_selected = new adotego.controller.EspecieController()
-                    .getByName(item_selected);           
-                
-            atualizar_jComboBox_raca(id_selected.getId());
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(PrincipalUI.class.getName())
-                    .log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jComboBox_especieItemStateChanged
-
-    private void btn_cadastrar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_animalActionPerformed
-      try {
-          String nome = txt_nome_animal.getText();
-          String descricao = txt_descricao.getText();
-          Especie especie = new adotego.controller.EspecieController()
-                    .getByName(String.valueOf(jComboBox_especie
-                            .getSelectedItem()));
-            
-            
-         Raca raca = new adotego.controller.RacaController()
-                    .getByName(String.valueOf(jComboBox_raca
-                            .getSelectedItem()));
-          
-          Porte_enum porte = getPorte(String.valueOf(jComboBox_porte_animal
-                  .getSelectedItem()));
-          
-          Animal animal = new Animal(nome, Calendar.getInstance()
-                  ,especie, raca,descricao,porte);
-           
-          new adotego.controller.AnimalController().save(animal);
-          
-          model_tabela_animais.atualizar_tabela();
-          resetCamposAnimal();
-        } catch (SQLException ex) {
-            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE
-                    , null, ex);
-        }
-    }//GEN-LAST:event_btn_cadastrar_animalActionPerformed
     private void resetCamposAnimal() {
             txt_nome_animal.setText("");
             jComboBox_especie.setSelectedIndex(0);
@@ -888,73 +529,65 @@ public class PrincipalUI extends javax.swing.JFrame {
         new Nova_raca().setVisible(true);
     }//GEN-LAST:event_jMenuItem_nova_racaActionPerformed
 
-    private void btn_editar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_animalActionPerformed
-       
-        int id_animal_selected =  model_tabela_animais.getSelectedIndex(jTable_animais);
-        Animal animal = model_tabela_animais.getAnimalByIndex(id_animal_selected);
-        setarCamposAnimal(animal);
-
-       
-    }//GEN-LAST:event_btn_editar_animalActionPerformed
-
-    private void btn_filtrar_animaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrar_animaisActionPerformed
-       int indexSelecionado = jCombo_box_especie_pesquisa.getSelectedIndex();
-       try {
-            if(indexSelecionado > 0){
-          
-               String especie_name_selected =  String.valueOf(jCombo_box_especie_pesquisa
-                       .getSelectedItem());
-               
-               List<Animal> animais_lista = new adotego.controller.AnimalController()
-                       .findByEspecieName(especie_name_selected);
-               
-              if(jCombo_box_raca_pesquisa.getSelectedIndex()>0){
-                  String raca = String.valueOf(jCombo_box_raca_pesquisa.getSelectedItem());
-                   //remover os animais que possuir raca diferente da selecionada
-                   Iterator<Animal> iterator = animais_lista.iterator();
-                   while (iterator.hasNext()) {
-                      Animal animal = iterator.next();
-                      if(!animal.getRaca().getNome().equalsIgnoreCase(raca)){
-                          iterator.remove();
-                      }
-                  }
-              }
-              
-               model_tabela_animais.atualizar_tabela(animais_lista);
-               
-          
-       
-             }else if(indexSelecionado == 0){
-                 model_tabela_animais.atualizar_tabela();
-              }
-         } catch (SQLException ex) {
-               Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
-           }
-       
-    }//GEN-LAST:event_btn_filtrar_animaisActionPerformed
+    private void btn_novo_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_usuarioActionPerformed
+        new Detalhe_usuario().setVisible(true);
+    }//GEN-LAST:event_btn_novo_usuarioActionPerformed
 
     private void jCombo_box_especie_pesquisaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCombo_box_especie_pesquisaItemStateChanged
-      
-    try {
-       if(jCombo_box_especie_pesquisa.getSelectedIndex() != 0){
-            String especie_name_selected =  String.valueOf(jCombo_box_especie_pesquisa
-                      .getSelectedItem());
 
+        try {
+            if(jCombo_box_especie_pesquisa.getSelectedIndex() != 0){
+                String especie_name_selected =  String.valueOf(jCombo_box_especie_pesquisa
+                    .getSelectedItem());
 
-           List<Raca> lista_raca = new adotego.controller.RacaController()
-                   .findRacaByEspecieName(especie_name_selected);
-           refresh_JCombo_box_raca_pesquisa(lista_raca);
-           
-       }
-    } catch (SQLException ex) {
-           Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
-       }
+                List<Raca> lista_raca = new adotego.controller.RacaController()
+                .findRacaByEspecieName(especie_name_selected);
+                refresh_JCombo_box_raca_pesquisa(lista_raca);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jCombo_box_especie_pesquisaItemStateChanged
+
+    private void btn_filtrar_animaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrar_animaisActionPerformed
+        int indexSelecionado = jCombo_box_especie_pesquisa.getSelectedIndex();
+        try {
+            if(indexSelecionado > 0){
+
+                String especie_name_selected =  String.valueOf(jCombo_box_especie_pesquisa
+                    .getSelectedItem());
+
+                List<Animal> animais_lista = new adotego.controller.AnimalController()
+                .findByEspecieName(especie_name_selected);
+
+                if(jCombo_box_raca_pesquisa.getSelectedIndex()>0){
+                    String raca = String.valueOf(jCombo_box_raca_pesquisa.getSelectedItem());
+                    //remover os animais que possuir raca diferente da selecionada
+                    Iterator<Animal> iterator = animais_lista.iterator();
+                    while (iterator.hasNext()) {
+                        Animal animal = iterator.next();
+                        if(!animal.getRaca().getNome().equalsIgnoreCase(raca)){
+                            iterator.remove();
+                        }
+                    }
+                }
+
+                model_tabela_animais.atualizar_tabela(animais_lista);
+
+            }else if(indexSelecionado == 0){
+                model_tabela_animais.atualizar_tabela();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btn_filtrar_animaisActionPerformed
 
     private void btn_excluir_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_animalActionPerformed
         try {
             int id = model_tabela_animais.getIdIntoTheRow(jTable_animais);
-            
+
             new adotego.controller.AnimalController().delete(id);
             model_tabela_animais.atualizar_tabela();
         } catch (SQLException ex) {
@@ -962,9 +595,83 @@ public class PrincipalUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_excluir_animalActionPerformed
 
-    private void txt_bairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bairroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_bairroActionPerformed
+    private void btn_editar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_animalActionPerformed
+
+        int id_animal_selected =  model_tabela_animais.getSelectedIndex(jTable_animais);
+        Animal animal = model_tabela_animais.getAnimalByIndex(id_animal_selected);
+        setarCamposAnimal(animal);
+
+    }//GEN-LAST:event_btn_editar_animalActionPerformed
+
+    private void btn_cadastrar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_animalActionPerformed
+        try {
+            String nome = txt_nome_animal.getText();
+            String descricao = txt_descricao.getText();
+            Especie especie = new adotego.controller.EspecieController()
+            .getByName(String.valueOf(jComboBox_especie
+                .getSelectedItem()));
+
+        Raca raca = new adotego.controller.RacaController()
+        .getByName(String.valueOf(jComboBox_raca
+            .getSelectedItem()));
+
+    Porte_enum porte = getPorte(String.valueOf(jComboBox_porte_animal
+        .getSelectedItem()));
+
+        Animal animal = new Animal(nome, Calendar.getInstance()
+            ,especie, raca,descricao,porte);
+
+        new adotego.controller.AnimalController().save(animal);
+
+        model_tabela_animais.atualizar_tabela();
+        resetCamposAnimal();
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE
+                , null, ex);
+        }
+    }//GEN-LAST:event_btn_cadastrar_animalActionPerformed
+
+    private void jComboBox_especieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_especieItemStateChanged
+        String item_selected = String.valueOf(jComboBox_especie.getSelectedItem());
+
+        try {
+
+            if(item_selected.length() > 0){
+                Especie id_selected = new adotego.controller.EspecieController()
+                .getByName(item_selected);
+
+                atualizar_jComboBox_raca(id_selected.getId());
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalUI.class.getName())
+            .log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBox_especieItemStateChanged
+
+    private void btn_editar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_usuarioActionPerformed
+        int id_select = model_tabela_usuarios_completa.getIdIntoTheRow(jTable_usuarios);
+
+        Usuario u = new adotego.controller.UsuarioController().find(id_select);
+
+    }//GEN-LAST:event_btn_editar_usuarioActionPerformed
+
+    private void btn_excluir_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_usuarioActionPerformed
+        int id_selected = model_tabela_usuarios_completa.getIdIntoTheRow(jTable_usuarios);
+
+        new UsuarioController().delete(id_selected);
+        model_tabela_usuarios_completa.atualizarTabela();
+    }//GEN-LAST:event_btn_excluir_usuarioActionPerformed
+
+    private void jTable_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_usuariosMouseClicked
+        if(evt.getClickCount() ==2){
+            int id_clicado = model_tabela_usuarios_completa.getIdIntoTheRow(jTable_usuarios);
+            Usuario usuario = new adotego.controller
+            .UsuarioController().find(id_clicado);
+
+            new Detalhe_usuario().build(usuario);
+        }
+    }//GEN-LAST:event_jTable_usuariosMouseClicked
    
     /**
      * @param args the command line arguments
@@ -1003,16 +710,14 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cadastrar_animal;
-    private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_cancelar_animal;
     private javax.swing.JButton btn_editar_animal;
     private javax.swing.JButton btn_editar_usuario;
     private javax.swing.JButton btn_excluir_animal;
     private javax.swing.JButton btn_excluir_usuario;
     private javax.swing.JButton btn_filtrar_animais;
-    private javax.swing.JButton btn_salvar;
+    private javax.swing.JMenuItem btn_novo_usuario;
     private javax.swing.JCheckBox jCheckBox_edicao_animal;
-    private javax.swing.JCheckBox jCheckBox_modo_de_edicao;
     private javax.swing.JComboBox<String> jComboBox_especie;
     private javax.swing.JComboBox<String> jComboBox_porte_animal;
     private javax.swing.JComboBox<String> jComboBox_raca;
@@ -1020,20 +725,9 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCombo_box_especie_pesquisa;
     private javax.swing.JComboBox<String> jCombo_box_raca_pesquisa;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JInternalFrame jInternalFrame3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1043,13 +737,6 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem_nova_especie;
@@ -1059,8 +746,6 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1068,20 +753,8 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable_animais;
     private javax.swing.JTable jTable_usuarios;
-    private javax.swing.JTextField txt_bairro;
-    private javax.swing.JTextField txt_cep;
-    private javax.swing.JTextField txt_cidade;
-    private javax.swing.JTextField txt_cpf;
-    private javax.swing.JTextField txt_data_nascimento;
     private javax.swing.JTextArea txt_descricao;
-    private javax.swing.JTextField txt_email;
-    private javax.swing.JTextField txt_nome;
     private javax.swing.JTextField txt_nome_animal;
-    private javax.swing.JTextField txt_numero;
-    private javax.swing.JTextField txt_rua;
-    private javax.swing.JTextField txt_telefone_celular;
-    private javax.swing.JTextField txt_telefone_fixo;
-    private javax.swing.JTextField txt_uf;
     // End of variables declaration//GEN-END:variables
 
     private void init_jCombo_box_especie_pesquisa() throws SQLException {
@@ -1110,43 +783,10 @@ public class PrincipalUI extends javax.swing.JFrame {
         Este método retorna true se algum dos valores do formulários de 
         cadastro de usuarios estiver vazio
     */
-    private boolean campos_validos() {
-        return !(txt_nome.getText() == null 
-                    || txt_email.getText() == null
-                    || txt_telefone_fixo.getText() == null 
-                    || txt_telefone_celular.getText() == null
-                    || txt_data_nascimento.getText() == null
-                    || txt_bairro.getText() == null
-                    || txt_cep.getText() == null
-                    || txt_uf.getText() == null
-                    || txt_cidade.getText() == null
-                    || txt_rua.getText() == null
-                    || txt_numero.getText() == null
-                    || txt_cpf.getText() ==null );
-    }
+   
     
     
-    /*
-        Método responsável por atualizar os campor do formulário com os valores
-        do usuario passado como parâmetro.
-    */
-    private void setarCamposComUsuario(Usuario u) {
-        SimpleDateFormat sdf = new SimpleDateFormat();
-            txt_nome.setText(u.getNome());
-            txt_email.setText(u.getEmail());
-            txt_cpf.setText(u.getCpf());
-            txt_telefone_fixo.setText(u.getTelefone_fixo());
-            txt_telefone_celular.setText(u.getTelefone_celular());
-            txt_data_nascimento.setText(sdf.format(u.getData_nascimento()
-                    .getTime()));
-            txt_cidade.setText(u.getEndereco().getCidade());
-            txt_bairro.setText(u.getEndereco().getBairro());
-            txt_cep.setText(u.getEndereco().getCep());
-            txt_rua.setText(u.getEndereco().getRua());
-            txt_uf.setText(u.getEndereco().getUf());
-            txt_numero.setText(String.valueOf(u.getEndereco().getNumero()));
-            jCheckBox_modo_de_edicao.setSelected(true);
-    }
+  
 
     private void setarCamposAnimal(Animal animal){
         
@@ -1163,9 +803,9 @@ public class PrincipalUI extends javax.swing.JFrame {
         try {
             List<Especie> lista_especie = new EspecieController().findAll();
             
-            for (Especie especie : lista_especie) {
+            lista_especie.stream().forEach((especie) -> {
                 jComboBox_especie.addItem(especie.getNome());
-            }
+            });
             
             
         } catch (SQLException ex) {
@@ -1179,10 +819,9 @@ public class PrincipalUI extends javax.swing.JFrame {
         List<Raca> lista_raca = new adotego.controller.RacaController().findByEspecie(idEspecie);
         jComboBox_raca.removeAllItems();
         
-          for (Raca raca : lista_raca) {             
-              jComboBox_raca.addItem(raca.getNome());
-              
-          }
+        lista_raca.stream().forEach((raca) -> {
+            jComboBox_raca.addItem(raca.getNome());
+        });
     }
     
      private void init_jCombo_box_porte() {
@@ -1206,8 +845,8 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void init_situacao_pesquisa() {
         Situacao_enum[] situacoes = adotego.modelos.Situacao_enum.values();
         
-        for(int c=0; c< situacoes.length; c++){
-            jComboBox_situacao_pesquisa.addItem(situacoes[c].toString());
+        for (Situacao_enum situacoe : situacoes) {
+            jComboBox_situacao_pesquisa.addItem(situacoe.toString());
         }
     }
    
