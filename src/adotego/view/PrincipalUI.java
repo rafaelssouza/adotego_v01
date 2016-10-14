@@ -15,20 +15,13 @@ import adotego.modelos.Raca;
 import adotego.modelos.Situacao_enum;
 import adotego.modelos.Tabela_animais;
 import adotego.modelos.Tabela_usuario_completa;
-import adotego.modelos.Tabela_usuarios;
 import adotego.modelos.Usuario;
 import java.awt.Frame;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.TableColumn;
 
 /**
  *
@@ -44,15 +37,12 @@ public class PrincipalUI extends javax.swing.JFrame {
      */
     public PrincipalUI() {
         try {
-            this.setExtendedState(Frame.MAXIMIZED_BOTH);
             
             initComponents();
-            init_JCombo_box_especie();
-            init_jCombo_box_porte();
             init_jCombo_box_especie_pesquisa();
             init_jCombo_box_raca_pesquisa();
             iniciar_tabelas();
-            init_situacao_pesquisa();
+            
         } catch (SQLException ex) {
             Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
             
@@ -70,6 +60,7 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jInternalFrame3 = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -79,26 +70,8 @@ public class PrincipalUI extends javax.swing.JFrame {
         txt_pesquisar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jCombo_box_opcoes_busca = new javax.swing.JComboBox<>();
-        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        txt_nome_animal = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txt_descricao = new javax.swing.JTextArea();
-        jLabel22 = new javax.swing.JLabel();
-        jComboBox_raca = new javax.swing.JComboBox<>();
-        jLabel23 = new javax.swing.JLabel();
-        jComboBox_especie = new javax.swing.JComboBox<>();
-        btn_cadastrar_animal = new javax.swing.JButton();
-        btn_cancelar_animal = new javax.swing.JButton();
-        jLabel24 = new javax.swing.JLabel();
-        jComboBox_porte_animal = new javax.swing.JComboBox<>();
-        jCheckBox_edicao_animal = new javax.swing.JCheckBox();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_animais = new javax.swing.JTable();
         btn_editar_animal = new javax.swing.JButton();
@@ -116,12 +89,26 @@ public class PrincipalUI extends javax.swing.JFrame {
         jMenuItem_nova_raca = new javax.swing.JMenuItem();
         jMenuItem_nova_especie = new javax.swing.JMenuItem();
         btn_novo_usuario = new javax.swing.JMenuItem();
+        jMenuItem_novo_animal = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 859, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 446, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Controle FInanceiro", jPanel2);
 
         jInternalFrame3.setVisible(true);
 
@@ -173,177 +160,56 @@ public class PrincipalUI extends javax.swing.JFrame {
         jInternalFrame3Layout.setHorizontalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                .addContainerGap(157, Short.MAX_VALUE)
-                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1095, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jInternalFrame3Layout.createSequentialGroup()
                         .addComponent(btn_editar_usuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_excluir_usuario))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
+                    .addGroup(jInternalFrame3Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCombo_box_opcoes_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47))
         );
         jInternalFrame3Layout.setVerticalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jCombo_box_opcoes_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_excluir_usuario)
                     .addComponent(btn_editar_usuario))
-                .addContainerGap())
+                .addGap(42, 42, 42))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame3)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jInternalFrame3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame3)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jInternalFrame3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Usuarios", jPanel1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1274, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Controle FInanceiro", jPanel2);
-
         jInternalFrame1.setVisible(true);
-
-        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel19.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel19.setText("Novo Animal");
-
-        jLabel20.setText("Nome");
-
-        jLabel21.setText("Descrição");
-
-        txt_descricao.setColumns(20);
-        txt_descricao.setRows(5);
-        jScrollPane2.setViewportView(txt_descricao);
-
-        jLabel22.setText("Raça");
-
-        jLabel23.setText("Especie");
-
-        jComboBox_especie.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox_especieItemStateChanged(evt);
-            }
-        });
-
-        btn_cadastrar_animal.setText("Cadastrar");
-        btn_cadastrar_animal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cadastrar_animalActionPerformed(evt);
-            }
-        });
-
-        btn_cancelar_animal.setText("Cancelar");
-
-        jLabel24.setText("Porte");
-
-        jCheckBox_edicao_animal.setText("modo edição");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel20)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel19)
-                            .addGap(73, 73, 73)
-                            .addComponent(jLabel1))
-                        .addComponent(jLabel21)
-                        .addComponent(jScrollPane2)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(txt_nome_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                            .addComponent(jCheckBox_edicao_animal))
-                        .addComponent(jLabel22)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel23)
-                                .addComponent(jComboBox_especie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(27, 27, 27)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel24)
-                                .addComponent(jComboBox_porte_animal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jComboBox_raca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btn_cadastrar_animal)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_cancelar_animal)
-                        .addGap(46, 46, 46)))
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel1)
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_nome_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox_edicao_animal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel24))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox_especie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox_porte_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel22)
-                .addGap(8, 8, 8)
-                .addComponent(jComboBox_raca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_cadastrar_animal)
-                    .addComponent(btn_cancelar_animal))
-                .addContainerGap(82, Short.MAX_VALUE))
-        );
 
         jTable_animais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -401,45 +267,41 @@ public class PrincipalUI extends javax.swing.JFrame {
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(61, 61, 61)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addComponent(jLabel25)
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGap(536, 536, 536)
-                                .addComponent(btn_excluir_animal)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_editar_animal))
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCombo_box_especie_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(jLabel26)))
-                                .addGap(18, 18, 18)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCombo_box_raca_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
-                                        .addComponent(jLabel27)))
-                                .addGap(40, 40, 40)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel28)
-                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(44, 44, 44)
-                                        .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 82, Short.MAX_VALUE))
+                        .addComponent(btn_excluir_animal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_editar_animal))
+                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jInternalFrame1Layout.createSequentialGroup()
+                            .addComponent(jLabel25)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jCombo_box_especie_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                    .addGap(8, 8, 8)
+                                    .addComponent(jLabel26)))
+                            .addGap(18, 18, 18)
+                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jCombo_box_raca_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                    .addGap(9, 9, 9)
+                                    .addComponent(jLabel27)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel28)
+                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                    .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(44, 44, 44)
+                                    .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
                     .addComponent(jLabel27)
@@ -451,20 +313,22 @@ public class PrincipalUI extends javax.swing.JFrame {
                     .addComponent(jCombo_box_raca_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_filtrar_animais)
                     .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_editar_animal)
                     .addComponent(btn_excluir_animal))
-                .addContainerGap())
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -502,6 +366,15 @@ public class PrincipalUI extends javax.swing.JFrame {
         });
         jMenu_nova_especie.add(btn_novo_usuario);
 
+        jMenuItem_novo_animal.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem_novo_animal.setText("Novo Animal");
+        jMenuItem_novo_animal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_novo_animalActionPerformed(evt);
+            }
+        });
+        jMenu_nova_especie.add(jMenuItem_novo_animal);
+
         jMenuBar1.add(jMenu_nova_especie);
 
         jMenu2.setText("Pesquisar");
@@ -513,15 +386,13 @@ public class PrincipalUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jTabbedPane1)
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -543,13 +414,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void jMenuItem_nova_especieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_especieActionPerformed
         new Nova_especie().setVisible(true);
     }//GEN-LAST:event_jMenuItem_nova_especieActionPerformed
-    private void resetCamposAnimal() {
-            txt_nome_animal.setText("");
-            jComboBox_especie.setSelectedIndex(0);
-            jComboBox_porte_animal.setSelectedItem(0);
-            jComboBox_raca.setSelectedItem(0);
-            txt_descricao.setText("");
-        }
+   
     private void jMenuItem_nova_racaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_racaActionPerformed
         new Nova_raca().setVisible(true);
     }//GEN-LAST:event_jMenuItem_nova_racaActionPerformed
@@ -624,61 +489,15 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         int id_animal_selected =  model_tabela_animais.getSelectedIndex(jTable_animais);
         Animal animal = model_tabela_animais.getAnimalByIndex(id_animal_selected);
-        setarCamposAnimal(animal);
+        new Detalhe_animal().build(animal);
 
     }//GEN-LAST:event_btn_editar_animalActionPerformed
-
-    private void btn_cadastrar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_animalActionPerformed
-        try {
-            String nome = txt_nome_animal.getText();
-            String descricao = txt_descricao.getText();
-            Especie especie = new adotego.controller.EspecieController()
-            .getByName(String.valueOf(jComboBox_especie
-                .getSelectedItem()));
-
-        Raca raca = new adotego.controller.RacaController()
-        .getByName(String.valueOf(jComboBox_raca
-            .getSelectedItem()));
-
-    Porte_enum porte = getPorte(String.valueOf(jComboBox_porte_animal
-        .getSelectedItem()));
-
-        Animal animal = new Animal(nome, Calendar.getInstance()
-            ,especie, raca,descricao,porte);
-
-        new adotego.controller.AnimalController().save(animal);
-
-        model_tabela_animais.atualizar_tabela();
-        resetCamposAnimal();
-        } catch (SQLException ex) {
-            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE
-                , null, ex);
-        }
-    }//GEN-LAST:event_btn_cadastrar_animalActionPerformed
-
-    private void jComboBox_especieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_especieItemStateChanged
-        String item_selected = String.valueOf(jComboBox_especie.getSelectedItem());
-
-        try {
-
-            if(item_selected.length() > 0){
-                Especie id_selected = new adotego.controller.EspecieController()
-                .getByName(item_selected);
-
-                atualizar_jComboBox_raca(id_selected.getId());
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(PrincipalUI.class.getName())
-            .log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jComboBox_especieItemStateChanged
 
     private void btn_editar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_usuarioActionPerformed
         int id_select = model_tabela_usuarios_completa.getIdIntoTheRow(jTable_usuarios);
 
         Usuario u = new adotego.controller.UsuarioController().find(id_select);
-
+        new Detalhe_usuario().build(u);
     }//GEN-LAST:event_btn_editar_usuarioActionPerformed
 
     private void btn_excluir_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_usuarioActionPerformed
@@ -728,6 +547,10 @@ public class PrincipalUI extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_txt_pesquisarKeyPressed
+
+    private void jMenuItem_novo_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_novo_animalActionPerformed
+        new Detalhe_animal().setVisible(true);
+    }//GEN-LAST:event_jMenuItem_novo_animalActionPerformed
    
     /**
      * @param args the command line arguments
@@ -765,31 +588,18 @@ public class PrincipalUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_cadastrar_animal;
-    private javax.swing.JButton btn_cancelar_animal;
     private javax.swing.JButton btn_editar_animal;
     private javax.swing.JButton btn_editar_usuario;
     private javax.swing.JButton btn_excluir_animal;
     private javax.swing.JButton btn_excluir_usuario;
     private javax.swing.JButton btn_filtrar_animais;
     private javax.swing.JMenuItem btn_novo_usuario;
-    private javax.swing.JCheckBox jCheckBox_edicao_animal;
-    private javax.swing.JComboBox<String> jComboBox_especie;
-    private javax.swing.JComboBox<String> jComboBox_porte_animal;
-    private javax.swing.JComboBox<String> jComboBox_raca;
     private javax.swing.JComboBox<String> jComboBox_situacao_pesquisa;
     private javax.swing.JComboBox<String> jCombo_box_especie_pesquisa;
     private javax.swing.JComboBox<String> jCombo_box_opcoes_busca;
     private javax.swing.JComboBox<String> jCombo_box_raca_pesquisa;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -799,20 +609,17 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem_nova_especie;
     private javax.swing.JMenuItem jMenuItem_nova_raca;
+    private javax.swing.JMenuItem jMenuItem_novo_animal;
     private javax.swing.JMenu jMenu_nova_especie;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable_animais;
     private javax.swing.JTable jTable_usuarios;
-    private javax.swing.JTextArea txt_descricao;
-    private javax.swing.JTextField txt_nome_animal;
     private javax.swing.JTextField txt_pesquisar;
     // End of variables declaration//GEN-END:variables
 
@@ -838,76 +645,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     }
 
     
-     /*
-        Este método retorna true se algum dos valores do formulários de 
-        cadastro de usuarios estiver vazio
-    */
-   
     
-    
-  
-
-    private void setarCamposAnimal(Animal animal){
-        
-        txt_nome_animal.setText(animal.getNome());
-        jCheckBox_edicao_animal.setSelected(true);
-        jComboBox_especie.setSelectedItem(animal.getEspecie().getNome());
-        jComboBox_raca.setSelectedItem(animal.getRaca().getNome());
-        txt_descricao.setText(animal.getDescricao());
-    }
-    
-    
-    //Inicializa o JComoBox_especie com aos dados cadastradas no banco de dados.
-    private void init_JCombo_box_especie() {
-        try {
-            List<Especie> lista_especie = new EspecieController().findAll();
-            
-            lista_especie.stream().forEach((especie) -> {
-                jComboBox_especie.addItem(especie.getNome());
-            });
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    /*
-        Atualiza o JComboBox de raças com a especia passada como parametro.
-    */
-    private void atualizar_jComboBox_raca(int idEspecie) throws SQLException {
-        List<Raca> lista_raca = new adotego.controller.RacaController().findByEspecie(idEspecie);
-        jComboBox_raca.removeAllItems();
-        
-        lista_raca.stream().forEach((raca) -> {
-            jComboBox_raca.addItem(raca.getNome());
-        });
-    }
-    
-     private void init_jCombo_box_porte() {
-        
-        Porte_enum[] portes = Porte_enum.values();
-        
-        for (Porte_enum porte : portes) {
-            jComboBox_porte_animal.addItem(porte.toString());
-        }
-    }
-     
-        public Porte_enum getPorte(String nome){
-               switch(nome){
-                   case "PEQUENO": return Porte_enum.PEQUENO;
-                   case "GRANDE": return Porte_enum.GRANDE;
-                   case "MEDIO": return Porte_enum.MEDIO;
-                   default:return Porte_enum.MEDIO;
-               } 
-        }
-
-    private void init_situacao_pesquisa() {
-        Situacao_enum[] situacoes = adotego.modelos.Situacao_enum.values();
-        
-        for (Situacao_enum situacoe : situacoes) {
-            jComboBox_situacao_pesquisa.addItem(situacoe.toString());
-        }
-    }
    
 
   

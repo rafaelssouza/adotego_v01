@@ -8,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 public class Tabela_usuarios extends AbstractTableModel{
 
     List<Usuario> usuarios;
-    private final String[] colunas =new String[]{"id", "nome"}; 
+    private final String[] colunas =new String[]{"Código", "Nome"}; 
 
     public Tabela_usuarios() {
     

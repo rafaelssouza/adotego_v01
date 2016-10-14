@@ -133,7 +133,7 @@ public class AnimalDAO {
      
      public List<Animal> findByEspecieName(String nome) throws SQLException{
          String sql = "select a.idAnimal, a.nome," +
-                        "a.porte, a.data_registro_entrada,idEspecie,animal_idRaca ," +
+                        "a.porte, a.data_registro_entrada,e.idEspecie,animal_idRaca ," +
                         "a.descricao,Situacao_idSituacao , e.nome from Animal a " +
                         "join Especie e " +
                         "on a.idEspecie = e.idEspecie" +
@@ -145,8 +145,8 @@ public class AnimalDAO {
              
              try(ResultSet rs = ps.getResultSet()){
                  while(rs.next()){
-                    Especie especie = new adotego.controller.EspecieController().find(rs.getInt("Especie_idEspecie"));
-                    Raca raca = new adotego.controller.RacaController().find(rs.getInt("Raca_idRaca"));
+                    Especie especie = new adotego.controller.EspecieController().find(rs.getInt("idEspecie"));
+                    Raca raca = new adotego.controller.RacaController().find(rs.getInt("animal_idRaca"));
                     Situacao_enum situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
                     Animal animal =  new Animal();                   
                         

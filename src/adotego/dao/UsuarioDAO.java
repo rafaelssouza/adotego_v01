@@ -90,7 +90,7 @@ public class UsuarioDAO {
         de dados
     */
     public List<Usuario> findAll() throws SQLException{
-        String sql = "select * from Pessoa";
+        String sql = "select * from Pessoa order by nome";
         List<Usuario> lista_usuarios = new ArrayList<>();
         try(PreparedStatement st = conn.prepareStatement(sql)){
             st.executeQuery();

@@ -126,7 +126,7 @@ public class RacaDAO {
     public List<Raca> findRacaByEspecieName(String nome) throws SQLException{
         String sql = "select r.idRaca , r.nome from Raca r " +
                      "join Especie e " +
-                     "on r idEspecie = e.idEspecie " +
+                     "on r.raca_idEspecie = e.idEspecie " +
                      "where e.nome = ?";
         
         List<Raca> animal_lista = new ArrayList<>();
