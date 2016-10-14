@@ -102,6 +102,7 @@ public class Usuario {
     }
 
     public Date getData_nascimento_sql() {
+        System.out.println(this.getData_nascimento());
         return new java.sql.Date(this.getData_nascimento().getTime().getTime());
     }
 

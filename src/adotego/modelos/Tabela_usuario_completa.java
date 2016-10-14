@@ -67,4 +67,8 @@ public class Tabela_usuario_completa extends AbstractTableModel{
         
     }
     
+    public void setList(List<Usuario> l){
+        this.lista_usuarios = l;
+        this.fireTableDataChanged();
+    }
 }

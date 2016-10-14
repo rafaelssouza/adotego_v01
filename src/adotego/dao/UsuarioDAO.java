@@ -79,9 +79,6 @@ public class UsuarioDAO {
                     end.setUf(rs.getString("uf"));
                     end.setCep(rs.getString("cep"));
                     usuario.setEndereco(end);
-                        
-                
-                       
                 }
             }    
         }
@@ -128,12 +125,112 @@ public class UsuarioDAO {
         com o id passado como parametro
     */
     public void delete(int id) throws SQLException{
-        String sql = "delete from Usuario where idPessoa = ?";
+        String sql = "delete from Pessoa where idPessoa = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, id);
             ps.execute();
             
         }
+    }
+
+    public List<Usuario> findLikeName(String param) throws SQLException {
+        String sql = "select * from Pessoa where nome like ? ";
+        List<Usuario> lista = new ArrayList<>();
+         try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setString(1, "%"+param+"%");
+            ps.execute();
+            
+            try(ResultSet rs = ps.getResultSet()){
+                while(rs.next()){
+                Usuario usuario = new Usuario();
+                Endereco end = new Endereco();
+                    usuario.setId(rs.getInt("idPessoa"));
+                    usuario.setNome(rs.getString("nome"));
+                    usuario.setEmail(rs.getString("email"));
+                    usuario.setTelefone_fixo(rs.getString("telefone_fixo"));
+                    usuario.setTelefone_celular(rs.getString("telefone_celular"));
+                    usuario.setCpf(rs.getString("cpf_cnpj"));                    
+                    usuario.setData_nascimento_from_SQL(rs.getDate(5));
+                    end.setRua(rs.getString("rua"));
+                    end.setCidade(rs.getString("cidade"));
+                    end.setBairro(rs.getString("bairro"));
+                    end.setNumero(rs.getInt("numero"));
+                    end.setUf(rs.getString("uf"));
+                    end.setCep(rs.getString("cep"));
+                    usuario.setEndereco(end);
+                lista.add(usuario);
+                }
+            }
+            
+        }
+        return lista;
+    }
+
+    public List<Usuario> findLikeCpf(String param) throws SQLException {
+        
+        String sql = "select * from Pessoa where cpf_cnpj like ? ";
+        List<Usuario> lista = new ArrayList<>();
+         try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setString(1, param+"%");
+            ps.execute();
+            
+            try(ResultSet rs = ps.getResultSet()){
+                while(rs.next()){
+                Usuario usuario = new Usuario();
+                Endereco end = new Endereco();
+                    usuario.setId(rs.getInt("idPessoa"));
+                    usuario.setNome(rs.getString("nome"));
+                    usuario.setEmail(rs.getString("email"));
+                    usuario.setTelefone_fixo(rs.getString("telefone_fixo"));
+                    usuario.setTelefone_celular(rs.getString("telefone_celular"));
+                    usuario.setCpf(rs.getString("cpf_cnpj"));                    
+                    usuario.setData_nascimento_from_SQL(rs.getDate(5));
+                    end.setRua(rs.getString("rua"));
+                    end.setCidade(rs.getString("cidade"));
+                    end.setBairro(rs.getString("bairro"));
+                    end.setNumero(rs.getInt("numero"));
+                    end.setUf(rs.getString("uf"));
+                    end.setCep(rs.getString("cep"));
+                    usuario.setEndereco(end);
+                lista.add(usuario);
+                }
+            }
+            
+        }
+        return lista;
+    }
+
+    public List<Usuario> findLikeEmail(String str_pesquisa) throws SQLException {
+         String sql = "select * from Pessoa where email like ? ";
+        List<Usuario> lista = new ArrayList<>();
+         try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setString(1, "%"+str_pesquisa+"%");
+            ps.executeQuery();
+            
+            try(ResultSet rs = ps.getResultSet()){
+                while(rs.next()){
+                Usuario usuario = new Usuario();
+                Endereco end = new Endereco();
+                    usuario.setId(rs.getInt("idPessoa"));
+                    usuario.setNome(rs.getString("nome"));
+                    usuario.setEmail(rs.getString("email"));
+                    usuario.setTelefone_fixo(rs.getString("telefone_fixo"));
+                    usuario.setTelefone_celular(rs.getString("telefone_celular"));
+                    usuario.setCpf(rs.getString("cpf_cnpj"));                    
+                    usuario.setData_nascimento_from_SQL(rs.getDate(5));
+                    end.setRua(rs.getString("rua"));
+                    end.setCidade(rs.getString("cidade"));
+                    end.setBairro(rs.getString("bairro"));
+                    end.setNumero(rs.getInt("numero"));
+                    end.setUf(rs.getString("uf"));
+                    end.setCep(rs.getString("cep"));
+                    usuario.setEndereco(end);
+                lista.add(usuario);
+                }
+            }
+            
+        }
+        return lista;
     }
     
     

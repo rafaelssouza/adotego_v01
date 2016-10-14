@@ -21,6 +21,7 @@ import java.awt.Frame;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -75,6 +76,9 @@ public class PrincipalUI extends javax.swing.JFrame {
         jTable_usuarios = new javax.swing.JTable();
         btn_excluir_usuario = new javax.swing.JButton();
         btn_editar_usuario = new javax.swing.JButton();
+        txt_pesquisar = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jCombo_box_opcoes_busca = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jInternalFrame1 = new javax.swing.JInternalFrame();
@@ -153,27 +157,48 @@ public class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
+        txt_pesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_pesquisarKeyPressed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel3.setText("Pesquisar por ");
+
+        jCombo_box_opcoes_busca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF", "Email" }));
+
         javax.swing.GroupLayout jInternalFrame3Layout = new javax.swing.GroupLayout(jInternalFrame3.getContentPane());
         jInternalFrame3.getContentPane().setLayout(jInternalFrame3Layout);
         jInternalFrame3Layout.setHorizontalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
-                    .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jInternalFrame3Layout.createSequentialGroup()
+                .addContainerGap(157, Short.MAX_VALUE)
+                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1095, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
                         .addComponent(btn_editar_usuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_excluir_usuario)))
+                        .addComponent(btn_excluir_usuario))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCombo_box_opcoes_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jInternalFrame3Layout.setVerticalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(204, 204, 204)
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jCombo_box_opcoes_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_excluir_usuario)
                     .addComponent(btn_editar_usuario))
@@ -672,6 +697,37 @@ public class PrincipalUI extends javax.swing.JFrame {
             new Detalhe_usuario().build(usuario);
         }
     }//GEN-LAST:event_jTable_usuariosMouseClicked
+
+    private void txt_pesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pesquisarKeyPressed
+        
+        String parametro = String.valueOf(jCombo_box_opcoes_busca.getSelectedItem())
+                                            .toLowerCase()
+                                                .trim();
+        
+        String str_pesquisa = txt_pesquisar.getText().trim();
+        
+        if(str_pesquisa.isEmpty()) 
+            model_tabela_usuarios_completa.atualizarTabela();
+        else{        
+            switch(parametro){
+                case "nome": model_tabela_usuarios_completa
+                                    .setList(new UsuarioController()
+                                        .findLikeName(str_pesquisa));
+                                        break;
+                case "cpf" :model_tabela_usuarios_completa
+                                    .setList(new UsuarioController()
+                                        .findLikeCpf(str_pesquisa));
+                                        break;
+                case "email": model_tabela_usuarios_completa
+                                    .setList(new UsuarioController()
+                                        .findLikeEmail(str_pesquisa));
+                                        break;
+                
+                default: model_tabela_usuarios_completa.atualizarTabela();
+            }
+        }
+       
+    }//GEN-LAST:event_txt_pesquisarKeyPressed
    
     /**
      * @param args the command line arguments
@@ -723,6 +779,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox_raca;
     private javax.swing.JComboBox<String> jComboBox_situacao_pesquisa;
     private javax.swing.JComboBox<String> jCombo_box_especie_pesquisa;
+    private javax.swing.JComboBox<String> jCombo_box_opcoes_busca;
     private javax.swing.JComboBox<String> jCombo_box_raca_pesquisa;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame3;
@@ -737,6 +794,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem_nova_especie;
@@ -755,6 +813,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JTable jTable_usuarios;
     private javax.swing.JTextArea txt_descricao;
     private javax.swing.JTextField txt_nome_animal;
+    private javax.swing.JTextField txt_pesquisar;
     // End of variables declaration//GEN-END:variables
 
     private void init_jCombo_box_especie_pesquisa() throws SQLException {

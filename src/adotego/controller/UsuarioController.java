@@ -7,6 +7,8 @@ import adotego.modelos.Usuario;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
     Classe responsável por criar umm objeto Connection.sql e envia-lo para o dao
@@ -58,5 +60,32 @@ public class UsuarioController {
         } catch (SQLException e) {
              e.printStackTrace();
         }
+    }
+
+    public List<Usuario> findLikeName(String parametro) {
+        try(Connection c = new ConnectionPool().getConnection()){
+            return new adotego.dao.UsuarioDAO(c).findLikeName(parametro.trim());
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public List<Usuario> findLikeCpf(String param) {
+        try(Connection c = new ConnectionPool().getConnection()){
+            return new adotego.dao.UsuarioDAO(c).findLikeCpf(param);
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public List<Usuario> findLikeEmail(String str_pesquisa) {
+         try(Connection c = new ConnectionPool().getConnection()){
+            return new adotego.dao.UsuarioDAO(c).findLikeEmail(str_pesquisa);
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
