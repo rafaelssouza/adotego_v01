@@ -25,7 +25,6 @@ create table if not exists `adotego`.`pessoa` (
   `data_nascimento` date not null,
   `email` varchar(255) not null,
   `cpf_cnpj` varchar(45) not null,
-  `id_endereco_pessoa` int not null,
   `rua` varchar(45) not null,
   `cidade` varchar(45) not null,
   `bairro` varchar(45) not null,
