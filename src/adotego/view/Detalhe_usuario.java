@@ -23,7 +23,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
 
     private Usuario usuario;
     private final Tabela_usuarios tabela_usuarios_model ;
-    
+    //Teste louco mano
     /**
      * Creates new form Detalhe_usuario
      */
