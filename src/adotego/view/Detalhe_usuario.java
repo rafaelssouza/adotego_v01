@@ -95,7 +95,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         btn_salvar_usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btn_salvar_usuario.setIcon(new javax.swing.ImageIcon("/home/tmichelini/NetBeansProjects/adotego/src/icones/plus.png")); // NOI18N
+        btn_salvar_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/plus.png"))); // NOI18N
         btn_salvar_usuario.setText("Salvar");
         btn_salvar_usuario.setFocusable(false);
         btn_salvar_usuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -108,7 +108,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jToolBar1.add(btn_salvar_usuario);
 
         btn_excluir.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btn_excluir.setIcon(new javax.swing.ImageIcon("/home/tmichelini/NetBeansProjects/adotego/src/icones/cross.png")); // NOI18N
+        btn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cross.png"))); // NOI18N
         btn_excluir.setText("Excluir");
         btn_excluir.setFocusable(false);
         btn_excluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -121,7 +121,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jToolBar1.add(btn_excluir);
 
         jButton3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon("/home/tmichelini/NetBeansProjects/adotego/src/icones/animal-paw-print.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/animal-paw-print.png"))); // NOI18N
         jButton3.setText("Nova Adoção");
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -134,7 +134,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jToolBar1.add(jButton3);
 
         jButton4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon("/home/tmichelini/NetBeansProjects/adotego/src/icones/coins.png")); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/coins.png"))); // NOI18N
         jButton4.setText("Nova Doação");
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -291,7 +291,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable_usuarios);
 
         btn_add_usuario.setBackground(new java.awt.Color(255, 255, 255));
-        btn_add_usuario.setIcon(new javax.swing.ImageIcon("/home/tmichelini/NetBeansProjects/adotego/src/icones/left-arrow.png")); // NOI18N
+        btn_add_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/left-arrow.png"))); // NOI18N
         btn_add_usuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_add_usuarioMouseClicked(evt);
