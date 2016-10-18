@@ -64,7 +64,8 @@ public class Tabela_animais extends AbstractTableModel{
         this.fireTableDataChanged();
     }
     
-    public void atualizar_tabela() throws SQLException{
+    public void atualizar_tabela(){
+        
         linhas_animal = new adotego.controller.AnimalController().findAll();
         this.fireTableDataChanged();
     }

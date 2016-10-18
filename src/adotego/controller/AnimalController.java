@@ -40,9 +40,11 @@ public class AnimalController {
         }
     }
     
-    public void delete(int id) throws SQLException{
+    public void delete(int id){
         try(Connection c = new ConnectionPool().getConnection()){
             new AnimalDAO(c).delete(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(AnimalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

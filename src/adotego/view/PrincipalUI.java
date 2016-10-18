@@ -42,7 +42,7 @@ public class PrincipalUI extends javax.swing.JFrame {
             init_jCombo_box_raca_pesquisa();
             init_jCombo_box_situacao();
             iniciar_tabelas();
-            configurar_tabela_usuarios();
+            
         } catch (SQLException ex) {
             Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -425,29 +425,44 @@ public class PrincipalUI extends javax.swing.JFrame {
         //Setando o modelo criado acima nas tabelas         
         jTable_usuarios.setModel(model_tabela_usuarios_completa);
         jTable_animais.setModel(model_tabela_animais);
+        configurar_tabela_usuarios();
     }
-
+    //evento lançado quando o botão Nova Especie no menu 'Arquivo' for clicado;
+    //abre a janela de cadastro de Raca
     private void jMenuItem_nova_especieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_especieActionPerformed
         new Nova_especie().setVisible(true);
     }//GEN-LAST:event_jMenuItem_nova_especieActionPerformed
-
+    
+    //evento lançado quando o botão Nova Raca no menu 'Arquivo' for clicado;
+    //abre a janela de cadastro de Raca
     private void jMenuItem_nova_racaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_racaActionPerformed
         new Nova_raca().setVisible(true);
     }//GEN-LAST:event_jMenuItem_nova_racaActionPerformed
 
+    //evento lançado quando o botão Nova Cadastro no menu 'Arquivo' for clicado
+    //abre a janela de cadastro de usuarios;
     private void btn_novo_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_usuarioActionPerformed
         new Detalhe_usuario().setVisible(true);
     }//GEN-LAST:event_btn_novo_usuarioActionPerformed
 
+    //método chamado quando o item selecionado do JComboBox de especie para pesqusa
+    // for chamado.
     private void jCombo_box_especie_pesquisaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCombo_box_especie_pesquisaItemStateChanged
 
         try {
+            //se o item selecionado nao for o primeiro, pois o valor do primeiro
+            //item é apenas uma título e não uma especie
             if (jCombo_box_especie_pesquisa.getSelectedIndex() != 0) {
+                
+                //recupera o item selecionado em String
                 String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
                         .getSelectedItem());
-
+                //recupera uma lista baseada no nome da espeécie
                 List<Raca> lista_raca = new adotego.controller.RacaController()
                         .findRacaByEspecieName(especie_name_selected);
+                
+                //como alteramos o jComboBox especie podemos atualizadar
+                //o jComboBox de raças para a especie selecionada
                 refresh_JCombo_box_raca_pesquisa(lista_raca);
 
             }
@@ -456,32 +471,54 @@ public class PrincipalUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCombo_box_especie_pesquisaItemStateChanged
 
+    /*
+        Este método é chamado sempre que o botão de Filtrar animais for clicado
+        e é responsável por filtrar a lista de animais que está na tabela de 
+        de acordo com os parametros selecionado dos JComboBoxEspecie, JComboBoxRaca,
+        e no jComboBoxSituaçao
+    */
     private void btn_filtrar_animaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrar_animaisActionPerformed
+        
         int indexSelecionado = jCombo_box_especie_pesquisa.getSelectedIndex();
         try {
+            //se o index selecionado for diferente do primeiro, pois setamos
+            // no indice 0 o título da Jcombo
             if (indexSelecionado > 0) {
-
+                
+                //recupera o nome da especie selecionado    
                 String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
                         .getSelectedItem());
-
+                
+                //recupera a lista de animais baseada na especie selecionada 
+                //anteriormente
                 List<Animal> animais_lista = new adotego.controller.AnimalController()
                         .findByEspecieName(especie_name_selected);
 
+                //se o index selecionado for diferente de primeiro, pois 
+                // setamos no primeiro indice como sendo o título
                 if (jCombo_box_raca_pesquisa.getSelectedIndex() > 0) {
+                    
+                    //recupera a raca selecionada na jComboBox de raça
                     String raca = String.valueOf(jCombo_box_raca_pesquisa.getSelectedItem());
+                    
                     //remover os animais que possuir raca diferente da selecionada
                     Iterator<Animal> iterator = animais_lista.iterator();
                     while (iterator.hasNext()) {
                         Animal animal = iterator.next();
+                        //se a raça selecionada for for diferente da raças 
+                        //selecionada anteriormente, excluímos da lista
                         if (!animal.getRaca().getNome().equalsIgnoreCase(raca)) {
                             iterator.remove();
                         }
                     }
                 }
-
+                //atualizar graficamente a tabela de animais;
                 model_tabela_animais.atualizar_tabela(animais_lista);
 
             } else if (indexSelecionado == 0) {
+                //se o usuários selecionar o titulo do JComboBox especie,
+                //mostraremos a tabela original, isto é, com todos os dados
+                //cadastrados no banco em ordem alfabetica
                 model_tabela_animais.atualizar_tabela();
             }
         } catch (SQLException ex) {
@@ -489,18 +526,27 @@ public class PrincipalUI extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btn_filtrar_animaisActionPerformed
-
+    /*
+        Este método é executado quando o botão de excluir animal for selecionado
+        ele basicamente recupera o id selecionado na tabela e exclui o animal 
+        correspondente no banco de dados
+    */
     private void btn_excluir_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_animalActionPerformed
-        try {
-            int id = model_tabela_animais.getIdIntoTheRow(jTable_animais);
-
-            new adotego.controller.AnimalController().delete(id);
-            model_tabela_animais.atualizar_tabela();
-        } catch (SQLException ex) {
-            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //recupera id
+        int id = model_tabela_animais.getIdIntoTheRow(jTable_animais);
+        //apaga o usuario correspondente
+        new adotego.controller.AnimalController().delete(id);
+        //atualiza a tabela 
+        model_tabela_animais.atualizar_tabela();
+       
     }//GEN-LAST:event_btn_excluir_animalActionPerformed
-
+    
+    /*
+        Este método é executado quando o botão editar animal for clicado, ele
+        basicamente recupera o id selecionado e abre a janela para edição de 
+        animais 
+        
+    */
     private void btn_editar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_animalActionPerformed
 
         int id_animal_selected = model_tabela_animais.getSelectedIndex(jTable_animais);
