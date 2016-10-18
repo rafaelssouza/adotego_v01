@@ -11,12 +11,9 @@ public class Tabela_animais extends AbstractTableModel{
     private List<Animal> linhas_animal = new ArrayList<>();
     private final String[] colunas = new String[]{"Código","Nome", "Especie", "Raça","Situação"};
 
-    public Tabela_animais() throws SQLException {
+    public Tabela_animais() {
         linhas_animal = new adotego.controller.AnimalController().findAll();
- 
-        
     }
-    
     
     @Override
     public int getRowCount() {

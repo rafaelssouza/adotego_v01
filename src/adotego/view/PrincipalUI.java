@@ -5,47 +5,47 @@
  */
 package adotego.view;
 
-import adotego.controller.EspecieController;
 import adotego.controller.UsuarioController;
 import adotego.modelos.Animal;
-import adotego.modelos.Endereco;
 import adotego.modelos.Especie;
-import adotego.modelos.Porte_enum;
 import adotego.modelos.Raca;
-import adotego.modelos.Situacao_enum;
+import adotego.modelos.Situacao;
 import adotego.modelos.Tabela_animais;
 import adotego.modelos.Tabela_usuario_completa;
 import adotego.modelos.Usuario;
-import java.awt.Frame;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.TableColumn;
 
 /**
  *
  * @author tmichelini
  */
 public class PrincipalUI extends javax.swing.JFrame {
-    
+
     private Tabela_usuario_completa model_tabela_usuarios_completa;
     private Tabela_animais model_tabela_animais;
-    
+
     /**
      * Creates new form PrincipalUI
      */
     public PrincipalUI() {
         try {
-            
+
             initComponents();
+            //abrir no centro da janela
+            this.setLocationRelativeTo(null);
             init_jCombo_box_especie_pesquisa();
             init_jCombo_box_raca_pesquisa();
+            init_jCombo_box_situacao();
             iniciar_tabelas();
-            
+            configurar_tabela_usuarios();
         } catch (SQLException ex) {
             Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         }
     }
 
@@ -79,11 +79,9 @@ public class PrincipalUI extends javax.swing.JFrame {
         btn_filtrar_animais = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         jCombo_box_especie_pesquisa = new javax.swing.JComboBox<>();
-        jLabel26 = new javax.swing.JLabel();
         jCombo_box_raca_pesquisa = new javax.swing.JComboBox<>();
-        jLabel27 = new javax.swing.JLabel();
         jComboBox_situacao_pesquisa = new javax.swing.JComboBox<>();
-        jLabel28 = new javax.swing.JLabel();
+        btn_novo_cadastro = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_nova_especie = new javax.swing.JMenu();
         jMenuItem_nova_raca = new javax.swing.JMenuItem();
@@ -91,21 +89,24 @@ public class PrincipalUI extends javax.swing.JFrame {
         btn_novo_usuario = new javax.swing.JMenuItem();
         jMenuItem_novo_animal = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedPane1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 859, Short.MAX_VALUE)
+            .addGap(0, 993, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 446, Short.MAX_VALUE)
+            .addGap(0, 471, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Controle FInanceiro", jPanel2);
@@ -130,14 +131,20 @@ public class PrincipalUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable_usuarios);
 
+        btn_excluir_usuario.setBackground(new java.awt.Color(255, 255, 255));
+        btn_excluir_usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_excluir_usuario.setText("Excluir");
+        btn_excluir_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_excluir_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_excluir_usuarioActionPerformed(evt);
             }
         });
 
+        btn_editar_usuario.setBackground(new java.awt.Color(255, 255, 255));
+        btn_editar_usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_editar_usuario.setText("Editar");
+        btn_editar_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_editar_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editar_usuarioActionPerformed(evt);
@@ -159,52 +166,53 @@ public class PrincipalUI extends javax.swing.JFrame {
         jInternalFrame3.getContentPane().setLayout(jInternalFrame3Layout);
         jInternalFrame3Layout.setHorizontalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 959, Short.MAX_VALUE)
                     .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                        .addComponent(btn_editar_usuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_excluir_usuario))
-                    .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCombo_box_opcoes_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCombo_box_opcoes_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
+                                .addComponent(btn_excluir_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_editar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         jInternalFrame3Layout.setVerticalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jCombo_box_opcoes_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCombo_box_opcoes_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_excluir_usuario)
-                    .addComponent(btn_editar_usuario))
-                .addGap(42, 42, 42))
+                    .addComponent(btn_editar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_excluir_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jInternalFrame3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jInternalFrame3)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jInternalFrame3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jInternalFrame3)
+                .addGap(4, 4, 4))
         );
 
         jTabbedPane1.addTab("Usuarios", jPanel1);
@@ -224,21 +232,30 @@ public class PrincipalUI extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable_animais);
 
+        btn_editar_animal.setBackground(new java.awt.Color(255, 255, 255));
+        btn_editar_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_editar_animal.setText("Editar");
+        btn_editar_animal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         btn_editar_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editar_animalActionPerformed(evt);
             }
         });
 
+        btn_excluir_animal.setBackground(new java.awt.Color(255, 255, 255));
+        btn_excluir_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_excluir_animal.setText("Excluir");
+        btn_excluir_animal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         btn_excluir_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_excluir_animalActionPerformed(evt);
             }
         });
 
+        btn_filtrar_animais.setBackground(new java.awt.Color(255, 255, 255));
+        btn_filtrar_animais.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_filtrar_animais.setText("Filtrar");
+        btn_filtrar_animais.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         btn_filtrar_animais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_filtrar_animaisActionPerformed(evt);
@@ -253,82 +270,75 @@ public class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel26.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel26.setText("Especie");
-
-        jLabel27.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel27.setText("Raça");
-
-        jLabel28.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel28.setText("Situação");
+        btn_novo_cadastro.setBackground(new java.awt.Color(255, 255, 255));
+        btn_novo_cadastro.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btn_novo_cadastro.setText("Novo Cadastro");
+        btn_novo_cadastro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        btn_novo_cadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_novo_cadastroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addComponent(btn_excluir_animal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_editar_animal))
-                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jInternalFrame1Layout.createSequentialGroup()
-                            .addComponent(jLabel25)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(181, 276, Short.MAX_VALUE)
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                                .addComponent(btn_novo_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_excluir_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_editar_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                                .addComponent(jLabel25)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jCombo_box_especie_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                    .addGap(8, 8, 8)
-                                    .addComponent(jLabel26)))
-                            .addGap(18, 18, 18)
-                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCombo_box_raca_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                    .addGap(9, 9, 9)
-                                    .addComponent(jLabel27)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel28)
-                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                    .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(36, 36, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3)))
+                .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel27)
-                    .addComponent(jLabel28))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(jCombo_box_especie_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCombo_box_raca_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_filtrar_animais)
-                    .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jCombo_box_raca_pesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(jCombo_box_especie_pesquisa)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel25)
+                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_editar_animal)
-                    .addComponent(btn_excluir_animal))
-                .addGap(24, 24, 24))
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_excluir_animal, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(btn_editar_animal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_novo_cadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+            .addComponent(jInternalFrame1)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,6 +346,8 @@ public class PrincipalUI extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Animais", jPanel3);
+
+        jMenuBar1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         jMenu_nova_especie.setText("Arquivo");
 
@@ -380,41 +392,45 @@ public class PrincipalUI extends javax.swing.JFrame {
         jMenu2.setText("Pesquisar");
         jMenuBar1.add(jMenu2);
 
+        jMenu1.setText("Relatório");
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void iniciar_tabelas(){
-         model_tabela_usuarios_completa = new Tabela_usuario_completa();
-        try {
-            model_tabela_animais = new Tabela_animais();
-        } catch (SQLException ex) {
-            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+    //Este método é responsável por configurar as tabelas na PrincipaUI.class        
+    private void iniciar_tabelas() {
+        /**
+         * nova instância de um AbstractTableModel para configurar a tabela de
+         * usuarios, e tabela animais
+         */
+        model_tabela_usuarios_completa = new Tabela_usuario_completa();
+        model_tabela_animais = new Tabela_animais();
+
+        //Setando o modelo criado acima nas tabelas         
         jTable_usuarios.setModel(model_tabela_usuarios_completa);
         jTable_animais.setModel(model_tabela_animais);
     }
-    
+
     private void jMenuItem_nova_especieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_especieActionPerformed
         new Nova_especie().setVisible(true);
     }//GEN-LAST:event_jMenuItem_nova_especieActionPerformed
-   
+
     private void jMenuItem_nova_racaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_racaActionPerformed
         new Nova_raca().setVisible(true);
     }//GEN-LAST:event_jMenuItem_nova_racaActionPerformed
@@ -426,12 +442,12 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void jCombo_box_especie_pesquisaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCombo_box_especie_pesquisaItemStateChanged
 
         try {
-            if(jCombo_box_especie_pesquisa.getSelectedIndex() != 0){
-                String especie_name_selected =  String.valueOf(jCombo_box_especie_pesquisa
-                    .getSelectedItem());
+            if (jCombo_box_especie_pesquisa.getSelectedIndex() != 0) {
+                String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
+                        .getSelectedItem());
 
                 List<Raca> lista_raca = new adotego.controller.RacaController()
-                .findRacaByEspecieName(especie_name_selected);
+                        .findRacaByEspecieName(especie_name_selected);
                 refresh_JCombo_box_raca_pesquisa(lista_raca);
 
             }
@@ -443,21 +459,21 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void btn_filtrar_animaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrar_animaisActionPerformed
         int indexSelecionado = jCombo_box_especie_pesquisa.getSelectedIndex();
         try {
-            if(indexSelecionado > 0){
+            if (indexSelecionado > 0) {
 
-                String especie_name_selected =  String.valueOf(jCombo_box_especie_pesquisa
-                    .getSelectedItem());
+                String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
+                        .getSelectedItem());
 
                 List<Animal> animais_lista = new adotego.controller.AnimalController()
-                .findByEspecieName(especie_name_selected);
+                        .findByEspecieName(especie_name_selected);
 
-                if(jCombo_box_raca_pesquisa.getSelectedIndex()>0){
+                if (jCombo_box_raca_pesquisa.getSelectedIndex() > 0) {
                     String raca = String.valueOf(jCombo_box_raca_pesquisa.getSelectedItem());
                     //remover os animais que possuir raca diferente da selecionada
                     Iterator<Animal> iterator = animais_lista.iterator();
                     while (iterator.hasNext()) {
                         Animal animal = iterator.next();
-                        if(!animal.getRaca().getNome().equalsIgnoreCase(raca)){
+                        if (!animal.getRaca().getNome().equalsIgnoreCase(raca)) {
                             iterator.remove();
                         }
                     }
@@ -465,7 +481,7 @@ public class PrincipalUI extends javax.swing.JFrame {
 
                 model_tabela_animais.atualizar_tabela(animais_lista);
 
-            }else if(indexSelecionado == 0){
+            } else if (indexSelecionado == 0) {
                 model_tabela_animais.atualizar_tabela();
             }
         } catch (SQLException ex) {
@@ -487,7 +503,7 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     private void btn_editar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_animalActionPerformed
 
-        int id_animal_selected =  model_tabela_animais.getSelectedIndex(jTable_animais);
+        int id_animal_selected = model_tabela_animais.getSelectedIndex(jTable_animais);
         Animal animal = model_tabela_animais.getAnimalByIndex(id_animal_selected);
         new Detalhe_animal().build(animal);
 
@@ -508,50 +524,57 @@ public class PrincipalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_excluir_usuarioActionPerformed
 
     private void jTable_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_usuariosMouseClicked
-        if(evt.getClickCount() ==2){
+        if (evt.getClickCount() == 2) {
             int id_clicado = model_tabela_usuarios_completa.getIdIntoTheRow(jTable_usuarios);
-            Usuario usuario = new adotego.controller
-            .UsuarioController().find(id_clicado);
+            Usuario usuario = new adotego.controller.UsuarioController().find(id_clicado);
 
             new Detalhe_usuario().build(usuario);
         }
     }//GEN-LAST:event_jTable_usuariosMouseClicked
 
     private void txt_pesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pesquisarKeyPressed
-        
+
         String parametro = String.valueOf(jCombo_box_opcoes_busca.getSelectedItem())
-                                            .toLowerCase()
-                                                .trim();
-        
+                .toLowerCase()
+                .trim();
+
         String str_pesquisa = txt_pesquisar.getText().trim();
-        
-        if(str_pesquisa.isEmpty()) 
+
+        if (str_pesquisa.isEmpty()) {
             model_tabela_usuarios_completa.atualizarTabela();
-        else{        
-            switch(parametro){
-                case "nome": model_tabela_usuarios_completa
-                                    .setList(new UsuarioController()
-                                        .findLikeName(str_pesquisa));
-                                        break;
-                case "cpf" :model_tabela_usuarios_completa
-                                    .setList(new UsuarioController()
-                                        .findLikeCpf(str_pesquisa));
-                                        break;
-                case "email": model_tabela_usuarios_completa
-                                    .setList(new UsuarioController()
-                                        .findLikeEmail(str_pesquisa));
-                                        break;
-                
-                default: model_tabela_usuarios_completa.atualizarTabela();
+        } else {
+            switch (parametro) {
+                case "nome":
+                    model_tabela_usuarios_completa
+                            .setList(new UsuarioController()
+                                    .findLikeName(str_pesquisa));
+                    break;
+                case "cpf":
+                    model_tabela_usuarios_completa
+                            .setList(new UsuarioController()
+                                    .findLikeCpf(str_pesquisa));
+                    break;
+                case "email":
+                    model_tabela_usuarios_completa
+                            .setList(new UsuarioController()
+                                    .findLikeEmail(str_pesquisa));
+                    break;
+
+                default:
+                    model_tabela_usuarios_completa.atualizarTabela();
             }
         }
-       
+
     }//GEN-LAST:event_txt_pesquisarKeyPressed
 
     private void jMenuItem_novo_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_novo_animalActionPerformed
         new Detalhe_animal().setVisible(true);
     }//GEN-LAST:event_jMenuItem_novo_animalActionPerformed
-   
+
+    private void btn_novo_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_cadastroActionPerformed
+        new Detalhe_animal().setVisible(true);
+    }//GEN-LAST:event_btn_novo_cadastroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -593,6 +616,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_excluir_animal;
     private javax.swing.JButton btn_excluir_usuario;
     private javax.swing.JButton btn_filtrar_animais;
+    private javax.swing.JButton btn_novo_cadastro;
     private javax.swing.JMenuItem btn_novo_usuario;
     private javax.swing.JComboBox<String> jComboBox_situacao_pesquisa;
     private javax.swing.JComboBox<String> jCombo_box_especie_pesquisa;
@@ -601,10 +625,8 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame3;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem_nova_especie;
@@ -625,33 +647,62 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     private void init_jCombo_box_especie_pesquisa() throws SQLException {
         List<Especie> especies = new adotego.controller.EspecieController().findAll();
-        jCombo_box_especie_pesquisa.addItem("Tudo");
+        jCombo_box_especie_pesquisa.addItem("Especie");
         for (Especie especie : especies) {
             jCombo_box_especie_pesquisa.addItem(especie.getNome());
         }
     }
 
-    private void refresh_JCombo_box_raca_pesquisa(List<Raca> lista){
-       jCombo_box_raca_pesquisa.removeAllItems();
-       jCombo_box_raca_pesquisa.addItem("Tudo");
+    private void refresh_JCombo_box_raca_pesquisa(List<Raca> lista) {
+        jCombo_box_raca_pesquisa.removeAllItems();
+        jCombo_box_raca_pesquisa.addItem("Tudo");
         for (Raca raca : lista) {
-            
+
             jCombo_box_raca_pesquisa.addItem(raca.getNome());
         }
     }
 
     private void init_jCombo_box_raca_pesquisa() {
-        jCombo_box_raca_pesquisa.addItem("Tudo");
+        jCombo_box_raca_pesquisa.addItem("Raça");
     }
 
-    
-    
-   
+    private void configurar_tabela_usuarios() {
+        int columnCount = jTable_usuarios.getColumnCount();
+        for (int i = 0; i < columnCount; i++) {
+            TableColumn column = jTable_usuarios.getColumnModel().getColumn(i);
+            switch (i) {
+                case 0:
+                    column.setPreferredWidth(40);
+                    break;
+                case 1:
+                    column.setPreferredWidth(150);
+                    break;
+                case 2:
+                    column.setPreferredWidth(250);
+                    break;
+                case 3:
+                    column.setPreferredWidth(110);
+                    break;
+                case 4:
+                    column.setPreferredWidth(90);
+                    break;
+                case 5:
+                    column.setPreferredWidth(90);
+                    break;
+                case 6:
+                    column.setPreferredWidth(100);
 
-  
+            }
 
-    
+        }
+    }
 
-    
-    
+    private void init_jCombo_box_situacao() {
+        List<Situacao> situacoes = new adotego.controller.SituacaoController().findAll();
+        for (Situacao sit : situacoes) {
+            jComboBox_situacao_pesquisa.addItem(sit.getDescricao());
+        }
+
+    }
+
 }

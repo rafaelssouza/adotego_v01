@@ -12,7 +12,7 @@ public class Endereco {
        
         
 	public Endereco() {
-		
+		numero = -1;
 	}
         
         public Endereco(String rua, String cidade, String bairro, int numero, 
@@ -79,6 +79,15 @@ public class Endereco {
                     ", bairro=" + bairro + ", numero=" + numero + ", uf=" + uf 
                     + ", cep=" + cep + '}';
         }
+
+    boolean isValid() {
+        return !(this.getCidade() == null
+                || this.getBairro() == null
+                || this.getCep() == null
+                || this.getUf() == null
+                || this.getNumero() == -1
+                );
+    }
 	
         
 }

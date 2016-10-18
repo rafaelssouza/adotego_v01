@@ -1,8 +1,5 @@
- 
 package adotego.modelos;
  
-import java.sql.Date;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -14,7 +11,7 @@ public class Animal {
 	private Porte_enum porte;
 	private String descricao;
 	private int idPessoa;
-	private Situacao_enum situacao;
+	private Situacao situacao;
         private Especie especie;
         private Raca  raca;
 
@@ -71,11 +68,11 @@ public class Animal {
             this.idPessoa = idPessoa;
         }
 
-        public Situacao_enum getSituacao() {
+        public Situacao getSituacao() {
             return situacao;
         }
 
-        public void setSituacao(Situacao_enum situacao) {
+        public void setSituacao(Situacao situacao) {
             this.situacao = situacao;
         }
 

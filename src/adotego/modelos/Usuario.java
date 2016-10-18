@@ -123,6 +123,16 @@ public class Usuario {
                 + ", \nendereco=" + endereco + '}';
     }
 
+    public boolean isValid(){
+    
         
+        return !(this.getNome() ==null
+                ||this.getCpf() == null
+                || this.getData_nascimento() == null
+                || this.getEmail() == null
+                || this.getTelefone_celular() == null
+                || this.getTelefone_fixo() == null
+                || this.getEndereco().isValid());
+    }
       
 }

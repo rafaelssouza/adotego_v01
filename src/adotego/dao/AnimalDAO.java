@@ -5,7 +5,7 @@ import adotego.modelos.Animal;
 import adotego.modelos.Especie;
 import adotego.modelos.Porte_enum;
 import adotego.modelos.Raca;
-import adotego.modelos.Situacao_enum;
+import adotego.modelos.Situacao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -63,7 +63,7 @@ public class AnimalDAO {
                 while(rs.next()){                    
                     Especie especie = new adotego.controller.EspecieController().find(rs.getInt("idEspecie"));
                     Raca raca = new adotego.controller.RacaController().find(rs.getInt("animal_idRaca"));
-                    Situacao_enum situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
+                    Situacao situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
                     Animal animal =  new Animal();                   
                         animal.setNome(rs.getString("nome"));
                         animal.setDescricao(rs.getString("descricao"));
@@ -99,7 +99,7 @@ public class AnimalDAO {
                 while(rs.next()){                    
                     Especie especie = new adotego.controller.EspecieController().find(rs.getInt("idEspecie"));                    
                     Raca raca = new adotego.controller.RacaController().find(rs.getInt("animal_idRaca"));
-                    Situacao_enum situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
+                    Situacao situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
                     Animal animal =  new Animal();
                    
                         animal.setNome(rs.getString("nome"));
@@ -147,7 +147,7 @@ public class AnimalDAO {
                  while(rs.next()){
                     Especie especie = new adotego.controller.EspecieController().find(rs.getInt("idEspecie"));
                     Raca raca = new adotego.controller.RacaController().find(rs.getInt("animal_idRaca"));
-                    Situacao_enum situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
+                    Situacao situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
                     Animal animal =  new Animal();                   
                         
                         animal.setNome(rs.getString("nome"));

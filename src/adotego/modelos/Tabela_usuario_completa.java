@@ -38,7 +38,6 @@ public class Tabela_usuario_completa extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
        Usuario u = lista_usuarios.get(rowIndex);
-       
        switch(columnIndex){
            case 0: return u.getId();
            case 1: return u.getNome();

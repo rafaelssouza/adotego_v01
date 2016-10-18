@@ -459,68 +459,96 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_add_usuarioMouseClicked
 
     private void btn_salvar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar_usuarioActionPerformed
-        System.out.println(usuario.getData_nascimento());
-        if(campos_validos())
+        
+        if(true){
+            System.out.println("campos validos");
             new adotego.controller.UsuarioController().salvar(usuario);
-        tabela_usuarios_model.atualizarTabela();
-        this.reset_campos();
+            tabela_usuarios_model.atualizarTabela();
+            this.reset_campos();
+        }else{
+            System.out.println("campos invalidos");
+        }
     }//GEN-LAST:event_btn_salvar_usuarioActionPerformed
 
     private void txt_nomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_nomeFocusLost
+      //se o campo nao for vazio 
+      if(!txt_nome.getText().isEmpty())
         usuario.setNome(txt_nome.getText().trim());
     }//GEN-LAST:event_txt_nomeFocusLost
 
     private void txt_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_emailFocusLost
+      //se o campo nao for vazio 
+      if(!txt_email.getText().isEmpty())
         usuario.setEmail(txt_email.getText().trim());        
     }//GEN-LAST:event_txt_emailFocusLost
 
     private void txtx_nascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtx_nascimentoFocusLost
         try {
-            SimpleDateFormat df =  new SimpleDateFormat("dd/MM/yyyy");
-            Date date_parse = df.parse(txtx_nascimento.getText());
-            Calendar cal =Calendar.getInstance();
-            cal.setTime(date_parse);
-            usuario.setData_nascimento(cal);
-            
-            
+            //se o campo nao for vazio 
+            if(!txtx_nascimento.getText().isEmpty()){
+                SimpleDateFormat df =  new SimpleDateFormat("dd/MM/yyyy");
+                Date date_parse = df.parse(txtx_nascimento.getText());
+                Calendar cal =Calendar.getInstance();
+                cal.setTime(date_parse);
+                usuario.setData_nascimento(cal);
+
+            }
         } catch (ParseException ex) {
             Logger.getLogger(Detalhe_usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtx_nascimentoFocusLost
 
     private void txt_telefone_fixoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telefone_fixoFocusLost
+        //se o campo nao for vazio 
+      if(!txt_telefone_fixo.getText().isEmpty())
         usuario.setTelefone_fixo(txt_telefone_fixo.getText());
     }//GEN-LAST:event_txt_telefone_fixoFocusLost
 
     private void txt_telefone_celularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telefone_celularFocusLost
+       //se o campo nao for vazio 
+      if(!txt_telefone_celular.getText().isEmpty()) 
         usuario.setTelefone_celular(txt_telefone_celular.getText());  
     }//GEN-LAST:event_txt_telefone_celularFocusLost
 
     private void txt_cpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cpfFocusLost
+       //se o campo nao for vazio 
+      if(!txt_cpf.getText().isEmpty()) 
         usuario.setCpf(txt_cpf.getText());
     }//GEN-LAST:event_txt_cpfFocusLost
 
     private void txt_cidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cidadeFocusLost
+        //se o campo nao for vazio 
+      if(!txt_cidade.getText().isEmpty())
         usuario.getEndereco().setCidade(txt_cidade.getText());
     }//GEN-LAST:event_txt_cidadeFocusLost
 
     private void txt_ufFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ufFocusLost
-       usuario.getEndereco().setUf(txt_uf.getText());
+       //se o campo nao for vazio 
+      if(!txt_uf.getText().isEmpty())
+        usuario.getEndereco().setUf(txt_uf.getText());
     }//GEN-LAST:event_txt_ufFocusLost
 
     private void txt_cepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusLost
+        //se o campo nao for vazio 
+      if(!txt_cep.getText().isEmpty())
         usuario.getEndereco().setCep(txt_cep.getText());
     }//GEN-LAST:event_txt_cepFocusLost
 
     private void txt_ruaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ruaFocusLost
+       //se o campo nao for vazio 
+      if(!txt_rua.getText().isEmpty()) 
         usuario.getEndereco().setRua(txt_rua.getText());
     }//GEN-LAST:event_txt_ruaFocusLost
 
     private void txt_numeroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_numeroFocusLost
+       //se o campo nao for vazio 
+      if(!txt_numero.getText().isEmpty()) 
         usuario.getEndereco().setNumero(Integer.parseInt(txt_numero.getText()));
     }//GEN-LAST:event_txt_numeroFocusLost
 
     private void txt_bairroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bairroFocusLost
+       //se o campo nao for vazio 
+      if(!txt_bairro.getText().isEmpty())
         usuario.getEndereco().setBairro(txt_bairro.getText());
     }//GEN-LAST:event_txt_bairroFocusLost
 
@@ -528,7 +556,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         if(usuario.getId() != null){
             new UsuarioController().delete(usuario.getId());
         }else{
-            label_aux1.setText("Selecione um usuario para excluir");
+            label_aux1.setText("Selecione um na tabela usuario para excluir");
             label_aux1.setVisible(true);
         }
     }//GEN-LAST:event_btn_excluirActionPerformed

@@ -13,9 +13,10 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -31,8 +32,10 @@ public class Detalhe_animal extends javax.swing.JFrame {
     public Detalhe_animal() {
         try {
             initComponents();
+            
             model_animais = new Tabela_Animais();
             jTable_animal.setModel(model_animais);
+            configurar_tabela();
             initJComboBox_especie();
             initJComboPorte();
             animal = new Animal();
@@ -73,6 +76,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         btn_salvar_animal = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jToolBar2 = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
 
@@ -194,6 +198,14 @@ public class Detalhe_animal extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton1);
 
+        jButton3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("/home/tmichelini/NetBeansProjects/adotego/src/icones/animal-paw-print.png")); // NOI18N
+        jButton3.setText("Gerar Adoção");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton3);
+
         jToolBar2.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jToolBar2.setRollover(true);
 
@@ -216,9 +228,9 @@ public class Detalhe_animal extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(139, 139, 139))
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -246,7 +258,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -281,9 +293,9 @@ public class Detalhe_animal extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37)
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 23, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 356, Short.MAX_VALUE)
                         .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -294,7 +306,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -438,6 +450,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
     private javax.swing.JButton btn_salvar_animal;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox_especie;
     private javax.swing.JComboBox<String> jComboBox_porte;
     private javax.swing.JComboBox<String> jComboBox_raca;
@@ -518,12 +531,25 @@ public class Detalhe_animal extends javax.swing.JFrame {
         preencherCampos(animal);
         this.setVisible(true);
     }
+
+    private void configurar_tabela() {
+        
+             int columnCount = jTable_animal.getColumnCount();
+             for (int i = 0; i < columnCount; i++) {
+                TableColumn column = jTable_animal.getColumnModel().getColumn(i);                 
+                switch(i){
+                    case 0: column.setMaxWidth(40);
+                    case 1: column.setWidth(80);
+                }
+                
+            }
+    }
    
 }
 
 class Tabela_Animais extends AbstractTableModel{
     private List<Animal> lista_animais;
-    private String [] colunas = new String[]{"Código", "Nome", "Situação"};
+    private String [] colunas = new String[]{"ID", "Nome"};
 
     public Tabela_Animais() throws SQLException {
         lista_animais = new AnimalController().findAll();
@@ -546,7 +572,7 @@ class Tabela_Animais extends AbstractTableModel{
         switch(columnIndex){
             case 0: return animal.getId();
             case 1: return animal.getNome();
-            case 2: return animal.getSituacao();
+           
             default:return "Não foi possível identificar a colunas";
         }
     }
@@ -563,12 +589,10 @@ class Tabela_Animais extends AbstractTableModel{
     }
 
     void atualizarTabela() {
-        try {
-            lista_animais = new AnimalController().findAll();
-            this.fireTableDataChanged();
-        } catch (SQLException ex) {
-            Logger.getLogger(Tabela_Animais.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        lista_animais = new AnimalController().findAll();
+        this.fireTableDataChanged();
+
     }
     
 
