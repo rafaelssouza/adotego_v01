@@ -97,7 +97,7 @@ public class Lista_animal extends javax.swing.JFrame {
     private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
         int id = model_tabela_animal.getIdIntoTheRow(jTable_animal);
         Animal animal = new adotego.controller.AnimalController().find(id);
-        Nova_Adocao.txt_animal_selecionado.setText(animal.getId()+"--"+animal.getNome());
+        
         if(!(animal == null))
             Nova_Adocao.setAnimal(animal);
         this.dispose();

@@ -15,6 +15,7 @@ public class Usuario {
         private Endereco endereco;
 
         public Usuario() {
+            this.setId(0);
         }
 
         public Usuario(Integer id, String nome, String email, String telefone_fixo, String telefone_celular, Calendar data_nascimento, String cpf) {

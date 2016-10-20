@@ -6,6 +6,7 @@
 package adotego.modelos;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
@@ -37,7 +38,10 @@ public class Tabela_usuario_completa extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-       Usuario u = lista_usuarios.get(rowIndex);
+        Usuario u = lista_usuarios.get(rowIndex);
+        
+        String telefone_formatado = formatar_telefone(u.getTelefone_fixo());
+        System.out.println(telefone_formatado);
        switch(columnIndex){
            case 0: return u.getId();
            case 1: return u.getNome();
@@ -69,5 +73,29 @@ public class Tabela_usuario_completa extends AbstractTableModel{
     public void setList(List<Usuario> l){
         this.lista_usuarios = l;
         this.fireTableDataChanged();
+    }
+
+    private String formatar_telefone(String telefone_fixo) {
+        char[] p =telefone_fixo.toCharArray();
+        char[] p_format = new char[p.length+2];
+        for (int i = 0; i < p.length; i++) {
+            switch (i) {
+                case 0:
+                    p_format[i] = "(".charAt(0);
+                    break;
+                case 3:
+                    p_format[i] = ")".charAt(0);
+                    break;
+                default:
+                    p_format[i] = p[i];
+                    break;
+            }
+        }
+        String telefone = "";
+        for (int i = 0; i < p_format.length; i++) {
+            telefone.concat(String.valueOf(p_format[i]));
+        }
+        System.out.println(telefone);
+        return telefone;
     }
 }

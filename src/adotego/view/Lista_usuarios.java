@@ -119,7 +119,6 @@ public class Lista_usuarios extends javax.swing.JFrame {
         int id = model_tabela_usuario.getIdIntoTheRow(jTable_lista_usuario);
         Usuario u = new adotego.controller.UsuarioController().find(id);
         Nova_Adocao.setUsuario(u);
-        Nova_Adocao.txt_usuario_selecionado.setText(u.getNome() + "-" + u.getCpf());
         this.dispose();
     }//GEN-LAST:event_btn_add_usuarioActionPerformed
 

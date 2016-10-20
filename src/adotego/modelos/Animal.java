@@ -138,7 +138,5 @@ public class Animal {
             }
         }
 
-    private void setSituacao_com_string() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 }
