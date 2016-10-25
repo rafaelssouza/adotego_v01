@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class AdocaoController {
     public void salvar(Adocao a){
         try(Connection c = new ConnectionPool().getConnection()){
-            new adotego.dao.DoacaoDAO(c).salvar(a);
+            new adotego.dao.AdocaoDAO(c).salvar(a);
         } catch (SQLException ex) {
             Logger.getLogger(AdocaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -19,7 +19,7 @@ public class AdocaoController {
     
     public List<Adocao> findAll(){
         try(Connection c = new ConnectionPool().getConnection()){
-            return new adotego.dao.DoacaoDAO(c).findAll()   ;
+            return new adotego.dao.AdocaoDAO(c).findAll();
         } catch (SQLException ex) {
             Logger.getLogger(AdocaoController.class.getName()).log(Level.SEVERE, null, ex);
         }

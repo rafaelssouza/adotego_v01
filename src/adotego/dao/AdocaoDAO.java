@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoacaoDAO {
+public class AdocaoDAO {
     private Connection conn;
 
-    public DoacaoDAO(Connection conn) {
+    public AdocaoDAO(Connection conn) {
         this.conn = conn;
     }
     public void salvar(Adocao adocao) throws SQLException{
@@ -43,6 +43,7 @@ public class DoacaoDAO {
                             .AnimalController().find(rs.getInt("adocao_idAnimal")));
                         ad.setUsuario(new adotego.controller
                             .UsuarioController().find(rs.getInt("adocao_idPessoa")));
+                        ad.setValor(rs.getDouble("valor"));
                         adocoes.add(ad);
                 }
             }

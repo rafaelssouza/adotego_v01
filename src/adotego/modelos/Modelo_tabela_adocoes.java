@@ -7,9 +7,11 @@ import javax.swing.table.AbstractTableModel;
 public class Modelo_tabela_adocoes extends AbstractTableModel{
     private List<Adocao> adocoes;
     private String[] colunas  = new String[]{"Código", "Pessoa", "Animal", "Valor"};
+    private double total_doacoes;
 
     public Modelo_tabela_adocoes() {
         adocoes = new adotego.controller.AdocaoController().findAll();
+        atualizar_total();
     }
 
     @Override
@@ -41,7 +43,26 @@ public class Modelo_tabela_adocoes extends AbstractTableModel{
 
     public void atualiza() {
         adocoes = new adotego.controller.AdocaoController().findAll();
+        this.fireTableDataChanged();
+        atualizar_total(); 
     }
     
+    public double getTotal_doacoes() {
+        return total_doacoes;
+    }
+
+    public void setTotal_doacoes(double total_doacoes) {
+        this.total_doacoes = total_doacoes;
+    }
     
+    public void incremet_doacao(double valor){
+        if(valor > 0 )
+            this.setTotal_doacoes(this.getTotal_doacoes()+valor);
+    }
+
+    private void atualizar_total() {
+        for (Adocao ad: adocoes) {
+            incremet_doacao(ad.getValor());
+        }
+    }
 }

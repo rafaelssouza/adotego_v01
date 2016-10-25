@@ -319,12 +319,10 @@ public class Detalhe_animal extends javax.swing.JFrame {
     private void btn_add_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_animalActionPerformed
         int id_seleted = model_animais.getIdIntoTheRow(jTable_animal);
         Animal animal_selected = null;
-        try {
+      
              animal_selected = new AnimalController().find(id_seleted);
              preencherCampos(animal_selected);
-        } catch (SQLException ex) {
-            Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         
         
         
@@ -399,14 +397,10 @@ public class Detalhe_animal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(animal.getId() == 0){
             
-        }else{
-            try {
-                new AnimalController().delete(animal.getId());
-                model_animais.atualizarTabela();
-                resetCampos();
-            } catch (SQLException ex) {
-                Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }else{            
+            new AnimalController().delete(animal.getId());
+            model_animais.atualizarTabela();
+            resetCampos();            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
