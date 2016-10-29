@@ -6,6 +6,7 @@ import adotego.modelos.Especie;
 import adotego.modelos.Porte_enum;
 import adotego.modelos.Raca;
 import adotego.modelos.Situacao;
+import adotego.modelos.Situacao_enum;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -164,5 +165,24 @@ public class AnimalDAO {
              }
          }
          return lista;
+     }
+     
+     public int contarPorSituacao(String situacao) throws SQLException{
+         
+         
+         String sql = "select count(idAnimal) from Animal a \n" +
+                "join Situacao s on a.Situacao_idSituacao = s.idSituacao \n" +
+                "where s.descricao = ? group by s.idSituacao";
+            try(PreparedStatement ps = conn.prepareStatement(sql)){
+                ps.setString(1, situacao);
+                ps.executeQuery();
+                
+                try(ResultSet rs = ps.getResultSet()){
+                    while(rs.next()){
+                        return rs.getInt(1);
+                    }
+                }
+            }
+         return 1;
      }
 }

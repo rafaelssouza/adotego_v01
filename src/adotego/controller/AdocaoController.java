@@ -25,4 +25,15 @@ public class AdocaoController {
         }
         return null;
     }
+    
+    public int getTotalAdocoes(){
+        try(Connection c = new ConnectionPool().getConnection()){
+            return  new adotego.dao.AdocaoDAO(c).getTotalAdocoes();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdocaoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    
 }

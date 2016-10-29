@@ -31,4 +31,13 @@ public class SituacaoController {
         }
         return null;
     }
+    
+    public int getIdByName(String nome_situacao){
+        try(Connection conn = new ConnectionPool().getConnection()){
+            return new adotego.dao.SituacaoDAO(conn).getIdByName(nome_situacao);
+        } catch (SQLException ex) {
+            Logger.getLogger(SituacaoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 }

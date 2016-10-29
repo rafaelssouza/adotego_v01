@@ -8,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class Tabela_animais extends AbstractTableModel{
     private List<Animal> linhas_animal = new ArrayList<>();
-    private final String[] colunas = new String[]{"Código","Nome", "Especie", "Raça","Situação"};
+    private final String[] colunas = new String[]{"ID","Nome", "Especie", "Raça","Situação"};
 
     public Tabela_animais() {
         linhas_animal = new adotego.controller.AnimalController().findAll();
@@ -33,7 +33,7 @@ public class Tabela_animais extends AbstractTableModel{
                 case 1 : return animal.getNome();
                 case 2: return  animal.getEspecie().getNome();
                 case 3: return animal.getRaca().getNome();
-                case 4: return animal.getSituacao().toString();
+                case 4: return animal.getSituacao().getDescricao();
                 default: return "-";
             }
         

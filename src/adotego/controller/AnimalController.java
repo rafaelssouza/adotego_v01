@@ -5,6 +5,7 @@ import adotego.dao.AnimalDAO;
 import adotego.jdbc.ConnectionPool;
 import adotego.modelos.Animal;
 import adotego.modelos.Especie;
+import adotego.modelos.Situacao_enum;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -57,9 +58,18 @@ public class AnimalController {
         return null;
     }
     
-      public List<Animal> findByEspecieName(String nome) throws SQLException{
-           try(Connection c = new ConnectionPool().getConnection()){
-            return new AnimalDAO(c).findByEspecieName(nome);
-        }
+    public List<Animal> findByEspecieName(String nome) throws SQLException{
+         try(Connection c = new ConnectionPool().getConnection()){
+          return new AnimalDAO(c).findByEspecieName(nome);
       }
+    }
+
+    public int contarPorSituacao(String situacao){
+        try(Connection c = new ConnectionPool().getConnection()){
+            return new adotego.dao.AnimalDAO(c).contarPorSituacao(situacao);
+        } catch (SQLException ex) {
+            Logger.getLogger(AnimalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 }

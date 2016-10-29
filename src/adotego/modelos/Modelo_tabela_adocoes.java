@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class Modelo_tabela_adocoes extends AbstractTableModel{
     private List<Adocao> adocoes;
-    private String[] colunas  = new String[]{"Código", "Pessoa", "Animal", "Valor"};
+    private String[] colunas  = new String[]{"Código", "Pessoa","IDAnimal",  "Animal", "Doação"};
     private double total_doacoes;
 
     public Modelo_tabela_adocoes() {
@@ -30,8 +30,9 @@ public class Modelo_tabela_adocoes extends AbstractTableModel{
         switch(columnIndex){
             case 0: return ad.getId();
             case 1: return ad.getUsuario().getNome();
-            case 2: return ad.getAnimal().getNome();
-            case 3: return "R$"+ad.getValor();
+            case 2: return ad.getAnimal().getId();
+            case 3: return ad.getAnimal().getNome();
+            case 4: return "R$"+ad.getValor();
             default: return "--";
         }
     }
@@ -61,6 +62,7 @@ public class Modelo_tabela_adocoes extends AbstractTableModel{
     }
 
     private void atualizar_total() {
+        setTotal_doacoes(0.0);
         for (Adocao ad: adocoes) {
             incremet_doacao(ad.getValor());
         }

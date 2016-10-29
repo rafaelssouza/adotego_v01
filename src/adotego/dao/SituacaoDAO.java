@@ -1,6 +1,7 @@
 package adotego.dao;
 
 import adotego.modelos.Situacao;
+import adotego.modelos.Situacao_enum;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,5 +47,23 @@ public class SituacaoDAO {
             }
         }
         return null;
+    }
+    
+    public int getIdByName(String nome_situacao) throws SQLException{
+        String sql = "select descricao from Situacao where descricao = ?";
+        
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setString(0, nome_situacao);
+            ps.executeQuery();
+            
+            try(ResultSet rs = ps.getResultSet()){
+                while(rs.next()){
+                    return rs.getInt("idSituacao");
+                }
+            }
+        
+        }
+        return 0;
+        
     }
 }

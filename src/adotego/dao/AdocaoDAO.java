@@ -50,4 +50,18 @@ public class AdocaoDAO {
         }
         return adocoes;
     }
+    
+    public int getTotalAdocoes() throws SQLException{
+        String sql = "select count(idAdocao) as total from Adocao";
+        
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.executeQuery();
+            try(ResultSet rs = ps.getResultSet()){
+                while (rs.next()) {
+                    return rs.getInt("total");
+                }
+            }   
+        }
+        return 0;
+    }
 }
