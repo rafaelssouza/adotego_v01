@@ -17,7 +17,7 @@ public class AdocaoDAO {
         this.conn = conn;
     }
     public void salvar(Adocao adocao) throws SQLException{
-        String sql = "insert into Adocao ( adocao_IdPessoa ,data_adocao, adocao_idAnimal, valor)";
+        String sql = "insert into adocao ( adocao_IdPessoa ,data_adocao, adocao_idAnimal, valor)";
                sql += "values(?,?,?,?)";
                
             try(PreparedStatement ps = conn.prepareStatement(sql)){
@@ -29,7 +29,7 @@ public class AdocaoDAO {
             }
     }
     public List<Adocao>  findAll () throws SQLException{
-        String sql = "select * from Adocao";
+        String sql = "select * from adocao";
         List<Adocao> adocoes = new ArrayList<>();
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.executeQuery();
@@ -52,7 +52,7 @@ public class AdocaoDAO {
     }
     
     public int getTotalAdocoes() throws SQLException{
-        String sql = "select count(idAdocao) as total from Adocao";
+        String sql = "select count(idAdocao) as total from adocao";
         
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.executeQuery();

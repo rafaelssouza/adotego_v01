@@ -7,7 +7,6 @@ import adotego.modelos.Especie;
 import adotego.modelos.Modelo_tabela_adocoes;
 import adotego.modelos.Raca;
 import adotego.modelos.Situacao;
-import adotego.modelos.Situacao_enum;
 import adotego.modelos.Tabela_animais;
 import adotego.modelos.Tabela_usuario_completa;
 import adotego.modelos.Usuario;

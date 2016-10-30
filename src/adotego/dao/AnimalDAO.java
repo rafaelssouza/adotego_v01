@@ -34,9 +34,9 @@ public class AnimalDAO {
         de dados, especificamente na tabela Animal.
     */
     public void save(Animal a) throws SQLException{
-        String sql = "insert into Animal(nome,data_registro_entrada,descricao, porte,"
-                + "Situacao_idSituacao, animal_idRaca,idEspecie) values" +
-                        "(?,?,?,?,?,?,?);";
+        String sql = "insert into animal(nome,data_registro_entrada,descricao, porte,"
+                + "situacao_idSituacao, animal_idRaca) values" +
+                        "(?,?,?,?,?,?);";
 
         try(PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, a.getNome());
@@ -45,7 +45,6 @@ public class AnimalDAO {
             stmt.setString(4, a.getPorte().toString());
             stmt.setInt(5, 1);
             stmt.setInt(6, a.getRaca().getIdRaca());
-            stmt.setInt(7, a.getEspecie().getId());
             stmt.execute();
         }
     }
@@ -55,7 +54,7 @@ public class AnimalDAO {
         com o id passado como parametro
     */
     public Animal find(int id) throws SQLException{
-        String sql = "select * from Animal where idAnimal = ?";
+        String sql = "select * from animal where idAnimal = ?";
          try(PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setInt(1 ,id);
             stmt.executeQuery();
@@ -82,7 +81,7 @@ public class AnimalDAO {
     }
     
      public void delete(int id) throws SQLException{
-        String sql = "delete from Animal where idAnimal = ?";
+        String sql = "delete from animal where idAnimal = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, id);
             ps.execute();
@@ -91,18 +90,19 @@ public class AnimalDAO {
     }
 
     public List<Animal> findAll() throws SQLException {
-         String sql = "select * from Animal ";
+         String sql = "select * from animal ";
          List<Animal> lista_animal = new ArrayList<>();
          try(PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.executeQuery();
             
             try(ResultSet rs  = stmt.getResultSet()){
                 while(rs.next()){                    
-                    Especie especie = new adotego.controller.EspecieController().find(rs.getInt("idEspecie"));                    
+                    
                     Raca raca = new adotego.controller.RacaController().find(rs.getInt("animal_idRaca"));
+                    Especie especie = new adotego.controller.EspecieController().findByRaca(raca);
                     Situacao situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
                     Animal animal =  new Animal();
-                   
+                        
                         animal.setNome(rs.getString("nome"));
                         animal.setDescricao(rs.getString("descricao"));
                         animal.setId(rs.getInt("idAnimal"));
@@ -134,10 +134,10 @@ public class AnimalDAO {
      
      public List<Animal> findByEspecieName(String nome) throws SQLException{
          String sql = "select a.idAnimal, a.nome," +
-                        "a.porte, a.data_registro_entrada,e.idEspecie,animal_idRaca ," +
-                        "a.descricao,Situacao_idSituacao , e.nome from Animal a " +
-                        "join Especie e " +
-                        "on a.idEspecie = e.idEspecie" +
+                        "a.porte, a.data_registro_entrada,e.idespecie,a.animal_idraca ," +
+                        "a.descricao,a.situacao_idsituacao , e.nome from animal a " +
+                        "join especie e " +
+                        "on a.especie_idespecie = e.idespecie" +
                         " where e.nome = ?;"; 
          List<Animal> lista = new ArrayList<>();
          try(PreparedStatement ps = conn.prepareStatement(sql)){
@@ -146,9 +146,9 @@ public class AnimalDAO {
              
              try(ResultSet rs = ps.getResultSet()){
                  while(rs.next()){
-                    Especie especie = new adotego.controller.EspecieController().find(rs.getInt("idEspecie"));
-                    Raca raca = new adotego.controller.RacaController().find(rs.getInt("animal_idRaca"));
-                    Situacao situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
+                    Especie especie = new adotego.controller.EspecieController().find(rs.getInt("idespecie"));
+                    Raca raca = new adotego.controller.RacaController().find(rs.getInt("animal_idraca"));
+                    Situacao situacao = new adotego.controller.SituacaoController().find(rs.getInt("situacao_idsituacao"));
                     Animal animal =  new Animal();                   
                         
                         animal.setNome(rs.getString("nome"));
@@ -170,8 +170,8 @@ public class AnimalDAO {
      public int contarPorSituacao(String situacao) throws SQLException{
          
          
-         String sql = "select count(idAnimal) from Animal a \n" +
-                "join Situacao s on a.Situacao_idSituacao = s.idSituacao \n" +
+         String sql = "select count(idAnimal) from animal a \n" +
+                "join situacao s on a.Situacao_idSituacao = s.idSituacao \n" +
                 "where s.descricao = ? group by s.idSituacao";
             try(PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setString(1, situacao);

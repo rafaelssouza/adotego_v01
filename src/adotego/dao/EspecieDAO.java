@@ -1,6 +1,7 @@
 package adotego.dao;
 
 import adotego.modelos.Especie;
+import adotego.modelos.Raca;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +17,7 @@ public class EspecieDAO {
     }
     
     public void save(Especie e) throws SQLException{
-        String sql = "insert into Especie (nome) values(?)";
+        String sql = "insert into especie (nome) values(?)";
         try(PreparedStatement st = connection.prepareStatement(sql)){
             st.setString(1, e.getNome());
             st.execute();
@@ -42,7 +43,7 @@ public class EspecieDAO {
     }
     
     public List<Especie> findAll() throws SQLException{
-        String sql = "select * from Especie";
+        String sql = "select * from especie";
         List<Especie> lista_especie = new ArrayList<>();
         try(PreparedStatement st = connection.prepareStatement(sql)){
             st.executeQuery();
@@ -58,9 +59,24 @@ public class EspecieDAO {
     }
 
     public Especie findByName(String nome) throws SQLException {
-        String sql = "select * from Especie e where e.nome = ?";
+        String sql = "select * from especie e where e.nome = ?";
         try(PreparedStatement st = connection.prepareStatement(sql)){
             st.setString(1, nome);
+            st.executeQuery();
+            
+            try(ResultSet rs = st.getResultSet()){
+                while(rs.next()){
+                    return  new Especie(rs.getInt("idEspecie"),rs.getString("nome"));
+                }
+            }
+        }
+        return null;
+    }
+
+    public Especie findByRaca(Raca raca) throws SQLException {
+          String sql = "select * from raca as r  join especie as e on r.raca_idespecie = e.idespecie where idraca = ?";
+        try(PreparedStatement st = connection.prepareStatement(sql)){
+            st.setInt(1, raca.getIdRaca());
             st.executeQuery();
             
             try(ResultSet rs = st.getResultSet()){

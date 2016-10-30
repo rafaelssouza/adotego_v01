@@ -19,7 +19,7 @@ public class SituacaoDAO {
     
 
     public  List<Situacao> findAll() throws SQLException {
-        String sql = "select * from Situacao";
+        String sql = "select * from situacao";
         List<Situacao> situacoes = new ArrayList<>();
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.executeQuery();
@@ -35,7 +35,7 @@ public class SituacaoDAO {
     }
 
     public Situacao find(int id) throws SQLException {
-        String sql = "select * from Situacao";        
+        String sql = "select * from situacao";        
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.executeQuery();
             
@@ -50,7 +50,7 @@ public class SituacaoDAO {
     }
     
     public int getIdByName(String nome_situacao) throws SQLException{
-        String sql = "select descricao from Situacao where descricao = ?";
+        String sql = "select descricao from situacao where descricao = ?";
         
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setString(0, nome_situacao);

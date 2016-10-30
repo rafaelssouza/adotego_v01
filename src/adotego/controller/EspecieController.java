@@ -2,6 +2,7 @@ package adotego.controller;
 
 import adotego.jdbc.ConnectionPool;
 import adotego.modelos.Especie;
+import adotego.modelos.Raca;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -35,5 +36,14 @@ public class EspecieController {
         try(Connection conn = new ConnectionPool().getConnection()){
             return new adotego.dao.EspecieDAO(conn).findByName(nome);
         }
+    }
+
+    public Especie findByRaca(Raca raca) {
+        try(Connection conn = new ConnectionPool().getConnection()){
+            return new adotego.dao.EspecieDAO(conn).findByRaca(raca);
+        } catch (SQLException ex) {
+            Logger.getLogger(EspecieController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

@@ -4,8 +4,6 @@ package adotego.controller;
 import adotego.dao.AnimalDAO;
 import adotego.jdbc.ConnectionPool;
 import adotego.modelos.Animal;
-import adotego.modelos.Especie;
-import adotego.modelos.Situacao_enum;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;

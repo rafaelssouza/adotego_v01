@@ -197,14 +197,12 @@ public class Nova_raca extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initJComboBox_especie2() {
-        try {
-            List<Especie> lista_especie = new EspecieController().findAll();
-            
-            lista_especie.stream().forEach((especie) -> {
-                jComboBox_especie2.addItem(especie.getNome());
-            });
-        } catch (SQLException ex) {
-            Logger.getLogger(Nova_raca.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        List<Especie> lista_especie = new EspecieController().findAll();
+
+        lista_especie.stream().forEach((especie) -> {
+            jComboBox_especie2.addItem(especie.getNome());
+        });
+        
     }
 }

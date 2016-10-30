@@ -28,7 +28,7 @@ public class UsuarioDAO {
         de dados, especificamente na tabela Usuario.
     */
     public void save(Usuario pessoa) throws SQLException {
-        String sql = "INSERT INTO Pessoa" +
+        String sql = "INSERT INTO pessoa" +
                         "(nome,email,telefone_fixo,telefone_celular," +
                         "data_nascimento,cpf_cnpj,rua,cidade,bairro,numero ,uf,cep)" +
                         "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -90,7 +90,7 @@ public class UsuarioDAO {
         de dados
     */
     public List<Usuario> findAll() throws SQLException{
-        String sql = "select * from Pessoa order by nome";
+        String sql = "select * from pessoa order by nome";
         List<Usuario> lista_usuarios = new ArrayList<>();
         try(PreparedStatement st = conn.prepareStatement(sql)){
             st.executeQuery();
@@ -125,7 +125,7 @@ public class UsuarioDAO {
         com o id passado como parametro
     */
     public void delete(int id) throws SQLException{
-        String sql = "delete from Pessoa where idPessoa = ?";
+        String sql = "delete from pessoa where idPessoa = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, id);
             ps.execute();
@@ -134,7 +134,7 @@ public class UsuarioDAO {
     }
 
     public List<Usuario> findLikeName(String param) throws SQLException {
-        String sql = "select * from Pessoa where nome like ? ";
+        String sql = "select * from pessoa where nome like ? ";
         List<Usuario> lista = new ArrayList<>();
          try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setString(1, "%"+param+"%");
@@ -168,7 +168,7 @@ public class UsuarioDAO {
 
     public List<Usuario> findLikeCpf(String param) throws SQLException {
         
-        String sql = "select * from Pessoa where cpf_cnpj like ? ";
+        String sql = "select * from pessoa where cpf_cnpj like ? ";
         List<Usuario> lista = new ArrayList<>();
          try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setString(1, param+"%");
@@ -201,7 +201,7 @@ public class UsuarioDAO {
     }
 
     public List<Usuario> findLikeEmail(String str_pesquisa) throws SQLException {
-         String sql = "select * from Pessoa where email like ? ";
+         String sql = "select * from pessoa where email like ? ";
         List<Usuario> lista = new ArrayList<>();
          try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setString(1, "%"+str_pesquisa+"%");
