@@ -40,6 +40,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
             initJComboPorte();
             animal = new Animal();
             animal.setId(0);
+            this.setLocationRelativeTo(null);
             
         } catch (SQLException ex) {
             Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);

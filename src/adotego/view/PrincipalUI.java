@@ -33,6 +33,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     public PrincipalUI() {
         initComponents();
         //abrir no centro da janela
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         init_jCombo_box_especie_pesquisa();
         init_jCombo_box_raca_pesquisa();
@@ -628,7 +629,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     //Este método é responsável por configurar as tabelas na PrincipaUI.class
-    private void iniciar_tabelas() {
+    public void iniciar_tabelas() {
         /**
          * nova instância de um AbstractTableModel para configurar a tabela de
          * usuarios, e tabela animais
@@ -1095,7 +1096,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         }
     }
     
-    private void atualizar_informacoes() {
+    public void atualizar_informacoes() {
         txt_qnt_adocoes.setToolTipText("");
         txt_qnt_adocoes.setText(String.valueOf(
                 new adotego.controller.AdocaoController().getTotalAdocoes()));
@@ -1107,6 +1108,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         //new adotego.controller.SituacaoController().getIdByName(Situacao_enum.DISPONIVEL.name());
         txt_qnt_animais_disponiveis.setText(String.valueOf(
                 new adotego.controller.AnimalController().contarPorSituacao("disponivel".toUpperCase())));
+        model_tabela_animais.atualizar_tabela();
     }
 
     private void configurar_tabela_adocoes() {
