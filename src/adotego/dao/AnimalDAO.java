@@ -137,7 +137,7 @@ public class AnimalDAO {
                         "a.porte, a.data_registro_entrada,e.idespecie,a.animal_idraca ," +
                         "a.descricao,a.situacao_idsituacao , e.nome from animal a " +
                         "join especie e " +
-                        "on a.especie_idespecie = e.idespecie" +
+                        "on e.idespecie = a.idespecie" +
                         " where e.nome = ?;"; 
          List<Animal> lista = new ArrayList<>();
          try(PreparedStatement ps = conn.prepareStatement(sql)){
