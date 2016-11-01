@@ -50,73 +50,81 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel1" max="32767" attributes="0"/>
-                      <Component id="jLabel2" max="32767" attributes="0"/>
-                      <Component id="jLabel3" pref="133" max="32767" attributes="0"/>
-                      <Component id="jLabel4" max="32767" attributes="0"/>
-                      <Component id="jLabel5" max="32767" attributes="0"/>
-                      <Component id="jLabel6" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txt_nome" max="32767" attributes="0"/>
-                              <Component id="txt_email" max="32767" attributes="0"/>
-                              <Component id="txtx_nascimento" max="32767" attributes="0"/>
-                              <Component id="txt_telefone_fixo" max="32767" attributes="0"/>
-                              <Component id="txt_telefone_celular" max="32767" attributes="0"/>
-                              <Component id="txt_cpf" pref="234" max="32767" attributes="0"/>
-                              <Component id="label_aux1" alignment="1" min="-2" pref="227" max="-2" attributes="0"/>
+                              <Component id="jLabel1" max="32767" attributes="0"/>
+                              <Component id="jLabel2" max="32767" attributes="0"/>
+                              <Component id="jLabel3" pref="133" max="32767" attributes="0"/>
+                              <Component id="jLabel4" max="32767" attributes="0"/>
+                              <Component id="jLabel5" max="32767" attributes="0"/>
+                              <Component id="jLabel6" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace pref="117" max="32767" attributes="0"/>
-                                          <Component id="jLabel13" min="-2" pref="24" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="txt_numero" min="-2" pref="77" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="txt_nome" max="32767" attributes="0"/>
+                                      <Component id="txt_email" max="32767" attributes="0"/>
+                                      <Component id="txtx_nascimento" max="32767" attributes="0"/>
+                                      <Component id="txt_telefone_fixo" max="32767" attributes="0"/>
+                                      <Component id="txt_telefone_celular" max="32767" attributes="0"/>
+                                      <Component id="txt_cpf" pref="234" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jLabel7" pref="123" max="32767" attributes="0"/>
-                                              <Component id="jLabel8" max="32767" attributes="0"/>
-                                              <Component id="jLabel9" max="32767" attributes="0"/>
-                                              <Component id="jLabel10" max="32767" attributes="0"/>
-                                              <Component id="jLabel11" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace pref="117" max="32767" attributes="0"/>
+                                                  <Component id="jLabel13" min="-2" pref="24" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="txt_numero" min="-2" pref="77" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="jLabel7" pref="123" max="32767" attributes="0"/>
+                                                      <Component id="jLabel8" max="32767" attributes="0"/>
+                                                      <Component id="jLabel9" max="32767" attributes="0"/>
+                                                      <Component id="jLabel10" max="32767" attributes="0"/>
+                                                      <Component id="jLabel11" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="txt_cidade" pref="234" max="32767" attributes="0"/>
+                                                      <Component id="txt_uf" max="32767" attributes="0"/>
+                                                      <Component id="txt_cep" max="32767" attributes="0"/>
+                                                      <Component id="txt_rua" max="32767" attributes="0"/>
+                                                      <Component id="txt_bairro" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="txt_cidade" pref="234" max="32767" attributes="0"/>
-                                              <Component id="txt_uf" max="32767" attributes="0"/>
-                                              <Component id="txt_cep" max="32767" attributes="0"/>
-                                              <Component id="txt_rua" max="32767" attributes="0"/>
-                                              <Component id="txt_bairro" max="32767" attributes="0"/>
-                                          </Group>
+                                          <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                                          <Component id="btn_add_usuario" min="-2" pref="35" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="117" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                                  <Component id="btn_add_usuario" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="txt_id" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="111" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+                                  <Component id="jLabel12" min="-2" pref="255" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txt_id" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
-                          <Component id="jLabel12" min="-2" pref="255" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="label_aux" min="-2" pref="227" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="273" max="-2" attributes="0"/>
                       <Component id="jLabel14" min="-2" pref="181" max="-2" attributes="0"/>
@@ -128,7 +136,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="52" max="32767" attributes="0"/>
                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="396" max="-2" attributes="0"/>
@@ -191,9 +199,9 @@
                                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="82" max="32767" attributes="0"/>
-                          <Component id="label_aux1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="label_aux" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
@@ -336,31 +344,49 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_nome">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Usuario teste"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_nomeFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_email">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="teste@hotmail.com"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_emailFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtx_nascimento">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="05/01/1993"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtx_nascimentoFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_telefone_fixo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="4899101130"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_telefone_fixoFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_telefone_celular">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="4899103203"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_telefone_celularFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_cpf">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="32788623738"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_cpfFocusLost"/>
           </Events>
@@ -411,28 +437,43 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_cidade">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Florianopolis"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_cidadeFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_uf">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="santa catarina"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ufFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_ufActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_cep">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="88048416"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_cepFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_rua">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="r dos eucaliptos"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ruaFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_ruaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_bairro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="campeche"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_bairroFocusLost"/>
           </Events>
@@ -447,6 +488,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_numero">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="32"/>
+          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_numeroFocusLost"/>
           </Events>
@@ -509,12 +553,15 @@
             <Property name="text" type="java.lang.String" value="Usuarios Cadastrados"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="label_aux1">
+        <Component class="javax.swing.JLabel" name="label_aux">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="jLabel15"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&gt;"/>
           </Properties>
         </Component>
       </SubComponents>

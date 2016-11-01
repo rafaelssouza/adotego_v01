@@ -29,7 +29,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
      */
     public Detalhe_usuario() {
         initComponents();
-        label_aux1.setVisible(false);
+        label_aux.setVisible(false);
         tabela_usuarios_model = new Tabela_usuarios();
         jTable_usuarios.setModel(tabela_usuarios_model);
         
@@ -82,7 +82,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jTable_usuarios = new javax.swing.JTable();
         btn_add_usuario = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        label_aux1 = new javax.swing.JLabel();
+        label_aux = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Detalhes ");
@@ -165,36 +165,42 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("CPF");
 
+        txt_nome.setText("Usuario teste");
         txt_nome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_nomeFocusLost(evt);
             }
         });
 
+        txt_email.setText("teste@hotmail.com");
         txt_email.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_emailFocusLost(evt);
             }
         });
 
+        txtx_nascimento.setText("05/01/1993");
         txtx_nascimento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtx_nascimentoFocusLost(evt);
             }
         });
 
+        txt_telefone_fixo.setText("4899101130");
         txt_telefone_fixo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_telefone_fixoFocusLost(evt);
             }
         });
 
+        txt_telefone_celular.setText("4899103203");
         txt_telefone_celular.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_telefone_celularFocusLost(evt);
             }
         });
 
+        txt_cpf.setText("32788623738");
         txt_cpf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_cpfFocusLost(evt);
@@ -221,12 +227,14 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Bairro");
 
+        txt_cidade.setText("Florianopolis");
         txt_cidade.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_cidadeFocusLost(evt);
             }
         });
 
+        txt_uf.setText("santa catarina");
         txt_uf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_ufFocusLost(evt);
@@ -238,12 +246,14 @@ public class Detalhe_usuario extends javax.swing.JFrame {
             }
         });
 
+        txt_cep.setText("88048416");
         txt_cep.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_cepFocusLost(evt);
             }
         });
 
+        txt_rua.setText("r dos eucaliptos");
         txt_rua.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_ruaFocusLost(evt);
@@ -255,6 +265,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
             }
         });
 
+        txt_bairro.setText("campeche");
         txt_bairro.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_bairroFocusLost(evt);
@@ -265,6 +276,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("N°");
 
+        txt_numero.setText("32");
         txt_numero.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_numeroFocusLost(evt);
@@ -301,68 +313,74 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel14.setText("Usuarios Cadastrados");
 
-        label_aux1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        label_aux1.setText("jLabel15");
+        label_aux.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        label_aux.setForeground(new java.awt.Color(255, 51, 51));
+        label_aux.setText(">");
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_nome)
-                            .addComponent(txt_email)
-                            .addComponent(txtx_nascimento)
-                            .addComponent(txt_telefone_fixo)
-                            .addComponent(txt_telefone_celular)
-                            .addComponent(txt_cpf, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                            .addComponent(label_aux1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txt_numero, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(157, 157, 157))
+                                    .addComponent(txt_nome)
+                                    .addComponent(txt_email)
+                                    .addComponent(txtx_nascimento)
+                                    .addComponent(txt_telefone_fixo)
+                                    .addComponent(txt_telefone_celular)
+                                    .addComponent(txt_cpf, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txt_cidade, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                                            .addComponent(txt_uf)
-                                            .addComponent(txt_cep)
-                                            .addComponent(txt_rua)
-                                            .addComponent(txt_bairro))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_add_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txt_numero, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(157, 157, 157))
+                                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txt_cidade, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                                                    .addComponent(txt_uf)
+                                                    .addComponent(txt_cep)
+                                                    .addComponent(txt_rua)
+                                                    .addComponent(txt_bairro))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btn_add_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 117, Short.MAX_VALUE))))
+                            .addComponent(txt_id)
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 111, Short.MAX_VALUE))))
-                    .addComponent(txt_id)
+                                .addGap(157, 157, 157)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(40, 40, 40)
+                        .addComponent(label_aux, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -371,7 +389,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -423,9 +441,9 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                             .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txt_bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel11)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                        .addComponent(label_aux1)
-                        .addGap(46, 46, 46))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(label_aux)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -463,9 +481,20 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_add_usuarioMouseClicked
 
     private void btn_salvar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar_usuarioActionPerformed
-        
-        if(true){
-            System.out.println("campos validos");
+        txt_bairroFocusLost(null);
+        txt_cepFocusLost(null);
+        txt_nomeFocusLost(null);       
+        txt_telefone_celularFocusLost(null);
+        txt_ufFocusLost(null);
+        txt_telefone_fixoFocusLost(null);
+        txtx_nascimentoFocusLost(null);
+        txt_ruaFocusLost(null);
+        txt_cidadeFocusLost(null);
+        txt_numeroFocusLost(null);
+        txt_emailFocusLost(null);
+        txt_cpfFocusLost(null);
+         
+        if(true){        
             new adotego.controller.UsuarioController().salvar(usuario);
             tabela_usuarios_model.atualizarTabela();
             this.reset_campos();
@@ -560,8 +589,8 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         if(usuario.getId() != null){
             new UsuarioController().delete(usuario.getId());
         }else{
-            label_aux1.setText("Selecione um na tabela usuario para excluir");
-            label_aux1.setVisible(true);
+            label_aux.setText("Selecione um na tabela usuario para excluir");
+            label_aux.setVisible(true);
         }
     }//GEN-LAST:event_btn_excluirActionPerformed
 
@@ -637,7 +666,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_usuarios;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JLabel label_aux1;
+    private javax.swing.JLabel label_aux;
     private javax.swing.JTextField txt_bairro;
     private javax.swing.JTextField txt_cep;
     private javax.swing.JTextField txt_cidade;
@@ -718,20 +747,34 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         Este método retorna true se algum dos valores do formulários de 
         cadastro de usuarios estiver vazio
     */
-    private boolean campos_validos() {
-        return !(txt_nome.getText() == null 
-                    || txt_email.getText() == null
-                    || txt_telefone_fixo.getText() == null 
-                    || txt_telefone_celular.getText() == null
-                    || txtx_nascimento.getText() == null
-                    || txt_bairro.getText() == null
-                    || txt_cep.getText() == null
-                    || txt_uf.getText() == null
-                    || txt_cidade.getText() == null
-                    || txt_rua.getText() == null
-                    || txt_numero.getText() == null
-                    || txt_cpf.getText() ==null );
+    private boolean campos_preenchidos() {
+        String mensagem = "Existem campos vazios";
+    if(txt_nome.getText().isEmpty()
+                    || txt_email.getText().isEmpty()
+                    || txt_telefone_fixo.getText().isEmpty()
+                    || txt_telefone_celular.getText().isEmpty()
+                    || txtx_nascimento.getText().isEmpty()
+                    || txt_bairro.getText().isEmpty()
+                    || txt_cep.getText().isEmpty()
+                    || txt_uf.getText().isEmpty()
+                    || txt_cidade.getText().isEmpty()
+                    || txt_rua.getText().isEmpty()
+                    || txt_numero.getText().isEmpty()
+                    || txt_cpf.getText().isEmpty()){
+    
+            if(!label_aux.getText().contains(mensagem)){
+                label_aux.setText(label_aux.getText()
+                       .concat("\n"+mensagem));
+                label_aux.setVisible(true);
+                return false;
+            }else{
+                  label_aux.getText().replace(mensagem, "");
+            } 
+    }else{
+        return true;
     }
+    return false;
+    } 
     
     public void reset_campos(){
         this.txt_nome.setText("");
@@ -739,11 +782,43 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         this.txt_cpf.setText("");
         this.txtx_nascimento.setText("");
         this.txt_telefone_celular.setText("");
+        this.txt_cidade.setText("");
         this.txt_telefone_fixo.setText("");
         this.txt_numero.setText("");
         this.txt_rua.setText("");
         this.txt_uf.setText("");
         this.txt_bairro.setText("");
         this.txt_cep.setText("");
+    }
+
+    private boolean validarCamposUsuario() {
+      return campos_preenchidos() && validar_cpf() && validar_telefone_fixo() 
+              && validar_telefone_celular();
+    }
+
+    private boolean validar_cpf() {
+       if(!(txt_cpf.getText().length() == 11)){
+           label_aux.setText(label_aux.getText().concat("\nCPF inválido"));
+           return false;
+       }else{
+           char[] array = txt_cpf.getText().toCharArray();
+           for(char d : array){
+               if(!Character.isDigit(d))
+                   return false;
+           }
+       } 
+       
+       return true;
+       
+    }
+
+    private boolean validar_telefone_fixo() {
+        return txt_telefone_fixo.getText().length() == 8 
+                || txt_telefone_fixo.getText().length() ==12;
+    }
+
+    private boolean validar_telefone_celular() {
+      return txt_telefone_celular.getText().length() == 8
+              || txt_telefone_celular.getText().length() == 12;
     }
 }

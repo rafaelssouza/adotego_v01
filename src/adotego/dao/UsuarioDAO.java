@@ -58,7 +58,7 @@ public class UsuarioDAO {
     public Usuario find(int id) throws SQLException{
         Usuario usuario = new Usuario();
         Endereco end = new Endereco();
-        String sql = "select * from Pessoa where idPessoa = ? ";
+        String sql = "select * from pessoa where idPessoa = ? ";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setInt(1, id);
                 ps.executeQuery();                
