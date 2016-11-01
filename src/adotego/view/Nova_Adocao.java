@@ -38,10 +38,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
         jTable_usuario_adocao.setModel(modelo_usuario_adocao);
         usuario = new Usuario();
         animal = new Animal();
-        
-        
-       
-        
+        this.setLocationRelativeTo(null);
     }
 
     /**

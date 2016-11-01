@@ -35,6 +35,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         
         usuario = new Usuario();
         usuario.setEndereco(new Endereco());
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -50,7 +50,7 @@ public class UsuarioDAO {
         }
 
     }
-
+    //public void update(Usuario pessoa)
     /*
         Metodos responsável por buscar um usuario no bando de dados de acordo
         com o id passado como parametro

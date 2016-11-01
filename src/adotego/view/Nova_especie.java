@@ -21,6 +21,7 @@ public class Nova_especie extends javax.swing.JFrame {
      */
     public Nova_especie() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

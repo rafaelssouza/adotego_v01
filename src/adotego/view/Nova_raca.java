@@ -26,6 +26,7 @@ public class Nova_raca extends javax.swing.JFrame {
         initComponents();
         label_confirmacao_cadastro_raca.setVisible(false);
         initJComboBox_especie2();
+        this.setLocationRelativeTo(null);
     }
 
     /**
