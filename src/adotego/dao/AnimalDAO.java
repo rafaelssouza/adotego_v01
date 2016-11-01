@@ -6,7 +6,6 @@ import adotego.modelos.Especie;
 import adotego.modelos.Porte_enum;
 import adotego.modelos.Raca;
 import adotego.modelos.Situacao;
-import adotego.modelos.Situacao_enum;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
