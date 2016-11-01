@@ -497,12 +497,17 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_emailFocusLost(null);
         txt_cpfFocusLost(null);
         
-        if (true) {            
-            new adotego.controller.UsuarioController().salvar(usuario);
+        if (usuario.getId() != 0){
+            new adotego.controller.UsuarioController().update(usuario);
             tabela_usuarios_model.atualizarTabela();
-            this.reset_campos();
-        } else {
-            System.out.println("campos invalidos");
+        }else{
+            if (true) {            
+                new adotego.controller.UsuarioController().salvar(usuario);
+                tabela_usuarios_model.atualizarTabela();
+                this.reset_campos();
+            } else {
+                System.out.println("campos invalidos");
+            }
         }
     }//GEN-LAST:event_btn_salvar_usuarioActionPerformed
 
