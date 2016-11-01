@@ -32,6 +32,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         label_aux.setVisible(false);
         tabela_usuarios_model = new Tabela_usuarios();
         jTable_usuarios.setModel(tabela_usuarios_model);
+        this.setLocationRelativeTo(null);
         
         usuario = new Usuario();
         usuario.setEndereco(new Endereco());
@@ -61,7 +62,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_nome = new javax.swing.JTextField();
         txt_email = new javax.swing.JTextField();
         txtx_nascimento = new javax.swing.JTextField();
-        txt_telefone_fixo = new javax.swing.JTextField();
         txt_telefone_celular = new javax.swing.JTextField();
         txt_cpf = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -83,6 +83,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         btn_add_usuario = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         label_aux = new javax.swing.JLabel();
+        txt_telefone_fixo = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Detalhes ");
@@ -183,13 +184,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txtx_nascimento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtx_nascimentoFocusLost(evt);
-            }
-        });
-
-        txt_telefone_fixo.setText("4899101130");
-        txt_telefone_fixo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_telefone_fixoFocusLost(evt);
             }
         });
 
@@ -317,6 +311,12 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         label_aux.setForeground(new java.awt.Color(255, 51, 51));
         label_aux.setText(">");
 
+        try {
+            txt_telefone_fixo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
@@ -339,9 +339,9 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                                     .addComponent(txt_nome)
                                     .addComponent(txt_email)
                                     .addComponent(txtx_nascimento)
-                                    .addComponent(txt_telefone_fixo)
                                     .addComponent(txt_telefone_celular)
-                                    .addComponent(txt_cpf, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                                    .addComponent(txt_cpf, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                                    .addComponent(txt_telefone_fixo))
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -389,7 +389,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -423,9 +423,9 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
-                                    .addComponent(txt_telefone_fixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10)
-                                    .addComponent(txt_rua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txt_rua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_telefone_fixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(btn_add_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -486,7 +486,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_nomeFocusLost(null);       
         txt_telefone_celularFocusLost(null);
         txt_ufFocusLost(null);
-        txt_telefone_fixoFocusLost(null);
+       // txt_telefone_fixoFocusLost(null);
         txtx_nascimentoFocusLost(null);
         txt_ruaFocusLost(null);
         txt_cidadeFocusLost(null);
@@ -509,12 +509,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         usuario.setNome(txt_nome.getText().trim());
     }//GEN-LAST:event_txt_nomeFocusLost
 
-    private void txt_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_emailFocusLost
-      //se o campo nao for vazio 
-      if(!txt_email.getText().isEmpty())
-        usuario.setEmail(txt_email.getText().trim());        
-    }//GEN-LAST:event_txt_emailFocusLost
-
     private void txtx_nascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtx_nascimentoFocusLost
         try {
             //se o campo nao for vazio 
@@ -530,12 +524,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
             Logger.getLogger(Detalhe_usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtx_nascimentoFocusLost
-
-    private void txt_telefone_fixoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telefone_fixoFocusLost
-        //se o campo nao for vazio 
-      if(!txt_telefone_fixo.getText().isEmpty())
-        usuario.setTelefone_fixo(txt_telefone_fixo.getText());
-    }//GEN-LAST:event_txt_telefone_fixoFocusLost
 
     private void txt_telefone_celularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telefone_celularFocusLost
        //se o campo nao for vazio 
@@ -605,6 +593,12 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     private void txt_ruaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ruaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_ruaActionPerformed
+
+    private void txt_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_emailFocusLost
+        //se o campo nao for vazio
+        if(!txt_email.getText().isEmpty())
+        usuario.setEmail(txt_email.getText().trim());
+    }//GEN-LAST:event_txt_emailFocusLost
 
     /**
      * @param args the command line arguments
@@ -677,7 +671,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     private javax.swing.JTextField txt_numero;
     private javax.swing.JTextField txt_rua;
     private javax.swing.JTextField txt_telefone_celular;
-    private javax.swing.JTextField txt_telefone_fixo;
+    private javax.swing.JFormattedTextField txt_telefone_fixo;
     private javax.swing.JTextField txt_uf;
     private javax.swing.JTextField txtx_nascimento;
     // End of variables declaration//GEN-END:variables
@@ -695,7 +689,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                 .valueOf(txt_id.getText()
                        .concat(String.valueOf(usuario.getId()))));        
         txt_nome.setText(usuario.getNome());
-        txt_email.setText(usuario.getEmail());
+        txt_telefone_fixo.setText(usuario.getEmail());
         txt_cpf.setText(usuario.getCpf());
         txt_telefone_fixo.setText(usuario.getTelefone_fixo());
         txt_telefone_celular.setText(usuario.getTelefone_celular());
@@ -715,7 +709,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     //tornar todos os campos editáveis
     public void habilitar_campos_input(){
         txt_nome.setEditable(true);
-        txt_email.setEditable(true);
+        txt_telefone_fixo.setEditable(true);
         txt_cpf.setEditable(true);
         txt_telefone_fixo.setEditable(true);
         txt_telefone_celular.setEditable(true);
@@ -730,7 +724,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     //tornar todos os campos do formulario não editavel
     public void desabilitar_campos_input(){
     txt_nome.setEditable(false);
-        txt_email.setEditable(false);
+        txt_telefone_fixo.setEditable(false);
         txt_cpf.setEditable(false);
         txt_telefone_fixo.setEditable(false);
         txt_telefone_celular.setEditable(false);
@@ -750,7 +744,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     private boolean campos_preenchidos() {
         String mensagem = "Existem campos vazios";
     if(txt_nome.getText().isEmpty()
-                    || txt_email.getText().isEmpty()
+                    || txt_telefone_fixo.getText().isEmpty()
                     || txt_telefone_fixo.getText().isEmpty()
                     || txt_telefone_celular.getText().isEmpty()
                     || txtx_nascimento.getText().isEmpty()
@@ -778,7 +772,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     
     public void reset_campos(){
         this.txt_nome.setText("");
-        this.txt_email.setText("");
+        this.txt_telefone_fixo.setText("");
         this.txt_cpf.setText("");
         this.txtx_nascimento.setText("");
         this.txt_telefone_celular.setText("");
