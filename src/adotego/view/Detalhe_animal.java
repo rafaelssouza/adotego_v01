@@ -1,4 +1,3 @@
-
 package adotego.view;
 
 import adotego.controller.AnimalController;
@@ -26,13 +25,14 @@ public class Detalhe_animal extends javax.swing.JFrame {
 
     Tabela_Animais model_animais;
     private Animal animal;
+
     /**
      * Creates new form Detalhe_animal
      */
     public Detalhe_animal() {
         try {
             initComponents();
-            
+
             model_animais = new Tabela_Animais();
             jTable_animal.setModel(model_animais);
             configurar_tabela();
@@ -41,12 +41,11 @@ public class Detalhe_animal extends javax.swing.JFrame {
             animal = new Animal();
             animal.setId(0);
             this.setLocationRelativeTo(null);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 
     /**
@@ -140,7 +139,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable_animal);
 
         btn_add_animal.setBackground(new java.awt.Color(255, 255, 255));
-        btn_add_animal.setIcon(new javax.swing.ImageIcon("/home/tmichelini/NetBeansProjects/adotego/src/icones/left-arrow.png")); // NOI18N
+        btn_add_animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/left-arrow.png"))); // NOI18N
         btn_add_animal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_add_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +173,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         btn_salvar_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btn_salvar_animal.setIcon(new javax.swing.ImageIcon("/home/tmichelini/NetBeansProjects/adotego/src/icones/plus.png")); // NOI18N
+        btn_salvar_animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/plus.png"))); // NOI18N
         btn_salvar_animal.setText("Salvar");
         btn_salvar_animal.setFocusable(false);
         btn_salvar_animal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -187,7 +186,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
         jToolBar1.add(btn_salvar_animal);
 
         jButton1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("/home/tmichelini/NetBeansProjects/adotego/src/icones/cross.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cross.png"))); // NOI18N
         jButton1.setText("Excluir");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -200,7 +199,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
         jToolBar1.add(jButton1);
 
         jButton3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon("/home/tmichelini/NetBeansProjects/adotego/src/icones/animal-paw-print.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/animal-paw-print.png"))); // NOI18N
         jButton3.setText("Gerar Adoção");
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -210,7 +209,6 @@ public class Detalhe_animal extends javax.swing.JFrame {
         jToolBar2.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jToolBar2.setRollover(true);
 
-        jButton2.setIcon(new javax.swing.ImageIcon("/home/tmichelini/NetBeansProjects/adotego/src/icones/cross.png")); // NOI18N
         jButton2.setToolTipText("Excluir");
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -296,7 +294,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(0, 356, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -320,25 +318,23 @@ public class Detalhe_animal extends javax.swing.JFrame {
     private void btn_add_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_animalActionPerformed
         int id_seleted = model_animais.getIdIntoTheRow(jTable_animal);
         Animal animal_selected = null;
-      
-             animal_selected = new AnimalController().find(id_seleted);
-             preencherCampos(animal_selected);
-        
-        
-        
-        
+
+        animal_selected = new AnimalController().find(id_seleted);
+        preencherCampos(animal_selected);
+
+
     }//GEN-LAST:event_btn_add_animalActionPerformed
 
     private void btn_salvar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar_animalActionPerformed
         try {
-           if(animal.getId() == 0){
-               animal.setData_entrada(Calendar.getInstance());
+            if (animal.getId() == 0) {
+                animal.setData_entrada(Calendar.getInstance());
                 new adotego.controller.AnimalController().save(animal);
                 resetCampos();
                 model_animais.atualizarTabela();
-           }else{
-               //fazer update
-           }
+            } else {
+                //fazer update
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -352,18 +348,18 @@ public class Detalhe_animal extends javax.swing.JFrame {
         try {
             Raca raca = new RacaController().getByName(String.valueOf(jComboBox_raca.getSelectedItem()));
             animal.setRaca(raca);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jComboBox_racaFocusLost
 
     private void jComboBox_porteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox_porteFocusLost
         Porte_enum[] portes = Porte_enum.values();
         for (Porte_enum porte : portes) {
-            if(String.valueOf(porte)
-                    .equals(String.valueOf(jComboBox_porte.getSelectedItem()))){
+            if (String.valueOf(porte)
+                    .equals(String.valueOf(jComboBox_porte.getSelectedItem()))) {
                 animal.setPorte(porte);
             }
         }
@@ -374,12 +370,12 @@ public class Detalhe_animal extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_descricaoFocusLost
 
     private void jComboBox_especieFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox_especieFocusLost
-         try {
+        try {
             String especie_selected = String.valueOf(jComboBox_especie.getSelectedItem());
             Especie especie = new EspecieController().getByName(especie_selected);
-            
+
             animal.setEspecie(especie);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -396,12 +392,12 @@ public class Detalhe_animal extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox_especieItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(animal.getId() == 0){
-            
-        }else{            
+        if (animal.getId() == 0) {
+
+        } else {
             new AnimalController().delete(animal.getId());
             model_animais.atualizarTabela();
-            resetCampos();            
+            resetCampos();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -465,15 +461,13 @@ public class Detalhe_animal extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nome_animal;
     // End of variables declaration//GEN-END:variables
 
-   
-    
-    private void initJComboBox_especie() throws SQLException{
-        List<Especie> especies = new EspecieController().findAll();        
+    private void initJComboBox_especie() throws SQLException {
+        List<Especie> especies = new EspecieController().findAll();
         jComboBox_especie.removeAllItems();
         for (Especie especie : especies) {
             jComboBox_especie.addItem(especie.getNome());
         }
-        
+
     }
 
     private void initJComboBox_raca(List<Raca> lista_raca) {
@@ -481,7 +475,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
         for (Raca raca : lista_raca) {
             jComboBox_raca.addItem(raca.getNome());
         }
-       
+
     }
 
     private void initJComboPorte() {
@@ -493,11 +487,15 @@ public class Detalhe_animal extends javax.swing.JFrame {
 
     private Porte_enum getPorte(String porte_str) {
         String porte = porte_str.toLowerCase();
-        switch(porte){
-            case "pequeno": return Porte_enum.PEQUENO;
-            case "medio": return Porte_enum.MEDIO;
-            case "grande": return Porte_enum.GRANDE;
-            default: return Porte_enum.MEDIO;
+        switch (porte) {
+            case "pequeno":
+                return Porte_enum.PEQUENO;
+            case "medio":
+                return Porte_enum.MEDIO;
+            case "grande":
+                return Porte_enum.GRANDE;
+            default:
+                return Porte_enum.MEDIO;
         }
     }
 
@@ -508,7 +506,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
         jComboBox_porte.setSelectedItem(String.valueOf(animal.getPorte()));
         jComboBox_especie.setSelectedItem(animal.getEspecie().getNome());
         jComboBox_raca.setSelectedItem(animal.getRaca().getNome());
-        
+
     }
 
     private void resetCampos() {
@@ -520,36 +518,39 @@ public class Detalhe_animal extends javax.swing.JFrame {
         this.animal = new Animal();
         this.animal.setId(0);
     }
-    
-    public void build(Animal a){
+
+    public void build(Animal a) {
         this.animal = a;
         preencherCampos(animal);
         this.setVisible(true);
     }
 
     private void configurar_tabela() {
-        
-             int columnCount = jTable_animal.getColumnCount();
-             for (int i = 0; i < columnCount; i++) {
-                TableColumn column = jTable_animal.getColumnModel().getColumn(i);                 
-                switch(i){
-                    case 0: column.setMaxWidth(40);
-                    case 1: column.setWidth(80);
-                }
-                
+
+        int columnCount = jTable_animal.getColumnCount();
+        for (int i = 0; i < columnCount; i++) {
+            TableColumn column = jTable_animal.getColumnModel().getColumn(i);
+            switch (i) {
+                case 0:
+                    column.setMaxWidth(40);
+                case 1:
+                    column.setWidth(80);
             }
+
+        }
     }
-   
+
 }
 
-class Tabela_Animais extends AbstractTableModel{
+class Tabela_Animais extends AbstractTableModel {
+
     private List<Animal> lista_animais;
-    private String [] colunas = new String[]{"ID", "Nome"};
+    private String[] colunas = new String[]{"ID", "Nome"};
 
     public Tabela_Animais() throws SQLException {
         lista_animais = new AnimalController().findAll();
     }
-            
+
     @Override
     public int getRowCount() {
         return lista_animais.size();
@@ -563,12 +564,15 @@ class Tabela_Animais extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Animal animal = lista_animais.get(rowIndex);
-        
-        switch(columnIndex){
-            case 0: return animal.getId();
-            case 1: return animal.getNome();
-           
-            default:return "Não foi possível identificar a colunas";
+
+        switch (columnIndex) {
+            case 0:
+                return animal.getId();
+            case 1:
+                return animal.getNome();
+
+            default:
+                return "Não foi possível identificar a colunas";
         }
     }
 
@@ -576,9 +580,9 @@ class Tabela_Animais extends AbstractTableModel{
     public String getColumnName(int column) {
         return colunas[column];
     }
-    
-    public int getIdIntoTheRow(JTable table){
-        int row =table.getSelectedRow();
+
+    public int getIdIntoTheRow(JTable table) {
+        int row = table.getSelectedRow();
         String val = String.valueOf(table.getValueAt(row, 0));
         return Integer.parseInt(val);
     }
@@ -589,6 +593,5 @@ class Tabela_Animais extends AbstractTableModel{
         this.fireTableDataChanged();
 
     }
-    
 
 }

@@ -15,14 +15,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author tmichelini
  */
 public class Detalhe_usuario extends javax.swing.JFrame {
-
+    
     private Usuario usuario;
-    private final Tabela_usuarios tabela_usuarios_model ;
+    private final Tabela_usuarios tabela_usuarios_model;
+
     //Teste louco mano
     /**
      * Creates new form Detalhe_usuario
@@ -32,6 +34,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         label_aux.setVisible(false);
         tabela_usuarios_model = new Tabela_usuarios();
         jTable_usuarios.setModel(tabela_usuarios_model);
+        this.setLocationRelativeTo(null);
         
         usuario = new Usuario();
         usuario.setEndereco(new Endereco());
@@ -62,7 +65,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_nome = new javax.swing.JTextField();
         txt_email = new javax.swing.JTextField();
         txtx_nascimento = new javax.swing.JTextField();
-        txt_telefone_fixo = new javax.swing.JTextField();
         txt_telefone_celular = new javax.swing.JTextField();
         txt_cpf = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -84,6 +86,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         btn_add_usuario = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         label_aux = new javax.swing.JLabel();
+        txt_telefone_fixo = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Detalhes ");
@@ -184,13 +187,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txtx_nascimento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtx_nascimentoFocusLost(evt);
-            }
-        });
-
-        txt_telefone_fixo.setText("4899101130");
-        txt_telefone_fixo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_telefone_fixoFocusLost(evt);
             }
         });
 
@@ -318,6 +314,12 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         label_aux.setForeground(new java.awt.Color(255, 51, 51));
         label_aux.setText(">");
 
+        try {
+            txt_telefone_fixo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
@@ -340,9 +342,9 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                                     .addComponent(txt_nome)
                                     .addComponent(txt_email)
                                     .addComponent(txtx_nascimento)
-                                    .addComponent(txt_telefone_fixo)
                                     .addComponent(txt_telefone_celular)
-                                    .addComponent(txt_cpf, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                                    .addComponent(txt_cpf, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                                    .addComponent(txt_telefone_fixo))
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -390,7 +392,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -424,9 +426,9 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
-                                    .addComponent(txt_telefone_fixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10)
-                                    .addComponent(txt_rua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txt_rua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_telefone_fixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(btn_add_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -468,23 +470,23 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_add_usuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_add_usuarioMouseClicked
-       
+        
         int id_selected = tabela_usuarios_model
-                                 //retorna -1 caso nao tenho nenhuma linha selecionada
-                                 .getIdIntoTheRow(jTable_usuarios);
-
-        if(id_selected != -1){
+                //retorna -1 caso nao tenho nenhuma linha selecionada
+                .getIdIntoTheRow(jTable_usuarios);
+        
+        if (id_selected != -1) {
             Usuario usuario = new UsuarioController()
-                                             .find(id_selected);
+                    .find(id_selected);
             this.build(usuario);
         }
-       
+        
     }//GEN-LAST:event_btn_add_usuarioMouseClicked
 
     private void btn_salvar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar_usuarioActionPerformed
         txt_bairroFocusLost(null);
         txt_cepFocusLost(null);
-        txt_nomeFocusLost(null);       
+        txt_nomeFocusLost(null);        
         txt_telefone_celularFocusLost(null);
         txt_ufFocusLost(null);
         txt_telefone_fixoFocusLost(null);
@@ -494,102 +496,99 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_numeroFocusLost(null);
         txt_emailFocusLost(null);
         txt_cpfFocusLost(null);
-         
-        if(true){        
+        
+        if (true) {            
             new adotego.controller.UsuarioController().salvar(usuario);
             tabela_usuarios_model.atualizarTabela();
             this.reset_campos();
-        }else{
+        } else {
             System.out.println("campos invalidos");
         }
     }//GEN-LAST:event_btn_salvar_usuarioActionPerformed
 
     private void txt_nomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_nomeFocusLost
-      //se o campo nao for vazio 
-      if(!txt_nome.getText().isEmpty())
-        usuario.setNome(txt_nome.getText().trim());
+        //se o campo nao for vazio 
+        if (!txt_nome.getText().isEmpty()) {
+            usuario.setNome(txt_nome.getText().trim());
+        }
     }//GEN-LAST:event_txt_nomeFocusLost
-
-    private void txt_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_emailFocusLost
-      //se o campo nao for vazio 
-      if(!txt_email.getText().isEmpty())
-        usuario.setEmail(txt_email.getText().trim());        
-    }//GEN-LAST:event_txt_emailFocusLost
 
     private void txtx_nascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtx_nascimentoFocusLost
         try {
             //se o campo nao for vazio 
-            if(!txtx_nascimento.getText().isEmpty()){
-                SimpleDateFormat df =  new SimpleDateFormat("dd/MM/yyyy");
+            if (!txtx_nascimento.getText().isEmpty()) {
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
                 Date date_parse = df.parse(txtx_nascimento.getText());
-                Calendar cal =Calendar.getInstance();
+                Calendar cal = Calendar.getInstance();
                 cal.setTime(date_parse);
                 usuario.setData_nascimento(cal);
-
+                
             }
         } catch (ParseException ex) {
             Logger.getLogger(Detalhe_usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtx_nascimentoFocusLost
 
-    private void txt_telefone_fixoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telefone_fixoFocusLost
-        //se o campo nao for vazio 
-      if(!txt_telefone_fixo.getText().isEmpty())
-        usuario.setTelefone_fixo(txt_telefone_fixo.getText());
-    }//GEN-LAST:event_txt_telefone_fixoFocusLost
-
     private void txt_telefone_celularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telefone_celularFocusLost
-       //se o campo nao for vazio 
-      if(!txt_telefone_celular.getText().isEmpty()) 
-        usuario.setTelefone_celular(txt_telefone_celular.getText());  
+        //se o campo nao for vazio 
+        if (!txt_telefone_celular.getText().isEmpty()) {
+            usuario.setTelefone_celular(txt_telefone_celular.getText());
+        }        
     }//GEN-LAST:event_txt_telefone_celularFocusLost
 
     private void txt_cpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cpfFocusLost
-       //se o campo nao for vazio 
-      if(!txt_cpf.getText().isEmpty()) 
-        usuario.setCpf(txt_cpf.getText());
+        //se o campo nao for vazio 
+        if (!txt_cpf.getText().isEmpty()) {
+            usuario.setCpf(txt_cpf.getText());
+        }
     }//GEN-LAST:event_txt_cpfFocusLost
 
     private void txt_cidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cidadeFocusLost
         //se o campo nao for vazio 
-      if(!txt_cidade.getText().isEmpty())
-        usuario.getEndereco().setCidade(txt_cidade.getText());
+        if (!txt_cidade.getText().isEmpty()) {
+            usuario.getEndereco().setCidade(txt_cidade.getText());
+        }
     }//GEN-LAST:event_txt_cidadeFocusLost
 
     private void txt_ufFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ufFocusLost
-       //se o campo nao for vazio 
-      if(!txt_uf.getText().isEmpty())
-        usuario.getEndereco().setUf(txt_uf.getText());
+        //se o campo nao for vazio 
+        if (!txt_uf.getText().isEmpty()) {
+            usuario.getEndereco().setUf(txt_uf.getText());
+        }
     }//GEN-LAST:event_txt_ufFocusLost
 
     private void txt_cepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusLost
         //se o campo nao for vazio 
-      if(!txt_cep.getText().isEmpty())
-        usuario.getEndereco().setCep(txt_cep.getText());
+        if (!txt_cep.getText().isEmpty()) {
+            usuario.getEndereco().setCep(txt_cep.getText());
+        }
     }//GEN-LAST:event_txt_cepFocusLost
 
     private void txt_ruaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ruaFocusLost
-       //se o campo nao for vazio 
-      if(!txt_rua.getText().isEmpty()) 
-        usuario.getEndereco().setRua(txt_rua.getText());
+        //se o campo nao for vazio 
+        if (!txt_rua.getText().isEmpty()) {
+            usuario.getEndereco().setRua(txt_rua.getText());
+        }
     }//GEN-LAST:event_txt_ruaFocusLost
 
     private void txt_numeroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_numeroFocusLost
-       //se o campo nao for vazio 
-      if(!txt_numero.getText().isEmpty()) 
-        usuario.getEndereco().setNumero(Integer.parseInt(txt_numero.getText()));
+        //se o campo nao for vazio 
+        if (!txt_numero.getText().isEmpty()) {
+            usuario.getEndereco().setNumero(Integer.parseInt(txt_numero.getText()));
+        }
     }//GEN-LAST:event_txt_numeroFocusLost
 
     private void txt_bairroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bairroFocusLost
-       //se o campo nao for vazio 
-      if(!txt_bairro.getText().isEmpty())
-        usuario.getEndereco().setBairro(txt_bairro.getText());
+        //se o campo nao for vazio 
+        if (!txt_bairro.getText().isEmpty()) {
+            usuario.getEndereco().setBairro(txt_bairro.getText());
+        }
     }//GEN-LAST:event_txt_bairroFocusLost
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
-        if(usuario.getId() != null){
+        if (usuario.getId() != null) {
             new UsuarioController().delete(usuario.getId());
-        }else{
+        } else {
             label_aux.setText("Selecione um na tabela usuario para excluir");
             label_aux.setVisible(true);
         }
@@ -606,6 +605,13 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     private void txt_ruaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ruaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_ruaActionPerformed
+
+    private void txt_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_emailFocusLost
+        //se o campo nao for vazio
+        if (!txt_email.getText().isEmpty()) {
+            usuario.setEmail(txt_email.getText().trim());
+        }
+    }//GEN-LAST:event_txt_emailFocusLost
 
     /**
      * @param args the command line arguments
@@ -678,25 +684,25 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     private javax.swing.JTextField txt_numero;
     private javax.swing.JTextField txt_rua;
     private javax.swing.JTextField txt_telefone_celular;
-    private javax.swing.JTextField txt_telefone_fixo;
+    private javax.swing.JFormattedTextField txt_telefone_fixo;
     private javax.swing.JTextField txt_uf;
     private javax.swing.JTextField txtx_nascimento;
     // End of variables declaration//GEN-END:variables
-    
+
     //atribui o Usuario passado como parametro ao Usuario da variável local
-    public void build(Usuario u){
+    public void build(Usuario u) {
         usuario = u;
         preencher_campos();
     }
     //preenchar os campos do fomulario com os dados do usuario armazenado na 
-        //variável local
+    //variável local
     private void preencher_campos() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         txt_id.setText(String
                 .valueOf(txt_id.getText()
-                       .concat(String.valueOf(usuario.getId()))));        
+                        .concat(String.valueOf(usuario.getId()))));        
         txt_nome.setText(usuario.getNome());
-        txt_email.setText(usuario.getEmail());
+        txt_telefone_fixo.setText(usuario.getEmail());
         txt_cpf.setText(usuario.getCpf());
         txt_telefone_fixo.setText(usuario.getTelefone_fixo());
         txt_telefone_celular.setText(usuario.getTelefone_celular());
@@ -708,15 +714,15 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_numero.setText(String.valueOf(usuario.getEndereco().getNumero()));
         txt_rua.setText(usuario.getEndereco().getRua());
         
-        if(!this.isVisible())
+        if (!this.isVisible()) {
             this.setVisible(true);
+        }
     }
-    
-    
+
     //tornar todos os campos editáveis
-    public void habilitar_campos_input(){
+    public void habilitar_campos_input() {
         txt_nome.setEditable(true);
-        txt_email.setEditable(true);
+        txt_telefone_fixo.setEditable(true);
         txt_cpf.setEditable(true);
         txt_telefone_fixo.setEditable(true);
         txt_telefone_celular.setEditable(true);
@@ -728,10 +734,11 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_numero.setEditable(true);
         txt_rua.setEditable(true);
     }
+
     //tornar todos os campos do formulario não editavel
-    public void desabilitar_campos_input(){
-    txt_nome.setEditable(false);
-        txt_email.setEditable(false);
+    public void desabilitar_campos_input() {
+        txt_nome.setEditable(false);
+        txt_telefone_fixo.setEditable(false);
         txt_cpf.setEditable(false);
         txt_telefone_fixo.setEditable(false);
         txt_telefone_celular.setEditable(false);
@@ -743,43 +750,43 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_numero.setEditable(false);
         txt_rua.setEditable(false);
     }
-    
+
     /*
         Este método retorna true se algum dos valores do formulários de 
         cadastro de usuarios estiver vazio
-    */
+     */
     private boolean campos_preenchidos() {
         String mensagem = "Existem campos vazios";
-    if(txt_nome.getText().isEmpty()
-                    || txt_email.getText().isEmpty()
-                    || txt_telefone_fixo.getText().isEmpty()
-                    || txt_telefone_celular.getText().isEmpty()
-                    || txtx_nascimento.getText().isEmpty()
-                    || txt_bairro.getText().isEmpty()
-                    || txt_cep.getText().isEmpty()
-                    || txt_uf.getText().isEmpty()
-                    || txt_cidade.getText().isEmpty()
-                    || txt_rua.getText().isEmpty()
-                    || txt_numero.getText().isEmpty()
-                    || txt_cpf.getText().isEmpty()){
-    
-            if(!label_aux.getText().contains(mensagem)){
+        if (txt_nome.getText().isEmpty()
+                || txt_telefone_fixo.getText().isEmpty()
+                || txt_telefone_fixo.getText().isEmpty()
+                || txt_telefone_celular.getText().isEmpty()
+                || txtx_nascimento.getText().isEmpty()
+                || txt_bairro.getText().isEmpty()
+                || txt_cep.getText().isEmpty()
+                || txt_uf.getText().isEmpty()
+                || txt_cidade.getText().isEmpty()
+                || txt_rua.getText().isEmpty()
+                || txt_numero.getText().isEmpty()
+                || txt_cpf.getText().isEmpty()) {
+            
+            if (!label_aux.getText().contains(mensagem)) {
                 label_aux.setText(label_aux.getText()
-                       .concat("\n"+mensagem));
+                        .concat("\n" + mensagem));
                 label_aux.setVisible(true);
                 return false;
-            }else{
-                  label_aux.getText().replace(mensagem, "");
-            } 
-    }else{
-        return true;
-    }
-    return false;
-    } 
+            } else {
+                label_aux.getText().replace(mensagem, "");
+            }            
+        } else {
+            return true;
+        }
+        return false;
+    }    
     
-    public void reset_campos(){
+    public void reset_campos() {
         this.txt_nome.setText("");
-        this.txt_email.setText("");
+        this.txt_telefone_fixo.setText("");
         this.txt_cpf.setText("");
         this.txtx_nascimento.setText("");
         this.txt_telefone_celular.setText("");
@@ -791,35 +798,43 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         this.txt_bairro.setText("");
         this.txt_cep.setText("");
     }
-
+    
     private boolean validarCamposUsuario() {
-      return campos_preenchidos() && validar_cpf() && validar_telefone_fixo() 
-              && validar_telefone_celular();
+        return campos_preenchidos() && validar_cpf() && validar_telefone_fixo()
+                && validar_telefone_celular();
     }
-
+    
     private boolean validar_cpf() {
-       if(!(txt_cpf.getText().length() == 11)){
-           label_aux.setText(label_aux.getText().concat("\nCPF inválido"));
-           return false;
-       }else{
-           char[] array = txt_cpf.getText().toCharArray();
-           for(char d : array){
-               if(!Character.isDigit(d))
-                   return false;
-           }
-       } 
-       
-       return true;
-       
+        if (!(txt_cpf.getText().length() == 11)) {
+            label_aux.setText(label_aux.getText().concat("\nCPF inválido"));
+            return false;
+        } else {
+            char[] array = txt_cpf.getText().toCharArray();
+            for (char d : array) {
+                if (!Character.isDigit(d)) {
+                    return false;
+                }
+            }
+        }        
+        
+        return true;
+        
     }
-
+    
     private boolean validar_telefone_fixo() {
-        return txt_telefone_fixo.getText().length() == 8 
-                || txt_telefone_fixo.getText().length() ==12;
+        return txt_telefone_fixo.getText().length() == 8
+                || txt_telefone_fixo.getText().length() == 12;
     }
-
+    
     private boolean validar_telefone_celular() {
-      return txt_telefone_celular.getText().length() == 8
-              || txt_telefone_celular.getText().length() == 12;
+        return txt_telefone_celular.getText().length() == 8
+                || txt_telefone_celular.getText().length() == 12;
+    }
+    
+    private void txt_telefone_fixoFocusLost(Object object) {
+        if (!txt_telefone_fixo.getText().isEmpty()) {
+            usuario.setTelefone_fixo(txt_telefone_fixo.getText());
+        }
+        
     }
 }

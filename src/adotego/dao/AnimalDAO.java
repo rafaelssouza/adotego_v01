@@ -60,7 +60,7 @@ public class AnimalDAO {
             
             try(ResultSet rs  = stmt.getResultSet()){
                 while(rs.next()){                    
-                    Especie especie = new adotego.controller.EspecieController().find(rs.getInt("idEspecie"));
+//                    Especie especie = new adotego.controller.EspecieController().find(rs.getInt("idEspecie"));
                     Raca raca = new adotego.controller.RacaController().find(rs.getInt("animal_idRaca"));
                     Situacao situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
                     Animal animal =  new Animal();                   
@@ -68,7 +68,7 @@ public class AnimalDAO {
                         animal.setDescricao(rs.getString("descricao"));
                         animal.setId(rs.getInt("idAnimal"));
                         animal.setPorte(getPorte_com_string(rs.getString("porte")));
-                        animal.setEspecie(especie);
+//                        animal.setEspecie(especie);
                         animal.setSituacao(situacao);
                         animal.setRaca(raca);
                         animal.setData_nascimento_from_SQL(rs.getDate("data_registro_entrada"));
