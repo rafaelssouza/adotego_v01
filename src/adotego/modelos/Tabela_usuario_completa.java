@@ -39,8 +39,8 @@ public class Tabela_usuario_completa extends AbstractTableModel{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Usuario u = lista_usuarios.get(rowIndex);
         
-        String celular_formatado = formatar_telefone(u.getTelefone_celular());
-        String fixo_formatado = formatar_telefone(u.getTelefone_fixo());
+        //String celular_formatado = formatar_telefone(u.getTelefone_celular());
+        //String fixo_formatado = formatar_telefone(u.getTelefone_fixo());
         
         String cpf_formatado = formatar_cpf(u.getCpf());
        switch(columnIndex){
@@ -48,8 +48,8 @@ public class Tabela_usuario_completa extends AbstractTableModel{
            case 1: return u.getNome();
            case 2: return u.getEmail();
            case 3: return cpf_formatado;
-           case 4: return fixo_formatado;
-           case 5: return celular_formatado;
+           case 4: return u.getTelefone_fixo();
+           case 5: return u.getTelefone_fixo();
            case 6: return  sdf.format(u.getData_nascimento().getTime().getTime());
            default: return "Erro ao identificar colunas";
        }
