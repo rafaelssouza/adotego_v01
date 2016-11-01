@@ -187,3 +187,10 @@ insert into `adotego`.`raca` (`idraca`, `nome`, `raca_idespecie`) values (defaul
 
 commit;
 
+--JOIN animalFindByName
+
+SELECT e.nome as nome_especie,a.idanimal,a.nome,a.data_registro_entrada,a.descricao,a.porte,a.situacao_idsituacao,
+r.idraca, r.nome, r.raca_idespecie 
+FROM animal a 
+JOIN raca r ON a.animal_idraca = r.idraca
+JOIN especie e ON  r.raca_idEspecie = e.idEspecie where r.raca_idEspecie = 1;
