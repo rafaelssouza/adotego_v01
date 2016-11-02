@@ -82,7 +82,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         txt_pesquisar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jCombo_box_opcoes_busca = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jButton_novo_cadastro = new javax.swing.JButton();
         btn_atualiza_tabela_usuarios = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jInternalFrame1 = new javax.swing.JInternalFrame();
@@ -359,10 +359,15 @@ public class PrincipalUI extends javax.swing.JFrame {
         jCombo_box_opcoes_busca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jCombo_box_opcoes_busca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF", "Email" }));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton1.setText("Novo Cadastro");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        jButton_novo_cadastro.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_novo_cadastro.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jButton_novo_cadastro.setText("Novo Cadastro");
+        jButton_novo_cadastro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        jButton_novo_cadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_novo_cadastroActionPerformed(evt);
+            }
+        });
 
         btn_atualiza_tabela_usuarios.setBackground(new java.awt.Color(255, 255, 255));
         btn_atualiza_tabela_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
@@ -382,7 +387,7 @@ public class PrincipalUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1121, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_novo_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_excluir_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -412,7 +417,7 @@ public class PrincipalUI extends javax.swing.JFrame {
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_editar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_excluir_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_novo_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -685,6 +690,8 @@ public class PrincipalUI extends javax.swing.JFrame {
                 //o jComboBox de raças para a especie selecionada
                 refresh_JCombo_box_raca_pesquisa(lista_raca);
                 
+            }else{
+                refresh_JCombo_box_raca_pesquisa(null);
             }
         } catch (SQLException ex) {
             Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -699,11 +706,11 @@ public class PrincipalUI extends javax.swing.JFrame {
     */
     private void btn_filtrar_animaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrar_animaisActionPerformed
         
-        int indexSelecionado = jCombo_box_especie_pesquisa.getSelectedIndex();
+        int indice_especie = jCombo_box_especie_pesquisa.getSelectedIndex();
         try {
             //se o index selecionado for diferente do primeiro, pois setamos
             // no indice 0 o título da Jcombo
-            if (indexSelecionado > 0) {
+            if (indice_especie > 0) {
                 
                 //recupera o nome da especie selecionado
                 String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
@@ -714,11 +721,13 @@ public class PrincipalUI extends javax.swing.JFrame {
                 List<Animal> animais_lista = new adotego.controller.AnimalController()
                         .findByEspecieName(especie_name_selected);
                 
+                int index_raca = jCombo_box_raca_pesquisa.getSelectedIndex();
                 //se o index selecionado for diferente de primeiro, pois
                 // setamos no primeiro indice como sendo o título
-                if (jCombo_box_raca_pesquisa.getSelectedIndex() > 0) {
+                if ( index_raca > 0) {
                     
-                    //recupera a raca selecionada na jComboBox de raça
+                    //recupera a raca como String selecionada na jComboBox de raça
+                    // utilizando o index como parametro
                     String raca = String.valueOf(jCombo_box_raca_pesquisa.getSelectedItem());
                     
                     //remover os animais que possuir raca diferente da selecionada
@@ -729,13 +738,14 @@ public class PrincipalUI extends javax.swing.JFrame {
                         //selecionada anteriormente, excluímos da lista
                         if (!animal.getRaca().getNome().equalsIgnoreCase(raca)) {
                             iterator.remove();
+                           
                         }
                     }
                 }
                 //atualizar graficamente a tabela de animais;
                 model_tabela_animais.atualizar_tabela(animais_lista);
                 
-            } else if (indexSelecionado == 0) {
+            } else if (indice_especie == 0) {
                 //se o usuários selecionar o titulo do JComboBox especie,
                 //mostraremos a tabela original, isto é, com todos os dados
                 //cadastrados no banco em ordem alfabetica
@@ -865,8 +875,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_novo_cadastroActionPerformed
     
     private void btn_nova_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nova_adocaoActionPerformed
-        
-        new Nova_Adocao().setVisible(true);
+                new Nova_Adocao().setVisible(true);
     }//GEN-LAST:event_btn_nova_adocaoActionPerformed
     
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -888,6 +897,10 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void btn_atualiza_tabela_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualiza_tabela_usuariosActionPerformed
         model_tabela_usuarios_completa.atualizarTabela();
     }//GEN-LAST:event_btn_atualiza_tabela_usuariosActionPerformed
+
+    private void jButton_novo_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_novo_cadastroActionPerformed
+        new Detalhe_animal().setVisible(true);
+    }//GEN-LAST:event_jButton_novo_cadastroActionPerformed
     
     /**
      * @param args the command line arguments
@@ -935,8 +948,8 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JMenu btn_nova_adocao;
     private javax.swing.JButton btn_novo_cadastro;
     private javax.swing.JMenuItem btn_novo_usuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton_novo_cadastro;
     private javax.swing.JComboBox<String> jComboBox_situacao_pesquisa;
     private javax.swing.JComboBox<String> jCombo_box_especie_pesquisa;
     private javax.swing.JComboBox<String> jCombo_box_opcoes_busca;
@@ -989,10 +1002,16 @@ public class PrincipalUI extends javax.swing.JFrame {
     }
     //atualiza o jCombo de raças para de acordo com a especie selecionada
     private void refresh_JCombo_box_raca_pesquisa(List<Raca> lista) {
-        jCombo_box_raca_pesquisa.removeAllItems();
-        jCombo_box_raca_pesquisa.addItem("Tudo");
-        for (Raca raca : lista) {
-            jCombo_box_raca_pesquisa.addItem(raca.getNome());
+        
+        if(lista == null){
+            jCombo_box_raca_pesquisa.removeAllItems();
+            jCombo_box_raca_pesquisa.addItem("Raça");
+        }else{
+            jCombo_box_raca_pesquisa.removeAllItems();
+            jCombo_box_raca_pesquisa.addItem("Tudo");
+            for (Raca raca : lista) {
+                jCombo_box_raca_pesquisa.addItem(raca.getNome());
+            }
         }
     }
     /*

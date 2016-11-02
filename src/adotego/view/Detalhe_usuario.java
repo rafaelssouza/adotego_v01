@@ -41,8 +41,8 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         btn_salvar_usuario = new javax.swing.JButton();
         btn_excluir = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButton_nova_adocao = new javax.swing.JButton();
+        jButton_nova_doacao = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -111,21 +111,26 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         });
         jToolBar1.add(btn_excluir);
 
-        jButton3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/animal-paw-print.png"))); // NOI18N
-        jButton3.setText("Nova Adoção");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton3);
+        jButton_nova_adocao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButton_nova_adocao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/animal-paw-print.png"))); // NOI18N
+        jButton_nova_adocao.setText("Nova Adoção");
+        jButton_nova_adocao.setFocusable(false);
+        jButton_nova_adocao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_nova_adocao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_nova_adocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_nova_adocaoActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton_nova_adocao);
 
-        jButton4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/coins.png"))); // NOI18N
-        jButton4.setText("Nova Doação");
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton4);
+        jButton_nova_doacao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jButton_nova_doacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/coins.png"))); // NOI18N
+        jButton_nova_doacao.setText("Nova Doação");
+        jButton_nova_doacao.setFocusable(false);
+        jButton_nova_doacao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_nova_doacao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton_nova_doacao);
 
         jLabel1.setFont(new java.awt.Font("Laksaman", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -635,6 +640,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_emailFocusLost
 
+    private void jButton_nova_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nova_adocaoActionPerformed
+        new Nova_Adocao().setVisible(true);
+    }//GEN-LAST:event_jButton_nova_adocaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -675,8 +684,8 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     private javax.swing.JButton btn_add_usuario;
     private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_salvar_usuario;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton_nova_adocao;
+    private javax.swing.JButton jButton_nova_doacao;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

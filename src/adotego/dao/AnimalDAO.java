@@ -53,22 +53,36 @@ public class AnimalDAO {
         com o id passado como parametro
     */
     public Animal find(int id) throws SQLException{
-        String sql = "select * from animal where idAnimal = ?";
+        String sql = "select a.idanimal, a.nome, a.porte, " +
+                    "		a.data_registro_entrada,r.nome as nome_raca,r.idraca ," +
+                    "        e.idespecie,a.animal_idraca ," +
+                    "        a.descricao as descricao_animal,a.situacao_idsituacao ,s.descricao as descricao_situacao, " +
+                    "        e.nome as nome_especie " +
+                    "        from animal a " +
+                    "        join raca r" +
+                    "        on r.idraca = a.animal_idraca" +
+                    "        join especie e " +
+                    "        on r.raca_idespecie = e.idespecie" +
+                    "        join situacao s" +
+                    "        on s.idsituacao = a.situacao_idsituacao" +
+                    "        where a.idanimal = ?";
+        
          try(PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setInt(1 ,id);
             stmt.executeQuery();
             
             try(ResultSet rs  = stmt.getResultSet()){
                 while(rs.next()){                    
-//                    Especie especie = new adotego.controller.EspecieController().find(rs.getInt("idEspecie"));
-                    Raca raca = new adotego.controller.RacaController().find(rs.getInt("animal_idRaca"));
-                    Situacao situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
+
+                   Especie especie = new Especie(rs.getInt("idespecie"), rs.getString("nome_especie"));
+                     Raca raca = new Raca(rs.getInt("animal_idraca"),rs.getString("nome_raca"), especie);
+                     Situacao situacao = new Situacao(rs.getInt("situacao_idsituacao"), rs.getString("descricao_situacao"));
                     Animal animal =  new Animal();                   
                         animal.setNome(rs.getString("nome"));
-                        animal.setDescricao(rs.getString("descricao"));
-                        animal.setId(rs.getInt("idAnimal"));
+                        animal.setDescricao(rs.getString("descricao_animal"));
+                        animal.setId(rs.getInt("idanimal"));
                         animal.setPorte(getPorte_com_string(rs.getString("porte")));
-//                        animal.setEspecie(especie);
+                         animal.setEspecie(especie);
                         animal.setSituacao(situacao);
                         animal.setRaca(raca);
                         animal.setData_nascimento_from_SQL(rs.getDate("data_registro_entrada"));
@@ -89,7 +103,18 @@ public class AnimalDAO {
     }
 
     public List<Animal> findAll() throws SQLException {
-         String sql = "select * from animal ";
+          String sql = "select a.idanimal, a.nome, a.porte, " +
+                    "		a.data_registro_entrada,r.nome as nome_raca,r.idraca ," +
+                    "        e.idespecie,a.animal_idraca ," +
+                    "        a.descricao as descricao_animal,a.situacao_idsituacao ,s.descricao as descricao_situacao, " +
+                    "        e.nome as nome_especie " +
+                    "        from animal a " +
+                    "        join raca r" +
+                    "        on r.idraca = a.animal_idraca" +
+                    "        join especie e " +
+                    "        on r.raca_idespecie = e.idespecie" +
+                    "        join situacao s" +
+                    "        on s.idsituacao = a.situacao_idsituacao";                   
          List<Animal> lista_animal = new ArrayList<>();
          try(PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.executeQuery();
@@ -97,13 +122,13 @@ public class AnimalDAO {
             try(ResultSet rs  = stmt.getResultSet()){
                 while(rs.next()){                    
                     
-                    Raca raca = new adotego.controller.RacaController().find(rs.getInt("animal_idRaca"));
-                    Especie especie = new adotego.controller.EspecieController().findByRaca(raca);
-                    Situacao situacao = new adotego.controller.SituacaoController().find(rs.getInt("Situacao_idSituacao"));
+                    Especie especie = new Especie(rs.getInt("idespecie"), rs.getString("nome_especie"));
+                     Raca raca = new Raca(rs.getInt("animal_idraca"),rs.getString("nome_raca"), especie);
+                     Situacao situacao = new Situacao(rs.getInt("situacao_idsituacao"), rs.getString("descricao_situacao"));
                     Animal animal =  new Animal();
                         
                         animal.setNome(rs.getString("nome"));
-                        animal.setDescricao(rs.getString("descricao"));
+                        animal.setDescricao(rs.getString("descricao_animal"));
                         animal.setId(rs.getInt("idAnimal"));
                         animal.setPorte(getPorte_com_string(rs.getString("porte")));
                         animal.setEspecie(especie);
@@ -132,12 +157,20 @@ public class AnimalDAO {
      
      
      public List<Animal> findByEspecieName(String nome) throws SQLException{
-         String sql = "select a.idAnimal, a.nome," +
-                        "a.porte, a.data_registro_entrada,e.idespecie,a.animal_idraca ," +
-                        "a.descricao,a.situacao_idsituacao , e.nome from animal a " +
-                        "join especie e " +
-                        "on e.idespecie = a.idespecie" +
-                        " where e.nome = ?;"; 
+         String sql = "select a.idAnimal, a.nome, a.porte, " +
+                    "		a.data_registro_entrada,r.nome as nome_raca,r.idraca ," +
+                    "        e.idespecie,a.animal_idraca ," +
+                    "        a.descricao as descricao_animal,a.situacao_idsituacao ,s.descricao as descricao_situacao, " +
+                    "        e.nome as nome_especie " +
+                    "        from animal a " +
+                    "        join raca r" +
+                    "        on r.idraca = a.animal_idraca" +
+                    "        join especie e " +
+                    "		on r.raca_idespecie = e.idespecie" +
+                    "        join situacao s" +
+                    "        on s.idsituacao = a.situacao_idsituacao" +
+                    "        where e.nome = ?";
+         
          List<Animal> lista = new ArrayList<>();
          try(PreparedStatement ps = conn.prepareStatement(sql)){
              ps.setString(1, nome);
@@ -145,20 +178,20 @@ public class AnimalDAO {
              
              try(ResultSet rs = ps.getResultSet()){
                  while(rs.next()){
-                    Especie especie = new adotego.controller.EspecieController().find(rs.getInt("idespecie"));
-                    Raca raca = new adotego.controller.RacaController().find(rs.getInt("animal_idraca"));
-                    Situacao situacao = new adotego.controller.SituacaoController().find(rs.getInt("situacao_idsituacao"));
+                     Especie especie = new Especie(rs.getInt("idespecie"), rs.getString("nome_especie"));
+                     Raca raca = new Raca(rs.getInt("animal_idraca"),rs.getString("nome_raca"), especie);
+                     Situacao situacao = new Situacao(rs.getInt("situacao_idsituacao"), rs.getString("descricao_situacao"));
                     Animal animal =  new Animal();                   
-                        
-                        animal.setNome(rs.getString("nome"));
-                        animal.setDescricao(rs.getString("descricao"));
                         animal.setId(rs.getInt("idAnimal"));
+                        animal.setNome(rs.getString("nome"));
+                        animal.setDescricao(rs.getString("descricao_animal"));                        
                         animal.setPorte(getPorte_com_string(rs.getString("porte")));
                         animal.setEspecie(especie);
                         animal.setSituacao(situacao);
                         animal.setRaca(raca);
                         animal.setData_nascimento_from_SQL(rs.getDate("data_registro_entrada"));
                         
+                        System.out.println(animal);
                         lista.add(animal);
                  }
              }

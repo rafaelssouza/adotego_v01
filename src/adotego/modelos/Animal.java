@@ -110,7 +110,8 @@ public class Animal {
                     + sdf.format(getData_entrada().getTime()) 
                     + ", porte=" + porte.toString() + 
                     ", descricao=" + descricao + ", idPessoa=" + idPessoa 
-                    + ", situacao=" + situacao.toString()
+                    + ",\nRaca = "+raca
+                    + " situacao=" + situacao.toString()
                     + "\nEspecie = "+especie+'}';
         }
         

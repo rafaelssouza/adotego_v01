@@ -20,6 +20,13 @@ public class Raca {
         this.nome = nome;
     }
 
+    public Raca(int idRaca, String nome, Especie especie) {
+        this.idRaca = idRaca;
+        this.nome = nome;
+        this.especie = especie;
+    }
+
+   
     public Raca() {
     }
 
@@ -46,6 +53,13 @@ public class Raca {
     public void setEspecie(Especie especie) {
         this.especie = especie;
     }
+
+    @Override
+    public String toString() {
+        return "Raca{" + "idRaca=" + idRaca + ", nome=" + nome + ", especie=" + especie + '}';
+    }
+    
+    
     
     
 }
