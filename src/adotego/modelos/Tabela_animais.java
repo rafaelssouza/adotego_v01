@@ -58,6 +58,21 @@ public class Tabela_animais extends AbstractTableModel{
         String val = String.valueOf(table.getValueAt(row, 0));
         return Integer.parseInt(val);
     }
+    public int[] getIdsIntoTheRow(JTable table){
+       int[] selectedRows = table.getSelectedRows();
+        int ids[] = new int[selectedRows.length];
+        int cont = 0;
+        for (int i : selectedRows) {
+            String val = String.valueOf(table.getValueAt(i, 0));
+            ids[cont] = Integer.parseInt(val);
+            cont++;
+        }
+        
+        return ids;
+    }
+    
+    
+    
     public void inserirAnimal(Animal animal){
         linhas_animal.add(animal);
         this.fireTableDataChanged();

@@ -344,41 +344,26 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_nome">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Usuario teste"/>
-          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_nomeFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_email">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="teste@hotmail.com"/>
-          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_emailFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtx_nascimento">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="05/01/1993"/>
-          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtx_nascimentoFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_telefone_celular">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="4899103203"/>
-          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_telefone_celularFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_cpf">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="32788623738"/>
-          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_cpfFocusLost"/>
           </Events>
@@ -429,41 +414,26 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_cidade">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Florianopolis"/>
-          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_cidadeFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_uf">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="santa catarina"/>
-          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ufFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_cep">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="88048416"/>
-          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_cepFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_rua">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="r dos eucaliptos"/>
-          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ruaFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_bairro">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="campeche"/>
-          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_bairroFocusLost"/>
           </Events>
@@ -478,9 +448,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_numero">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="32"/>
-          </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_numeroFocusLost"/>
           </Events>

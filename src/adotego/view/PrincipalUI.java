@@ -65,8 +65,6 @@ public class PrincipalUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_qnt_adocoes = new javax.swing.JLabel();
         txt_qnt_animais_disponiveis = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txt_qnt_animais_disponiveis1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_adocoes = new javax.swing.JTable();
@@ -154,14 +152,6 @@ public class PrincipalUI extends javax.swing.JFrame {
         txt_qnt_animais_disponiveis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txt_qnt_animais_disponiveis.setText("txt_qnt_animais_disponiveis");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Quantidade de animais disponíveis:");
-
-        txt_qnt_animais_disponiveis1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txt_qnt_animais_disponiveis1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txt_qnt_animais_disponiveis1.setText("txt_qnt_animais_disponiveis");
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -169,14 +159,12 @@ public class PrincipalUI extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(122, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txt_qnt_animais_disponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                    .addComponent(txt_qnt_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_qnt_animais_disponiveis1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addComponent(txt_qnt_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -190,10 +178,6 @@ public class PrincipalUI extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_qnt_animais_disponiveis))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_qnt_animais_disponiveis1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -763,10 +747,11 @@ public class PrincipalUI extends javax.swing.JFrame {
     */
     private void btn_excluir_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_animalActionPerformed
         //recupera id
-        int id = model_tabela_animais.getIdIntoTheRow(jTable_animais);
+        int[] ids = model_tabela_animais.getIdsIntoTheRow(jTable_animais);
         //apaga o usuario correspondente
-        new adotego.controller.AnimalController().delete(id);
-        //atualiza a tabela
+        for (int id : ids) {
+            new adotego.controller.AnimalController().delete(id);
+        }
         model_tabela_animais.atualizar_tabela();
         
     }//GEN-LAST:event_btn_excluir_animalActionPerformed
@@ -798,9 +783,14 @@ public class PrincipalUI extends javax.swing.JFrame {
     correspondente no banco de dados
     */
     private void btn_excluir_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_usuarioActionPerformed
-        int id_selected = model_tabela_usuarios_completa.getIdIntoTheRow(jTable_usuarios);
-        new UsuarioController().delete(id_selected);
+        
+        int[] ids_selecionados = model_tabela_usuarios_completa.getIdsIntoTheRow(jTable_usuarios);      
+        UsuarioController uc = new adotego.controller.UsuarioController();
+        for (int i : ids_selecionados) {
+            uc.delete(i);
+        }
         model_tabela_usuarios_completa.atualizarTabela();
+        
     }//GEN-LAST:event_btn_excluir_usuarioActionPerformed
     /*
     Este método identifica um duplo clique em algum usuario da tabela e
@@ -892,6 +882,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         txt_total_doacoes.setText("");
         txt_total_doacoes.setText("R$:"+String
                 .valueOf(model_tabela_adocoes.getTotal_doacoes()));
+        atualizar_informacoes();
     }//GEN-LAST:event_btn_atualizar_tabela_adocoesActionPerformed
     
     private void btn_atualiza_tabela_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualiza_tabela_usuariosActionPerformed
@@ -899,7 +890,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_atualiza_tabela_usuariosActionPerformed
 
     private void jButton_novo_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_novo_cadastroActionPerformed
-        new Detalhe_animal().setVisible(true);
+        new Detalhe_usuario().setVisible(true);
     }//GEN-LAST:event_jButton_novo_cadastroActionPerformed
     
     /**
@@ -962,7 +953,6 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -987,7 +977,6 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JTextField txt_pesquisar;
     private javax.swing.JLabel txt_qnt_adocoes;
     private javax.swing.JLabel txt_qnt_animais_disponiveis;
-    private javax.swing.JLabel txt_qnt_animais_disponiveis1;
     private javax.swing.JTextField txt_total_doacoes;
     // End of variables declaration//GEN-END:variables
     

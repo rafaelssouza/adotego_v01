@@ -22,10 +22,9 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         tabela_usuarios_model = new Tabela_usuarios();
         jTable_usuarios.setModel(tabela_usuarios_model);
         this.setLocationRelativeTo(null);
-        
         usuario = new Usuario();
         usuario.setEndereco(new Endereco());
-        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -156,35 +155,30 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("CPF");
 
-        txt_nome.setText("Usuario teste");
         txt_nome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_nomeFocusLost(evt);
             }
         });
 
-        txt_email.setText("teste@hotmail.com");
         txt_email.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_emailFocusLost(evt);
             }
         });
 
-        txtx_nascimento.setText("05/01/1993");
         txtx_nascimento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtx_nascimentoFocusLost(evt);
             }
         });
 
-        txt_telefone_celular.setText("4899103203");
         txt_telefone_celular.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_telefone_celularFocusLost(evt);
             }
         });
 
-        txt_cpf.setText("32788623738");
         txt_cpf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_cpfFocusLost(evt);
@@ -211,35 +205,30 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Bairro");
 
-        txt_cidade.setText("Florianopolis");
         txt_cidade.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_cidadeFocusLost(evt);
             }
         });
 
-        txt_uf.setText("santa catarina");
         txt_uf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_ufFocusLost(evt);
             }
         });
 
-        txt_cep.setText("88048416");
         txt_cep.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_cepFocusLost(evt);
             }
         });
 
-        txt_rua.setText("r dos eucaliptos");
         txt_rua.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_ruaFocusLost(evt);
             }
         });
 
-        txt_bairro.setText("campeche");
         txt_bairro.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_bairroFocusLost(evt);
@@ -250,7 +239,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("N°");
 
-        txt_numero.setText("32");
         txt_numero.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_numeroFocusLost(evt);

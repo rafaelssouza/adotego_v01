@@ -55,10 +55,25 @@ public class Tabela_usuario_completa extends AbstractTableModel{
        }
     }
     public int getIdIntoTheRow(JTable table){
+        
         int row =table.getSelectedRow();
         String val = String.valueOf(table.getValueAt(row, 0));
         return Integer.parseInt(val);
     }
+    
+    public int[] getIdsIntoTheRow(JTable table){
+        int[] selectedRows = table.getSelectedRows();
+        int ids[] = new int[selectedRows.length];
+        int cont=0;
+        for (int selectedRow : selectedRows) {
+            String id = String.valueOf(table.getValueAt(selectedRow, 0));
+            ids[cont] = Integer.parseInt(id);
+            cont++;        
+        }
+        return ids;
+    }
+    
+    
     
     public void atualizarTabela(){
         lista_usuarios = new adotego.controller.UsuarioController().findAll();
