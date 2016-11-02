@@ -50,7 +50,7 @@ public class UsuarioDAO {
         }
 
     }
-    //public void update(Usuario pessoa)
+    
     /*
         Metodos responsável por buscar um usuario no bando de dados de acordo
         com o id passado como parametro
@@ -231,6 +231,28 @@ public class UsuarioDAO {
             
         }
         return lista;
+    }
+
+    public void update(Usuario usuario) throws SQLException {
+        String sql = "UPDATE pessoa SET nome = ?, telefone_fixo = ?, telefone_celular = ?, "
+                + "data_nascimento = ?, email = ?, cpf_cnpj = ?, rua = ?, cidade = ?, bairro = ?, "
+                + "uf = ?, numero = ?, cep = ? WHERE idpessoa = ?";
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){	
+                pstm.setString(1, usuario.getNome());
+                pstm.setString(2, usuario.getTelefone_fixo());
+                pstm.setString(3, usuario.getTelefone_celular());
+                pstm.setDate(4, usuario.getData_nascimento_sql());
+                pstm.setString(5, usuario.getEmail());
+                pstm.setString(6, usuario.getCpf());
+                pstm.setString(7, usuario.getEndereco().getRua());
+                pstm.setString(8, usuario.getEndereco().getCidade());
+                pstm.setString(9, usuario.getEndereco().getBairro());
+                pstm.setString(10, usuario.getEndereco().getUf());
+                pstm.setString(11, String.valueOf(usuario.getEndereco().getNumero()));
+                pstm.setString(12, usuario.getEndereco().getCep());
+                pstm.setInt(13, usuario.getId());
+                pstm.executeUpdate();
+        }
     }
     
     

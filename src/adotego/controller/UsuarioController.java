@@ -88,4 +88,13 @@ public class UsuarioController {
         }
         return null;
     }
+
+    public void update(Usuario usuario) {
+        try (Connection u = new ConnectionPool().getConnection()) {
+            new adotego.dao.UsuarioDAO(u).update(usuario);
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }
