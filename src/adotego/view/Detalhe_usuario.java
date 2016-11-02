@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package adotego.view;
 
 import adotego.controller.UsuarioController;
@@ -16,19 +11,11 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author tmichelini
- */
 public class Detalhe_usuario extends javax.swing.JFrame {
     
     private Usuario usuario;
     private final Tabela_usuarios tabela_usuarios_model;
 
-    //Teste louco mano
-    /**
-     * Creates new form Detalhe_usuario
-     */
     public Detalhe_usuario() {
         initComponents();
         label_aux.setVisible(false);
@@ -130,11 +117,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
         jToolBar1.add(jButton3);
 
         jButton4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -237,11 +219,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                 txt_ufFocusLost(evt);
             }
         });
-        txt_uf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_ufActionPerformed(evt);
-            }
-        });
 
         txt_cep.setText("88048416");
         txt_cep.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -254,11 +231,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_rua.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_ruaFocusLost(evt);
-            }
-        });
-        txt_rua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_ruaActionPerformed(evt);
             }
         });
 
@@ -468,7 +440,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /*
+        Método responsável por recuperar o usuario selecionado na tabela, dae 
+        preencher todos os inputs com o respectivo usuario.         
+    */
     private void btn_add_usuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_add_usuarioMouseClicked
         
         int id_selected = tabela_usuarios_model
@@ -483,6 +458,13 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_add_usuarioMouseClicked
 
+    /*
+        Método responsável por salvar o objeto do tipo Usuario da tela em questão
+        e salva-lo no banco de dados. Antes de salvar o objeto chamamos todos os
+        metodos FocusLost para setarmos todas os propriedades novamente(desta 
+        forma não é necessário apertar a tecla tab depois do ultimo campo de 
+        texto
+    */
     private void btn_salvar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar_usuarioActionPerformed
         txt_bairroFocusLost(null);
         txt_cepFocusLost(null);
@@ -506,6 +488,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_salvar_usuarioActionPerformed
 
+    /*
+       Este método é invocado sempre que o txt_nome perde o foco, e é responsável
+       por setar no objeto usuario desta tela o valor que estiver no campo_nome
+    */
     private void txt_nomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_nomeFocusLost
         //se o campo nao for vazio 
         if (!txt_nome.getText().isEmpty()) {
@@ -513,6 +499,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_nomeFocusLost
 
+     /*
+       Este método é invocade sempre q o txt_nascimento perde o foco, e é responsável
+       por setar no objeto usuario desta tela o valor que estiver no campo_txt_nascimento
+    */
     private void txtx_nascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtx_nascimentoFocusLost
         try {
             //se o campo nao for vazio 
@@ -528,7 +518,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
             Logger.getLogger(Detalhe_usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtx_nascimentoFocusLost
-
+    /*
+       Este método é invocade sempre q o txt_telefone_celular perde o foco, e é responsável
+       por setar no objeto usuario desta tela o valor que estiver no campo txt_telefone_celular
+    */
     private void txt_telefone_celularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telefone_celularFocusLost
         //se o campo nao for vazio 
         if (!txt_telefone_celular.getText().isEmpty()) {
@@ -536,6 +529,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_txt_telefone_celularFocusLost
 
+    /*
+       Este método é invocade sempre q o txt_cpf perde o foco, e é responsável
+       por setar no objeto usuario desta tela o valor que estiver no campo_txt_cpf
+    */
     private void txt_cpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cpfFocusLost
         //se o campo nao for vazio 
         if (!txt_cpf.getText().isEmpty()) {
@@ -543,6 +540,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_cpfFocusLost
 
+    /*
+       Este método é invocade sempre q o txt_cidade perde o foco, e é responsável
+       por setar no objeto usuario desta tela o valor que estiver no txt_cidade
+    */
     private void txt_cidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cidadeFocusLost
         //se o campo nao for vazio 
         if (!txt_cidade.getText().isEmpty()) {
@@ -550,6 +551,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_cidadeFocusLost
 
+    /*
+       Este método é invocade sempre q o txt_uf perde o foco, e é responsável
+       por setar no objeto usuario desta tela o valor que estiver no txt_uf
+    */
     private void txt_ufFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ufFocusLost
         //se o campo nao for vazio 
         if (!txt_uf.getText().isEmpty()) {
@@ -557,6 +562,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_ufFocusLost
 
+    /*
+       Este método é invocade sempre q o txt_cep perde o foco, e é responsável
+       por setar no objeto usuario desta tela o valor que estiver no txt_cep
+    */
     private void txt_cepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusLost
         //se o campo nao for vazio 
         if (!txt_cep.getText().isEmpty()) {
@@ -564,6 +573,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_cepFocusLost
 
+    /*
+       Este método é invocade sempre q o txt_rua perde o foco, e é responsável
+       por setar no objeto usuario desta tela o valor que estiver no txt_rua
+    */
     private void txt_ruaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ruaFocusLost
         //se o campo nao for vazio 
         if (!txt_rua.getText().isEmpty()) {
@@ -571,6 +584,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_ruaFocusLost
 
+    /*
+       Este método é invocade sempre q o txt_numero perde o foco, e é responsável
+       por setar no objeto usuario desta tela o valor que estiver no campo txt_numero
+    */
     private void txt_numeroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_numeroFocusLost
         //se o campo nao for vazio 
         if (!txt_numero.getText().isEmpty()) {
@@ -578,13 +595,21 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_numeroFocusLost
 
+    /*
+       Este método é invocade sempre q o txt_bairro perde o foco, e é responsável
+       por setar no objeto usuario desta tela o valor que estiver no campo_txt_bairro
+    */
     private void txt_bairroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bairroFocusLost
         //se o campo nao for vazio 
         if (!txt_bairro.getText().isEmpty()) {
             usuario.getEndereco().setBairro(txt_bairro.getText());
         }
     }//GEN-LAST:event_txt_bairroFocusLost
-
+    
+    /*
+        Este método identifica qual usuario esta sendo utilizado para preencher
+        os inputs e realiza a exclusão dele no banco de daodos.
+    */
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
         if (usuario.getId() != null) {
             new UsuarioController().delete(usuario.getId());
@@ -593,19 +618,11 @@ public class Detalhe_usuario extends javax.swing.JFrame {
             label_aux.setVisible(true);
         }
     }//GEN-LAST:event_btn_excluirActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void txt_ufActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ufActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_ufActionPerformed
-
-    private void txt_ruaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ruaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_ruaActionPerformed
-
+    
+    /*
+       Este método é invocade sempre q o txt_email  perde o foco, e é responsável
+       por setar no objeto usuario desta tela o valor que estiver no campo_txt_email
+    */
     private void txt_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_emailFocusLost
         //se o campo nao for vazio
         if (!txt_email.getText().isEmpty()) {
@@ -690,6 +707,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     //atribui o Usuario passado como parametro ao Usuario da variável local
+    //e preenche todos os inputs com as propriedades deste usuario
     public void build(Usuario u) {
         usuario = u;
         preencher_campos();
@@ -783,7 +801,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
         return false;
     }    
-    
+    //preenche todo so inputs com uma String vazia, simulando estar vazias.
     public void reset_campos() {
         this.txt_nome.setText("");
         this.txt_telefone_fixo.setText("");
@@ -799,11 +817,15 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         this.txt_cep.setText("");
     }
     
+    /*
+        Esté método é responsável por verificar se todos os campos estão devidamente
+        preenchidos a nível de usuario.
+    */
     private boolean validarCamposUsuario() {
         return campos_preenchidos() && validar_cpf() && validar_telefone_fixo()
                 && validar_telefone_celular();
     }
-    
+    //vlaidação  CPF
     private boolean validar_cpf() {
         if (!(txt_cpf.getText().length() == 11)) {
             label_aux.setText(label_aux.getText().concat("\nCPF inválido"));
@@ -820,12 +842,12 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         return true;
         
     }
-    
+    //validar telefone fixo
     private boolean validar_telefone_fixo() {
         return txt_telefone_fixo.getText().length() == 8
                 || txt_telefone_fixo.getText().length() == 12;
     }
-    
+    //validar telefone celular
     private boolean validar_telefone_celular() {
         return txt_telefone_celular.getText().length() == 8
                 || txt_telefone_celular.getText().length() == 12;

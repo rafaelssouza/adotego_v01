@@ -1058,12 +1058,15 @@ public class PrincipalUI extends javax.swing.JFrame {
         
     }
     
-    
+    //atualiza o input com o total de doações atualizado
     public void atualizaTxtTotalDoacoes(){
         txt_total_doacoes.setText("");
         txt_total_doacoes.setText("R$:"+model_tabela_adocoes.getTotal_doacoes());
     }
     
+    /*
+        Método responsável por configurar os tamanho da colunas na tabela de animais
+    */
     private void configurar_tabela_animais() {
         int columnCount = jTable_animais.getColumnCount();
          
@@ -1096,6 +1099,9 @@ public class PrincipalUI extends javax.swing.JFrame {
         }
     }
     
+    /*
+        Atualiza as propriedades do painel de informalções da PrincipalUI
+    */
     public void atualizar_informacoes() {
         txt_qnt_adocoes.setToolTipText("");
         txt_qnt_adocoes.setText(String.valueOf(
@@ -1111,6 +1117,9 @@ public class PrincipalUI extends javax.swing.JFrame {
         model_tabela_animais.atualizar_tabela();
     }
 
+    /*
+    Configura o tamanho das colunas da tabela_doações
+    */
     private void configurar_tabela_adocoes() {
         int columnCount = jTable_adocoes.getColumnCount();         
         int width = jTable_adocoes.getWidth();
