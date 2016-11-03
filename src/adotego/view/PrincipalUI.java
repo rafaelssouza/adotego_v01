@@ -4,9 +4,11 @@ package adotego.view;
 import adotego.controller.UsuarioController;
 import adotego.modelos.Animal;
 import adotego.modelos.Especie;
+import adotego.modelos.Informacao;
 import adotego.modelos.Modelo_tabela_adocoes;
 import adotego.modelos.Raca;
 import adotego.modelos.Situacao;
+import adotego.modelos.Tabela_Informacoes;
 import adotego.modelos.Tabela_animais;
 import adotego.modelos.Tabela_usuario_completa;
 import adotego.modelos.Usuario;
@@ -15,6 +17,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
 /**
@@ -26,6 +30,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     private Tabela_usuario_completa model_tabela_usuarios_completa;
     private Tabela_animais model_tabela_animais;
     private Modelo_tabela_adocoes model_tabela_adocoes;
+    private Tabela_Informacoes modelo_tabela_Informacoes;
     
     /**
      * Creates new form PrincipalUI
@@ -39,7 +44,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         init_jCombo_box_raca_pesquisa();
         init_jCombo_box_situacao();
         iniciar_tabelas();
-        atualizar_informacoes();
+        
         
         
     }
@@ -60,11 +65,9 @@ public class PrincipalUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jInternalFrame2 = new javax.swing.JInternalFrame();
         jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txt_qnt_adocoes = new javax.swing.JLabel();
-        txt_qnt_animais_disponiveis = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable_informacoes = new javax.swing.JTable();
+        jButton_atualiza_informacoes = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_adocoes = new javax.swing.JTable();
@@ -93,6 +96,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         jCombo_box_raca_pesquisa = new javax.swing.JComboBox<>();
         jComboBox_situacao_pesquisa = new javax.swing.JComboBox<>();
         btn_novo_cadastro = new javax.swing.JButton();
+        jButton_atualiza_animal = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         btn_nova_adocao = new javax.swing.JMenu();
         jMenuItem_nova_raca = new javax.swing.JMenuItem();
@@ -131,55 +135,29 @@ public class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informações", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("FreeMono", 0, 18))); // NOI18N
+        jPanel4.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Informações", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("DialogInput", 0, 18))); // NOI18N
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        jTable_informacoes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable_informacoes);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Total de adoções realizadas:");
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Quantidade de animais disponíveis:");
-
-        txt_qnt_adocoes.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txt_qnt_adocoes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txt_qnt_adocoes.setText("txt_qnt_adocoes");
-
-        txt_qnt_animais_disponiveis.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txt_qnt_animais_disponiveis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txt_qnt_animais_disponiveis.setText("txt_qnt_animais_disponiveis");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_qnt_animais_disponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                    .addComponent(txt_qnt_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txt_qnt_adocoes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_qnt_animais_disponiveis))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jButton_atualiza_informacoes.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_atualiza_informacoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
+        jButton_atualiza_informacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_atualiza_informacoesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -187,18 +165,25 @@ public class PrincipalUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton_atualiza_informacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_atualiza_informacoes)
                 .addContainerGap())
         );
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Adoções", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("FreeSans", 0, 18))); // NOI18N
+        jPanel6.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Adoções", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("DejaVu Sans Mono", 0, 18))); // NOI18N
 
         jTable_adocoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -247,7 +232,7 @@ public class PrincipalUI extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -289,7 +274,7 @@ public class PrincipalUI extends javax.swing.JFrame {
             .addComponent(jInternalFrame2)
         );
 
-        jTabbedPane1.addTab("Controle FInanceiro", jPanel2);
+        jTabbedPane1.addTab("Controle", jPanel2);
 
         jInternalFrame3.setVisible(true);
 
@@ -479,6 +464,14 @@ public class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
+        jButton_atualiza_animal.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_atualiza_animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
+        jButton_atualiza_animal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_atualiza_animalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
@@ -486,14 +479,16 @@ public class PrincipalUI extends javax.swing.JFrame {
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(572, 829, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_atualiza_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btn_novo_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_excluir_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_editar_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 533, Short.MAX_VALUE)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
@@ -522,7 +517,8 @@ public class PrincipalUI extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_excluir_animal, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                     .addComponent(btn_editar_animal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_novo_cadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_novo_cadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_atualiza_animal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -626,14 +622,17 @@ public class PrincipalUI extends javax.swing.JFrame {
         model_tabela_usuarios_completa = new Tabela_usuario_completa();
         model_tabela_animais = new Tabela_animais();
         model_tabela_adocoes =new Modelo_tabela_adocoes();
+        modelo_tabela_Informacoes = new Tabela_Informacoes();
         
         //Setando o modelo criado acima nas tabelas
         jTable_usuarios.setModel(model_tabela_usuarios_completa);
         jTable_animais.setModel(model_tabela_animais);
         jTable_adocoes.setModel(model_tabela_adocoes);
+        jTable_informacoes.setModel(modelo_tabela_Informacoes);
         configurar_tabela_usuarios();
         configurar_tabela_animais();
         configurar_tabela_adocoes();
+        configurar_tabela_informacoes();
         atualizaTxtTotalDoacoes();
     }
     //evento lançado quando o botão Nova Especie no menu 'Arquivo' for clicado;
@@ -882,7 +881,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         txt_total_doacoes.setText("");
         txt_total_doacoes.setText("R$:"+String
                 .valueOf(model_tabela_adocoes.getTotal_doacoes()));
-        atualizar_informacoes();
+      
     }//GEN-LAST:event_btn_atualizar_tabela_adocoesActionPerformed
     
     private void btn_atualiza_tabela_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualiza_tabela_usuariosActionPerformed
@@ -892,6 +891,14 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void jButton_novo_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_novo_cadastroActionPerformed
         new Detalhe_usuario().setVisible(true);
     }//GEN-LAST:event_jButton_novo_cadastroActionPerformed
+
+    private void jButton_atualiza_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atualiza_animalActionPerformed
+        model_tabela_animais.atualizar_tabela();
+    }//GEN-LAST:event_jButton_atualiza_animalActionPerformed
+
+    private void jButton_atualiza_informacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atualiza_informacoesActionPerformed
+        atualizar_tabela_informacoes();
+    }//GEN-LAST:event_jButton_atualiza_informacoesActionPerformed
     
     /**
      * @param args the command line arguments
@@ -940,6 +947,8 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_novo_cadastro;
     private javax.swing.JMenuItem btn_novo_usuario;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton_atualiza_animal;
+    private javax.swing.JButton jButton_atualiza_informacoes;
     private javax.swing.JButton jButton_novo_cadastro;
     private javax.swing.JComboBox<String> jComboBox_situacao_pesquisa;
     private javax.swing.JComboBox<String> jCombo_box_especie_pesquisa;
@@ -949,8 +958,6 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JInternalFrame jInternalFrame3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
@@ -964,19 +971,18 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable_adocoes;
     private javax.swing.JTable jTable_animais;
+    private javax.swing.JTable jTable_informacoes;
     private javax.swing.JTable jTable_usuarios;
     private javax.swing.JTextField txt_pesquisar;
-    private javax.swing.JLabel txt_qnt_adocoes;
-    private javax.swing.JLabel txt_qnt_animais_disponiveis;
     private javax.swing.JTextField txt_total_doacoes;
     // End of variables declaration//GEN-END:variables
     
@@ -1016,12 +1022,15 @@ public class PrincipalUI extends javax.swing.JFrame {
     usuario
     */
     private void configurar_tabela_usuarios() {
+        jTable_usuarios.setRowHeight(26);
         int columnCount = jTable_usuarios.getColumnCount();
-        
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+            dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
          
         int width = jTable_usuarios.getWidth();
         for (int i = 0; i < columnCount; i++) {
-            TableColumn column = jTable_usuarios.getColumnModel().getColumn(i);
+            TableColumn column = jTable_usuarios.getColumnModel().getColumn(i);            
+            column.setCellRenderer(dtcr);                        
             switch (i) {
                 case 0:
                     column.setPreferredWidth(Integer
@@ -1076,11 +1085,15 @@ public class PrincipalUI extends javax.swing.JFrame {
         Método responsável por configurar os tamanho da colunas na tabela de animais
     */
     private void configurar_tabela_animais() {
+         jTable_animais.setRowHeight(26);
         int columnCount = jTable_animais.getColumnCount();
-         
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+            dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+          
         int width = jTable_animais.getWidth();
         for (int i = 0; i < columnCount; i++) {
             TableColumn column = jTable_animais.getColumnModel().getColumn(i);
+            column.setCellRenderer(dtcr);  
             switch (i) {
                 case 0:
                     column.setPreferredWidth(Integer
@@ -1107,32 +1120,20 @@ public class PrincipalUI extends javax.swing.JFrame {
         }
     }
     
-    /*
-        Atualiza as propriedades do painel de informalções da PrincipalUI
-    */
-    public void atualizar_informacoes() {
-        txt_qnt_adocoes.setToolTipText("");
-        txt_qnt_adocoes.setText(String.valueOf(
-                new adotego.controller.AdocaoController().getTotalAdocoes()));
-        
-        
-        txt_qnt_animais_disponiveis.setText("");
-        
-        
-        //new adotego.controller.SituacaoController().getIdByName(Situacao_enum.DISPONIVEL.name());
-        txt_qnt_animais_disponiveis.setText(String.valueOf(
-                new adotego.controller.AnimalController().contarPorSituacao("disponivel".toUpperCase())));
-        model_tabela_animais.atualizar_tabela();
-    }
+   
 
     /*
     Configura o tamanho das colunas da tabela_doações
     */
     private void configurar_tabela_adocoes() {
         int columnCount = jTable_adocoes.getColumnCount();         
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+        dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+        jTable_adocoes.setRowHeight(26);
         int width = jTable_adocoes.getWidth();
         for (int i = 0; i < columnCount; i++) {
             TableColumn column = jTable_adocoes.getColumnModel().getColumn(i);
+            column.setCellRenderer(dtcr);
             switch (i) {
                 case 0:
                     column.setPreferredWidth(Integer
@@ -1157,6 +1158,53 @@ public class PrincipalUI extends javax.swing.JFrame {
             }
             
         }
+    }
+
+    private void configurar_tabela_informacoes() {
+        int totalAdocoes = new adotego.controller.AdocaoController().getTotalAdocoes();
+        Informacao info_adocoes = new Informacao("Total de doações", totalAdocoes);
+        
+        int qtnd_animais_disponiveis = new adotego.controller.AnimalController().contarPorSituacao("disponivel");
+        Informacao info_qntd_animais_disponiveis = new Informacao("Quantidade de animais disponíveis", qtnd_animais_disponiveis);
+        
+        
+        modelo_tabela_Informacoes.inserirInformacao(info_adocoes);
+        modelo_tabela_Informacoes.inserirInformacao(info_qntd_animais_disponiveis);
+        
+        
+        
+        
+        int columnCount = jTable_informacoes.getColumnCount();         
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+        
+        jTable_informacoes.setRowHeight(26);
+        int width = jTable_informacoes.getWidth();
+        for (int i = 0; i < columnCount; i++) {
+            TableColumn column = jTable_informacoes.getColumnModel().getColumn(i);
+            
+            switch (i) {
+                case 0:{
+                    dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+                    column.setCellRenderer(dtcr);
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.80))));
+                    break;
+                }
+                case 1:{
+                    dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+                    column.setCellRenderer(dtcr);
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.20))));
+                    break;
+                }    
+                    
+            }
+            
+        }
+    }
+
+    private void atualizar_tabela_informacoes() {
+       modelo_tabela_Informacoes.atualizar();
     }
     
     

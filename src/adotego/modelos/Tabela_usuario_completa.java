@@ -42,12 +42,12 @@ public class Tabela_usuario_completa extends AbstractTableModel{
         //String celular_formatado = formatar_telefone(u.getTelefone_celular());
         //String fixo_formatado = formatar_telefone(u.getTelefone_fixo());
         
-        String cpf_formatado = formatar_cpf(u.getCpf());
+        //String cpf_formatado = formatar_cpf(u.getCpf());
        switch(columnIndex){
            case 0: return u.getId();
            case 1: return u.getNome();
            case 2: return u.getEmail();
-           case 3: return cpf_formatado;
+           case 3: return u.getCpf();
            case 4: return u.getTelefone_fixo();
            case 5: return u.getTelefone_fixo();
            case 6: return  sdf.format(u.getData_nascimento().getTime().getTime());

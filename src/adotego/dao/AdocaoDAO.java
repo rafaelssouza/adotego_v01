@@ -17,7 +17,7 @@ public class AdocaoDAO {
         this.conn = conn;
     }
     public void salvar(Adocao adocao) throws SQLException{
-        String sql = "insert into adocao ( adocao_IdPessoa ,data_adocao, adocao_idAnimal, valor)";
+        String sql = "insert into adocao (adocao_IdPessoa ,data_adocao, adocao_idAnimal, valor)";
                sql += "values(?,?,?,?)";
                
             try(PreparedStatement ps = conn.prepareStatement(sql)){

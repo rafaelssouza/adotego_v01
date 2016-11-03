@@ -722,7 +722,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                 .valueOf(txt_id.getText()
                         .concat(String.valueOf(usuario.getId()))));        
         txt_nome.setText(usuario.getNome());
-        txt_telefone_fixo.setText(usuario.getEmail());
+        txt_email.setText(usuario.getEmail());
         txt_cpf.setText(usuario.getCpf());
         txt_telefone_fixo.setText(usuario.getTelefone_fixo());
         txt_telefone_celular.setText(usuario.getTelefone_celular());

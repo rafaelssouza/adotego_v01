@@ -191,7 +191,7 @@ public class AnimalDAO {
                         animal.setRaca(raca);
                         animal.setData_nascimento_from_SQL(rs.getDate("data_registro_entrada"));
                         
-                        System.out.println(animal);
+                        
                         lista.add(animal);
                  }
              }
@@ -217,4 +217,53 @@ public class AnimalDAO {
             }
          return 1;
      }
+
+    public void setarComoAdotado(Animal animal) throws SQLException {
+       String sql = "update animal set situacao_idSituacao = 2 where idanimal = ?";
+       try(PreparedStatement ps =  conn.prepareStatement(sql)){
+           ps.setInt(1, animal.getId());
+           ps.execute();       
+       }
+    }
+
+    public List<Animal> findAnimaisAdotados() throws SQLException {
+        String sql =  "select a.idAnimal, a.nome, a.porte, " +
+                    "		a.data_registro_entrada,r.nome as nome_raca,r.idraca ," +
+                    "        e.idespecie,a.animal_idraca ," +
+                    "        a.descricao as descricao_animal,a.situacao_idsituacao ,s.descricao as descricao_situacao, " +
+                    "        e.nome as nome_especie " +
+                    "        from animal a " +
+                    "        join raca r" +
+                    "        on r.idraca = a.animal_idraca" +
+                    "        join especie e " +
+                    "		on r.raca_idespecie = e.idespecie" +
+                    "        join situacao s" +
+                    "        on s.idsituacao = a.situacao_idsituacao" +
+                    "        where s.descricao = 'disponivel'";
+        List<Animal> lista = new ArrayList<>();
+        try(PreparedStatement ps =  conn.prepareStatement(sql)){
+            ps.executeQuery();
+            
+            try(ResultSet rs = ps.getResultSet()){
+                while(rs.next()){
+                     Especie especie = new Especie(rs.getInt("idespecie"), rs.getString("nome_especie"));
+                     Raca raca = new Raca(rs.getInt("animal_idraca"),rs.getString("nome_raca"), especie);
+                     Situacao situacao = new Situacao(rs.getInt("situacao_idsituacao"), rs.getString("descricao_situacao"));
+                    Animal animal =  new Animal();                   
+                        animal.setId(rs.getInt("idAnimal"));
+                        animal.setNome(rs.getString("nome"));
+                        animal.setDescricao(rs.getString("descricao_animal"));                        
+                        animal.setPorte(getPorte_com_string(rs.getString("porte")));
+                        animal.setEspecie(especie);
+                        animal.setSituacao(situacao);
+                        animal.setRaca(raca);
+                        animal.setData_nascimento_from_SQL(rs.getDate("data_registro_entrada"));
+                        
+                        System.out.println(animal);
+                        lista.add(animal);
+                }
+            }
+        }
+        return lista;
+    }
 }

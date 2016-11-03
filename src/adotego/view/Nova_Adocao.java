@@ -187,6 +187,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
             adocao.setValor(Double.parseDouble(txt_doacao.getText().trim()));
             adocao.setData(Calendar.getInstance());
            new adotego.controller.AdocaoController().salvar(adocao);
+           new adotego.controller.AnimalController().setarComoAdotado(animal);
            this.dispose();
     }//GEN-LAST:event_btn_gerar_adocaoActionPerformed
 

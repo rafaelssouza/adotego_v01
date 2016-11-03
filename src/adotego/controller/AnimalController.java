@@ -70,4 +70,21 @@ public class AnimalController {
         }
         return 0;
     }
+
+    public void setarComoAdotado(Animal animal) {
+          try(Connection c = new ConnectionPool().getConnection()){
+            new adotego.dao.AnimalDAO(c).setarComoAdotado(animal);
+        } catch (SQLException ex) {
+            Logger.getLogger(AnimalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public List<Animal> findAnimaisAdotados() {
+           try(Connection c = new ConnectionPool().getConnection()){
+            return new adotego.dao.AnimalDAO(c).findAnimaisAdotados();
+        } catch (SQLException ex) {
+            Logger.getLogger(AnimalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           return null;
+    }
 }

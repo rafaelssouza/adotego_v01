@@ -23,6 +23,7 @@ public class Lista_animal extends javax.swing.JFrame {
     public Lista_animal() {
         initComponents();
         model_tabela_animal = new Modelo_Tabela_Animal();
+        
         this.setLocationRelativeTo(null);
         init_tabela_animal();
     }
@@ -41,7 +42,7 @@ public class Lista_animal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btn_adicionar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable_animal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,7 +157,7 @@ class Modelo_Tabela_Animal extends AbstractTableModel{
     String [] colunas = new String[]{"Nome", "Código"};
 
     public Modelo_Tabela_Animal() {
-        animais = new adotego.controller.AnimalController().findAll();
+        animais = new adotego.controller.AnimalController().findAnimaisAdotados();
     }
     
     @Override

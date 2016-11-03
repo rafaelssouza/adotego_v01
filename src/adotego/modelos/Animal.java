@@ -16,7 +16,7 @@ public class Animal {
         private Raca  raca;
 
         public Animal() {
-
+            this.setId(0);
         }
 
         public Animal(String nome, Calendar instance, Especie especie, Raca raca,

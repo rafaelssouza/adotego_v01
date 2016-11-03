@@ -14,7 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
 /**
@@ -32,15 +34,12 @@ public class Detalhe_animal extends javax.swing.JFrame {
     public Detalhe_animal() {
         try {
             initComponents();
-
-            model_animais = new Tabela_Animais();
-            jTable_animal.setModel(model_animais);
+            this.setLocationRelativeTo(null);
             configurar_tabela();
             initJComboBox_especie();
-            initJComboPorte();
-            animal = new Animal();
-            animal.setId(0);
-            this.setLocationRelativeTo(null);
+            initJComboPorte();            
+            construir_animal();
+           
 
         } catch (SQLException ex) {
             Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);
@@ -329,6 +328,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
         try {
             if (animal.getId() == 0) {
                 animal.setData_entrada(Calendar.getInstance());
+                animal.setPorte(getPorte(String.valueOf(jComboBox_porte.getSelectedItem())));
                 new adotego.controller.AnimalController().save(animal);
                 resetCampos();
                 model_animais.atualizarTabela();
@@ -525,19 +525,49 @@ public class Detalhe_animal extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
-    private void configurar_tabela() {
-
-        int columnCount = jTable_animal.getColumnCount();
+   
+    
+    public void configurar_tabela() throws SQLException{
+        
+         model_animais = new Tabela_Animais();
+         jTable_animal.setModel(model_animais);
+        
+         int columnCount = jTable_animal.getColumnCount();         
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+        dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+        jTable_animal.setRowHeight(26);
+        int width = jTable_animal.getWidth();
         for (int i = 0; i < columnCount; i++) {
             TableColumn column = jTable_animal.getColumnModel().getColumn(i);
+            column.setCellRenderer(dtcr);
             switch (i) {
                 case 0:
-                    column.setMaxWidth(40);
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.10))));
+                    break;
                 case 1:
-                    column.setWidth(80);
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.35))));
+                    break;
+                case 2:
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.10))));
+                    break;
+                case 3:
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.30))));
+                    break;
+                case 4:
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.15))));
+                    
             }
-
+            
         }
+    }
+
+    private void construir_animal() {
+       animal = new Animal();
     }
 
 }
