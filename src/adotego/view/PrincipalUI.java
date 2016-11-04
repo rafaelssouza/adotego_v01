@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
@@ -42,7 +44,8 @@ public class PrincipalUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         init_jCombo_box_especie_pesquisa();
         init_jCombo_box_raca_pesquisa();
-        init_jCombo_box_situacao();
+        init_jCombo_box_situacao(); 
+        configurarInputPesquisa();
         iniciar_tabelas();
         
         
@@ -275,7 +278,7 @@ public class PrincipalUI extends javax.swing.JFrame {
             .addComponent(jInternalFrame2)
         );
 
-        jTabbedPane1.addTab("Controle", jPanel2);
+        jTabbedPane1.addTab("Informações", jPanel2);
 
         jInternalFrame3.setVisible(true);
 
@@ -314,12 +317,6 @@ public class PrincipalUI extends javax.swing.JFrame {
         btn_editar_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editar_usuarioActionPerformed(evt);
-            }
-        });
-
-        txt_pesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_pesquisarKeyPressed(evt);
             }
         });
 
@@ -449,11 +446,16 @@ public class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
+        jCombo_box_especie_pesquisa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jCombo_box_especie_pesquisa.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCombo_box_especie_pesquisaItemStateChanged(evt);
             }
         });
+
+        jCombo_box_raca_pesquisa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
+        jComboBox_situacao_pesquisa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         btn_novo_cadastro.setBackground(new java.awt.Color(255, 255, 255));
         btn_novo_cadastro.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -505,13 +507,12 @@ public class PrincipalUI extends javax.swing.JFrame {
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jComboBox_situacao_pesquisa)
-                        .addComponent(jCombo_box_raca_pesquisa)
-                        .addComponent(jCombo_box_especie_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox_situacao_pesquisa)
+                    .addComponent(jCombo_box_raca_pesquisa)
+                    .addComponent(jCombo_box_especie_pesquisa)
+                    .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -804,59 +805,8 @@ public class PrincipalUI extends javax.swing.JFrame {
             new Detalhe_usuario().build(usuario);
         }
     }//GEN-LAST:event_jTable_usuariosMouseClicked
-    /*
-    Este método é invocado sempre que os valores do txt_pesquisa for alterado
-    pelo usuario, ele é responsável por atualizar a tabela de acordo com
-    os parametros da pesquisa
-    */
-    private void txt_pesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pesquisarKeyPressed
-        // recupera uma String que está selecionado no jCombo_box_opcoes_busca
-        // para que seja utilizado como parametro no filtro, retira os espaços,
-        // etransforma tudo em letras minúsculas
-        String parametro = String.valueOf(jCombo_box_opcoes_busca.getSelectedItem())
-                .toLowerCase()
-                .trim();
-        
-        //recupera o texto digitado pelo usuario para utilizarmos na pesquisa no
-        //banco de dados
-        String str_pesquisa = txt_pesquisar.getText().trim();
-        
-        //se o campo de pesquisa não estiver preenchido a tabela é atualizada
-        //com todos os dados do banco
-        if (str_pesquisa.isEmpty()) {
-            model_tabela_usuarios_completa.atualizarTabela();
-        } else {
-            /*
-            switch para identificar qual parametro está selecionado no
-            jCombo_box_opcoes_busca e utiliza-lo como parametro para filtrar
-            os resultados da tabela,
-            Ex: se o campo nome estiver selecionado pesquisamos as ocorrencias
-            do valor no campo input para filtrar os resultados
-            */
-            switch (parametro) {
-                case "nome":
-                    model_tabela_usuarios_completa
-                            .setList(new UsuarioController()
-                                    .findLikeName(str_pesquisa));
-                    break;
-                case "cpf":
-                    model_tabela_usuarios_completa
-                            .setList(new UsuarioController()
-                                    .findLikeCpf(str_pesquisa));
-                    break;
-                case "email":
-                    model_tabela_usuarios_completa
-                            .setList(new UsuarioController()
-                                    .findLikeEmail(str_pesquisa));
-                    break;
-                    
-                default:
-                    model_tabela_usuarios_completa.atualizarTabela();
-            }
-        }
-        
-    }//GEN-LAST:event_txt_pesquisarKeyPressed
-    //este método abre a janela para cadastro de um novo animal
+
+   //este método abre a janela para cadastro de um novo animal
     private void jMenuItem_novo_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_novo_animalActionPerformed
         new Detalhe_animal().setVisible(true);
     }//GEN-LAST:event_jMenuItem_novo_animalActionPerformed
@@ -1208,6 +1158,76 @@ public class PrincipalUI extends javax.swing.JFrame {
 
     private void atualizar_tabela_informacoes() {
        modelo_tabela_Informacoes.atualizar();
+    }
+
+    //este método é chamado a casa alteração do texto do input_pesquisa de Usuarios.  
+    private void configurarInputPesquisa() {
+        txt_pesquisar.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                doo();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                doo();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                doo();
+            }
+            
+            private void doo() {
+                 // recupera uma String que está selecionado no jCombo_box_opcoes_busca
+                // para que seja utilizado como parametro no filtro, retira os espaços,
+                // etransforma tudo em letras minúsculas
+                String parametro = String.valueOf(jCombo_box_opcoes_busca.getSelectedItem())
+                        .toLowerCase()
+                        .trim();
+
+                //recupera o texto digitado pelo usuario para utilizarmos na pesquisa no
+                //banco de dados
+                String str_pesquisa = txt_pesquisar.getText().trim();
+
+                //se o campo de pesquisa não estiver preenchido a tabela é atualizada
+                //com todos os dados do banco
+                if (str_pesquisa.isEmpty()) {
+                    model_tabela_usuarios_completa.atualizarTabela();
+                } else {
+                    /*
+                    switch para identificar qual parametro está selecionado no
+                    jCombo_box_opcoes_busca e utiliza-lo como parametro para filtrar
+                    os resultados da tabela,
+                    Ex: se o campo nome estiver selecionado pesquisamos as ocorrencias
+                    do valor no campo input para filtrar os resultados
+                    */
+                    switch (parametro) {
+                        case "nome":
+                            model_tabela_usuarios_completa
+                                    .setList(new UsuarioController()
+                                            .findLikeName(str_pesquisa));
+                            break;
+                        case "cpf":
+                            model_tabela_usuarios_completa
+                                    .setList(new UsuarioController()
+                                            .findLikeCpf(str_pesquisa));
+                            break;
+                        case "email":
+                            model_tabela_usuarios_completa
+                                    .setList(new UsuarioController()
+                                            .findLikeEmail(str_pesquisa));
+                            break;
+
+                        default:
+                            model_tabela_usuarios_completa.atualizarTabela();
+                    }
+                }
+        
+            }
+           
+        });
+         
     }
     
     
