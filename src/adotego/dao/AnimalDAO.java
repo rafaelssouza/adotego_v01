@@ -266,4 +266,21 @@ public class AnimalDAO {
         }
         return lista;
     }
+
+    public void update(Animal animal) throws SQLException {
+        String sql = "UPDATE animal SET nome = ?, data_registro_entrada = ?, "
+                + "descricao = ?, porte = ?, situacao_idsituacao = ?, animal_idraca = ? "
+                + "WHERE idanimal = ?";
+        
+        try(PreparedStatement pstm = conn.prepareStatement(sql)){
+            pstm.setString(1, animal.getNome());
+            pstm.setDate(2, animal.getData_entradaSQL());
+            pstm.setString(3, animal.getDescricao());
+            pstm.setString(4, animal.getPorte().toString());
+            pstm.setInt(5, animal.getSituacao().getId());
+            pstm.setInt(6, animal.getRaca().getIdRaca());
+            pstm.setInt(7, animal.getId());
+            pstm.execute();
+        }
+    }
 }

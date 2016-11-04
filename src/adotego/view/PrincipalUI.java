@@ -97,6 +97,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         jComboBox_situacao_pesquisa = new javax.swing.JComboBox<>();
         btn_novo_cadastro = new javax.swing.JButton();
         jButton_atualiza_animal = new javax.swing.JButton();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         btn_nova_adocao = new javax.swing.JMenu();
         jMenuItem_nova_raca = new javax.swing.JMenuItem();
@@ -534,6 +535,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Animais", jPanel3);
+        jTabbedPane1.addTab("Controle de Doações", jTabbedPane2);
 
         jMenuBar1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
@@ -978,6 +980,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable_adocoes;
     private javax.swing.JTable jTable_animais;
     private javax.swing.JTable jTable_informacoes;
@@ -1145,7 +1148,7 @@ public class PrincipalUI extends javax.swing.JFrame {
                     break;
                 case 2:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.10))));
+                            .parseInt(String.valueOf(Math.round(width*0.15))));
                     break;
                 case 3:
                     column.setPreferredWidth(Integer
@@ -1153,7 +1156,7 @@ public class PrincipalUI extends javax.swing.JFrame {
                     break;
                 case 4:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.15))));
+                            .parseInt(String.valueOf(Math.round(width*0.10))));
                     
             }
             
@@ -1187,14 +1190,14 @@ public class PrincipalUI extends javax.swing.JFrame {
                     dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
                     column.setCellRenderer(dtcr);
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.80))));
+                            .parseInt(String.valueOf(Math.round(width*0.90))));
                     break;
                 }
                 case 1:{
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.20))));
+                            .parseInt(String.valueOf(Math.round(width*0.10))));
                     break;
                 }    
                     

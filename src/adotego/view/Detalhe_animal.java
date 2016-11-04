@@ -325,15 +325,21 @@ public class Detalhe_animal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_add_animalActionPerformed
 
     private void btn_salvar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar_animalActionPerformed
+        txt_nome_animalFocusLost(null);
+        jComboBox_especieFocusLost(null);
+        jComboBox_porteFocusLost(null);
+        jComboBox_racaFocusLost(null);
+        txt_descricaoFocusLost(null);
+      
         try {
             if (animal.getId() == 0) {
                 animal.setData_entrada(Calendar.getInstance());
-                animal.setPorte(getPorte(String.valueOf(jComboBox_porte.getSelectedItem())));
                 new adotego.controller.AnimalController().save(animal);
                 resetCampos();
                 model_animais.atualizarTabela();
             } else {
-                //fazer update
+                new adotego.controller.AnimalController().update(animal);
+                model_animais.atualizarTabela();
             }
         } catch (SQLException ex) {
             Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);
@@ -547,11 +553,11 @@ public class Detalhe_animal extends javax.swing.JFrame {
                     break;
                 case 1:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.35))));
+                            .parseInt(String.valueOf(Math.round(width*0.30))));
                     break;
                 case 2:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.10))));
+                            .parseInt(String.valueOf(Math.round(width*0.15))));
                     break;
                 case 3:
                     column.setPreferredWidth(Integer

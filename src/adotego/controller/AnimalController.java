@@ -87,4 +87,13 @@ public class AnimalController {
         }
            return null;
     }
+
+    public void update(Animal animal) {
+        try (Connection a = new ConnectionPool().getConnection()){
+            new adotego.dao.AnimalDAO(a).update(animal);
+        } catch (Exception ex) {
+            Logger.getLogger(AnimalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
+
