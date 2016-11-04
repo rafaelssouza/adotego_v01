@@ -43,6 +43,7 @@ public class Lista_animal extends javax.swing.JFrame {
         btn_adicionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Animais\n");
 
         jTable_animal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

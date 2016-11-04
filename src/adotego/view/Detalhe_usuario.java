@@ -79,6 +79,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         setResizable(false);
 
         jInternalFrame1.setBackground(new java.awt.Color(245, 245, 255));
+        jInternalFrame1.setTitle("Cadastro de Usuarios");
         jInternalFrame1.setVisible(true);
 
         jToolBar1.setFloatable(false);
@@ -809,6 +810,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         this.txt_telefone_fixo.setText("");
         this.txt_cpf.setText("");
         this.txtx_nascimento.setText("");
+        this.txt_email.setText("");
         this.txt_telefone_celular.setText("");
         this.txt_cidade.setText("");
         this.txt_telefone_fixo.setText("");

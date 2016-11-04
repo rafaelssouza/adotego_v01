@@ -132,6 +132,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         jTabbedPane1.setBackground(new java.awt.Color(204, 204, 255));
         jTabbedPane1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
+        jInternalFrame2.setTitle("Informações");
         jInternalFrame2.setVisible(true);
         jInternalFrame2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -280,6 +281,7 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Informações", jPanel2);
 
+        jInternalFrame3.setTitle("Controle de Usuarios");
         jInternalFrame3.setVisible(true);
 
         jTable_usuarios.setModel(new javax.swing.table.DefaultTableModel(
@@ -401,6 +403,7 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Usuarios", jPanel1);
 
+        jInternalFrame1.setTitle("Controle de animais");
         jInternalFrame1.setVisible(true);
 
         jTable_animais.setModel(new javax.swing.table.DefaultTableModel(
@@ -536,6 +539,8 @@ public class PrincipalUI extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Animais", jPanel3);
+
+        jTabbedPane2.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.addTab("Controle de Doações", jTabbedPane2);
 
         jMenuBar1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N

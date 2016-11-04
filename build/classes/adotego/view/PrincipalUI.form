@@ -182,6 +182,7 @@
           <SubComponents>
             <Container class="javax.swing.JInternalFrame" name="jInternalFrame2">
               <Properties>
+                <Property name="title" type="java.lang.String" value="Informa&#xe7;&#xf5;es"/>
                 <Property name="visible" type="boolean" value="true"/>
               </Properties>
               <Events>
@@ -430,6 +431,7 @@
           <SubComponents>
             <Container class="javax.swing.JInternalFrame" name="jInternalFrame3">
               <Properties>
+                <Property name="title" type="java.lang.String" value="Controle de Usuarios"/>
                 <Property name="visible" type="boolean" value="true"/>
               </Properties>
 
@@ -668,6 +670,7 @@
           <SubComponents>
             <Container class="javax.swing.JInternalFrame" name="jInternalFrame1">
               <Properties>
+                <Property name="title" type="java.lang.String" value="Controle de animais"/>
                 <Property name="visible" type="boolean" value="true"/>
               </Properties>
 
@@ -896,6 +899,9 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JTabbedPane" name="jTabbedPane2">
+          <Properties>
+            <Property name="tabLayoutPolicy" type="int" value="1"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Controle de Doa&#xe7;&#xf5;es">

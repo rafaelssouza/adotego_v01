@@ -82,6 +82,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jInternalFrame1.setBackground(new java.awt.Color(245, 245, 255));
+        jInternalFrame1.setTitle("Cadastro de Animais\n");
         jInternalFrame1.setVisible(true);
 
         label_configuracoes.setFont(new java.awt.Font("Waree", 0, 18)); // NOI18N

@@ -51,33 +51,27 @@ public class Nova_Adocao extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        btn_selecionar_usuario = new javax.swing.JButton();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         btn_gerar_adocao = new javax.swing.JButton();
+        txt_doacao = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         btn_selecionar_animal = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_animal_adocao = new javax.swing.JTable();
+        btn_selecionar_usuario = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_usuario_adocao = new javax.swing.JTable();
-        txt_doacao = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerar Adoção");
 
         jPanel1.setBackground(new java.awt.Color(241, 243, 244));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Nova Adoção");
+        jInternalFrame1.setTitle("Nova Adoção");
+        jInternalFrame1.setVisible(true);
 
-        btn_selecionar_usuario.setText("Selecionar Usuario");
-        btn_selecionar_usuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_selecionar_usuarioActionPerformed(evt);
-            }
-        });
-
+        btn_gerar_adocao.setBackground(new java.awt.Color(255, 255, 255));
+        btn_gerar_adocao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_gerar_adocao.setText("Gerar");
         btn_gerar_adocao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +79,10 @@ public class Nova_Adocao extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Doação R$");
+
+        btn_selecionar_animal.setBackground(new java.awt.Color(255, 255, 255));
+        btn_selecionar_animal.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_selecionar_animal.setText("Selecionar Animal");
         btn_selecionar_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +103,15 @@ public class Nova_Adocao extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable_animal_adocao);
 
+        btn_selecionar_usuario.setBackground(new java.awt.Color(255, 255, 255));
+        btn_selecionar_usuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btn_selecionar_usuario.setText("Selecionar Usuario");
+        btn_selecionar_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_selecionar_usuarioActionPerformed(evt);
+            }
+        });
+
         jTable_usuario_adocao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -118,33 +125,28 @@ public class Nova_Adocao extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable_usuario_adocao);
 
-        jLabel1.setText("Doação R$");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_selecionar_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_selecionar_usuario)
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn_gerar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(txt_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_selecionar_animal)
+                    .addComponent(btn_selecionar_usuario))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel2)
-                .addGap(25, 25, 25)
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(92, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_selecionar_usuario)
@@ -152,20 +154,33 @@ public class Nova_Adocao extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_selecionar_animal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(52, 52, 52)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(btn_gerar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGap(21, 21, 21))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,23 +192,23 @@ public class Nova_Adocao extends javax.swing.JFrame {
 
     private void btn_selecionar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selecionar_usuarioActionPerformed
         new Lista_usuarios().setVisible(true);
-        
-    }//GEN-LAST:event_btn_selecionar_usuarioActionPerformed
 
-    private void btn_gerar_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerar_adocaoActionPerformed
-        Adocao adocao = new Adocao();
-            adocao.setAnimal(this.animal);
-            adocao.setUsuario(this.usuario);
-            adocao.setValor(Double.parseDouble(txt_doacao.getText().trim()));
-            adocao.setData(Calendar.getInstance());
-           new adotego.controller.AdocaoController().salvar(adocao);
-           new adotego.controller.AnimalController().setarComoAdotado(animal);
-           this.dispose();
-    }//GEN-LAST:event_btn_gerar_adocaoActionPerformed
+    }//GEN-LAST:event_btn_selecionar_usuarioActionPerformed
 
     private void btn_selecionar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selecionar_animalActionPerformed
         new Lista_animal().setVisible(true);
     }//GEN-LAST:event_btn_selecionar_animalActionPerformed
+
+    private void btn_gerar_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerar_adocaoActionPerformed
+        Adocao adocao = new Adocao();
+        adocao.setAnimal(this.animal);
+        adocao.setUsuario(this.usuario);
+        adocao.setValor(Double.parseDouble(txt_doacao.getText().trim()));
+        adocao.setData(Calendar.getInstance());
+        new adotego.controller.AdocaoController().salvar(adocao);
+        new adotego.controller.AnimalController().setarComoAdotado(animal);
+        this.dispose();
+    }//GEN-LAST:event_btn_gerar_adocaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,8 +249,8 @@ public class Nova_Adocao extends javax.swing.JFrame {
     private javax.swing.JButton btn_gerar_adocao;
     private javax.swing.JButton btn_selecionar_animal;
     private javax.swing.JButton btn_selecionar_usuario;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
