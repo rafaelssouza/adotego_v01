@@ -39,12 +39,13 @@ public class AnimalController {
         }
     }
     
-    public void delete(int id){
+    public boolean delete(int id){
         try(Connection c = new ConnectionPool().getConnection()){
-            new AnimalDAO(c).delete(id);
+            return new AnimalDAO(c).delete(id);
         } catch (SQLException ex) {
             Logger.getLogger(AnimalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
 
     public List<Animal> findAll()  {
@@ -56,10 +57,13 @@ public class AnimalController {
         return null;
     }
     
-    public List<Animal> findByEspecieName(String nome) throws SQLException{
+    public List<Animal> findByEspecieName(String nome) {
          try(Connection c = new ConnectionPool().getConnection()){
           return new AnimalDAO(c).findByEspecieName(nome);
-      }
+      } catch (SQLException ex) {
+            Logger.getLogger(AnimalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return null;
     }
 
     public int contarPorSituacao(String situacao){
@@ -94,6 +98,15 @@ public class AnimalController {
         } catch (Exception ex) {
             Logger.getLogger(AnimalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<Animal> listarIdDesc() {
+         try (Connection a = new ConnectionPool().getConnection()){
+            return new adotego.dao.AnimalDAO(a).listarIdDesc();
+        } catch (Exception ex) {
+            Logger.getLogger(AnimalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return null;
     }
 }
 

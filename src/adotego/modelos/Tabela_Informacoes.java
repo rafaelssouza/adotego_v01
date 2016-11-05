@@ -18,6 +18,10 @@ public class Tabela_Informacoes extends AbstractTableModel{
     List<Informacao> lista_informacoes = new ArrayList<>();
     String [] colunas  = new String[]{"Descrição", ""};
 
+    public Tabela_Informacoes() {
+        atualizar();
+    }
+    
     @Override
     public int getRowCount() {
         return lista_informacoes.size();
@@ -33,7 +37,7 @@ public class Tabela_Informacoes extends AbstractTableModel{
         Informacao info = lista_informacoes.get(rowIndex);
         switch(columnIndex){
             case 0: return info.getDescricao();
-            case 1: return info.getValor();
+            case 1: return Math.round(info.getValor());
             default: return "";
         }
     }
@@ -54,8 +58,15 @@ public class Tabela_Informacoes extends AbstractTableModel{
         
         int qtnd_animais_disponiveis = new adotego.controller.AnimalController().contarPorSituacao("disponivel");
         Informacao info_qntd_animais_disponiveis = new Informacao("Quantidade de animais disponíveis", qtnd_animais_disponiveis);
-        lista_informacoes.removeAll(lista_informacoes);
         
+        int qtnd_animais_adotados = new adotego.controller.AnimalController().contarPorSituacao("adotado");
+        Informacao info_qntd_animais_adotados = new Informacao("Quantidade de animais adotados", qtnd_animais_adotados);
+        
+        
+        lista_informacoes.removeAll(lista_informacoes);
+        this.fireTableDataChanged();
+        
+        inserirInformacao(info_qntd_animais_adotados);
         inserirInformacao(info_adocoes);
         inserirInformacao(info_qntd_animais_disponiveis);
         this.fireTableDataChanged();

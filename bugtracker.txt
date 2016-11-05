@@ -1,0 +1,36 @@
+<<<<<<<<<<<<<<<<<<<<<BUGS>>>>>>>>>>>>>>>>>>>>>>>>
+-Mascara na data de nascimento
+
+-Mascara no cep
+
+-Mascara no celular
+
+-Mascara cpf
+
+-Nome das janelas (Titulos)
+
+-Campo telefone fixo não está atualizando os dados
+
+-Excluir da tabela usuário não está funcionando
+
+-Botão fechar em todas as janelas
+
+-Nova raça com erro
+
+-Desabilitar espécie
+
+-Fontes diferentes nas janelas
+
+-Botão fechar na doação (dispose)
+
+-Tela animal/botões
+
+-Exception no salvar da tela animal
+
+-Excluir não funciona na tela animal
+
+-Gerar nova adoção não funciona na tela animal
+
+-Verificar os "Tabs" do conf. Usuário
+
+-Filtro disponivel na adoção

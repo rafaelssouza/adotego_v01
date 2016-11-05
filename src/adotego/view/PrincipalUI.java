@@ -4,7 +4,6 @@ package adotego.view;
 import adotego.controller.UsuarioController;
 import adotego.modelos.Animal;
 import adotego.modelos.Especie;
-import adotego.modelos.Informacao;
 import adotego.modelos.Modelo_tabela_adocoes;
 import adotego.modelos.Raca;
 import adotego.modelos.Situacao;
@@ -17,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -27,7 +27,7 @@ import javax.swing.table.TableColumn;
  *
  * @author tmichelini
  */
-public class PrincipalUI extends javax.swing.JFrame {
+public final class PrincipalUI extends javax.swing.JFrame {
     
     private Tabela_usuario_completa model_tabela_usuarios_completa;
     private Tabela_animais model_tabela_animais;
@@ -108,6 +108,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         btn_novo_usuario = new javax.swing.JMenuItem();
         jMenuItem_novo_animal = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem_sair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
 
@@ -403,7 +404,8 @@ public class PrincipalUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Usuarios", jPanel1);
 
-        jInternalFrame1.setTitle("Controle de animais");
+        jInternalFrame1.setResizable(true);
+        jInternalFrame1.setTitle("Controle de Animais");
         jInternalFrame1.setVisible(true);
 
         jTable_animais.setModel(new javax.swing.table.DefaultTableModel(
@@ -546,6 +548,9 @@ public class PrincipalUI extends javax.swing.JFrame {
         jMenuBar1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         btn_nova_adocao.setText("Arquivo");
+        btn_nova_adocao.setDelay(0);
+        btn_nova_adocao.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btn_nova_adocao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btn_nova_adocao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_nova_adocaoActionPerformed(evt);
@@ -597,12 +602,23 @@ public class PrincipalUI extends javax.swing.JFrame {
         });
         btn_nova_adocao.add(jMenuItem1);
 
+        jMenuItem_sair.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem_sair.setText("Sair");
+        jMenuItem_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_sairActionPerformed(evt);
+            }
+        });
+        btn_nova_adocao.add(jMenuItem_sair);
+
         jMenuBar1.add(btn_nova_adocao);
 
         jMenu2.setText("Pesquisar");
+        jMenu2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMenuBar1.add(jMenu2);
 
         jMenu1.setText("Relatório");
+        jMenu1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -696,56 +712,54 @@ public class PrincipalUI extends javax.swing.JFrame {
     e no jComboBoxSituaçao
     */
     private void btn_filtrar_animaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrar_animaisActionPerformed
-        
-        int indice_especie = jCombo_box_especie_pesquisa.getSelectedIndex();
-        try {
-            //se o index selecionado for diferente do primeiro, pois setamos
-            // no indice 0 o título da Jcombo
-            if (indice_especie > 0) {
-                
+      
+             if(jComboBox_situacao_pesquisa.getSelectedIndex() == 0 
+                     && jComboBox_situacao_pesquisa.getSelectedIndex() == 0
+                     && jCombo_box_raca_pesquisa.getSelectedIndex() == 0)   {
+                  model_tabela_animais.atualizar_tabela();
+             }else{
+                //recupera a lista de animais baseada na especie selecionada
+                //anteriormente
+                List<Animal> animais_lista =  model_tabela_animais.getList();
+                if(jCombo_box_especie_pesquisa.getSelectedIndex() != 0){
                 //recupera o nome da especie selecionado
                 String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
                         .getSelectedItem());
+                animais_lista = new adotego.controller.AnimalController() 
+                          .findByEspecieName(especie_name_selected);
+                       
+                }
+                System.out.println("Tam: "+animais_lista.size());
+                //recupera a raca como String selecionada na jComboBox de raça
+                // utilizando o index como parametro
                 
-                //recupera a lista de animais baseada na especie selecionada
-                //anteriormente
-                List<Animal> animais_lista = new adotego.controller.AnimalController()
-                        .findByEspecieName(especie_name_selected);
                 
-                int index_raca = jCombo_box_raca_pesquisa.getSelectedIndex();
-                //se o index selecionado for diferente de primeiro, pois
-                // setamos no primeiro indice como sendo o título
-                if ( index_raca > 0) {
-                    
-                    //recupera a raca como String selecionada na jComboBox de raça
-                    // utilizando o index como parametro
-                    String raca = String.valueOf(jCombo_box_raca_pesquisa.getSelectedItem());
-                    
-                    //remover os animais que possuir raca diferente da selecionada
-                    Iterator<Animal> iterator = animais_lista.iterator();
-                    while (iterator.hasNext()) {
-                        Animal animal = iterator.next();
-                        //se a raça selecionada for for diferente da raças
-                        //selecionada anteriormente, excluímos da lista
-                        if (!animal.getRaca().getNome().equalsIgnoreCase(raca)) {
+                
+                //remover os animais que possuir raca diferente da selecionada
+                
+                Iterator<Animal> iterator = animais_lista.iterator();
+                while (iterator.hasNext()) {
+                    Animal animal = iterator.next();
+                   
+                    //se a raça selecionada for for diferente da raças
+                    //selecionada anteriormente, excluímos da lista
+                    if(jCombo_box_raca_pesquisa.getSelectedIndex() > 0){
+                        String raca = String.valueOf(jCombo_box_raca_pesquisa.getSelectedItem());
+                        if ((!animal.getRaca().getNome().equalsIgnoreCase(raca))) {
                             iterator.remove();
-                           
                         }
                     }
+                    
+                    if (jComboBox_situacao_pesquisa.getSelectedIndex() > 0 ){                        
+                        String situacao = String.valueOf(jComboBox_situacao_pesquisa.getSelectedItem());
+                        if (!animal.getSituacao().getDescricao().equalsIgnoreCase(situacao)) {
+                            iterator.remove();
+                        }                    
                 }
-                //atualizar graficamente a tabela de animais;
+                         
+                }
                 model_tabela_animais.atualizar_tabela(animais_lista);
-                
-            } else if (indice_especie == 0) {
-                //se o usuários selecionar o titulo do JComboBox especie,
-                //mostraremos a tabela original, isto é, com todos os dados
-                //cadastrados no banco em ordem alfabetica
-                model_tabela_animais.atualizar_tabela();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+             }
     }//GEN-LAST:event_btn_filtrar_animaisActionPerformed
     /*
     Este método é executado quando o botão de excluir animal for selecionado
@@ -757,7 +771,14 @@ public class PrincipalUI extends javax.swing.JFrame {
         int[] ids = model_tabela_animais.getIdsIntoTheRow(jTable_animais);
         //apaga o usuario correspondente
         for (int id : ids) {
-            new adotego.controller.AnimalController().delete(id);
+            if(!new adotego.controller.AnimalController().delete(id)){
+               Object[] options = { "Ok", "Cancelar" };
+               
+               JOptionPane.showOptionDialog(null, "O Animal de ID:"+id+
+                       " está relacionado a uma adoção, portanto é impossível "
+                       + "exclui-lo", "Aviso", JOptionPane.DEFAULT_OPTION, 
+                       JOptionPane.OK_OPTION, null, options, options[0]);
+            }
         }
         model_tabela_animais.atualizar_tabela();
         
@@ -856,6 +877,10 @@ public class PrincipalUI extends javax.swing.JFrame {
     private void jButton_atualiza_informacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atualiza_informacoesActionPerformed
         atualizar_tabela_informacoes();
     }//GEN-LAST:event_jButton_atualiza_informacoesActionPerformed
+
+    private void jMenuItem_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_sairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem_sairActionPerformed
     
     /**
      * @param args the command line arguments
@@ -924,6 +949,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem_nova_especie;
     private javax.swing.JMenuItem jMenuItem_nova_raca;
     private javax.swing.JMenuItem jMenuItem_novo_animal;
+    private javax.swing.JMenuItem jMenuItem_sair;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -956,15 +982,14 @@ public class PrincipalUI extends javax.swing.JFrame {
     //atualiza o jCombo de raças para de acordo com a especie selecionada
     private void refresh_JCombo_box_raca_pesquisa(List<Raca> lista) {
         
-        if(lista == null){
-            jCombo_box_raca_pesquisa.removeAllItems();
-            jCombo_box_raca_pesquisa.addItem("Raça");
+        if(lista == null ){
+            init_jCombo_box_raca_pesquisa();
         }else{
             jCombo_box_raca_pesquisa.removeAllItems();
-            jCombo_box_raca_pesquisa.addItem("Tudo");
-            for (Raca raca : lista) {
+            jCombo_box_raca_pesquisa.addItem("Raça");
+            lista.stream().forEach((raca) -> {
                 jCombo_box_raca_pesquisa.addItem(raca.getNome());
-            }
+            });
         }
     }
     /*
@@ -972,6 +997,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     selecionado, antes preenchemos apenas com o titulo
     */
     private void init_jCombo_box_raca_pesquisa() {
+        jCombo_box_raca_pesquisa.removeAllItems();
         jCombo_box_raca_pesquisa.addItem("Raça");
     }
     
@@ -983,7 +1009,7 @@ public class PrincipalUI extends javax.swing.JFrame {
         jTable_usuarios.setRowHeight(26);
         int columnCount = jTable_usuarios.getColumnCount();
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-            dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+            dtcr.setHorizontalAlignment(SwingConstants.CENTER);
          
         int width = jTable_usuarios.getWidth();
         for (int i = 0; i < columnCount; i++) {
@@ -1027,6 +1053,7 @@ public class PrincipalUI extends javax.swing.JFrame {
     //especie no banco de dados
     private void init_jCombo_box_situacao() {
         List<Situacao> situacoes = new adotego.controller.SituacaoController().findAll();
+        jComboBox_situacao_pesquisa.addItem("Situação");
         for (Situacao sit : situacoes) {
             jComboBox_situacao_pesquisa.addItem(sit.getDescricao());
         }
@@ -1046,7 +1073,7 @@ public class PrincipalUI extends javax.swing.JFrame {
          jTable_animais.setRowHeight(26);
         int columnCount = jTable_animais.getColumnCount();
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-            dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+            dtcr.setHorizontalAlignment(SwingConstants.CENTER);
           
         int width = jTable_animais.getWidth();
         for (int i = 0; i < columnCount; i++) {
@@ -1085,33 +1112,44 @@ public class PrincipalUI extends javax.swing.JFrame {
     */
     private void configurar_tabela_adocoes() {
         int columnCount = jTable_adocoes.getColumnCount();         
-        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-        dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+        DefaultTableCellRenderer dtcr;
+        
         jTable_adocoes.setRowHeight(26);
         int width = jTable_adocoes.getWidth();
         for (int i = 0; i < columnCount; i++) {
             TableColumn column = jTable_adocoes.getColumnModel().getColumn(i);
-            column.setCellRenderer(dtcr);
+            dtcr = new DefaultTableCellRenderer();
             switch (i) {
+                
                 case 0:
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.10))));
+                    dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+                    column.setCellRenderer(dtcr);
                     break;
                 case 1:
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.35))));
+                    dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+                    column.setCellRenderer(dtcr);
                     break;
                 case 2:
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.15))));
+                    dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+                    column.setCellRenderer(dtcr);
                     break;
                 case 3:
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.30))));
+                    dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+                    column.setCellRenderer(dtcr);
                     break;
                 case 4:
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.10))));
+                    dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+                    column.setCellRenderer(dtcr);
                     
             }
             
@@ -1119,42 +1157,33 @@ public class PrincipalUI extends javax.swing.JFrame {
     }
 
     private void configurar_tabela_informacoes() {
-        int totalAdocoes = new adotego.controller.AdocaoController().getTotalAdocoes();
-        Informacao info_adocoes = new Informacao("Total de doações", totalAdocoes);
-        
-        int qtnd_animais_disponiveis = new adotego.controller.AnimalController().contarPorSituacao("disponivel");
-        Informacao info_qntd_animais_disponiveis = new Informacao("Quantidade de animais disponíveis", qtnd_animais_disponiveis);
-        
-        
-        modelo_tabela_Informacoes.inserirInformacao(info_adocoes);
-        modelo_tabela_Informacoes.inserirInformacao(info_qntd_animais_disponiveis);
-        
-        
+      
+        modelo_tabela_Informacoes.atualizar();
         
         
         int columnCount = jTable_informacoes.getColumnCount();         
-        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer dtcr;
         
         jTable_informacoes.setRowHeight(26);
         int width = jTable_informacoes.getWidth();
         for (int i = 0; i < columnCount; i++) {
             TableColumn column = jTable_informacoes.getColumnModel().getColumn(i);
-            
+            dtcr = new DefaultTableCellRenderer();
             switch (i) {
                 case 0:{
-                    dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+                    dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.90))));
-                    break;
-                }
+                    
+                }break;
                 case 1:{
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.10))));
-                    break;
-                }    
+                    
+                }break;    
                     
             }
             

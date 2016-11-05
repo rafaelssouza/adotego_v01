@@ -93,11 +93,11 @@ public class AnimalDAO {
          return null;
     }
     
-     public void delete(int id) throws SQLException{
+     public boolean delete(int id) throws SQLException{
         String sql = "delete from animal where idAnimal = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, id);
-            ps.execute();
+            return ps.execute();
             
         }
     }
@@ -202,9 +202,9 @@ public class AnimalDAO {
      public int contarPorSituacao(String situacao) throws SQLException{
          
          
-         String sql = "select count(idAnimal) from animal a \n" +
-                "join situacao s on a.Situacao_idSituacao = s.idSituacao \n" +
-                "where s.descricao = ? group by s.idSituacao";
+         String sql = "select count(idanimal) from animal a " +
+                "join situacao s on a.Situacao_idSituacao = s.idsituacao " +
+                "where s.descricao = ? group by s.idsituacao";
             try(PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setString(1, situacao);
                 ps.executeQuery();
@@ -282,5 +282,49 @@ public class AnimalDAO {
             pstm.setInt(7, animal.getId());
             pstm.execute();
         }
+    }
+
+    public List<Animal> listarIdDesc() throws SQLException {
+        String sql = "select a.idanimal, a.nome, a.porte, " +
+                    "		a.data_registro_entrada,r.nome as nome_raca,r.idraca ," +
+                    "        e.idespecie,a.animal_idraca ," +
+                    "        a.descricao as descricao_animal,a.situacao_idsituacao ,s.descricao as descricao_situacao, " +
+                    "        e.nome as nome_especie " +
+                    "        from animal a " +
+                    "        join raca r" +
+                    "        on r.idraca = a.animal_idraca" +
+                    "        join especie e " +
+                    "        on r.raca_idespecie = e.idespecie" +
+                    "        join situacao s" +
+                    "        on s.idsituacao = a.situacao_idsituacao"+
+                    "        order by a.idanimal desc";                   
+         List<Animal> lista_animal = new ArrayList<>();
+         try(PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.executeQuery();
+            
+            try(ResultSet rs  = stmt.getResultSet()){
+                while(rs.next()){                    
+                    
+                    Especie especie = new Especie(rs.getInt("idespecie"), rs.getString("nome_especie"));
+                     Raca raca = new Raca(rs.getInt("animal_idraca"),rs.getString("nome_raca"), especie);
+                     Situacao situacao = new Situacao(rs.getInt("situacao_idsituacao"), rs.getString("descricao_situacao"));
+                    Animal animal =  new Animal();
+                        
+                        animal.setNome(rs.getString("nome"));
+                        animal.setDescricao(rs.getString("descricao_animal"));
+                        animal.setId(rs.getInt("idAnimal"));
+                        animal.setPorte(getPorte_com_string(rs.getString("porte")));
+                        animal.setEspecie(especie);
+                        animal.setSituacao(situacao);
+                        animal.setRaca(raca);
+                        animal.setData_nascimento_from_SQL(rs.getDate("data_registro_entrada"));
+                    lista_animal.add(animal);
+                           
+                            
+                   
+                }
+            }
+        }
+         return lista_animal;
     }
 }

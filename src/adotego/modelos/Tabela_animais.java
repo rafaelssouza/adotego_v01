@@ -11,7 +11,7 @@ public class Tabela_animais extends AbstractTableModel{
     private final String[] colunas = new String[]{"ID","Nome", "Especie", "Raça","Situação"};
 
     public Tabela_animais() {
-        linhas_animal = new adotego.controller.AnimalController().findAll();
+        linhas_animal = new adotego.controller.AnimalController().listarIdDesc();
     }
     
     @Override
@@ -79,8 +79,7 @@ public class Tabela_animais extends AbstractTableModel{
     }
     
     public void atualizar_tabela(){
-        
-        linhas_animal = new adotego.controller.AnimalController().findAll();
+        linhas_animal = new adotego.controller.AnimalController().listarIdDesc();
         this.fireTableDataChanged();
     }
     
@@ -100,6 +99,10 @@ public class Tabela_animais extends AbstractTableModel{
     
     public int getSelectedIndex(JTable jTable_animais){
         return jTable_animais.getSelectedRow();
+    }
+
+    public List<Animal> getList() {
+        return this.linhas_animal;
     }
     
 }
