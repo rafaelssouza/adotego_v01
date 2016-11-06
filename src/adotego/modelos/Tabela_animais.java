@@ -1,6 +1,7 @@
 
 package adotego.modelos;
 
+import adotego.util.Formatador;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -9,9 +10,11 @@ import javax.swing.table.AbstractTableModel;
 public class Tabela_animais extends AbstractTableModel{
     private List<Animal> linhas_animal = new ArrayList<>();
     private final String[] colunas = new String[]{"ID","Nome", "Especie", "Raça","Situação"};
+    Formatador formatador;
 
     public Tabela_animais() {
         linhas_animal = new adotego.controller.AnimalController().listarIdDesc();
+        formatador = new Formatador();
     }
     
     @Override
@@ -31,9 +34,12 @@ public class Tabela_animais extends AbstractTableModel{
             switch(columnIndex){
                 case 0 : return animal.getId();
                 case 1 : return animal.getNome();
-                case 2: return  animal.getEspecie().getNome();
-                case 3: return animal.getRaca().getNome();
-                case 4: return animal.getSituacao().getDescricao();
+                case 2: return  formatador
+                        .formatarPrimeiraLetraMaiuscula(animal.getEspecie().getNome());
+                case 3: return formatador
+                        .formatarPrimeiraLetraMaiuscula(animal.getRaca().getNome());
+                case 4: return formatador
+                        .formatarPrimeiraLetraMaiuscula(animal.getSituacao().getDescricao());
                 default: return "-";
             }
         

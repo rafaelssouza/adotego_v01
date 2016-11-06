@@ -17,11 +17,11 @@ import javax.swing.table.AbstractTableModel;
 public class Tabela_usuario_completa extends AbstractTableModel{
 
     private List<Usuario> lista_usuarios;
-    private String [] colunas = new String[]{"Código","Nome","Emai","CPF", "Telefone-Fixo", "Telefone-celular","Data Nascimento"};
+    private String [] colunas = new String[]{"Código","Nome","Email","CPF", "Telefone-Fixo", "Telefone-celular","Data Nascimento"};
 
     public Tabela_usuario_completa() {
         lista_usuarios = new adotego.controller.UsuarioController().findAll();
-    
+        
     }        
     
     @Override

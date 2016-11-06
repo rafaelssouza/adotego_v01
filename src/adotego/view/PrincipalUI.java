@@ -11,11 +11,14 @@ import adotego.modelos.Tabela_Informacoes;
 import adotego.modelos.Tabela_animais;
 import adotego.modelos.Tabela_usuario_completa;
 import adotego.modelos.Usuario;
+import adotego.util.FontHelper;
+import adotego.util.Formatador;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
@@ -33,12 +36,17 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private Tabela_animais model_tabela_animais;
     private Modelo_tabela_adocoes model_tabela_adocoes;
     private Tabela_Informacoes modelo_tabela_Informacoes;
+    private final Formatador formatador;
     
     /**
      * Creates new form PrincipalUI
      */
     public PrincipalUI() {
         initComponents();
+        formatador = new Formatador();
+        
+       
+        this.setTitle("Adotego");
         //abrir no centro da janela
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
@@ -47,6 +55,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
         init_jCombo_box_situacao(); 
         configurarInputPesquisa();
         iniciar_tabelas();
+        
+      
+        configurarFontes();
+        configurar_icones();
         
         
         
@@ -64,32 +76,34 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jFrame1 = new javax.swing.JFrame();
         jButton2 = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPane_abas = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        jInternalFrame2 = new javax.swing.JInternalFrame();
+        jInternalFrame_informacoes = new javax.swing.JInternalFrame();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable_informacoes = new javax.swing.JTable();
         jButton_atualiza_informacoes = new javax.swing.JButton();
+        jLabel_analiseDados = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_adocoes = new javax.swing.JTable();
         txt_total_doacoes = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelToTtalDoacoe = new javax.swing.JLabel();
         btn_atualizar_tabela_adocoes = new javax.swing.JButton();
+        jLabel_titulo_adocoes = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jInternalFrame3 = new javax.swing.JInternalFrame();
+        jInternalFrame_usuarios = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_usuarios = new javax.swing.JTable();
         btn_excluir_usuario = new javax.swing.JButton();
         btn_editar_usuario = new javax.swing.JButton();
         txt_pesquisar = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelPesquisaUsuarios = new javax.swing.JLabel();
         jCombo_box_opcoes_busca = new javax.swing.JComboBox<>();
-        jButton_novo_cadastro = new javax.swing.JButton();
+        btn_novo_cadastro_usuario = new javax.swing.JButton();
         btn_atualiza_tabela_usuarios = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jInternalFrame_animais = new javax.swing.JInternalFrame();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_animais = new javax.swing.JTable();
         btn_editar_animal = new javax.swing.JButton();
@@ -98,19 +112,19 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jCombo_box_especie_pesquisa = new javax.swing.JComboBox<>();
         jCombo_box_raca_pesquisa = new javax.swing.JComboBox<>();
         jComboBox_situacao_pesquisa = new javax.swing.JComboBox<>();
-        btn_novo_cadastro = new javax.swing.JButton();
+        btn_novo_cadastro_animal = new javax.swing.JButton();
         jButton_atualiza_animal = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        btn_nova_adocao = new javax.swing.JMenu();
-        jMenuItem_nova_raca = new javax.swing.JMenuItem();
-        jMenuItem_nova_especie = new javax.swing.JMenuItem();
-        btn_novo_usuario = new javax.swing.JMenuItem();
+        jMenuBar_menu = new javax.swing.JMenuBar();
+        menuItemNovaRaca = new javax.swing.JMenu();
+        jMenuItemNovoUsuario = new javax.swing.JMenuItem();
+        jMenuItemNovaRaca = new javax.swing.JMenuItem();
+        JMenuItemNovoUsuario = new javax.swing.JMenuItem();
         jMenuItem_novo_animal = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem_sair = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuItemNovaAdocao = new javax.swing.JMenuItem();
+        jMenuItemSair = new javax.swing.JMenuItem();
+        menu_pesquisar = new javax.swing.JMenu();
+        menu_relatorio = new javax.swing.JMenu();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -130,19 +144,21 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.setBackground(new java.awt.Color(204, 204, 255));
-        jTabbedPane1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jTabbedPane_abas.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane_abas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        jInternalFrame2.setTitle("Informações");
-        jInternalFrame2.setVisible(true);
-        jInternalFrame2.addFocusListener(new java.awt.event.FocusAdapter() {
+        jInternalFrame_informacoes.setBackground(new java.awt.Color(255, 255, 255));
+        jInternalFrame_informacoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jInternalFrame_informacoes.setTitle("Informações");
+        jInternalFrame_informacoes.setVisible(true);
+        jInternalFrame_informacoes.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jInternalFrame2FocusGained(evt);
+                jInternalFrame_informacoesFocusGained(evt);
             }
         });
 
         jPanel4.setBackground(new java.awt.Color(248, 248, 248));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Informações", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("DialogInput", 0, 18))); // NOI18N
+        jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
         jTable_informacoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,37 +175,43 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jButton_atualiza_informacoes.setBackground(new java.awt.Color(255, 255, 255));
         jButton_atualiza_informacoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
+        jButton_atualiza_informacoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButton_atualiza_informacoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_atualiza_informacoesActionPerformed(evt);
             }
         });
 
+        jLabel_analiseDados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_analiseDados.setText("Análise de dados");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton_atualiza_informacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton_atualiza_informacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                    .addComponent(jLabel_analiseDados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_atualiza_informacoes)
+                .addComponent(jLabel_analiseDados, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_atualiza_informacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel6.setBackground(new java.awt.Color(248, 248, 248));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Adoções", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("DejaVu Sans Mono", 0, 18))); // NOI18N
+        jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
         jTable_adocoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -204,18 +226,22 @@ public final class PrincipalUI extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable_adocoes);
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Total em doações:");
+        jLabelToTtalDoacoe.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabelToTtalDoacoe.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelToTtalDoacoe.setText("Total em doações:");
 
         btn_atualizar_tabela_adocoes.setBackground(new java.awt.Color(255, 255, 255));
         btn_atualizar_tabela_adocoes.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_atualizar_tabela_adocoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
+        btn_atualizar_tabela_adocoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_atualizar_tabela_adocoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_atualizar_tabela_adocoesActionPerformed(evt);
             }
         });
+
+        jLabel_titulo_adocoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_titulo_adocoes.setText("Adoções Realizadas");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -228,42 +254,44 @@ public final class PrincipalUI extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+                    .addComponent(jLabel_titulo_adocoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jLabel_titulo_adocoes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_atualizar_tabela_adocoes))
-                .addContainerGap())
+                        .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
         );
 
-        javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
-        jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
-        jInternalFrame2Layout.setHorizontalGroup(
-            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jInternalFrame_informacoesLayout = new javax.swing.GroupLayout(jInternalFrame_informacoes.getContentPane());
+        jInternalFrame_informacoes.getContentPane().setLayout(jInternalFrame_informacoesLayout);
+        jInternalFrame_informacoesLayout.setHorizontalGroup(
+            jInternalFrame_informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame_informacoesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jInternalFrame2Layout.setVerticalGroup(
-            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame2Layout.createSequentialGroup()
+        jInternalFrame_informacoesLayout.setVerticalGroup(
+            jInternalFrame_informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame_informacoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame_informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -273,17 +301,19 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame2)
+            .addComponent(jInternalFrame_informacoes)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame2)
+            .addComponent(jInternalFrame_informacoes)
         );
 
-        jTabbedPane1.addTab("Informações", jPanel2);
+        jTabbedPane_abas.addTab("Informações", jPanel2);
 
-        jInternalFrame3.setTitle("Controle de Usuarios");
-        jInternalFrame3.setVisible(true);
+        jInternalFrame_usuarios.setBackground(new java.awt.Color(255, 255, 255));
+        jInternalFrame_usuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jInternalFrame_usuarios.setTitle("Controle de Usuarios");
+        jInternalFrame_usuarios.setVisible(true);
 
         jTable_usuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -306,7 +336,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_excluir_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_excluir_usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_excluir_usuario.setText("Excluir");
-        btn_excluir_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        btn_excluir_usuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_excluir_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_excluir_usuarioActionPerformed(evt);
@@ -316,97 +346,105 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_editar_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_editar_usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_editar_usuario.setText("Editar");
-        btn_editar_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        btn_editar_usuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_editar_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editar_usuarioActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel3.setText("Pesquisar por ");
+        txt_pesquisar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        jLabelPesquisaUsuarios.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabelPesquisaUsuarios.setText("Pesquisar por ");
+
+        jCombo_box_opcoes_busca.setBackground(new java.awt.Color(255, 255, 255));
         jCombo_box_opcoes_busca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jCombo_box_opcoes_busca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF", "Email" }));
 
-        jButton_novo_cadastro.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_novo_cadastro.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton_novo_cadastro.setText("Novo Cadastro");
-        jButton_novo_cadastro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jButton_novo_cadastro.addActionListener(new java.awt.event.ActionListener() {
+        btn_novo_cadastro_usuario.setBackground(new java.awt.Color(255, 255, 255));
+        btn_novo_cadastro_usuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btn_novo_cadastro_usuario.setText("Novo Cadastro");
+        btn_novo_cadastro_usuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_novo_cadastro_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_novo_cadastroActionPerformed(evt);
+                btn_novo_cadastro_usuarioActionPerformed(evt);
             }
         });
 
         btn_atualiza_tabela_usuarios.setBackground(new java.awt.Color(255, 255, 255));
         btn_atualiza_tabela_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
+        btn_atualiza_tabela_usuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_atualiza_tabela_usuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_atualiza_tabela_usuariosActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jInternalFrame3Layout = new javax.swing.GroupLayout(jInternalFrame3.getContentPane());
-        jInternalFrame3.getContentPane().setLayout(jInternalFrame3Layout);
-        jInternalFrame3Layout.setHorizontalGroup(
-            jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jInternalFrame_usuariosLayout = new javax.swing.GroupLayout(jInternalFrame_usuarios.getContentPane());
+        jInternalFrame_usuarios.getContentPane().setLayout(jInternalFrame_usuariosLayout);
+        jInternalFrame_usuariosLayout.setHorizontalGroup(
+            jInternalFrame_usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame_usuariosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1121, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
+                .addGroup(jInternalFrame_usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1129, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame_usuariosLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton_novo_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_excluir_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_editar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
-                        .addComponent(btn_atualiza_tabela_usuarios)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCombo_box_opcoes_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jInternalFrame_usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame_usuariosLayout.createSequentialGroup()
+                                .addComponent(jLabelPesquisaUsuarios)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCombo_box_opcoes_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame_usuariosLayout.createSequentialGroup()
+                                .addComponent(btn_atualiza_tabela_usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_novo_cadastro_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_excluir_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_editar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
-        jInternalFrame3Layout.setVerticalGroup(
-            jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame3Layout.createSequentialGroup()
+        jInternalFrame_usuariosLayout.setVerticalGroup(
+            jInternalFrame_usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame_usuariosLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jInternalFrame_usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCombo_box_opcoes_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(btn_atualiza_tabela_usuarios))
+                    .addComponent(jLabelPesquisaUsuarios))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_editar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_excluir_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_novo_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame_usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btn_novo_cadastro_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_excluir_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(btn_editar_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_atualiza_tabela_usuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame3)
+            .addComponent(jInternalFrame_usuarios)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame3)
+            .addComponent(jInternalFrame_usuarios)
         );
 
-        jTabbedPane1.addTab("Usuarios", jPanel1);
+        jTabbedPane_abas.addTab("Usuarios", jPanel1);
 
-        jInternalFrame1.setResizable(true);
-        jInternalFrame1.setTitle("Controle de Animais");
-        jInternalFrame1.setVisible(true);
+        jInternalFrame_animais.setBackground(new java.awt.Color(255, 255, 255));
+        jInternalFrame_animais.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jInternalFrame_animais.setResizable(true);
+        jInternalFrame_animais.setTitle("Controle de Animais");
+        jInternalFrame_animais.setVisible(true);
 
         jTable_animais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -424,7 +462,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_editar_animal.setBackground(new java.awt.Color(255, 255, 255));
         btn_editar_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_editar_animal.setText("Editar");
-        btn_editar_animal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        btn_editar_animal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_editar_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editar_animalActionPerformed(evt);
@@ -434,7 +472,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_excluir_animal.setBackground(new java.awt.Color(255, 255, 255));
         btn_excluir_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_excluir_animal.setText("Excluir");
-        btn_excluir_animal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        btn_excluir_animal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_excluir_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_excluir_animalActionPerformed(evt);
@@ -444,13 +482,14 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_filtrar_animais.setBackground(new java.awt.Color(255, 255, 255));
         btn_filtrar_animais.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_filtrar_animais.setText("Filtrar");
-        btn_filtrar_animais.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        btn_filtrar_animais.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_filtrar_animais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_filtrar_animaisActionPerformed(evt);
             }
         });
 
+        jCombo_box_especie_pesquisa.setBackground(new java.awt.Color(255, 255, 255));
         jCombo_box_especie_pesquisa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jCombo_box_especie_pesquisa.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -458,48 +497,51 @@ public final class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
+        jCombo_box_raca_pesquisa.setBackground(new java.awt.Color(255, 255, 255));
         jCombo_box_raca_pesquisa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
+        jComboBox_situacao_pesquisa.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_situacao_pesquisa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        btn_novo_cadastro.setBackground(new java.awt.Color(255, 255, 255));
-        btn_novo_cadastro.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btn_novo_cadastro.setText("Novo Cadastro");
-        btn_novo_cadastro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        btn_novo_cadastro.addActionListener(new java.awt.event.ActionListener() {
+        btn_novo_cadastro_animal.setBackground(new java.awt.Color(255, 255, 255));
+        btn_novo_cadastro_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btn_novo_cadastro_animal.setText("Novo Cadastro");
+        btn_novo_cadastro_animal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_novo_cadastro_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_novo_cadastroActionPerformed(evt);
+                btn_novo_cadastro_animalActionPerformed(evt);
             }
         });
 
         jButton_atualiza_animal.setBackground(new java.awt.Color(255, 255, 255));
         jButton_atualiza_animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
+        jButton_atualiza_animal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButton_atualiza_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_atualiza_animalActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jInternalFrame_animaisLayout = new javax.swing.GroupLayout(jInternalFrame_animais.getContentPane());
+        jInternalFrame_animais.getContentPane().setLayout(jInternalFrame_animaisLayout);
+        jInternalFrame_animaisLayout.setHorizontalGroup(
+            jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame_animaisLayout.createSequentialGroup()
+                .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame_animaisLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_atualiza_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_atualiza_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_novo_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_novo_cadastro_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_excluir_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_editar_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(0, 533, Short.MAX_VALUE)
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame_animaisLayout.createSequentialGroup()
+                        .addGap(0, 541, Short.MAX_VALUE)
+                        .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame_animaisLayout.createSequentialGroup()
                                 .addComponent(jCombo_box_especie_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCombo_box_raca_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -509,80 +551,81 @@ public final class PrincipalUI extends javax.swing.JFrame {
                                 .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+        jInternalFrame_animaisLayout.setVerticalGroup(
+            jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame_animaisLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBox_situacao_pesquisa)
                     .addComponent(jCombo_box_raca_pesquisa)
                     .addComponent(jCombo_box_especie_pesquisa)
                     .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_excluir_animal, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_novo_cadastro_animal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(btn_excluir_animal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_editar_animal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_novo_cadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton_atualiza_animal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
+            .addComponent(jInternalFrame_animais)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jInternalFrame_animais, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        jTabbedPane1.addTab("Animais", jPanel3);
+        jTabbedPane_abas.addTab("Animais", jPanel3);
 
+        jTabbedPane2.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane2.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-        jTabbedPane1.addTab("Controle de Doações", jTabbedPane2);
+        jTabbedPane_abas.addTab("Controle de Doações", jTabbedPane2);
 
-        jMenuBar1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuBar_menu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        btn_nova_adocao.setText("Arquivo");
-        btn_nova_adocao.setDelay(0);
-        btn_nova_adocao.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btn_nova_adocao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btn_nova_adocao.addActionListener(new java.awt.event.ActionListener() {
+        menuItemNovaRaca.setText("Arquivo");
+        menuItemNovaRaca.setDelay(0);
+        menuItemNovaRaca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        menuItemNovaRaca.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        menuItemNovaRaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_nova_adocaoActionPerformed(evt);
+                menuItemNovaRacaActionPerformed(evt);
             }
         });
 
-        jMenuItem_nova_raca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jMenuItem_nova_raca.setText("Nova Raça");
-        jMenuItem_nova_raca.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemNovoUsuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItemNovoUsuario.setText("Nova Especie");
+        jMenuItemNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem_nova_racaActionPerformed(evt);
+                jMenuItemNovoUsuarioActionPerformed(evt);
             }
         });
-        btn_nova_adocao.add(jMenuItem_nova_raca);
+        menuItemNovaRaca.add(jMenuItemNovoUsuario);
 
-        jMenuItem_nova_especie.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jMenuItem_nova_especie.setText("Nova Especie");
-        jMenuItem_nova_especie.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemNovaRaca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItemNovaRaca.setText("Nova Raça");
+        jMenuItemNovaRaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem_nova_especieActionPerformed(evt);
+                jMenuItemNovaRacaActionPerformed(evt);
             }
         });
-        btn_nova_adocao.add(jMenuItem_nova_especie);
+        menuItemNovaRaca.add(jMenuItemNovaRaca);
 
-        btn_novo_usuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btn_novo_usuario.setText("Novo Usuario");
-        btn_novo_usuario.addActionListener(new java.awt.event.ActionListener() {
+        JMenuItemNovoUsuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        JMenuItemNovoUsuario.setText("Novo Usuario");
+        JMenuItemNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_novo_usuarioActionPerformed(evt);
+                JMenuItemNovoUsuarioActionPerformed(evt);
             }
         });
-        btn_nova_adocao.add(btn_novo_usuario);
+        menuItemNovaRaca.add(JMenuItemNovoUsuario);
 
         jMenuItem_novo_animal.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMenuItem_novo_animal.setText("Novo Animal");
@@ -591,47 +634,47 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 jMenuItem_novo_animalActionPerformed(evt);
             }
         });
-        btn_nova_adocao.add(jMenuItem_novo_animal);
+        menuItemNovaRaca.add(jMenuItem_novo_animal);
 
-        jMenuItem1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jMenuItem1.setText("Nova Adoção");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemNovaAdocao.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItemNovaAdocao.setText("Nova Adoção");
+        jMenuItemNovaAdocao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemNovaAdocaoActionPerformed(evt);
             }
         });
-        btn_nova_adocao.add(jMenuItem1);
+        menuItemNovaRaca.add(jMenuItemNovaAdocao);
 
-        jMenuItem_sair.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jMenuItem_sair.setText("Sair");
-        jMenuItem_sair.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemSair.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItemSair.setText("Sair");
+        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem_sairActionPerformed(evt);
+                jMenuItemSairActionPerformed(evt);
             }
         });
-        btn_nova_adocao.add(jMenuItem_sair);
+        menuItemNovaRaca.add(jMenuItemSair);
 
-        jMenuBar1.add(btn_nova_adocao);
+        jMenuBar_menu.add(menuItemNovaRaca);
 
-        jMenu2.setText("Pesquisar");
-        jMenu2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jMenuBar1.add(jMenu2);
+        menu_pesquisar.setText("Pesquisar");
+        menu_pesquisar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuBar_menu.add(menu_pesquisar);
 
-        jMenu1.setText("Relatório");
-        jMenu1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jMenuBar1.add(jMenu1);
+        menu_relatorio.setText("Relatório");
+        menu_relatorio.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuBar_menu.add(menu_relatorio);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar_menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane_abas)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+            .addComponent(jTabbedPane_abas)
         );
 
         pack();
@@ -661,21 +704,21 @@ public final class PrincipalUI extends javax.swing.JFrame {
     }
     //evento lançado quando o botão Nova Especie no menu 'Arquivo' for clicado;
     //abre a janela de cadastro de Raca
-    private void jMenuItem_nova_especieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_especieActionPerformed
+    private void jMenuItemNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoUsuarioActionPerformed
         new Nova_especie().setVisible(true);
-    }//GEN-LAST:event_jMenuItem_nova_especieActionPerformed
+    }//GEN-LAST:event_jMenuItemNovoUsuarioActionPerformed
     
     //evento lançado quando o botão Nova Raca no menu 'Arquivo' for clicado;
     //abre a janela de cadastro de Raca
-    private void jMenuItem_nova_racaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_nova_racaActionPerformed
+    private void jMenuItemNovaRacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaRacaActionPerformed
         new Nova_raca().setVisible(true);
-    }//GEN-LAST:event_jMenuItem_nova_racaActionPerformed
+    }//GEN-LAST:event_jMenuItemNovaRacaActionPerformed
     
     //evento lançado quando o botão Nova Cadastro no menu 'Arquivo' for clicado
     //abre a janela de cadastro de usuarios;
-    private void btn_novo_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_usuarioActionPerformed
+    private void JMenuItemNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemNovoUsuarioActionPerformed
         new Detalhe_usuario().setVisible(true);
-    }//GEN-LAST:event_btn_novo_usuarioActionPerformed
+    }//GEN-LAST:event_JMenuItemNovoUsuarioActionPerformed
     
     //método chamado quando o item selecionado do JComboBox de especie para pesqusa
     // for chamado.
@@ -712,31 +755,27 @@ public final class PrincipalUI extends javax.swing.JFrame {
     e no jComboBoxSituaçao
     */
     private void btn_filtrar_animaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrar_animaisActionPerformed
-      
-             if(jComboBox_situacao_pesquisa.getSelectedIndex() == 0 
+   
+            //se todos os itens estiverem padrão preecnhe a tabela como todos os animais
+             if(jCombo_box_especie_pesquisa.getSelectedIndex() == 0 
                      && jComboBox_situacao_pesquisa.getSelectedIndex() == 0
                      && jCombo_box_raca_pesquisa.getSelectedIndex() == 0)   {
-                  model_tabela_animais.atualizar_tabela();
+                  
+                 model_tabela_animais.atualizar_tabela();
              }else{
-                //recupera a lista de animais baseada na especie selecionada
-                //anteriormente
-                List<Animal> animais_lista =  model_tabela_animais.getList();
-                if(jCombo_box_especie_pesquisa.getSelectedIndex() != 0){
+                //recupera lista de animais    
+                List<Animal> animais_lista =  new adotego.controller.AnimalController().listarIdDesc();
+                if(jCombo_box_especie_pesquisa.getSelectedIndex() > 0){
                 //recupera o nome da especie selecionado
                 String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
                         .getSelectedItem());
                 animais_lista = new adotego.controller.AnimalController() 
                           .findByEspecieName(especie_name_selected);
+                          
+                         //se estiver com a especie selecionada e com raca e situação no indice0
                        
-                }
-                System.out.println("Tam: "+animais_lista.size());
-                //recupera a raca como String selecionada na jComboBox de raça
-                // utilizando o index como parametro
-                
-                
-                
-                //remover os animais que possuir raca diferente da selecionada
-                
+                } 
+                //remover os animais que possuir raca e situacao diferente da selecionada                
                 Iterator<Animal> iterator = animais_lista.iterator();
                 while (iterator.hasNext()) {
                     Animal animal = iterator.next();
@@ -837,22 +876,22 @@ public final class PrincipalUI extends javax.swing.JFrame {
         new Detalhe_animal().setVisible(true);
     }//GEN-LAST:event_jMenuItem_novo_animalActionPerformed
     //este método abre a janela para cadastro de um novo animal
-    private void btn_novo_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_cadastroActionPerformed
+    private void btn_novo_cadastro_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_cadastro_animalActionPerformed
         new Detalhe_animal().setVisible(true);
-    }//GEN-LAST:event_btn_novo_cadastroActionPerformed
+    }//GEN-LAST:event_btn_novo_cadastro_animalActionPerformed
     
-    private void btn_nova_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nova_adocaoActionPerformed
+    private void menuItemNovaRacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNovaRacaActionPerformed
                 new Nova_Adocao().setVisible(true);
-    }//GEN-LAST:event_btn_nova_adocaoActionPerformed
+    }//GEN-LAST:event_menuItemNovaRacaActionPerformed
     
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItemNovaAdocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaAdocaoActionPerformed
         new Nova_Adocao().setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItemNovaAdocaoActionPerformed
     
-    private void jInternalFrame2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInternalFrame2FocusGained
+    private void jInternalFrame_informacoesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInternalFrame_informacoesFocusGained
         model_tabela_adocoes.atualiza();
         
-    }//GEN-LAST:event_jInternalFrame2FocusGained
+    }//GEN-LAST:event_jInternalFrame_informacoesFocusGained
     
     private void btn_atualizar_tabela_adocoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualizar_tabela_adocoesActionPerformed
         model_tabela_adocoes.atualiza();
@@ -866,9 +905,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
         model_tabela_usuarios_completa.atualizarTabela();
     }//GEN-LAST:event_btn_atualiza_tabela_usuariosActionPerformed
 
-    private void jButton_novo_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_novo_cadastroActionPerformed
+    private void btn_novo_cadastro_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_cadastro_usuarioActionPerformed
         new Detalhe_usuario().setVisible(true);
-    }//GEN-LAST:event_jButton_novo_cadastroActionPerformed
+    }//GEN-LAST:event_btn_novo_cadastro_usuarioActionPerformed
 
     private void jButton_atualiza_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atualiza_animalActionPerformed
         model_tabela_animais.atualizar_tabela();
@@ -878,9 +917,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
         atualizar_tabela_informacoes();
     }//GEN-LAST:event_jButton_atualiza_informacoesActionPerformed
 
-    private void jMenuItem_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_sairActionPerformed
+    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jMenuItem_sairActionPerformed
+    }//GEN-LAST:event_jMenuItemSairActionPerformed
     
     /**
      * @param args the command line arguments
@@ -918,6 +957,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem JMenuItemNovoUsuario;
     private javax.swing.JButton btn_atualiza_tabela_usuarios;
     private javax.swing.JButton btn_atualizar_tabela_adocoes;
     private javax.swing.JButton btn_editar_animal;
@@ -925,31 +965,29 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_excluir_animal;
     private javax.swing.JButton btn_excluir_usuario;
     private javax.swing.JButton btn_filtrar_animais;
-    private javax.swing.JMenu btn_nova_adocao;
-    private javax.swing.JButton btn_novo_cadastro;
-    private javax.swing.JMenuItem btn_novo_usuario;
+    private javax.swing.JButton btn_novo_cadastro_animal;
+    private javax.swing.JButton btn_novo_cadastro_usuario;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton_atualiza_animal;
     private javax.swing.JButton jButton_atualiza_informacoes;
-    private javax.swing.JButton jButton_novo_cadastro;
     private javax.swing.JComboBox<String> jComboBox_situacao_pesquisa;
     private javax.swing.JComboBox<String> jCombo_box_especie_pesquisa;
     private javax.swing.JComboBox<String> jCombo_box_opcoes_busca;
     private javax.swing.JComboBox<String> jCombo_box_raca_pesquisa;
     private javax.swing.JFrame jFrame1;
-    private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JInternalFrame jInternalFrame2;
-    private javax.swing.JInternalFrame jInternalFrame3;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem_nova_especie;
-    private javax.swing.JMenuItem jMenuItem_nova_raca;
+    private javax.swing.JInternalFrame jInternalFrame_animais;
+    private javax.swing.JInternalFrame jInternalFrame_informacoes;
+    private javax.swing.JInternalFrame jInternalFrame_usuarios;
+    private javax.swing.JLabel jLabelPesquisaUsuarios;
+    private javax.swing.JLabel jLabelToTtalDoacoe;
+    private javax.swing.JLabel jLabel_analiseDados;
+    private javax.swing.JLabel jLabel_titulo_adocoes;
+    private javax.swing.JMenuBar jMenuBar_menu;
+    private javax.swing.JMenuItem jMenuItemNovaAdocao;
+    private javax.swing.JMenuItem jMenuItemNovaRaca;
+    private javax.swing.JMenuItem jMenuItemNovoUsuario;
+    private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItem_novo_animal;
-    private javax.swing.JMenuItem jMenuItem_sair;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -960,12 +998,15 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane_abas;
     private javax.swing.JTable jTable_adocoes;
     private javax.swing.JTable jTable_animais;
     private javax.swing.JTable jTable_informacoes;
     private javax.swing.JTable jTable_usuarios;
+    private javax.swing.JMenu menuItemNovaRaca;
+    private javax.swing.JMenu menu_pesquisar;
+    private javax.swing.JMenu menu_relatorio;
     private javax.swing.JTextField txt_pesquisar;
     private javax.swing.JTextField txt_total_doacoes;
     // End of variables declaration//GEN-END:variables
@@ -976,7 +1017,8 @@ public final class PrincipalUI extends javax.swing.JFrame {
         List<Especie> especies = new adotego.controller.EspecieController().findAll();
         jCombo_box_especie_pesquisa.addItem("Especie");
         for (Especie especie : especies) {
-            jCombo_box_especie_pesquisa.addItem(especie.getNome());
+            jCombo_box_especie_pesquisa.addItem(
+                    formatador.formatarPrimeiraLetraMaiuscula(especie.getNome()));
         }
     }
     //atualiza o jCombo de raças para de acordo com a especie selecionada
@@ -1007,6 +1049,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     */
     private void configurar_tabela_usuarios() {
         jTable_usuarios.setRowHeight(26);
+        
         int columnCount = jTable_usuarios.getColumnCount();
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
             dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1014,7 +1057,8 @@ public final class PrincipalUI extends javax.swing.JFrame {
         int width = jTable_usuarios.getWidth();
         for (int i = 0; i < columnCount; i++) {
             TableColumn column = jTable_usuarios.getColumnModel().getColumn(i);            
-            column.setCellRenderer(dtcr);                        
+            column.setCellRenderer(dtcr);
+            
             switch (i) {
                 case 0:
                     column.setPreferredWidth(Integer
@@ -1055,7 +1099,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
         List<Situacao> situacoes = new adotego.controller.SituacaoController().findAll();
         jComboBox_situacao_pesquisa.addItem("Situação");
         for (Situacao sit : situacoes) {
-            jComboBox_situacao_pesquisa.addItem(sit.getDescricao());
+            jComboBox_situacao_pesquisa
+                    .addItem(formatador
+                            .formatarPrimeiraLetraMaiuscula(sit.getDescricao()));
         }
         
     }
@@ -1262,6 +1308,66 @@ public final class PrincipalUI extends javax.swing.JFrame {
            
         });
          
+    }
+
+    private void configurarFontes() {
+        FontHelper fh = new FontHelper();
+        
+       jInternalFrame_animais.getComponent(WIDTH).setFont(fh.getLatoBold(17f));
+       jInternalFrame_informacoes.getComponent(WIDTH).setFont(fh.getLatoBold(17f));
+       jInternalFrame_usuarios.getComponent(WIDTH).setFont(fh.getLatoBold(17f));
+       jTabbedPane_abas.setFont(fh.getLatoRegular(14f));
+      
+       menuItemNovaRaca.setFont(fh.getLatoBold(15f));     
+       menu_pesquisar.setFont(fh.getLatoBold(15f));
+       menu_relatorio.setFont(fh.getLatoBold(15f));
+       
+       jMenuItemNovaRaca.setFont(fh.getLatoBold(15f));
+       jMenuItemNovaAdocao.setFont(fh.getLatoBold(15f));
+       jMenuItemNovoUsuario.setFont(fh.getLatoBold(15f));
+       jMenuItemSair.setFont(fh.getLatoBold(15f));
+       jMenuItem_novo_animal.setFont(fh.getLatoBold(15f));
+       
+       
+       jTable_adocoes.setFont(fh.getLatoLight(16f));
+       jTable_animais.setFont(fh.getLatoLight(16f));
+       jTable_informacoes.setFont(fh.getLatoLight(16f));
+       jTable_usuarios.setFont(fh.getLatoLight(16f));
+       
+       
+       btn_novo_cadastro_usuario.setFont(fh.getLatoBold(17f));
+       btn_excluir_animal.setFont(fh.getLatoBold(17f));
+       btn_excluir_usuario.setFont(fh.getLatoBold(17f));
+       btn_editar_animal.setFont(fh.getLatoBold(17f));
+       btn_editar_usuario.setFont(fh.getLatoBold(17f));
+       btn_filtrar_animais.setFont(fh.getLatoBold(17f));
+       btn_novo_cadastro_animal.setFont(fh.getLatoBold(17f));
+       
+       jCombo_box_especie_pesquisa.setFont(fh.getLatoRegular(15f));
+       jCombo_box_opcoes_busca.setFont(fh.getLatoRegular(15f));
+       jCombo_box_raca_pesquisa.setFont(fh.getLatoRegular(15f));
+       jComboBox_situacao_pesquisa.setFont(fh.getLatoRegular(15f));
+       
+       
+       
+       jLabel_titulo_adocoes.setFont(fh.getLatoRegular(18f));
+       jLabelPesquisaUsuarios.setFont(fh.getLatoRegular(18f));
+       jLabel_analiseDados.setFont(fh.getLatoRegular(18f));
+       jLabelToTtalDoacoe.setFont(fh.getLatoRegular(18f));
+       
+       
+       txt_total_doacoes.setFont(fh.getLatoRegular(17f));
+       txt_pesquisar.setFont(fh.getLatoLight(18f));
+    }
+
+    private void configurar_icones() {
+        ImageIcon icon = new ImageIcon("src/icones/Favicon.png");
+        
+        
+        this.setIconImage(icon.getImage());
+        
+     
+        
     }
     
     
