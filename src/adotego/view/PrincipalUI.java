@@ -13,6 +13,7 @@ import adotego.modelos.Tabela_usuario_completa;
 import adotego.modelos.Usuario;
 import adotego.util.FontHelper;
 import adotego.util.Formatador;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
@@ -157,7 +158,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
-        jPanel4.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
         jTable_informacoes.setModel(new javax.swing.table.DefaultTableModel(
@@ -192,11 +193,12 @@ public final class PrincipalUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton_atualiza_informacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
-                    .addComponent(jLabel_analiseDados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel_analiseDados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton_atualiza_informacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -210,7 +212,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel6.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
         jTable_adocoes.setModel(new javax.swing.table.DefaultTableModel(
@@ -257,7 +259,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                         .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
                     .addComponent(jLabel_titulo_adocoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -282,9 +284,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
             jInternalFrame_informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame_informacoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jInternalFrame_informacoesLayout.setVerticalGroup(
@@ -561,14 +563,14 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     .addComponent(jCombo_box_especie_pesquisa)
                     .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_novo_cadastro_animal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(btn_novo_cadastro_animal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_excluir_animal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_editar_animal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton_atualiza_animal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(jButton_atualiza_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -854,7 +856,14 @@ public final class PrincipalUI extends javax.swing.JFrame {
         int[] ids_selecionados = model_tabela_usuarios_completa.getIdsIntoTheRow(jTable_usuarios);      
         UsuarioController uc = new adotego.controller.UsuarioController();
         for (int i : ids_selecionados) {
-            uc.delete(i);
+            if(!uc.delete(i)){
+               Object[] options = { "Ok", "Cancelar" };
+               
+               JOptionPane.showOptionDialog(null, "O usuario ID:"+i+
+                       " está relacionado a uma adoção, portanto é impossível "
+                       + "exclui-lo", "Aviso", JOptionPane.DEFAULT_OPTION, 
+                       JOptionPane.OK_OPTION, null, options, options[0]);
+            }
         }
         model_tabela_usuarios_completa.atualizarTabela();
         
@@ -1049,7 +1058,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     */
     private void configurar_tabela_usuarios() {
         jTable_usuarios.setRowHeight(26);
-        
+        jTable_usuarios.getTableHeader().setBackground(Color.WHITE);
         int columnCount = jTable_usuarios.getColumnCount();
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
             dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1074,7 +1083,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     break;
                 case 3:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.18))));
+                            .parseInt(String.valueOf(Math.round(width*0.14))));
                     break;
                 case 4:
                     column.setPreferredWidth(Integer
@@ -1086,7 +1095,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     break;
                 case 6:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.09))));
+                            .parseInt(String.valueOf(Math.round(width*0.13))));
                     
             }
             
@@ -1116,8 +1125,12 @@ public final class PrincipalUI extends javax.swing.JFrame {
         Método responsável por configurar os tamanho da colunas na tabela de animais
     */
     private void configurar_tabela_animais() {
-         jTable_animais.setRowHeight(26);
+        jTable_animais.setRowHeight(26);
+        jTable_animais.getTableHeader().setBackground(Color.white);
+         
+         
         int columnCount = jTable_animais.getColumnCount();
+        
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
             dtcr.setHorizontalAlignment(SwingConstants.CENTER);
           
@@ -1128,7 +1141,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
             switch (i) {
                 case 0:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.05))));
+                            .parseInt(String.valueOf(Math.round(width*0.15))));
                     break;
                 case 1:
                     column.setPreferredWidth(Integer
@@ -1144,7 +1157,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     break;
                 case 4:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.30))));
+                            .parseInt(String.valueOf(Math.round(width*0.20))));
                     
             }
             
@@ -1159,8 +1172,11 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private void configurar_tabela_adocoes() {
         int columnCount = jTable_adocoes.getColumnCount();         
         DefaultTableCellRenderer dtcr;
-        
         jTable_adocoes.setRowHeight(26);
+        
+        jTable_adocoes.getTableHeader().setBackground(Color.WHITE);
+        
+        
         int width = jTable_adocoes.getWidth();
         for (int i = 0; i < columnCount; i++) {
             TableColumn column = jTable_adocoes.getColumnModel().getColumn(i);
@@ -1194,7 +1210,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 case 4:
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.10))));
-                    dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+                    dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     
             }
@@ -1206,7 +1222,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
       
         modelo_tabela_Informacoes.atualizar();
         
-        
+        jTable_informacoes.getTableHeader().setBackground(Color.WHITE);
         int columnCount = jTable_informacoes.getColumnCount();         
         DefaultTableCellRenderer dtcr;
         
@@ -1330,9 +1346,16 @@ public final class PrincipalUI extends javax.swing.JFrame {
        
        
        jTable_adocoes.setFont(fh.getLatoLight(16f));
+        jTable_adocoes.getTableHeader().setFont(fh.getLatoBold(19f));
+        
        jTable_animais.setFont(fh.getLatoLight(16f));
+        jTable_animais.getTableHeader().setFont(fh.getLatoBold(19f));
+        
        jTable_informacoes.setFont(fh.getLatoLight(16f));
+        jTable_informacoes.getTableHeader().setFont(fh.getLatoBold(19f));
+       
        jTable_usuarios.setFont(fh.getLatoLight(16f));
+        jTable_usuarios.getTableHeader().setFont(fh.getLatoBold(19f));
        
        
        btn_novo_cadastro_usuario.setFont(fh.getLatoBold(17f));
@@ -1350,9 +1373,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
        
        
        
-       jLabel_titulo_adocoes.setFont(fh.getLatoRegular(18f));
+       jLabel_titulo_adocoes.setFont(fh.getLatoBold(20f));
        jLabelPesquisaUsuarios.setFont(fh.getLatoRegular(18f));
-       jLabel_analiseDados.setFont(fh.getLatoRegular(18f));
+       jLabel_analiseDados.setFont(fh.getLatoBold(20f));
        jLabelToTtalDoacoe.setFont(fh.getLatoRegular(18f));
        
        

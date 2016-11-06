@@ -124,11 +124,11 @@ public class UsuarioDAO {
         Metodos responsável por deletar um usuario no bando de dados de acordo
         com o id passado como parametro
     */
-    public void delete(int id) throws SQLException{
+    public boolean delete(int id) throws SQLException{
         String sql = "delete from pessoa where idPessoa = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, id);
-            ps.execute();
+            return ps.execute();
             
         }
     }

@@ -54,12 +54,13 @@ public class UsuarioController {
         Método responsável por deletar um Usuario de acordo com id passado como
         parametro.
     */
-    public void delete(int id){
+    public boolean delete(int id){
         try(Connection c = new ConnectionPool().getConnection()){
-             new UsuarioDAO(c).delete(id);
+            return new UsuarioDAO(c).delete(id);
         } catch (SQLException e) {
              e.printStackTrace();
         }
+        return false;
     }
 
     public List<Usuario> findLikeName(String parametro) {

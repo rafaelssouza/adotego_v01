@@ -7,9 +7,13 @@ package adotego.view;
 
 import adotego.controller.UsuarioController;
 import adotego.modelos.Usuario;
+import adotego.util.FontHelper;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
 /**
@@ -29,6 +33,7 @@ public class Lista_usuarios extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         model_tabela_usuario = new Modelo_Tabela_Usuario();
         configurar_tabela();
+        configurarFontes();
 
     }
 
@@ -47,9 +52,9 @@ public class Lista_usuarios extends javax.swing.JFrame {
         btn_add_usuario = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(241, 240, 248));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jTable_lista_usuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,7 +69,9 @@ public class Lista_usuarios extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable_lista_usuario);
 
+        btn_add_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_add_usuario.setText("Adicionar");
+        btn_add_usuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_add_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_add_usuarioActionPerformed(evt);
@@ -79,25 +86,25 @@ public class Lista_usuarios extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_add_usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_add_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_add_usuario)
+                .addComponent(btn_add_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -167,10 +174,15 @@ public class Lista_usuarios extends javax.swing.JFrame {
 
     private void configurar_tabela() {
         jTable_lista_usuario.setModel(model_tabela_usuario);
+        jTable_lista_usuario.getTableHeader().setBackground(Color.WHITE);
+        jTable_lista_usuario.setRowHeight(18);
         int columnCount = jTable_lista_usuario.getColumnCount();
+         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
         for (int c = 0; c < columnCount; c++) {
             TableColumn column = jTable_lista_usuario.getColumnModel()
                     .getColumn(c);
+            column.setCellRenderer(dtcr);
             switch (c) {
                 case 0:
                     column.setPreferredWidth(110);
@@ -185,6 +197,16 @@ public class Lista_usuarios extends javax.swing.JFrame {
                     column.setPreferredWidth(100);
             }
         }
+    }
+
+    private void configurarFontes() {
+       FontHelper fh = new FontHelper();
+       jTable_lista_usuario.setFont(fh.getLatoRegular(15f));
+            jTable_lista_usuario.getTableHeader().setFont(fh.getLatoBold(15f));
+            
+       
+       btn_add_usuario.setFont(fh.getLatoBold(15f));
+       jLabel1.setFont(fh.getLatoLight(15f));
     }
 
 }

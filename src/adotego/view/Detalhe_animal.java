@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -40,11 +41,13 @@ public class Detalhe_animal extends javax.swing.JFrame {
             formatador = new Formatador();
             
             this.setLocationRelativeTo(null);
+            this.setTitle("Cadastro Animal");
             configurar_tabela();
             initJComboBox_especie();
             initJComboPorte();            
             construir_animal();
            configurarFontes();
+           configurarIcone();
 
         } catch (SQLException ex) {
             Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);
@@ -608,6 +611,11 @@ public class Detalhe_animal extends javax.swing.JFrame {
         jComboBox_porte.setFont(fh.getLatoRegular(14f));
         jComboBox_raca.setFont(fh.getLatoRegular(14f));
         jInternalFrameCadastro.getComponent(0).setFont(fh.getLatoBold(17f));
+    }
+
+    private void configurarIcone() {
+        ImageIcon icon = new ImageIcon("src/icones/Favicon.png");
+        this.setIconImage(icon.getImage());
     }
 
 }

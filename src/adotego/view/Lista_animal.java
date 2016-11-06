@@ -6,9 +6,14 @@
 package adotego.view;
 
 import adotego.modelos.Animal;
+import adotego.util.FontHelper;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -25,7 +30,11 @@ public class Lista_animal extends javax.swing.JFrame {
         model_tabela_animal = new Modelo_Tabela_Animal();
         
         this.setLocationRelativeTo(null);
-        init_tabela_animal();
+        
+        configurarTabelaAnimal();
+        configurarFontes();
+        
+        
     }
 
     /**
@@ -44,6 +53,7 @@ public class Lista_animal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Animais\n");
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jTable_animal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -61,7 +71,9 @@ public class Lista_animal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel1.setText("Selecione o animal para adoção");
 
+        btn_adicionar.setBackground(new java.awt.Color(255, 255, 255));
         btn_adicionar.setText("Adicionar");
+        btn_adicionar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_adicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_adicionarActionPerformed(evt);
@@ -73,24 +85,23 @@ public class Lista_animal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(44, 44, 44)
-                .addComponent(btn_adicionar)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_adicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(54, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_adicionar))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_adicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -150,6 +161,42 @@ public class Lista_animal extends javax.swing.JFrame {
     private void init_tabela_animal() {
         jTable_animal.setModel(model_tabela_animal);
         
+    }
+
+    private void configurarTabelaAnimal() {
+        init_tabela_animal();
+        
+         jTable_animal.setRowHeight(26);
+        jTable_animal.getTableHeader().setBackground(Color.WHITE);
+        int columnCount = jTable_animal.getColumnCount();
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+            dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+         
+        int width = jTable_animal.getWidth();
+        for (int i = 0; i < columnCount; i++) {
+            TableColumn column = jTable_animal.getColumnModel().getColumn(i);            
+            column.setCellRenderer(dtcr);
+            
+            switch (i) {
+                case 0:
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.80))));
+                    break;
+                case 1:
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.20))));
+                    break;
+                
+                    
+            }
+            
+        }
+    }
+
+    private void configurarFontes() {
+        FontHelper fh = new FontHelper();
+        jTable_animal.setFont(fh.getLatoRegular(15f));
+            jTable_animal.getTableHeader().setFont(fh.getLatoRegular(15f));
     }
 }
 

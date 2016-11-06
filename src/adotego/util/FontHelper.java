@@ -72,5 +72,57 @@ public class FontHelper {
         
         return null;
     }
+      
+      
+    public Font getRobotoSlabLight(float size) {
+        
+    
+        try {
+            Font novaFonte = Font.createFont(Font.TRUETYPE_FONT, new File("src/fontes/RobotoSlab-Light.ttf")).deriveFont(size);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/fontes/RobotoSlab-Light.ttf")));
+            
+            return novaFonte;
+        } catch (FontFormatException | IOException ex) {
+            Logger.getLogger(FontHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return null;
+    }
+      
+    public Font getRobotoSlabThin(float size) {
+        
+    
+        try {
+            Font novaFonte = Font.createFont(Font.TRUETYPE_FONT, new File("src/fontes/RobotoSlab-Thin.ttf")).deriveFont(size);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/fontes/RobotoSlab-Thin.ttf")));
+            
+            return novaFonte;
+        } catch (FontFormatException | IOException ex) {
+            Logger.getLogger(FontHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return null;
+    }  
+    
+     public Font getRobotoSlabRegular(float size) {
+        
+    
+        try {
+            Font novaFonte = Font.createFont(Font.TRUETYPE_FONT, new File("src/fontes/RobotoSlab-Regular.ttf")).deriveFont(size);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/fontes/RobotoSlab-Regular.ttf")));
+            
+            return novaFonte;
+        } catch (FontFormatException | IOException ex) {
+            Logger.getLogger(FontHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return null;
+    }  
     
 }

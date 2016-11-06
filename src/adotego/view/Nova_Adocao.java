@@ -8,12 +8,17 @@ package adotego.view;
 import adotego.modelos.Adocao;
 import adotego.modelos.Animal;
 import adotego.modelos.Usuario;
+import adotego.util.FontHelper;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -32,12 +37,16 @@ public class Nova_Adocao extends javax.swing.JFrame {
     public Nova_Adocao() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setTitle("Nova Adoção");
         modelo_animal_adocao = new Modelo_tabela_animal_adocao();
         modelo_usuario_adocao = new Modelo_tabela_usuario_adocao();
         jTable_animal_adocao.setModel(modelo_animal_adocao);
         jTable_usuario_adocao.setModel(modelo_usuario_adocao);
         usuario = new Usuario();
         animal = new Animal();
+        configurarTabelas();
+        configurarFontes();
+        configurarIcone();
         this.setLocationRelativeTo(null);
     }
 
@@ -51,7 +60,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jInternalFrameAdocao = new javax.swing.JInternalFrame();
         btn_gerar_adocao = new javax.swing.JButton();
         txt_doacao = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -67,12 +76,15 @@ public class Nova_Adocao extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(241, 243, 244));
 
-        jInternalFrame1.setTitle("Nova Adoção");
-        jInternalFrame1.setVisible(true);
+        jInternalFrameAdocao.setBackground(new java.awt.Color(255, 255, 255));
+        jInternalFrameAdocao.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jInternalFrameAdocao.setTitle("Nova Adoção");
+        jInternalFrameAdocao.setVisible(true);
 
         btn_gerar_adocao.setBackground(new java.awt.Color(255, 255, 255));
         btn_gerar_adocao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_gerar_adocao.setText("Gerar");
+        btn_gerar_adocao.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_gerar_adocao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_gerar_adocaoActionPerformed(evt);
@@ -84,6 +96,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
         btn_selecionar_animal.setBackground(new java.awt.Color(255, 255, 255));
         btn_selecionar_animal.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_selecionar_animal.setText("Selecionar Animal");
+        btn_selecionar_animal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_selecionar_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_selecionar_animalActionPerformed(evt);
@@ -106,6 +119,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
         btn_selecionar_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_selecionar_usuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_selecionar_usuario.setText("Selecionar Usuario");
+        btn_selecionar_usuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_selecionar_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_selecionar_usuarioActionPerformed(evt);
@@ -125,42 +139,46 @@ public class Nova_Adocao extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable_usuario_adocao);
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_gerar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jInternalFrameAdocaoLayout = new javax.swing.GroupLayout(jInternalFrameAdocao.getContentPane());
+        jInternalFrameAdocao.getContentPane().setLayout(jInternalFrameAdocaoLayout);
+        jInternalFrameAdocaoLayout.setHorizontalGroup(
+            jInternalFrameAdocaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrameAdocaoLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(jInternalFrameAdocaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_gerar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jInternalFrameAdocaoLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_selecionar_animal)
-                    .addComponent(btn_selecionar_usuario))
-                .addContainerGap(49, Short.MAX_VALUE))
+                        .addComponent(txt_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(45, Short.MAX_VALUE))
+            .addGroup(jInternalFrameAdocaoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jInternalFrameAdocaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_selecionar_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_selecionar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+        jInternalFrameAdocaoLayout.setVerticalGroup(
+            jInternalFrameAdocaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrameAdocaoLayout.createSequentialGroup()
                 .addContainerGap(92, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_selecionar_usuario)
-                .addGap(40, 40, 40)
+                .addComponent(btn_selecionar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_selecionar_animal)
-                .addGap(52, 52, 52)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btn_selecionar_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(jInternalFrameAdocaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addComponent(btn_gerar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_gerar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -168,12 +186,12 @@ public class Nova_Adocao extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jInternalFrameAdocao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jInternalFrameAdocao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -249,7 +267,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
     private javax.swing.JButton btn_gerar_adocao;
     private javax.swing.JButton btn_selecionar_animal;
     private javax.swing.JButton btn_selecionar_usuario;
-    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JInternalFrame jInternalFrameAdocao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -267,6 +285,90 @@ public class Nova_Adocao extends javax.swing.JFrame {
         Nova_Adocao.animal = a;
         modelo_animal_adocao.inserirAnimal(animal);
     }        
+
+    private void configurarFontes() {
+       FontHelper fh = new FontHelper();
+       
+       jTable_animal_adocao.setFont(fh.getLatoRegular(15f));
+            jTable_animal_adocao.getTableHeader().setFont(fh.getLatoBold(18f));
+       
+       jTable_usuario_adocao.setFont(fh.getLatoRegular(15f));
+            jTable_usuario_adocao.getTableHeader().setFont(fh.getLatoBold(18f));
+            
+            
+       btn_gerar_adocao.setFont(fh.getLatoBold(16f));
+       btn_selecionar_animal.setFont(fh.getLatoBold(16f));
+       btn_selecionar_usuario.setFont(fh.getLatoBold(16f));
+       jInternalFrameAdocao.setFont(fh.getLatoBold(17f));
+    }
+
+    private void configurarTabelas() {
+        configurarTabelaUsuarios();
+        configurarTabelaAdocao();
+    }
+
+    private void configurarTabelaUsuarios() {
+          jTable_animal_adocao.setRowHeight(26);
+        jTable_animal_adocao.getTableHeader().setBackground(Color.WHITE);
+        int columnCount = jTable_animal_adocao.getColumnCount();
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+            dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+         
+        int width = jTable_animal_adocao.getWidth();
+        for (int i = 0; i < columnCount; i++) {
+            TableColumn column = jTable_animal_adocao.getColumnModel().getColumn(i);            
+            column.setCellRenderer(dtcr);
+            
+            switch (i) {
+                case 0:
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.20))));
+                    break;
+                case 1:
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.80))));
+                    break;
+                
+                    
+            }
+            
+        }
+    }
+
+    private void configurarTabelaAdocao() {
+         jTable_usuario_adocao.setRowHeight(26);
+        jTable_usuario_adocao.getTableHeader().setBackground(Color.WHITE);
+        int columnCount = jTable_usuario_adocao.getColumnCount();
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+            dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+         
+        int width = jTable_usuario_adocao.getWidth();
+        for (int i = 0; i < columnCount; i++) {
+            TableColumn column = jTable_usuario_adocao.getColumnModel().getColumn(i);            
+            column.setCellRenderer(dtcr);
+            
+            switch (i) {
+                case 0:
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.20))));
+                    break;
+                case 1:
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.80))));
+                    break;
+                
+                    
+            }
+            
+        }
+    }
+
+    private void configurarIcone() {
+        ImageIcon icon = new ImageIcon("src/icones/Favicon.png");
+        
+        
+        this.setIconImage(icon.getImage());
+    }
 }
 
 class Modelo_tabela_animal_adocao extends AbstractTableModel{
