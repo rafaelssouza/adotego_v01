@@ -10,6 +10,7 @@ import adotego.modelos.Usuario;
 import adotego.util.FontHelper;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.AbstractTableModel;
@@ -34,6 +35,7 @@ public class Lista_usuarios extends javax.swing.JFrame {
         model_tabela_usuario = new Modelo_Tabela_Usuario();
         configurar_tabela();
         configurarFontes();
+        configurar_icones();
 
     }
 
@@ -71,7 +73,7 @@ public class Lista_usuarios extends javax.swing.JFrame {
 
         btn_add_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_add_usuario.setText("Adicionar");
-        btn_add_usuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_add_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_add_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_add_usuarioActionPerformed(evt);
@@ -207,6 +209,11 @@ public class Lista_usuarios extends javax.swing.JFrame {
        
        btn_add_usuario.setFont(fh.getLatoBold(15f));
        jLabel1.setFont(fh.getLatoLight(15f));
+    }
+
+    private void configurar_icones() {
+      ImageIcon icon = new ImageIcon("src/icones/Favicon.png");               
+      this.setIconImage(icon.getImage());
     }
 
 }

@@ -9,6 +9,7 @@ import adotego.modelos.Animal;
 import adotego.util.FontHelper;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.AbstractTableModel;
@@ -33,6 +34,7 @@ public class Lista_animal extends javax.swing.JFrame {
         
         configurarTabelaAnimal();
         configurarFontes();
+        configurar_icones();
         
         
     }
@@ -73,7 +75,7 @@ public class Lista_animal extends javax.swing.JFrame {
 
         btn_adicionar.setBackground(new java.awt.Color(255, 255, 255));
         btn_adicionar.setText("Adicionar");
-        btn_adicionar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_adicionar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_adicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_adicionarActionPerformed(evt);
@@ -197,6 +199,15 @@ public class Lista_animal extends javax.swing.JFrame {
         FontHelper fh = new FontHelper();
         jTable_animal.setFont(fh.getLatoRegular(15f));
             jTable_animal.getTableHeader().setFont(fh.getLatoRegular(15f));
+    }
+     private void configurar_icones() {
+        ImageIcon icon = new ImageIcon("src/icones/Favicon.png");
+        
+        
+        this.setIconImage(icon.getImage());
+        
+     
+        
     }
 }
 

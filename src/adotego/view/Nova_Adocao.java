@@ -78,13 +78,12 @@ public class Nova_Adocao extends javax.swing.JFrame {
 
         jInternalFrameAdocao.setBackground(new java.awt.Color(255, 255, 255));
         jInternalFrameAdocao.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jInternalFrameAdocao.setTitle("Nova Adoção");
         jInternalFrameAdocao.setVisible(true);
 
         btn_gerar_adocao.setBackground(new java.awt.Color(255, 255, 255));
         btn_gerar_adocao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_gerar_adocao.setText("Gerar");
-        btn_gerar_adocao.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_gerar_adocao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_gerar_adocao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_gerar_adocaoActionPerformed(evt);
@@ -177,8 +176,8 @@ public class Nova_Adocao extends javax.swing.JFrame {
                     .addComponent(txt_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_gerar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addComponent(btn_gerar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

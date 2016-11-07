@@ -6,6 +6,8 @@ import adotego.modelos.Raca;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -54,9 +56,12 @@ public class RacaController {
         }
     }
     
-    public List<Raca> findRacaByEspecieName(String nome) throws SQLException{
+    public List<Raca> findRacaByEspecieName(String nome){
         try(Connection conn = new ConnectionPool().getConnection()){
             return new RacaDAO(conn).findRacaByEspecieName(nome);
+        } catch (SQLException ex) {
+            Logger.getLogger(RacaController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 }

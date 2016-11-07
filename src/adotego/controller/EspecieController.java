@@ -32,10 +32,13 @@ public class EspecieController {
        return null;
     }
     
-     public Especie getByName(String nome) throws SQLException{
+     public Especie getByName(String nome) {
         try(Connection conn = new ConnectionPool().getConnection()){
             return new adotego.dao.EspecieDAO(conn).findByName(nome);
+        } catch (SQLException ex) {
+            Logger.getLogger(EspecieController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     public Especie findByRaca(Raca raca) {

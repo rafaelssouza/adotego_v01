@@ -8,6 +8,8 @@ package adotego.view;
 import adotego.controller.EspecieController;
 import adotego.modelos.Especie;
 import adotego.modelos.Raca;
+import adotego.util.FontHelper;
+import adotego.util.Formatador;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,14 +21,19 @@ import java.util.logging.Logger;
  */
 public class Nova_raca extends javax.swing.JFrame {
 
+    private Formatador formatador;
+    
     /**
      * Creates new form Nova_raca
      */
     public Nova_raca() {
         initComponents();
         label_confirmacao_cadastro_raca.setVisible(false);
+        formatador = new Formatador();
         initJComboBox_especie2();
         this.setLocationRelativeTo(null);
+        configurarFontes();
+        
     }
 
     /**
@@ -40,29 +47,33 @@ public class Nova_raca extends javax.swing.JFrame {
 
         jLabel4 = new javax.swing.JLabel();
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelEspecie = new javax.swing.JLabel();
         jComboBox_especie2 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelNome = new javax.swing.JLabel();
         txt_nova_raca = new javax.swing.JTextField();
         label_confirmacao_cadastro_raca = new javax.swing.JLabel();
         btn_cadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jInternalFrame1.setTitle("Cadastro de Raça");
+        jInternalFrame1.setBackground(new java.awt.Color(255, 255, 255));
+        jInternalFrame1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jInternalFrame1.setVisible(true);
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel3.setText("Especie");
+        jLabelEspecie.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabelEspecie.setText("Especie");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel2.setText("Nome");
+        jComboBox_especie2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabelNome.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabelNome.setText("Nome");
 
         label_confirmacao_cadastro_raca.setText("Cadastro efetuado!");
 
         btn_cadastrar.setBackground(new java.awt.Color(255, 255, 255));
         btn_cadastrar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_cadastrar.setText("Cadastrar");
+        btn_cadastrar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cadastrarActionPerformed(evt);
@@ -74,36 +85,36 @@ public class Nova_raca extends javax.swing.JFrame {
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(255, 255, 255)
-                        .addComponent(btn_cadastrar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jInternalFrame1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_nova_raca, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
+                            .addComponent(jLabelNome)
                             .addComponent(jComboBox_especie2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
+                            .addComponent(jLabelEspecie)
                             .addComponent(label_confirmacao_cadastro_raca, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jLabel3)
+                .addComponent(jLabelEspecie)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox_especie2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(jLabelNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_nova_raca, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(label_confirmacao_cadastro_raca, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_cadastrar)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addComponent(btn_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,8 +123,8 @@ public class Nova_raca extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
-            .addComponent(jInternalFrame1)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,9 +213,9 @@ public class Nova_raca extends javax.swing.JFrame {
     private javax.swing.JButton btn_cadastrar;
     private javax.swing.JComboBox<String> jComboBox_especie2;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelEspecie;
+    private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel label_confirmacao_cadastro_raca;
     private javax.swing.JTextField txt_nova_raca;
     // End of variables declaration//GEN-END:variables
@@ -214,8 +225,18 @@ public class Nova_raca extends javax.swing.JFrame {
         List<Especie> lista_especie = new EspecieController().findAll();
 
         lista_especie.stream().forEach((especie) -> {
-            jComboBox_especie2.addItem(especie.getNome());
+            jComboBox_especie2
+                    .addItem(formatador
+                            .formatarPrimeiraLetraMaiuscula(especie.getNome()));
         });
         
+    }
+
+    private void configurarFontes() {
+        FontHelper fh = new FontHelper();
+        jComboBox_especie2.setFont(fh.getLatoRegular(14f));
+        jLabelEspecie.setFont(fh.getLatoRegular(14f));
+        jLabelNome.setFont(fh.getLatoRegular(14f));
+        label_confirmacao_cadastro_raca.setFont(fh.getLatoRegular(14f));
     }
 }

@@ -5,6 +5,7 @@ import adotego.modelos.Endereco;
 import adotego.modelos.Tabela_usuarios;
 import adotego.modelos.Usuario;
 import adotego.util.FontHelper;
+import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -72,7 +73,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jLabelNumero = new javax.swing.JLabel();
         txt_numero = new javax.swing.JTextField();
         txt_id = new javax.swing.JLabel();
-        jLabelConfiguracoesUsuario = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_usuarios = new javax.swing.JTable();
         btn_add_usuario = new javax.swing.JButton();
@@ -210,9 +210,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_id.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txt_id.setText("ID:");
 
-        jLabelConfiguracoesUsuario.setFont(new java.awt.Font("Waree", 0, 18)); // NOI18N
-        jLabelConfiguracoesUsuario.setText("Configurações de usuario");
-
         jTable_usuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -252,7 +249,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         btn_salvar_usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_salvar_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/plus.png"))); // NOI18N
         btn_salvar_usuario.setText("Salvar");
-        btn_salvar_usuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_salvar_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_salvar_usuario.setFocusable(false);
         btn_salvar_usuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_salvar_usuario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -266,7 +263,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         btn_excluir.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cross.png"))); // NOI18N
         btn_excluir.setText("Excluir");
-        btn_excluir.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_excluir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_excluir.setFocusable(false);
         btn_excluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_excluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -280,7 +277,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jButton_nova_adocao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButton_nova_adocao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/animal-paw-print.png"))); // NOI18N
         jButton_nova_adocao.setText("Nova Adoção");
-        jButton_nova_adocao.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton_nova_adocao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jButton_nova_adocao.setFocusable(false);
         jButton_nova_adocao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton_nova_adocao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -294,7 +291,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jButton_nova_doacao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButton_nova_doacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/coins.png"))); // NOI18N
         jButton_nova_doacao.setText("Nova Doação");
-        jButton_nova_doacao.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton_nova_doacao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jButton_nova_doacao.setFocusable(false);
         jButton_nova_doacao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton_nova_doacao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -352,17 +349,13 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                                                     .addComponent(txt_cep)
                                                     .addComponent(txt_rua)
                                                     .addComponent(txt_bairro))))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btn_add_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+                                        .addComponent(btn_add_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton_nova_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton_nova_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(txt_id)
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGap(157, 157, 157)
-                                .addComponent(jLabelConfiguracoesUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txt_id)))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(label_aux, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -381,9 +374,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabelConfiguracoesUsuario)
-                .addGap(19, 19, 19)
+                .addGap(77, 77, 77)
                 .addComponent(txt_id)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNome)
@@ -695,7 +686,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCelular;
     private javax.swing.JLabel jLabelCep;
     private javax.swing.JLabel jLabelCidade;
-    private javax.swing.JLabel jLabelConfiguracoesUsuario;
     private javax.swing.JLabel jLabelCpf;
     private javax.swing.JLabel jLabelDataNascimento;
     private javax.swing.JLabel jLabelEmail;
@@ -915,8 +905,9 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         btn_salvar_usuario.setFont(fh.getLatoBold(16f));
         
         jTable_usuarios.setFont(fh.getLatoRegular(16f));
+        jTable_usuarios.getTableHeader().setFont(fh.getLatoBold(15f));
         jLabelUsuariosCadastrados.setFont(fh.getLatoBold(16f));
-        jLabelConfiguracoesUsuario.setFont(fh.getLatoBold(18f));
+     
         
         
     }
@@ -924,6 +915,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     private void configurarTabela() {
         int columnCount = jTable_usuarios.getColumnCount();         
         DefaultTableCellRenderer dtcr;
+        jTable_usuarios.getTableHeader().setBackground(Color.WHITE);
         
         jTable_usuarios.setRowHeight(26);
         int width = jTable_usuarios.getWidth();
@@ -935,14 +927,14 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.15))));
+                            .parseInt(String.valueOf(Math.round(width*0.25))));
                     
                 }break;
                 case 1:{
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.85))));
+                            .parseInt(String.valueOf(Math.round(width*0.75))));
                     
                 }break;    
                     

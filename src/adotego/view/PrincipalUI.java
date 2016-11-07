@@ -116,16 +116,19 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_novo_cadastro_animal = new javax.swing.JButton();
         jButton_atualiza_animal = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         jMenuBar_menu = new javax.swing.JMenuBar();
         menuItemNovaRaca = new javax.swing.JMenu();
         jMenuItemNovoUsuario = new javax.swing.JMenuItem();
         jMenuItemNovaRaca = new javax.swing.JMenuItem();
-        JMenuItemNovoUsuario = new javax.swing.JMenuItem();
+        JMenuItemNovoUsuario2 = new javax.swing.JMenuItem();
         jMenuItem_novo_animal = new javax.swing.JMenuItem();
         jMenuItemNovaAdocao = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
         menu_pesquisar = new javax.swing.JMenu();
         menu_relatorio = new javax.swing.JMenu();
+        jMenuItemNovoRelatorio = new javax.swing.JMenuItem();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -150,7 +153,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jInternalFrame_informacoes.setBackground(new java.awt.Color(255, 255, 255));
         jInternalFrame_informacoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jInternalFrame_informacoes.setTitle("Informações");
+        jInternalFrame_informacoes.setOpaque(false);
         jInternalFrame_informacoes.setVisible(true);
         jInternalFrame_informacoes.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -176,7 +179,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jButton_atualiza_informacoes.setBackground(new java.awt.Color(255, 255, 255));
         jButton_atualiza_informacoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
-        jButton_atualiza_informacoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton_atualiza_informacoes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jButton_atualiza_informacoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_atualiza_informacoesActionPerformed(evt);
@@ -204,9 +207,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel_analiseDados, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel_analiseDados, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_atualiza_informacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -235,7 +239,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_atualizar_tabela_adocoes.setBackground(new java.awt.Color(255, 255, 255));
         btn_atualizar_tabela_adocoes.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_atualizar_tabela_adocoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
-        btn_atualizar_tabela_adocoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_atualizar_tabela_adocoes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_atualizar_tabela_adocoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_atualizar_tabela_adocoesActionPerformed(evt);
@@ -266,9 +270,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel_titulo_adocoes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -314,7 +319,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jInternalFrame_usuarios.setBackground(new java.awt.Color(255, 255, 255));
         jInternalFrame_usuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jInternalFrame_usuarios.setTitle("Controle de Usuarios");
         jInternalFrame_usuarios.setVisible(true);
 
         jTable_usuarios.setModel(new javax.swing.table.DefaultTableModel(
@@ -338,7 +342,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_excluir_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_excluir_usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_excluir_usuario.setText("Excluir");
-        btn_excluir_usuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_excluir_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_excluir_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_excluir_usuarioActionPerformed(evt);
@@ -348,7 +352,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_editar_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_editar_usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_editar_usuario.setText("Editar");
-        btn_editar_usuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_editar_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_editar_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editar_usuarioActionPerformed(evt);
@@ -367,7 +371,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_novo_cadastro_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_novo_cadastro_usuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_novo_cadastro_usuario.setText("Novo Cadastro");
-        btn_novo_cadastro_usuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_novo_cadastro_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_novo_cadastro_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_novo_cadastro_usuarioActionPerformed(evt);
@@ -376,7 +380,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         btn_atualiza_tabela_usuarios.setBackground(new java.awt.Color(255, 255, 255));
         btn_atualiza_tabela_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
-        btn_atualiza_tabela_usuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_atualiza_tabela_usuarios.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_atualiza_tabela_usuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_atualiza_tabela_usuariosActionPerformed(evt);
@@ -445,7 +449,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jInternalFrame_animais.setBackground(new java.awt.Color(255, 255, 255));
         jInternalFrame_animais.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jInternalFrame_animais.setResizable(true);
-        jInternalFrame_animais.setTitle("Controle de Animais");
         jInternalFrame_animais.setVisible(true);
 
         jTable_animais.setModel(new javax.swing.table.DefaultTableModel(
@@ -464,7 +467,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_editar_animal.setBackground(new java.awt.Color(255, 255, 255));
         btn_editar_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_editar_animal.setText("Editar");
-        btn_editar_animal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_editar_animal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_editar_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editar_animalActionPerformed(evt);
@@ -474,7 +477,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_excluir_animal.setBackground(new java.awt.Color(255, 255, 255));
         btn_excluir_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_excluir_animal.setText("Excluir");
-        btn_excluir_animal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_excluir_animal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_excluir_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_excluir_animalActionPerformed(evt);
@@ -484,7 +487,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_filtrar_animais.setBackground(new java.awt.Color(255, 255, 255));
         btn_filtrar_animais.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_filtrar_animais.setText("Filtrar");
-        btn_filtrar_animais.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_filtrar_animais.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_filtrar_animais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_filtrar_animaisActionPerformed(evt);
@@ -508,7 +511,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_novo_cadastro_animal.setBackground(new java.awt.Color(255, 255, 255));
         btn_novo_cadastro_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_novo_cadastro_animal.setText("Novo Cadastro");
-        btn_novo_cadastro_animal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_novo_cadastro_animal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_novo_cadastro_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_novo_cadastro_animalActionPerformed(evt);
@@ -517,7 +520,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jButton_atualiza_animal.setBackground(new java.awt.Color(255, 255, 255));
         jButton_atualiza_animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
-        jButton_atualiza_animal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton_atualiza_animal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jButton_atualiza_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_atualiza_animalActionPerformed(evt);
@@ -590,6 +593,34 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jTabbedPane2.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane_abas.addTab("Controle de Doações", jTabbedPane2);
 
+        jInternalFrame1.setBackground(new java.awt.Color(255, 255, 255));
+        jInternalFrame1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1153, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 470, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jInternalFrame1)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jInternalFrame1)
+        );
+
+        jTabbedPane_abas.addTab("Controle de Raças", jPanel5);
+
         jMenuBar_menu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         menuItemNovaRaca.setText("Arquivo");
@@ -620,14 +651,14 @@ public final class PrincipalUI extends javax.swing.JFrame {
         });
         menuItemNovaRaca.add(jMenuItemNovaRaca);
 
-        JMenuItemNovoUsuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        JMenuItemNovoUsuario.setText("Novo Usuario");
-        JMenuItemNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
+        JMenuItemNovoUsuario2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        JMenuItemNovoUsuario2.setText("Novo Usuario");
+        JMenuItemNovoUsuario2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JMenuItemNovoUsuarioActionPerformed(evt);
+                JMenuItemNovoUsuario2ActionPerformed(evt);
             }
         });
-        menuItemNovaRaca.add(JMenuItemNovoUsuario);
+        menuItemNovaRaca.add(JMenuItemNovoUsuario2);
 
         jMenuItem_novo_animal.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMenuItem_novo_animal.setText("Novo Animal");
@@ -664,6 +695,15 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         menu_relatorio.setText("Relatório");
         menu_relatorio.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
+        jMenuItemNovoRelatorio.setText("Novo Relatório");
+        jMenuItemNovoRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNovoRelatorioActionPerformed(evt);
+            }
+        });
+        menu_relatorio.add(jMenuItemNovoRelatorio);
+
         jMenuBar_menu.add(menu_relatorio);
 
         setJMenuBar(jMenuBar_menu);
@@ -718,15 +758,15 @@ public final class PrincipalUI extends javax.swing.JFrame {
     
     //evento lançado quando o botão Nova Cadastro no menu 'Arquivo' for clicado
     //abre a janela de cadastro de usuarios;
-    private void JMenuItemNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemNovoUsuarioActionPerformed
+    private void JMenuItemNovoUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemNovoUsuario2ActionPerformed
         new Detalhe_usuario().setVisible(true);
-    }//GEN-LAST:event_JMenuItemNovoUsuarioActionPerformed
+    }//GEN-LAST:event_JMenuItemNovoUsuario2ActionPerformed
     
     //método chamado quando o item selecionado do JComboBox de especie para pesqusa
     // for chamado.
     private void jCombo_box_especie_pesquisaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCombo_box_especie_pesquisaItemStateChanged
         
-        try {
+        
             //se o item selecionado nao for o primeiro, pois o valor do primeiro
             //item é apenas uma título e não uma especie
             if (jCombo_box_especie_pesquisa.getSelectedIndex() != 0) {
@@ -745,9 +785,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
             }else{
                 refresh_JCombo_box_raca_pesquisa(null);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_jCombo_box_especie_pesquisaItemStateChanged
     
     /*
@@ -929,6 +967,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_jMenuItemSairActionPerformed
+
+    private void jMenuItemNovoRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoRelatorioActionPerformed
+        new NovoRelatorio().setVisible(true);
+    }//GEN-LAST:event_jMenuItemNovoRelatorioActionPerformed
     
     /**
      * @param args the command line arguments
@@ -966,7 +1008,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem JMenuItemNovoUsuario;
+    private javax.swing.JMenuItem JMenuItemNovoUsuario2;
     private javax.swing.JButton btn_atualiza_tabela_usuarios;
     private javax.swing.JButton btn_atualizar_tabela_adocoes;
     private javax.swing.JButton btn_editar_animal;
@@ -984,6 +1026,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCombo_box_opcoes_busca;
     private javax.swing.JComboBox<String> jCombo_box_raca_pesquisa;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame_animais;
     private javax.swing.JInternalFrame jInternalFrame_informacoes;
     private javax.swing.JInternalFrame jInternalFrame_usuarios;
@@ -994,6 +1037,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar_menu;
     private javax.swing.JMenuItem jMenuItemNovaAdocao;
     private javax.swing.JMenuItem jMenuItemNovaRaca;
+    private javax.swing.JMenuItem jMenuItemNovoRelatorio;
     private javax.swing.JMenuItem jMenuItemNovoUsuario;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItem_novo_animal;
@@ -1001,6 +1045,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1039,7 +1084,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
             jCombo_box_raca_pesquisa.removeAllItems();
             jCombo_box_raca_pesquisa.addItem("Raça");
             lista.stream().forEach((raca) -> {
-                jCombo_box_raca_pesquisa.addItem(raca.getNome());
+                jCombo_box_raca_pesquisa
+                        .addItem(formatador
+                                .formatarPrimeiraLetraMaiuscula(raca.getNome()));
             });
         }
     }
@@ -1329,33 +1376,34 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private void configurarFontes() {
         FontHelper fh = new FontHelper();
         
-       jInternalFrame_animais.getComponent(WIDTH).setFont(fh.getLatoBold(17f));
-       jInternalFrame_informacoes.getComponent(WIDTH).setFont(fh.getLatoBold(17f));
-       jInternalFrame_usuarios.getComponent(WIDTH).setFont(fh.getLatoBold(17f));
+       jInternalFrame_animais.getComponent(WIDTH).setFont(fh.getLatoRegular(16f));
+       jInternalFrame_informacoes.getComponent(WIDTH).setFont(fh.getLatoRegular(16f));
+       jInternalFrame_usuarios.getComponent(WIDTH).setFont(fh.getLatoRegular(16f));
        jTabbedPane_abas.setFont(fh.getLatoRegular(14f));
       
        menuItemNovaRaca.setFont(fh.getLatoBold(15f));     
        menu_pesquisar.setFont(fh.getLatoBold(15f));
        menu_relatorio.setFont(fh.getLatoBold(15f));
        
-       jMenuItemNovaRaca.setFont(fh.getLatoBold(15f));
-       jMenuItemNovaAdocao.setFont(fh.getLatoBold(15f));
-       jMenuItemNovoUsuario.setFont(fh.getLatoBold(15f));
-       jMenuItemSair.setFont(fh.getLatoBold(15f));
-       jMenuItem_novo_animal.setFont(fh.getLatoBold(15f));
+       JMenuItemNovoUsuario2.setFont(fh.getLatoRegular(15f));
+       jMenuItemNovaRaca.setFont(fh.getLatoRegular(15f));
+       jMenuItemNovaAdocao.setFont(fh.getLatoRegular(15f));
+       jMenuItemNovoUsuario.setFont(fh.getLatoRegular(15f));
+       jMenuItemSair.setFont(fh.getLatoRegular(15f));
+       jMenuItem_novo_animal.setFont(fh.getLatoRegular(15f));
        
        
        jTable_adocoes.setFont(fh.getLatoLight(16f));
-        jTable_adocoes.getTableHeader().setFont(fh.getLatoBold(19f));
+            jTable_adocoes.getTableHeader().setFont(fh.getLatoBold(17f));
         
        jTable_animais.setFont(fh.getLatoLight(16f));
-        jTable_animais.getTableHeader().setFont(fh.getLatoBold(19f));
+            jTable_animais.getTableHeader().setFont(fh.getLatoBold(17f));
         
        jTable_informacoes.setFont(fh.getLatoLight(16f));
-        jTable_informacoes.getTableHeader().setFont(fh.getLatoBold(19f));
+            jTable_informacoes.getTableHeader().setFont(fh.getLatoBold(17f));
        
        jTable_usuarios.setFont(fh.getLatoLight(16f));
-        jTable_usuarios.getTableHeader().setFont(fh.getLatoBold(19f));
+            jTable_usuarios.getTableHeader().setFont(fh.getLatoBold(17f));
        
        
        btn_novo_cadastro_usuario.setFont(fh.getLatoBold(17f));
@@ -1369,13 +1417,11 @@ public final class PrincipalUI extends javax.swing.JFrame {
        jCombo_box_especie_pesquisa.setFont(fh.getLatoRegular(15f));
        jCombo_box_opcoes_busca.setFont(fh.getLatoRegular(15f));
        jCombo_box_raca_pesquisa.setFont(fh.getLatoRegular(15f));
-       jComboBox_situacao_pesquisa.setFont(fh.getLatoRegular(15f));
+       jComboBox_situacao_pesquisa.setFont(fh.getLatoRegular(15f));              
        
-       
-       
-       jLabel_titulo_adocoes.setFont(fh.getLatoBold(20f));
+       jLabel_titulo_adocoes.setFont(fh.getLatoRegular(21f));
        jLabelPesquisaUsuarios.setFont(fh.getLatoRegular(18f));
-       jLabel_analiseDados.setFont(fh.getLatoBold(20f));
+       jLabel_analiseDados.setFont(fh.getLatoRegular(21f));
        jLabelToTtalDoacoe.setFont(fh.getLatoRegular(18f));
        
        
