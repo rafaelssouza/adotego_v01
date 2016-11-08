@@ -33,9 +33,11 @@ public class AnimalController {
         Metodos responsável por criar uma conexao e chamar o metodo save() do
         DAO Usuario, 
     */
-    public void save(Animal a) throws SQLException{
+    public void save(Animal a){
         try(Connection c = new ConnectionPool().getConnection()){
             new AnimalDAO(c).save(a);
+        }catch(SQLException ex){
+            Logger.getLogger(AnimalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

@@ -44,7 +44,7 @@ public class Tabela_usuarios extends AbstractTableModel{
     }
     
     public int getIdIntoTheRow(JTable table){
-        int row =table.getSelectedRow();
+        int row = table.getSelectedRow();
         String val = String.valueOf(table.getValueAt(row, 0));
         return Integer.parseInt(val);
     }
