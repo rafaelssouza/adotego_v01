@@ -47,7 +47,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
         configurarTabelas();
         configurarFontes();
         configurarIcone();
-        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -220,7 +220,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
         Adocao adocao = new Adocao();
         adocao.setAnimal(this.animal);
         adocao.setUsuario(this.usuario);
-        adocao.setValor(Double.parseDouble(txt_doacao.getText().trim()));
+ //       adocao.setValor(Double.parseDouble(txt_doacao.getText().trim()));
         adocao.setData(Calendar.getInstance());
         new adotego.controller.AdocaoController().salvar(adocao);
         new adotego.controller.AnimalController().setarComoAdotado(animal);

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
     Classe responsável por criar umm objeto Connection.sql e envia-lo para o dao
@@ -48,6 +49,25 @@ public class UsuarioController {
             e.printStackTrace();
         }
         return null;   
+    }
+    
+        public boolean verificaSePessoaEstaEmUmaAdocao(int id) {
+        int verificaID = 0;
+
+        try (Connection c = new ConnectionPool().getConnection()) {
+            verificaID = new UsuarioDAO(c).verificaUsuarioDoacao(id);
+            if (verificaID > 0) {
+                JOptionPane.showMessageDialog(null, "A pessoa selecionada não pode ser excluído pois já percente a uma adoção");
+            } else {
+                int confirma = JOptionPane.showConfirmDialog(null, "Desja excluir a pessoa selecionada?\nID:" + id);
+                if (confirma == 0) {
+                    delete(id);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AnimalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
     
     /*

@@ -254,6 +254,23 @@ public class UsuarioDAO {
                 pstm.executeUpdate();
         }
     }
-    
+        public int verificaUsuarioDoacao(int id) throws SQLException {
+        int retornoId = 0;
+        String sql = "SELECT p.idpessoa from pessoa p JOIN adocao a on p.idpessoa = a.adocao_idpessoa where p.idpessoa = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeQuery();
+
+            try (ResultSet rs = ps.getResultSet()) {
+                while (rs.next()) {
+                    Usuario usuario = new Usuario();
+                    usuario.setId(rs.getInt("idpessoa"));
+                    retornoId = usuario.getId();
+                    return retornoId;
+                }
+            }
+        }
+        return retornoId;
+    }
     
 }

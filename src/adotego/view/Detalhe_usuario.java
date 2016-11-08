@@ -80,7 +80,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         label_aux = new javax.swing.JLabel();
         txt_telefone_fixo = new javax.swing.JFormattedTextField();
         btn_salvar_usuario = new javax.swing.JButton();
-        btn_excluir = new javax.swing.JButton();
         jButton_nova_adocao = new javax.swing.JButton();
         jButton_nova_doacao = new javax.swing.JButton();
 
@@ -259,20 +258,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
             }
         });
 
-        btn_excluir.setBackground(new java.awt.Color(255, 255, 255));
-        btn_excluir.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cross.png"))); // NOI18N
-        btn_excluir.setText("Excluir");
-        btn_excluir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        btn_excluir.setFocusable(false);
-        btn_excluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_excluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_excluirActionPerformed(evt);
-            }
-        });
-
         jButton_nova_adocao.setBackground(new java.awt.Color(255, 255, 255));
         jButton_nova_adocao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButton_nova_adocao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/animal-paw-print.png"))); // NOI18N
@@ -322,9 +307,8 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                                     .addComponent(txt_cpf)
                                     .addComponent(txt_telefone_fixo, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                                        .addComponent(btn_salvar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btn_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(btn_salvar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)))
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -352,9 +336,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                                         .addComponent(btn_add_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton_nova_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton_nova_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jButton_nova_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton_nova_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addComponent(txt_id)))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -368,7 +353,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jLabelUsuariosCadastrados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -421,7 +406,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_salvar_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(btn_excluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton_nova_doacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton_nova_adocao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(51, Short.MAX_VALUE))
@@ -611,19 +595,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_bairroFocusLost
     
-    /*
-        Este método identifica qual usuario esta sendo utilizado para preencher
-        os inputs e realiza a exclusão dele no banco de daodos.
-    */
-    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
-        if (usuario.getId() != null) {
-            new UsuarioController().delete(usuario.getId());
-        } else {
-            label_aux.setText("Selecione um na tabela usuario para excluir");
-            label_aux.setVisible(true);
-        }
-    }//GEN-LAST:event_btn_excluirActionPerformed
-    
+   
     /*
        Este método é invocade sempre q o txt_email  perde o foco, e é responsável
        por setar no objeto usuario desta tela o valor que estiver no campo_txt_email
@@ -677,7 +649,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add_usuario;
-    private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_salvar_usuario;
     private javax.swing.JButton jButton_nova_adocao;
     private javax.swing.JButton jButton_nova_doacao;
@@ -901,7 +872,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jLabelCep.setFont(fh.getLatoRegular(17f));
         
         btn_add_usuario.setFont(fh.getLatoBold(16f));
-        btn_excluir.setFont(fh.getLatoBold(16f));
+ //       btn_excluir.setFont(fh.getLatoBold(16f));
         btn_salvar_usuario.setFont(fh.getLatoBold(16f));
         
         jTable_usuarios.setFont(fh.getLatoRegular(16f));
