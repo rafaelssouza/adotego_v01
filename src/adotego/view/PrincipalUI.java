@@ -12,6 +12,7 @@ import adotego.modelos.Tabela_usuario_completa;
 import adotego.modelos.Usuario;
 import adotego.util.FontHelper;
 import adotego.util.Formatador;
+import adotego.util.ReportUtils;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -88,6 +89,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jLabelToTtalDoacoe = new javax.swing.JLabel();
         btn_atualizar_tabela_adocoes = new javax.swing.JButton();
         jLabel_titulo_adocoes = new javax.swing.JLabel();
+        btn_gerar_relatorio_adocao = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jInternalFrame_usuarios = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -112,8 +114,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_novo_cadastro_animal = new javax.swing.JButton();
         jButton_atualiza_animal = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel5 = new javax.swing.JPanel();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
         jMenuBar_menu = new javax.swing.JMenuBar();
         menuItemNovaRaca = new javax.swing.JMenu();
         jMenuItemNovoUsuario = new javax.swing.JMenuItem();
@@ -149,7 +149,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jInternalFrame_informacoes.setBackground(new java.awt.Color(255, 255, 255));
         jInternalFrame_informacoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jInternalFrame_informacoes.setOpaque(false);
         jInternalFrame_informacoes.setVisible(true);
         jInternalFrame_informacoes.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -245,6 +244,16 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jLabel_titulo_adocoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_titulo_adocoes.setText("Adoções Realizadas");
 
+        btn_gerar_relatorio_adocao.setBackground(new java.awt.Color(255, 255, 255));
+        btn_gerar_relatorio_adocao.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btn_gerar_relatorio_adocao.setText("Gerar Relatório de Adoções");
+        btn_gerar_relatorio_adocao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        btn_gerar_relatorio_adocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_gerar_relatorio_adocaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -259,8 +268,11 @@ public final class PrincipalUI extends javax.swing.JFrame {
                         .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
-                    .addComponent(jLabel_titulo_adocoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                    .addComponent(jLabel_titulo_adocoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(btn_gerar_relatorio_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -276,7 +288,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
                         .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(btn_gerar_relatorio_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jInternalFrame_informacoesLayout = new javax.swing.GroupLayout(jInternalFrame_informacoes.getContentPane());
@@ -360,7 +374,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jLabelPesquisaUsuarios.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabelPesquisaUsuarios.setText("Pesquisar por ");
 
-        jCombo_box_opcoes_busca.setBackground(new java.awt.Color(255, 255, 255));
         jCombo_box_opcoes_busca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jCombo_box_opcoes_busca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF", "Email" }));
 
@@ -390,7 +403,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
             .addGroup(jInternalFrame_usuariosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jInternalFrame_usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1129, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 948, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame_usuariosLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jInternalFrame_usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -490,7 +503,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
-        jCombo_box_especie_pesquisa.setBackground(new java.awt.Color(255, 255, 255));
         jCombo_box_especie_pesquisa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jCombo_box_especie_pesquisa.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -498,10 +510,8 @@ public final class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
-        jCombo_box_raca_pesquisa.setBackground(new java.awt.Color(255, 255, 255));
         jCombo_box_raca_pesquisa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        jComboBox_situacao_pesquisa.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_situacao_pesquisa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         btn_novo_cadastro_animal.setBackground(new java.awt.Color(255, 255, 255));
@@ -528,9 +538,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jInternalFrame_animaisLayout.setHorizontalGroup(
             jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame_animaisLayout.createSequentialGroup()
-                .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jInternalFrame_animaisLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_atualiza_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_novo_cadastro_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -538,19 +548,16 @@ public final class PrincipalUI extends javax.swing.JFrame {
                         .addComponent(btn_excluir_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_editar_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame_animaisLayout.createSequentialGroup()
-                        .addGap(0, 541, Short.MAX_VALUE)
-                        .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame_animaisLayout.createSequentialGroup()
-                                .addComponent(jCombo_box_especie_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCombo_box_raca_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                    .addGroup(jInternalFrame_animaisLayout.createSequentialGroup()
+                        .addComponent(jCombo_box_especie_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCombo_box_raca_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox_situacao_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jInternalFrame_animaisLayout.setVerticalGroup(
             jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -562,7 +569,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     .addComponent(jCombo_box_especie_pesquisa)
                     .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_novo_cadastro_animal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -576,7 +583,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame_animais)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(70, Short.MAX_VALUE)
+                .addComponent(jInternalFrame_animais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -588,34 +598,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jTabbedPane2.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane2.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane_abas.addTab("Controle de Doações", jTabbedPane2);
-
-        jInternalFrame1.setBackground(new java.awt.Color(255, 255, 255));
-        jInternalFrame1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jInternalFrame1.setVisible(true);
-
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1153, Short.MAX_VALUE)
-        );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
-        );
-
-        jTabbedPane_abas.addTab("Controle de Raças", jPanel5);
 
         jMenuBar_menu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
@@ -692,7 +674,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         menu_relatorio.setText("Relatório");
         menu_relatorio.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        jMenuItemNovoRelatorio.setText("Novo Relatório");
+        jMenuItemNovoRelatorio.setText("Adoções");
         jMenuItemNovoRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemNovoRelatorioActionPerformed(evt);
@@ -759,6 +741,37 @@ public final class PrincipalUI extends javax.swing.JFrame {
         new Detalhe_usuario().setVisible(true);
     }//GEN-LAST:event_JMenuItemNovoUsuario2ActionPerformed
 
+    //este método abre a janela para cadastro de um novo animal
+    private void jMenuItem_novo_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_novo_animalActionPerformed
+        new Detalhe_animal().setVisible(true);
+    }//GEN-LAST:event_jMenuItem_novo_animalActionPerformed
+
+    private void menuItemNovaRacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNovaRacaActionPerformed
+        new Nova_Adocao().setVisible(true);
+    }//GEN-LAST:event_menuItemNovaRacaActionPerformed
+
+    private void jMenuItemNovaAdocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaAdocaoActionPerformed
+        new Nova_Adocao().setVisible(true);
+    }//GEN-LAST:event_jMenuItemNovaAdocaoActionPerformed
+
+    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jMenuItemSairActionPerformed
+
+    private void jMenuItemNovoRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoRelatorioActionPerformed
+        ReportUtils u = new ReportUtils();
+        u.abrirRelatorioAdocoes();
+    }//GEN-LAST:event_jMenuItemNovoRelatorioActionPerformed
+
+    private void jButton_atualiza_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atualiza_animalActionPerformed
+        model_tabela_animais.atualizar_tabela();
+    }//GEN-LAST:event_jButton_atualiza_animalActionPerformed
+
+    //este método abre a janela para cadastro de um novo animal
+    private void btn_novo_cadastro_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_cadastro_animalActionPerformed
+        new Detalhe_animal().setVisible(true);
+    }//GEN-LAST:event_btn_novo_cadastro_animalActionPerformed
+
     //método chamado quando o item selecionado do JComboBox de especie para pesqusa
     // for chamado.
     private void jCombo_box_especie_pesquisaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCombo_box_especie_pesquisaItemStateChanged
@@ -769,10 +782,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
             //recupera o item selecionado em String
             String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
-                    .getSelectedItem());
+                .getSelectedItem());
             //recupera uma lista baseada no nome da espeécie
             List<Raca> lista_raca = new adotego.controller.RacaController()
-                    .findRacaByEspecieName(especie_name_selected);
+            .findRacaByEspecieName(especie_name_selected);
 
             //como alteramos o jComboBox especie podemos atualizadar
             //o jComboBox de raças para a especie selecionada
@@ -781,7 +794,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         } else {
             refresh_JCombo_box_raca_pesquisa(null);
         }
-
     }//GEN-LAST:event_jCombo_box_especie_pesquisaItemStateChanged
 
     /*
@@ -794,23 +806,23 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         //se todos os itens estiverem padrão preecnhe a tabela como todos os animais
         if (jCombo_box_especie_pesquisa.getSelectedIndex() == 0
-                && jComboBox_situacao_pesquisa.getSelectedIndex() == 0
-                && jCombo_box_raca_pesquisa.getSelectedIndex() == 0) {
+            && jComboBox_situacao_pesquisa.getSelectedIndex() == 0
+            && jCombo_box_raca_pesquisa.getSelectedIndex() == 0) {
 
             model_tabela_animais.atualizar_tabela();
         } else {
-            //recupera lista de animais    
+            //recupera lista de animais
             List<Animal> animais_lista = new adotego.controller.AnimalController().listarIdDesc();
             if (jCombo_box_especie_pesquisa.getSelectedIndex() > 0) {
                 //recupera o nome da especie selecionado
                 String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
-                        .getSelectedItem());
+                    .getSelectedItem());
                 animais_lista = new adotego.controller.AnimalController()
-                        .findByEspecieName(especie_name_selected);
+                .findByEspecieName(especie_name_selected);
 
                 //se estiver com a especie selecionada e com raca e situação no indice0
             }
-            //remover os animais que possuir raca e situacao diferente da selecionada                
+            //remover os animais que possuir raca e situacao diferente da selecionada
             Iterator<Animal> iterator = animais_lista.iterator();
             while (iterator.hasNext()) {
                 Animal animal = iterator.next();
@@ -835,6 +847,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
             model_tabela_animais.atualizar_tabela(animais_lista);
         }
     }//GEN-LAST:event_btn_filtrar_animaisActionPerformed
+
     /*
     Este método é executado quando o botão de excluir animal for selecionado
     ele basicamente recupera o id selecionado na tabela e exclui o animal
@@ -850,7 +863,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         }
         model_tabela_animais.atualizar_tabela();
-
     }//GEN-LAST:event_btn_excluir_animalActionPerformed
 
     /*
@@ -863,6 +875,15 @@ public final class PrincipalUI extends javax.swing.JFrame {
         Animal animal = model_tabela_animais.getAnimalByIndex(id_animal_selected);
         new Detalhe_animal().build(animal);
     }//GEN-LAST:event_btn_editar_animalActionPerformed
+
+    private void btn_atualiza_tabela_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualiza_tabela_usuariosActionPerformed
+        model_tabela_usuarios_completa.atualizarTabela();
+    }//GEN-LAST:event_btn_atualiza_tabela_usuariosActionPerformed
+
+    private void btn_novo_cadastro_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_cadastro_usuarioActionPerformed
+        new Detalhe_usuario().setVisible(true);
+    }//GEN-LAST:event_btn_novo_cadastro_usuarioActionPerformed
+
     /*
     Este método é executado quando o botão editar usuario for clicado, ele
     basicamente recupera o id selecionado e abre a janela para edição de
@@ -882,13 +903,13 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private void btn_excluir_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_usuarioActionPerformed
 
         int[] ids_selecionados = model_tabela_usuarios_completa.getIdsIntoTheRow(jTable_usuarios);
-        
+
         for (int i : ids_selecionados) {
             new adotego.controller.UsuarioController().verificaSePessoaEstaEmUmaAdocao(i);
         }
         model_tabela_usuarios_completa.atualizarTabela();
-
     }//GEN-LAST:event_btn_excluir_usuarioActionPerformed
+
     /*
     Este método identifica um duplo clique em algum usuario da tabela e
     abre a janela correspondete para edição, já com os campos inputs preeenchidos
@@ -901,59 +922,25 @@ public final class PrincipalUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable_usuariosMouseClicked
 
-    //este método abre a janela para cadastro de um novo animal
-    private void jMenuItem_novo_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_novo_animalActionPerformed
-        new Detalhe_animal().setVisible(true);
-    }//GEN-LAST:event_jMenuItem_novo_animalActionPerformed
-    //este método abre a janela para cadastro de um novo animal
-    private void btn_novo_cadastro_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_cadastro_animalActionPerformed
-        new Detalhe_animal().setVisible(true);
-    }//GEN-LAST:event_btn_novo_cadastro_animalActionPerformed
-
-    private void menuItemNovaRacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNovaRacaActionPerformed
-        new Nova_Adocao().setVisible(true);
-    }//GEN-LAST:event_menuItemNovaRacaActionPerformed
-
-    private void jMenuItemNovaAdocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaAdocaoActionPerformed
-        new Nova_Adocao().setVisible(true);
-    }//GEN-LAST:event_jMenuItemNovaAdocaoActionPerformed
-
     private void jInternalFrame_informacoesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInternalFrame_informacoesFocusGained
         model_tabela_adocoes.atualiza();
-
     }//GEN-LAST:event_jInternalFrame_informacoesFocusGained
 
     private void btn_atualizar_tabela_adocoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualizar_tabela_adocoesActionPerformed
         model_tabela_adocoes.atualiza();
         txt_total_doacoes.setText("");
         txt_total_doacoes.setText("R$:" + String
-                .valueOf(model_tabela_adocoes.getTotal_doacoes()));
-
+            .valueOf(model_tabela_adocoes.getTotal_doacoes()));
     }//GEN-LAST:event_btn_atualizar_tabela_adocoesActionPerformed
-
-    private void btn_atualiza_tabela_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualiza_tabela_usuariosActionPerformed
-        model_tabela_usuarios_completa.atualizarTabela();
-    }//GEN-LAST:event_btn_atualiza_tabela_usuariosActionPerformed
-
-    private void btn_novo_cadastro_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_cadastro_usuarioActionPerformed
-        new Detalhe_usuario().setVisible(true);
-    }//GEN-LAST:event_btn_novo_cadastro_usuarioActionPerformed
-
-    private void jButton_atualiza_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atualiza_animalActionPerformed
-        model_tabela_animais.atualizar_tabela();
-    }//GEN-LAST:event_jButton_atualiza_animalActionPerformed
 
     private void jButton_atualiza_informacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atualiza_informacoesActionPerformed
         atualizar_tabela_informacoes();
     }//GEN-LAST:event_jButton_atualiza_informacoesActionPerformed
 
-    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jMenuItemSairActionPerformed
-
-    private void jMenuItemNovoRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoRelatorioActionPerformed
-        new NovoRelatorio().setVisible(true);
-    }//GEN-LAST:event_jMenuItemNovoRelatorioActionPerformed
+    private void btn_gerar_relatorio_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerar_relatorio_adocaoActionPerformed
+        ReportUtils u = new ReportUtils();
+        u.abrirRelatorioAdocoes();
+    }//GEN-LAST:event_btn_gerar_relatorio_adocaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -999,6 +986,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_excluir_animal;
     private javax.swing.JButton btn_excluir_usuario;
     private javax.swing.JButton btn_filtrar_animais;
+    private javax.swing.JButton btn_gerar_relatorio_adocao;
     private javax.swing.JButton btn_novo_cadastro_animal;
     private javax.swing.JButton btn_novo_cadastro_usuario;
     private javax.swing.JButton jButton2;
@@ -1009,7 +997,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCombo_box_opcoes_busca;
     private javax.swing.JComboBox<String> jCombo_box_raca_pesquisa;
     private javax.swing.JFrame jFrame1;
-    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame_animais;
     private javax.swing.JInternalFrame jInternalFrame_informacoes;
     private javax.swing.JInternalFrame jInternalFrame_usuarios;
@@ -1028,7 +1015,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
