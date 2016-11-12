@@ -46,11 +46,11 @@ LEFT JOIN doacao AS d ON d.iddoacao = ad.adocao_iddoacao;]]>
 		</field>
 	</subDataset>
 	<queryString>
-		<![CDATA[SELECT ad.idadocao,p.nome,DATE_FORMAT(data_adocao, '%d/%m/%Y')as data_adocao,an.nome as nome_animal,IFNULL(d.valor,0.0) AS valor 
+		<![CDATA[SELECT ad.idadocao,p.nome,DATE_FORMAT(data_adocao, '%d/%m/%Y')as data_adocao,an.nome as nome_animal
 FROM adocao AS ad
 INNER JOIN pessoa AS p ON p.idpessoa = ad.adocao_idpessoa
 INNER JOIN animal AS an ON an.idanimal = ad.adocao_idanimal
-LEFT JOIN doacao AS d ON d.iddoacao = ad.adocao_iddoacao;]]>
+]]>
 	</queryString>
 	<field name="idadocao" class="java.lang.Long">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -62,9 +62,6 @@ LEFT JOIN doacao AS d ON d.iddoacao = ad.adocao_iddoacao;]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="nome_animal" class="java.lang.String"/>
-	<field name="valor" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -105,10 +102,6 @@ LEFT JOIN doacao AS d ON d.iddoacao = ad.adocao_iddoacao;]]>
 				<text><![CDATA[NOME DO ANIMAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="455" y="41" width="85" height="20" uuid="f2527cbf-c4cd-458c-81bd-fe191360b788"/>
-				<text><![CDATA[VALOR DOADO]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="0" y="0" width="85" height="20" uuid="39b741b8-e023-40b8-875b-9087529774d9"/>
 				<text><![CDATA[Data de geração:]]></text>
 			</staticText>
@@ -135,10 +128,6 @@ LEFT JOIN doacao AS d ON d.iddoacao = ad.adocao_iddoacao;]]>
 			<textField>
 				<reportElement x="0" y="0" width="70" height="20" uuid="957bce78-8166-4c9c-a0f4-d189da574aaa"/>
 				<textFieldExpression><![CDATA[$F{idadocao}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="482" y="1" width="58" height="20" uuid="fd4146b4-9f15-4aed-aa72-f67addaab084"/>
-				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

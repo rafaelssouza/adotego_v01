@@ -90,6 +90,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_atualizar_tabela_adocoes = new javax.swing.JButton();
         jLabel_titulo_adocoes = new javax.swing.JLabel();
         btn_gerar_relatorio_adocao = new javax.swing.JButton();
+        btn_exluir_adocao = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jInternalFrame_usuarios = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -254,6 +255,13 @@ public final class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
+        btn_exluir_adocao.setText("Excluir");
+        btn_exluir_adocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exluir_adocaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -262,7 +270,8 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_exluir_adocao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,12 +292,13 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                    .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(btn_exluir_adocao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btn_gerar_relatorio_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -782,10 +792,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
             //recupera o item selecionado em String
             String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
-                .getSelectedItem());
+                    .getSelectedItem());
             //recupera uma lista baseada no nome da espeécie
             List<Raca> lista_raca = new adotego.controller.RacaController()
-            .findRacaByEspecieName(especie_name_selected);
+                    .findRacaByEspecieName(especie_name_selected);
 
             //como alteramos o jComboBox especie podemos atualizadar
             //o jComboBox de raças para a especie selecionada
@@ -806,8 +816,8 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         //se todos os itens estiverem padrão preecnhe a tabela como todos os animais
         if (jCombo_box_especie_pesquisa.getSelectedIndex() == 0
-            && jComboBox_situacao_pesquisa.getSelectedIndex() == 0
-            && jCombo_box_raca_pesquisa.getSelectedIndex() == 0) {
+                && jComboBox_situacao_pesquisa.getSelectedIndex() == 0
+                && jCombo_box_raca_pesquisa.getSelectedIndex() == 0) {
 
             model_tabela_animais.atualizar_tabela();
         } else {
@@ -816,9 +826,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
             if (jCombo_box_especie_pesquisa.getSelectedIndex() > 0) {
                 //recupera o nome da especie selecionado
                 String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
-                    .getSelectedItem());
+                        .getSelectedItem());
                 animais_lista = new adotego.controller.AnimalController()
-                .findByEspecieName(especie_name_selected);
+                        .findByEspecieName(especie_name_selected);
 
                 //se estiver com a especie selecionada e com raca e situação no indice0
             }
@@ -930,7 +940,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         model_tabela_adocoes.atualiza();
         txt_total_doacoes.setText("");
         txt_total_doacoes.setText("R$:" + String
-            .valueOf(model_tabela_adocoes.getTotal_doacoes()));
+                .valueOf(model_tabela_adocoes.getTotal_doacoes()));
     }//GEN-LAST:event_btn_atualizar_tabela_adocoesActionPerformed
 
     private void jButton_atualiza_informacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atualiza_informacoesActionPerformed
@@ -941,6 +951,20 @@ public final class PrincipalUI extends javax.swing.JFrame {
         ReportUtils u = new ReportUtils();
         u.abrirRelatorioAdocoes();
     }//GEN-LAST:event_btn_gerar_relatorio_adocaoActionPerformed
+
+    private void btn_exluir_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exluir_adocaoActionPerformed
+        int[] ids_selecionados = model_tabela_adocoes.getIdIntoTheRow(jTable_adocoes);
+
+        for (int i : ids_selecionados) {
+            int confirma;
+            confirma = JOptionPane.showConfirmDialog(null, "Desja excluir a adocao selecionada?");
+            if (confirma == 0) {
+                new adotego.controller.AdocaoController().delete(i);
+            }
+
+        }
+        model_tabela_adocoes.atualiza();
+    }//GEN-LAST:event_btn_exluir_adocaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -985,6 +1009,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_editar_usuario;
     private javax.swing.JButton btn_excluir_animal;
     private javax.swing.JButton btn_excluir_usuario;
+    private javax.swing.JButton btn_exluir_adocao;
     private javax.swing.JButton btn_filtrar_animais;
     private javax.swing.JButton btn_gerar_relatorio_adocao;
     private javax.swing.JButton btn_novo_cadastro_animal;

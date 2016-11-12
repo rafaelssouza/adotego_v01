@@ -340,10 +340,10 @@ public class Detalhe_animal extends javax.swing.JFrame {
     private void jComboBox_porteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox_porteFocusLost
         Porte_enum[] portes = Porte_enum.values();
         for (Porte_enum porte : portes) {
-            if (String.valueOf(porte)
-                    .equals(String.valueOf(jComboBox_porte.getSelectedItem()))) {
+        //    if (String.valueOf(porte)
+          //          .equals(String.valueOf(jComboBox_porte.getSelectedItem()))) {
                 animal.setPorte(porte);
-            }
+           // }
         }
     }//GEN-LAST:event_jComboBox_porteFocusLost
 
