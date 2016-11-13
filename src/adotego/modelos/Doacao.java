@@ -13,6 +13,13 @@ public class Doacao {
     
     private int id;
     private double valor;
+    
+    public Doacao(){
+        this.setId(0);
+    }
+    public Doacao(Double valor){
+        this.valor = valor;
+    }
 
     public int getId() {
         return id;

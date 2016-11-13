@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/tmichelini/NetBeansProjects/adotego/src/adotego/dao/RacaDAO.java</file>
-            <file>file:/home/tmichelini/NetBeansProjects/adotego/src/adotego/modelos/Tabela_usuarios.java</file>
-            <file>file:/home/tmichelini/NetBeansProjects/adotego/src/adotego/view/PrincipalUI.java</file>
-            <file>file:/home/tmichelini/NetBeansProjects/adotego/src/adotego/controller/UsuarioController.java</file>
-            <file>file:/home/tmichelini/NetBeansProjects/adotego/src/adotego/modelos/Usuario.java</file>
-            <file>file:/home/tmichelini/NetBeansProjects/adotego/src/adotego/dao/UsuarioDAO.java</file>
-            <file>file:/home/tmichelini/NetBeansProjects/adotego/src/adotego/view/Detalhe_usuario.java</file>
+            <file>file:/C:/Users/Rodrigo.Stuani/Documents/NetBeansProjects/adotego_v01/src/adotego/view/Nova_Doacao.java</file>
+            <file>file:/C:/Users/Rodrigo.Stuani/Documents/NetBeansProjects/adotego_v01/src/adotego/view/Detalhe_usuario.java</file>
+            <file>file:/C:/Users/Rodrigo.Stuani/Documents/NetBeansProjects/adotego_v01/src/adotego/controller/DoacaoController.java</file>
+            <file>file:/C:/Users/Rodrigo.Stuani/Documents/NetBeansProjects/adotego_v01/src/adotego/modelos/Tabela_Doacoes.java</file>
+            <file>file:/C:/Users/Rodrigo.Stuani/Documents/NetBeansProjects/adotego_v01/src/adotego/modelos/Doacao.java</file>
+            <file>file:/C:/Users/Rodrigo.Stuani/Documents/NetBeansProjects/adotego_v01/src/adotego/view/PrincipalUI.java</file>
+            <file>file:/C:/Users/Rodrigo.Stuani/Documents/NetBeansProjects/adotego_v01/src/adotego/dao/DoacaoDAO.java</file>
         </group>
     </open-files>
 </project-private>

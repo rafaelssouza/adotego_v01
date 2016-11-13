@@ -56,10 +56,10 @@ public class DoacaoDAO {
             try(ResultSet rs = pstm.getResultSet()){
                 while(rs.next()){
                     Doacao d = new Doacao();
-                    int idr = rs.getInt("idDoacao");
-                    double valor = rs.getDouble("valor");
-                    d.setId(idr);
-                    d.setValor(valor);
+                   
+                 
+                    d.setId(rs.getInt("idDoacao"));
+                    d.setValor(rs.getDouble("valor"));
                     listaDoacao.add(d);
                 }
             }
@@ -78,7 +78,7 @@ public class DoacaoDAO {
     }
 
     public void update(Doacao doacao) throws SQLException {
-        String sql = "update doacao set idDoacao = ?, valor = ?";
+        String sql = "update doacao set valor = ? where idDoacao = ?";
         
         try(PreparedStatement pstm = c.prepareStatement(sql)){
             pstm.setDouble(1, doacao.getValor());
@@ -87,11 +87,10 @@ public class DoacaoDAO {
         }
     }
     public void save(Doacao doacao) throws SQLException {
-        String sql = "insert into doacao(id, valor) values (?,?)";
+        String sql = "insert into doacao(valor) values (?)";
         
         try(PreparedStatement pstm = c.prepareStatement(sql)){
-            pstm.setInt(1, doacao.getId());
-            pstm.setDouble(2, doacao.getValor());
+            pstm.setDouble(1, doacao.getValor());
             pstm.execute();
         }
     }

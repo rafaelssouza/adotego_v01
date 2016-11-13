@@ -3,6 +3,7 @@ package adotego.view;
 
 import adotego.controller.UsuarioController;
 import adotego.modelos.Animal;
+import adotego.modelos.Doacao;
 import adotego.modelos.Especie;
 import adotego.modelos.Modelo_tabela_adocoes;
 import adotego.modelos.Raca;
@@ -33,21 +34,21 @@ import javax.swing.table.TableColumn;
  * @author tmichelini
  */
 public final class PrincipalUI extends javax.swing.JFrame {
-    
+
     private Tabela_usuario_completa model_tabela_usuarios_completa;
     private Tabela_animais model_tabela_animais;
     private Modelo_tabela_adocoes model_tabela_adocoes;
     private Tabela_Informacoes modelo_tabela_Informacoes;
     private Tabela_Doacoes modelo_tabela_doacoes;
     private final Formatador formatador;
-    
+
     /**
      * Creates new form PrincipalUI
      */
     public PrincipalUI() {
         initComponents();
         formatador = new Formatador();
-        
+
        
         this.setTitle("Adotego");
         //abrir no centro da janela
@@ -55,17 +56,18 @@ public final class PrincipalUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         init_jCombo_box_especie_pesquisa();
         init_jCombo_box_raca_pesquisa();
-        init_jCombo_box_situacao(); 
+        init_jCombo_box_situacao();
         configurarInputPesquisa();
         iniciar_tabelas();
-        
+
       
         configurarFontes();
         configurar_icones();
-        
+
         
         
     }
+
     //fazendo teste para commitar @RodrigoStuani
     /**
      * This method is called from within the constructor to initialize the form.
@@ -828,7 +830,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     //Este método é responsável por configurar as tabelas na PrincipaUI.class
     public void iniciar_tabelas() {
         /**
@@ -841,6 +843,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         modelo_tabela_Informacoes = new Tabela_Informacoes();
         modelo_tabela_doacoes = new Tabela_Doacoes();
         
+
         //Setando o modelo criado acima nas tabelas
         jTable_usuarios.setModel(model_tabela_usuarios_completa);
         jTable_animais.setModel(model_tabela_animais);
@@ -854,130 +857,126 @@ public final class PrincipalUI extends javax.swing.JFrame {
         configurar_tabelas_doacoes();
         atualizaTxtTotalDoacoes();
     }
+
     //evento lançado quando o botão Nova Especie no menu 'Arquivo' for clicado;
     //abre a janela de cadastro de Raca
     private void jMenuItemNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoUsuarioActionPerformed
         new Nova_especie().setVisible(true);
     }//GEN-LAST:event_jMenuItemNovoUsuarioActionPerformed
-    
+
     //evento lançado quando o botão Nova Raca no menu 'Arquivo' for clicado;
     //abre a janela de cadastro de Raca
     private void jMenuItemNovaRacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaRacaActionPerformed
         new Nova_raca().setVisible(true);
     }//GEN-LAST:event_jMenuItemNovaRacaActionPerformed
-    
+
     //evento lançado quando o botão Nova Cadastro no menu 'Arquivo' for clicado
     //abre a janela de cadastro de usuarios;
     private void JMenuItemNovoUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemNovoUsuario2ActionPerformed
         new Detalhe_usuario().setVisible(true);
     }//GEN-LAST:event_JMenuItemNovoUsuario2ActionPerformed
-    
+
     //método chamado quando o item selecionado do JComboBox de especie para pesqusa
     // for chamado.
     private void jCombo_box_especie_pesquisaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCombo_box_especie_pesquisaItemStateChanged
+
         
-        
-            //se o item selecionado nao for o primeiro, pois o valor do primeiro
-            //item é apenas uma título e não uma especie
-            if (jCombo_box_especie_pesquisa.getSelectedIndex() != 0) {
-                
-                //recupera o item selecionado em String
-                String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
-                        .getSelectedItem());
-                //recupera uma lista baseada no nome da espeécie
-                List<Raca> lista_raca = new adotego.controller.RacaController()
-                        .findRacaByEspecieName(especie_name_selected);
-                
-                //como alteramos o jComboBox especie podemos atualizadar
-                //o jComboBox de raças para a especie selecionada
-                refresh_JCombo_box_raca_pesquisa(lista_raca);
-                
-            }else{
-                refresh_JCombo_box_raca_pesquisa(null);
-            }
-        
+        //se o item selecionado nao for o primeiro, pois o valor do primeiro
+        //item é apenas uma título e não uma especie
+        if (jCombo_box_especie_pesquisa.getSelectedIndex() != 0) {
+
+            //recupera o item selecionado em String
+            String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
+                    .getSelectedItem());
+            //recupera uma lista baseada no nome da espeécie
+            List<Raca> lista_raca = new adotego.controller.RacaController()
+                    .findRacaByEspecieName(especie_name_selected);
+
+            //como alteramos o jComboBox especie podemos atualizadar
+            //o jComboBox de raças para a especie selecionada
+            refresh_JCombo_box_raca_pesquisa(lista_raca);
+
+        } else {
+            refresh_JCombo_box_raca_pesquisa(null);
+        }
+
     }//GEN-LAST:event_jCombo_box_especie_pesquisaItemStateChanged
-    
+
     /*
     Este método é chamado sempre que o botão de Filtrar animais for clicado
     e é responsável por filtrar a lista de animais que está na tabela de
     de acordo com os parametros selecionado dos JComboBoxEspecie, JComboBoxRaca,
     e no jComboBoxSituaçao
-    */
+     */
     private void btn_filtrar_animaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrar_animaisActionPerformed
-   
-            //se todos os itens estiverem padrão preecnhe a tabela como todos os animais
+
+        //se todos os itens estiverem padrão preecnhe a tabela como todos os animais
              if(jCombo_box_especie_pesquisa.getSelectedIndex() == 0 
-                     && jComboBox_situacao_pesquisa.getSelectedIndex() == 0
+                && jComboBox_situacao_pesquisa.getSelectedIndex() == 0
                      && jCombo_box_raca_pesquisa.getSelectedIndex() == 0)   {
-                  
-                 model_tabela_animais.atualizar_tabela();
+
+            model_tabela_animais.atualizar_tabela();
              }else{
-                //recupera lista de animais    
+            //recupera lista de animais    
                 List<Animal> animais_lista =  new adotego.controller.AnimalController().listarIdDesc();
                 if(jCombo_box_especie_pesquisa.getSelectedIndex() > 0){
                 //recupera o nome da especie selecionado
                 String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
                         .getSelectedItem());
-                animais_lista = new adotego.controller.AnimalController() 
-                          .findByEspecieName(especie_name_selected);
-                          
-                         //se estiver com a especie selecionada e com raca e situação no indice0
+                animais_lista = new adotego.controller.AnimalController()
+                        .findByEspecieName(especie_name_selected);
+
+                //se estiver com a especie selecionada e com raca e situação no indice0
                        
-                } 
-                //remover os animais que possuir raca e situacao diferente da selecionada                
-                Iterator<Animal> iterator = animais_lista.iterator();
-                while (iterator.hasNext()) {
-                    Animal animal = iterator.next();
-                   
-                    //se a raça selecionada for for diferente da raças
-                    //selecionada anteriormente, excluímos da lista
+            }
+            //remover os animais que possuir raca e situacao diferente da selecionada                
+            Iterator<Animal> iterator = animais_lista.iterator();
+            while (iterator.hasNext()) {
+                Animal animal = iterator.next();
+
+                //se a raça selecionada for for diferente da raças
+                //selecionada anteriormente, excluímos da lista
                     if(jCombo_box_raca_pesquisa.getSelectedIndex() > 0){
-                        String raca = String.valueOf(jCombo_box_raca_pesquisa.getSelectedItem());
-                        if ((!animal.getRaca().getNome().equalsIgnoreCase(raca))) {
-                            iterator.remove();
-                        }
+                    String raca = String.valueOf(jCombo_box_raca_pesquisa.getSelectedItem());
+                    if ((!animal.getRaca().getNome().equalsIgnoreCase(raca))) {
+                        iterator.remove();
                     }
-                    
+                }
+
                     if (jComboBox_situacao_pesquisa.getSelectedIndex() > 0 ){                        
-                        String situacao = String.valueOf(jComboBox_situacao_pesquisa.getSelectedItem());
-                        if (!animal.getSituacao().getDescricao().equalsIgnoreCase(situacao)) {
-                            iterator.remove();
-                        }                    
+                    String situacao = String.valueOf(jComboBox_situacao_pesquisa.getSelectedItem());
+                    if (!animal.getSituacao().getDescricao().equalsIgnoreCase(situacao)) {
+                        iterator.remove();
+                    }
                 }
-                         
-                }
-                model_tabela_animais.atualizar_tabela(animais_lista);
-             }
+
+            }
+            model_tabela_animais.atualizar_tabela(animais_lista);
+        }
     }//GEN-LAST:event_btn_filtrar_animaisActionPerformed
     /*
     Este método é executado quando o botão de excluir animal for selecionado
     ele basicamente recupera o id selecionado na tabela e exclui o animal
     correspondente no banco de dados
-    */
+     */
     private void btn_excluir_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_animalActionPerformed
         //recupera id
         int[] ids = model_tabela_animais.getIdsIntoTheRow(jTable_animais);
         //apaga o usuario correspondente
         for (int id : ids) {
-            if(!new adotego.controller.AnimalController().delete(id)){
-               Object[] options = { "Ok", "Cancelar" };
-               
-               JOptionPane.showOptionDialog(null, "O Animal de ID:"+id+
-                       " está relacionado a uma adoção, portanto é impossível "
-                       + "exclui-lo", "Aviso", JOptionPane.DEFAULT_OPTION, 
-                       JOptionPane.OK_OPTION, null, options, options[0]);
-            }
+
+            new adotego.controller.AnimalController().verificaSeAnimalEstaEmUmaAdocao(id);
+
         }
         model_tabela_animais.atualizar_tabela();
-        
+
     }//GEN-LAST:event_btn_excluir_animalActionPerformed
-    
+
     /*
     Este método é executado quando o botão editar animal for clicado, ele
     basicamente recupera o id selecionado e abre a janela para edição de
     animais com os campos de inputs já preenchidos para edição
-    */
+     */
     private void btn_editar_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_animalActionPerformed
         int id_animal_selected = model_tabela_animais.getSelectedIndex(jTable_animais);
         Animal animal = model_tabela_animais.getAnimalByIndex(id_animal_selected);
@@ -987,39 +986,38 @@ public final class PrincipalUI extends javax.swing.JFrame {
     Este método é executado quando o botão editar usuario for clicado, ele
     basicamente recupera o id selecionado e abre a janela para edição de
     usuarios com os campos de inputs já preenchidos para edição
-    */
+     */
     private void btn_editar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_usuarioActionPerformed
         int id_select = model_tabela_usuarios_completa.getIdIntoTheRow(jTable_usuarios);
         Usuario u = new adotego.controller.UsuarioController().find(id_select);
         new Detalhe_usuario().build(u);
     }//GEN-LAST:event_btn_editar_usuarioActionPerformed
-    
+
     /*
     Este método é executado quando o botão de excluir usuario for selecionado
     ele basicamente recupera o id selecionado na tabela e exclui o usuario
     correspondente no banco de dados
-    */
+     */
     private void btn_excluir_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_usuarioActionPerformed
-        
-        int[] ids_selecionados = model_tabela_usuarios_completa.getIdsIntoTheRow(jTable_usuarios);      
+
+        int[] ids_selecionados = model_tabela_usuarios_completa.getIdsIntoTheRow(jTable_usuarios);
         UsuarioController uc = new adotego.controller.UsuarioController();
+    
+            
+              
+        
         for (int i : ids_selecionados) {
-            if(!uc.delete(i)){
-               Object[] options = { "Ok", "Cancelar" };
-               
-               JOptionPane.showOptionDialog(null, "O usuario ID:"+i+
-                       " está relacionado a uma adoção, portanto é impossível "
-                       + "exclui-lo", "Aviso", JOptionPane.DEFAULT_OPTION, 
-                       JOptionPane.OK_OPTION, null, options, options[0]);
-            }
+            new adotego.controller.UsuarioController().verificaSePessoaEstaEmUmaAdocao(i);
+        
+        
         }
         model_tabela_usuarios_completa.atualizarTabela();
-        
+
     }//GEN-LAST:event_btn_excluir_usuarioActionPerformed
     /*
     Este método identifica um duplo clique em algum usuario da tabela e
     abre a janela correspondete para edição, já com os campos inputs preeenchidos
-    */
+     */
     private void jTable_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_usuariosMouseClicked
         if (evt.getClickCount() == 2) {
             int id_clicado = model_tabela_usuarios_completa.getIdIntoTheRow(jTable_usuarios);
@@ -1028,7 +1026,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable_usuariosMouseClicked
 
-   //este método abre a janela para cadastro de um novo animal
+    //este método abre a janela para cadastro de um novo animal
     private void jMenuItem_novo_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_novo_animalActionPerformed
         new Detalhe_animal().setVisible(true);
     }//GEN-LAST:event_jMenuItem_novo_animalActionPerformed
@@ -1036,28 +1034,28 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private void btn_novo_cadastro_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novo_cadastro_animalActionPerformed
         new Detalhe_animal().setVisible(true);
     }//GEN-LAST:event_btn_novo_cadastro_animalActionPerformed
-    
+
     private void menuItemNovaRacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNovaRacaActionPerformed
-                new Nova_Adocao().setVisible(true);
+        new Nova_Adocao().setVisible(true);
     }//GEN-LAST:event_menuItemNovaRacaActionPerformed
-    
+
     private void jMenuItemNovaAdocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaAdocaoActionPerformed
         new Nova_Adocao().setVisible(true);
     }//GEN-LAST:event_jMenuItemNovaAdocaoActionPerformed
-    
+
     private void jInternalFrame_informacoesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInternalFrame_informacoesFocusGained
         model_tabela_adocoes.atualiza();
-        
+
     }//GEN-LAST:event_jInternalFrame_informacoesFocusGained
-    
+
     private void btn_atualizar_tabela_adocoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualizar_tabela_adocoesActionPerformed
         model_tabela_adocoes.atualiza();
         txt_total_doacoes.setText("");
-        txt_total_doacoes.setText("R$:"+String
+        txt_total_doacoes.setText("R$:" + String
                 .valueOf(model_tabela_adocoes.getTotal_doacoes()));
-      
+
     }//GEN-LAST:event_btn_atualizar_tabela_adocoesActionPerformed
-    
+
     private void btn_atualiza_tabela_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualiza_tabela_usuariosActionPerformed
         model_tabela_usuarios_completa.atualizarTabela();
     }//GEN-LAST:event_btn_atualiza_tabela_usuariosActionPerformed
@@ -1082,22 +1080,31 @@ public final class PrincipalUI extends javax.swing.JFrame {
         new NovoRelatorio().setVisible(true);
     }//GEN-LAST:event_jMenuItemNovoRelatorioActionPerformed
 
+
     private void btn_nova_doacao(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nova_doacao
-        // TODO add your handling code here:
+        new Nova_Doacao().setVisible(true);
     }//GEN-LAST:event_btn_nova_doacao
 
     private void jButton_atualiza_doacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atualiza_doacaoActionPerformed
-        // TODO add your handling code here:
+        modelo_tabela_doacoes.atualizarTabela();
     }//GEN-LAST:event_jButton_atualiza_doacaoActionPerformed
 
     private void btn_excluir_doacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_doacaoActionPerformed
-        // TODO add your handling code here:
+        int ids_selecionados = modelo_tabela_doacoes.getIdIntoTheRow(jTableDoacoes);
+        Doacao doacao = new adotego.controller.DoacaoController().find(ids_selecionados);
+ 
+        new adotego.controller.DoacaoController().delete(doacao.getId());
+
+        modelo_tabela_doacoes.atualizarTabela();
     }//GEN-LAST:event_btn_excluir_doacaoActionPerformed
 
     private void btn_editar_doacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_doacaoActionPerformed
-        // TODO add your handling code here:
+        int id_doacao_selected = modelo_tabela_doacoes.getIdIntoTheRow(jTableDoacoes);
+        Doacao doacao = new adotego.controller.DoacaoController().find(id_doacao_selected);
+        new Nova_Doacao().build(doacao);
     }//GEN-LAST:event_btn_editar_doacaoActionPerformed
     
+
     /**
      * @param args the command line arguments
      */
@@ -1106,7 +1113,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-        */
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -1124,7 +1131,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PrincipalUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1132,7 +1139,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem JMenuItemNovoUsuario2;
     private javax.swing.JButton btn_atualiza_tabela_usuarios;
@@ -1197,10 +1204,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JTextField txt_pesquisar;
     private javax.swing.JTextField txt_total_doacoes;
     // End of variables declaration//GEN-END:variables
-    
+
     //inicializa o jCombo de especia de acordo com toas as especies
     // no banco de dados
-    private void init_jCombo_box_especie_pesquisa()  {
+    private void init_jCombo_box_especie_pesquisa() {
         List<Especie> especies = new adotego.controller.EspecieController().findAll();
         jCombo_box_especie_pesquisa.addItem("Especie");
         for (Especie especie : especies) {
@@ -1208,12 +1215,13 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     formatador.formatarPrimeiraLetraMaiuscula(especie.getNome()));
         }
     }
+
     //atualiza o jCombo de raças para de acordo com a especie selecionada
     private void refresh_JCombo_box_raca_pesquisa(List<Raca> lista) {
-        
-        if(lista == null ){
+
+        if (lista == null) {
             init_jCombo_box_raca_pesquisa();
-        }else{
+        } else {
             jCombo_box_raca_pesquisa.removeAllItems();
             jCombo_box_raca_pesquisa.addItem("Raça");
             lista.stream().forEach((raca) -> {
@@ -1223,65 +1231,66 @@ public final class PrincipalUI extends javax.swing.JFrame {
             });
         }
     }
+
     /*
     O Jcombo de raças necessita que o Jcombo de especie esteja com algums item
     selecionado, antes preenchemos apenas com o titulo
-    */
+     */
     private void init_jCombo_box_raca_pesquisa() {
         jCombo_box_raca_pesquisa.removeAllItems();
         jCombo_box_raca_pesquisa.addItem("Raça");
     }
-    
+
     /*
     Este método é responsável por configuras os tamanhos da colunas da tabela
     usuario
-    */
+     */
     private void configurar_tabela_usuarios() {
         jTable_usuarios.setRowHeight(26);
         jTable_usuarios.getTableHeader().setBackground(Color.WHITE);
         int columnCount = jTable_usuarios.getColumnCount();
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-            dtcr.setHorizontalAlignment(SwingConstants.CENTER);
-         
+        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+
         int width = jTable_usuarios.getWidth();
         for (int i = 0; i < columnCount; i++) {
-            TableColumn column = jTable_usuarios.getColumnModel().getColumn(i);            
+            TableColumn column = jTable_usuarios.getColumnModel().getColumn(i);
             column.setCellRenderer(dtcr);
-            
+
             switch (i) {
                 case 0:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.03))));
+                            .parseInt(String.valueOf(Math.round(width * 0.03))));
                     break;
                 case 1:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.15))));
+                            .parseInt(String.valueOf(Math.round(width * 0.15))));
                     break;
                 case 2:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.25))));
+                            .parseInt(String.valueOf(Math.round(width * 0.25))));
                     break;
                 case 3:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.14))));
+                            .parseInt(String.valueOf(Math.round(width * 0.14))));
                     break;
                 case 4:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.15))));
+                            .parseInt(String.valueOf(Math.round(width * 0.15))));
                     break;
                 case 5:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.15))));
+                            .parseInt(String.valueOf(Math.round(width * 0.15))));
                     break;
                 case 6:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.13))));
-                    
+                            .parseInt(String.valueOf(Math.round(width * 0.13))));
+
             }
-            
+
         }
     }
-    
+
     //preenche o jCombo_situação de acordo com todos os registros da tabela
     //especie no banco de dados
     private void init_jCombo_box_situacao() {
@@ -1292,32 +1301,32 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     .addItem(formatador
                             .formatarPrimeiraLetraMaiuscula(sit.getDescricao()));
         }
-        
+
     }
-    
+
     //atualiza o input com o total de doações atualizado
-    public void atualizaTxtTotalDoacoes(){
+    public void atualizaTxtTotalDoacoes() {
         txt_total_doacoes.setText("");
-        txt_total_doacoes.setText("R$:"+model_tabela_adocoes.getTotal_doacoes());
+        txt_total_doacoes.setText("R$:" + model_tabela_adocoes.getTotal_doacoes());
     }
-    
+
     /*
         Método responsável por configurar os tamanho da colunas na tabela de animais
-    */
+     */
     private void configurar_tabela_animais() {
         jTable_animais.setRowHeight(26);
         jTable_animais.getTableHeader().setBackground(Color.white);
-         
+
          
         int columnCount = jTable_animais.getColumnCount();
-        
+
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-            dtcr.setHorizontalAlignment(SwingConstants.CENTER);
-          
+        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+
         int width = jTable_animais.getWidth();
         for (int i = 0; i < columnCount; i++) {
             TableColumn column = jTable_animais.getColumnModel().getColumn(i);
-            column.setCellRenderer(dtcr);  
+            column.setCellRenderer(dtcr);
             switch (i) {
                 case 0:
                     column.setPreferredWidth(Integer
@@ -1338,31 +1347,31 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 case 4:
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.20))));
-                    
+
             }
-            
+
         }
     }
-    
+
    
 
     /*
     Configura o tamanho das colunas da tabela_doações
-    */
+     */
     private void configurar_tabela_adocoes() {
-        int columnCount = jTable_adocoes.getColumnCount();         
+        int columnCount = jTable_adocoes.getColumnCount();
         DefaultTableCellRenderer dtcr;
         jTable_adocoes.setRowHeight(26);
-        
+
         jTable_adocoes.getTableHeader().setBackground(Color.WHITE);
-        
+
         
         int width = jTable_adocoes.getWidth();
         for (int i = 0; i < columnCount; i++) {
             TableColumn column = jTable_adocoes.getColumnModel().getColumn(i);
             dtcr = new DefaultTableCellRenderer();
             switch (i) {
-                
+
                 case 0:
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.10))));
@@ -1392,20 +1401,20 @@ public final class PrincipalUI extends javax.swing.JFrame {
                             .parseInt(String.valueOf(Math.round(width*0.10))));
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
-                    
+
             }
-            
+
         }
     }
 
     private void configurar_tabela_informacoes() {
-      
+
         modelo_tabela_Informacoes.atualizar();
-        
+
         jTable_informacoes.getTableHeader().setBackground(Color.WHITE);
-        int columnCount = jTable_informacoes.getColumnCount();         
+        int columnCount = jTable_informacoes.getColumnCount();
         DefaultTableCellRenderer dtcr;
-        
+
         jTable_informacoes.setRowHeight(26);
         int width = jTable_informacoes.getWidth();
         for (int i = 0; i < columnCount; i++) {
@@ -1417,23 +1426,23 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     column.setCellRenderer(dtcr);
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.90))));
-                    
+
                 }break;
                 case 1:{
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     column.setPreferredWidth(Integer
                             .parseInt(String.valueOf(Math.round(width*0.10))));
-                    
+
                 }break;    
-                    
+
             }
-            
+
         }
     }
 
     private void atualizar_tabela_informacoes() {
-       modelo_tabela_Informacoes.atualizar();
+        modelo_tabela_Informacoes.atualizar();
     }
 
     //este método é chamado a casa alteração do texto do input_pesquisa de Usuarios.  
@@ -1453,9 +1462,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
             public void changedUpdate(DocumentEvent e) {
                 doo();
             }
-            
+
             private void doo() {
-                 // recupera uma String que está selecionado no jCombo_box_opcoes_busca
+                // recupera uma String que está selecionado no jCombo_box_opcoes_busca
                 // para que seja utilizado como parametro no filtro, retira os espaços,
                 // etransforma tudo em letras minúsculas
                 String parametro = String.valueOf(jCombo_box_opcoes_busca.getSelectedItem())
@@ -1477,7 +1486,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     os resultados da tabela,
                     Ex: se o campo nome estiver selecionado pesquisamos as ocorrencias
                     do valor no campo input para filtrar os resultados
-                    */
+                     */
                     switch (parametro) {
                         case "nome":
                             model_tabela_usuarios_completa
@@ -1499,83 +1508,108 @@ public final class PrincipalUI extends javax.swing.JFrame {
                             model_tabela_usuarios_completa.atualizarTabela();
                     }
                 }
-        
+
             }
-           
+
         });
-         
+
     }
 
     private void configurarFontes() {
         FontHelper fh = new FontHelper();
+
+        jInternalFrame_animais.getComponent(WIDTH).setFont(fh.getLatoRegular(16f));
+        jInternalFrame_informacoes.getComponent(WIDTH).setFont(fh.getLatoRegular(16f));
+        jInternalFrame_usuarios.getComponent(WIDTH).setFont(fh.getLatoRegular(16f));
+        jInternalFrameControleDoacoes.getComponent(WIDTH).setFont(fh.getLatoRegular(16f));
+        jTabbedPane_abas.setFont(fh.getLatoRegular(14f));
+
+        menuItemNovaRaca.setFont(fh.getLatoBold(15f));
+        menu_pesquisar.setFont(fh.getLatoBold(15f));
+        menu_relatorio.setFont(fh.getLatoBold(15f));
+
+        JMenuItemNovoUsuario2.setFont(fh.getLatoRegular(15f));
+        jMenuItemNovaRaca.setFont(fh.getLatoRegular(15f));
+        jMenuItemNovaAdocao.setFont(fh.getLatoRegular(15f));
+        jMenuItemNovoUsuario.setFont(fh.getLatoRegular(15f));
+        jMenuItemSair.setFont(fh.getLatoRegular(15f));
+        jMenuItem_novo_animal.setFont(fh.getLatoRegular(15f));
+
+       
+        jTable_adocoes.setFont(fh.getLatoLight(16f));
+        jTable_adocoes.getTableHeader().setFont(fh.getLatoBold(17f));
+
+        jTable_animais.setFont(fh.getLatoLight(16f));
+        jTable_animais.getTableHeader().setFont(fh.getLatoBold(17f));
+
+        jTable_informacoes.setFont(fh.getLatoLight(16f));
+        jTable_informacoes.getTableHeader().setFont(fh.getLatoBold(17f));
+
+        jTable_usuarios.setFont(fh.getLatoLight(16f));
+        jTable_usuarios.getTableHeader().setFont(fh.getLatoBold(17f));
         
-       jInternalFrame_animais.getComponent(WIDTH).setFont(fh.getLatoRegular(16f));
-       jInternalFrame_informacoes.getComponent(WIDTH).setFont(fh.getLatoRegular(16f));
-       jInternalFrame_usuarios.getComponent(WIDTH).setFont(fh.getLatoRegular(16f));
-       jTabbedPane_abas.setFont(fh.getLatoRegular(14f));
-      
-       menuItemNovaRaca.setFont(fh.getLatoBold(15f));     
-       menu_pesquisar.setFont(fh.getLatoBold(15f));
-       menu_relatorio.setFont(fh.getLatoBold(15f));
+        jTableDoacoes.setFont(fh.getLatoLight(16f));
+        jTableDoacoes.getTableHeader().setFont(fh.getLatoBold(17f));
        
-       JMenuItemNovoUsuario2.setFont(fh.getLatoRegular(15f));
-       jMenuItemNovaRaca.setFont(fh.getLatoRegular(15f));
-       jMenuItemNovaAdocao.setFont(fh.getLatoRegular(15f));
-       jMenuItemNovoUsuario.setFont(fh.getLatoRegular(15f));
-       jMenuItemSair.setFont(fh.getLatoRegular(15f));
-       jMenuItem_novo_animal.setFont(fh.getLatoRegular(15f));
+        btn_novo_cadastro_usuario.setFont(fh.getLatoBold(17f));
+        btn_excluir_animal.setFont(fh.getLatoBold(17f));
+        btn_excluir_usuario.setFont(fh.getLatoBold(17f));
+        btn_editar_animal.setFont(fh.getLatoBold(17f));
+        btn_editar_usuario.setFont(fh.getLatoBold(17f));
+        btn_nova_doacao.setFont(fh.getLatoBold(17f));
+        btn_excluir_doacao.setFont(fh.getLatoBold(17f));
+        btn_editar_doacao.setFont(fh.getLatoBold(17f));
+        btn_filtrar_animais.setFont(fh.getLatoBold(17f));
+        btn_novo_cadastro_animal.setFont(fh.getLatoBold(17f));
+
+        jCombo_box_especie_pesquisa.setFont(fh.getLatoRegular(15f));
+        jCombo_box_opcoes_busca.setFont(fh.getLatoRegular(15f));
+        jCombo_box_raca_pesquisa.setFont(fh.getLatoRegular(15f));
+        jComboBox_situacao_pesquisa.setFont(fh.getLatoRegular(15f));
+
+        jLabel_titulo_adocoes.setFont(fh.getLatoRegular(21f));
+        jLabelPesquisaUsuarios.setFont(fh.getLatoRegular(18f));
+        jLabel_analiseDados.setFont(fh.getLatoRegular(21f));
+        jLabelToTtalDoacoe.setFont(fh.getLatoRegular(18f));
+
        
-       
-       jTable_adocoes.setFont(fh.getLatoLight(16f));
-            jTable_adocoes.getTableHeader().setFont(fh.getLatoBold(17f));
-        
-       jTable_animais.setFont(fh.getLatoLight(16f));
-            jTable_animais.getTableHeader().setFont(fh.getLatoBold(17f));
-        
-       jTable_informacoes.setFont(fh.getLatoLight(16f));
-            jTable_informacoes.getTableHeader().setFont(fh.getLatoBold(17f));
-       
-       jTable_usuarios.setFont(fh.getLatoLight(16f));
-            jTable_usuarios.getTableHeader().setFont(fh.getLatoBold(17f));
-       
-       
-       btn_novo_cadastro_usuario.setFont(fh.getLatoBold(17f));
-       btn_excluir_animal.setFont(fh.getLatoBold(17f));
-       btn_excluir_usuario.setFont(fh.getLatoBold(17f));
-       btn_editar_animal.setFont(fh.getLatoBold(17f));
-       btn_editar_usuario.setFont(fh.getLatoBold(17f));
-       btn_filtrar_animais.setFont(fh.getLatoBold(17f));
-       btn_novo_cadastro_animal.setFont(fh.getLatoBold(17f));
-       
-       jCombo_box_especie_pesquisa.setFont(fh.getLatoRegular(15f));
-       jCombo_box_opcoes_busca.setFont(fh.getLatoRegular(15f));
-       jCombo_box_raca_pesquisa.setFont(fh.getLatoRegular(15f));
-       jComboBox_situacao_pesquisa.setFont(fh.getLatoRegular(15f));              
-       
-       jLabel_titulo_adocoes.setFont(fh.getLatoRegular(21f));
-       jLabelPesquisaUsuarios.setFont(fh.getLatoRegular(18f));
-       jLabel_analiseDados.setFont(fh.getLatoRegular(21f));
-       jLabelToTtalDoacoe.setFont(fh.getLatoRegular(18f));
-       
-       
-       txt_total_doacoes.setFont(fh.getLatoRegular(17f));
-       txt_pesquisar.setFont(fh.getLatoLight(18f));
+        txt_total_doacoes.setFont(fh.getLatoRegular(17f));
+        txt_pesquisar.setFont(fh.getLatoLight(18f));
     }
 
     private void configurar_icones() {
         ImageIcon icon = new ImageIcon("src/icones/Favicon.png");
-        
-        
-        this.setIconImage(icon.getImage());
-        
-     
-        
+
+        this.setIconImage(icon.getImage());   
     }
 
     private void configurar_tabelas_doacoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int columnCount = jTableDoacoes.getColumnCount();
+        DefaultTableCellRenderer dtcr;
+        jTableDoacoes.setRowHeight(26);
+
+        jTableDoacoes.getTableHeader().setBackground(Color.WHITE);
+
+        
+        int width = jTableDoacoes.getWidth();
+        for (int i = 0; i < columnCount; i++) {
+            TableColumn column = jTableDoacoes.getColumnModel().getColumn(i);
+            dtcr = new DefaultTableCellRenderer();
+            switch (i) {
+
+                case 0:
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.50))));
+                    dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+                    column.setCellRenderer(dtcr);
+                    break;
+                case 1:
+                    column.setPreferredWidth(Integer
+                            .parseInt(String.valueOf(Math.round(width*0.50))));
+                    dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+                    column.setCellRenderer(dtcr);
+            }
+
+        }
     }
-    
-    
-    
 }

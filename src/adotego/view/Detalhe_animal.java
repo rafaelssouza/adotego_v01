@@ -79,7 +79,6 @@ public class Detalhe_animal extends javax.swing.JFrame {
         jComboBox_raca = new javax.swing.JComboBox<>();
         jComboBox_porte = new javax.swing.JComboBox<>();
         btn_gerar_adocao = new javax.swing.JButton();
-        btn_excluir = new javax.swing.JButton();
         btn_salvar_animal = new javax.swing.JButton();
         jLabelUsuariosCadastrados = new javax.swing.JLabel();
 
@@ -148,7 +147,6 @@ public class Detalhe_animal extends javax.swing.JFrame {
             }
         });
 
-        jComboBox_especie.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_especie.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox_especieItemStateChanged(evt);
@@ -160,14 +158,12 @@ public class Detalhe_animal extends javax.swing.JFrame {
             }
         });
 
-        jComboBox_raca.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_raca.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jComboBox_racaFocusLost(evt);
             }
         });
 
-        jComboBox_porte.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_porte.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jComboBox_porteFocusLost(evt);
@@ -182,20 +178,6 @@ public class Detalhe_animal extends javax.swing.JFrame {
         btn_gerar_adocao.setFocusable(false);
         btn_gerar_adocao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_gerar_adocao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        btn_excluir.setBackground(new java.awt.Color(255, 255, 255));
-        btn_excluir.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cross.png"))); // NOI18N
-        btn_excluir.setText("Excluir");
-        btn_excluir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        btn_excluir.setFocusable(false);
-        btn_excluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_excluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_excluirActionPerformed(evt);
-            }
-        });
 
         btn_salvar_animal.setBackground(new java.awt.Color(255, 255, 255));
         btn_salvar_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -219,30 +201,26 @@ public class Detalhe_animal extends javax.swing.JFrame {
             jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrameCadastroLayout.createSequentialGroup()
                 .addGap(79, 79, 79)
-                .addGroup(jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jInternalFrameCadastroLayout.createSequentialGroup()
-                            .addGroup(jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel_porte, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel_raca, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBox_porte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox_raca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox_especie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_nome_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jInternalFrameCadastroLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(btn_salvar_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_gerar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_porte, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_raca, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox_porte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox_raca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox_especie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_nome_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jInternalFrameCadastroLayout.createSequentialGroup()
+                            .addComponent(btn_salvar_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(30, 30, 30)
+                            .addComponent(btn_gerar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(99, 99, 99)
                 .addComponent(btn_add_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -261,7 +239,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
                 .addComponent(btn_add_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(302, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrameCadastroLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(62, Short.MAX_VALUE)
                 .addComponent(jLabelUsuariosCadastrados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +270,6 @@ public class Detalhe_animal extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
                         .addGroup(jInternalFrameCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btn_excluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btn_salvar_animal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btn_gerar_adocao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))))
@@ -330,18 +307,18 @@ public class Detalhe_animal extends javax.swing.JFrame {
         jComboBox_racaFocusLost(null);
         txt_descricaoFocusLost(null);
       
-        try {
-            if (animal.getId() == 0) {
-                animal.setData_entrada(Calendar.getInstance());
+        if (animal.getId() == 0) {
+            animal.setData_entrada(Calendar.getInstance());
+            try {
                 new adotego.controller.AnimalController().save(animal);
-                resetCampos();
-                model_animais.atualizarTabela();
-            } else {
-                new adotego.controller.AnimalController().update(animal);
-                model_animais.atualizarTabela();
+            } catch (SQLException ex) {
+                Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);
+            resetCampos();
+            model_animais.atualizarTabela();
+        } else {
+            new adotego.controller.AnimalController().update(animal);
+            model_animais.atualizarTabela();
         }
     }//GEN-LAST:event_btn_salvar_animalActionPerformed
 
@@ -392,16 +369,6 @@ public class Detalhe_animal extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jComboBox_especieItemStateChanged
 
-    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
-        if (animal.getId() == 0) {
-
-        } else {
-            new AnimalController().delete(animal.getId());
-            model_animais.atualizarTabela();
-            resetCampos();
-        }
-    }//GEN-LAST:event_btn_excluirActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -439,7 +406,6 @@ public class Detalhe_animal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add_animal;
-    private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_gerar_adocao;
     private javax.swing.JButton btn_salvar_animal;
     private javax.swing.JComboBox<String> jComboBox_especie;
@@ -577,7 +543,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
         txt_nome_animal.setFont(fh.getLatoLight(14f));
         btn_add_animal.setFont(fh.getLatoBold(14f));
         btn_salvar_animal.setFont(fh.getLatoBold(14f));
-        btn_excluir.setFont(fh.getLatoBold(14f));
+  //      btn_excluir.setFont(fh.getLatoBold(14f));
         btn_gerar_adocao.setFont(fh.getLatoBold(14f));
         jComboBox_especie.setFont(fh.getLatoRegular(14f));
         jComboBox_porte.setFont(fh.getLatoRegular(14f));

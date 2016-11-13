@@ -52,9 +52,11 @@ public class DoacaoController {
             Logger.getLogger(DoacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void save(Doacao doacao) throws SQLException{
+    public void save(Doacao doacao){
         try(Connection c = new ConnectionPool().getConnection()){
             new DoacaoDAO(c).save(doacao);
-        }
+        } catch (SQLException ex) {
+             Logger.getLogger(DoacaoController.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 }

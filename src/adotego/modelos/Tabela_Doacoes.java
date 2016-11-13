@@ -7,6 +7,7 @@ package adotego.modelos;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -17,7 +18,7 @@ public class Tabela_Doacoes extends AbstractTableModel{
     
     List<Doacao> listaDoacoes = new ArrayList<>();
     String[] colunas = new String[]{
-            "id", "valor"
+            "ID", "Valor"
             };
 
     public Tabela_Doacoes() {
@@ -40,9 +41,9 @@ public class Tabela_Doacoes extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         Doacao doacao = listaDoacoes.get(rowIndex);
         switch(columnIndex){
-            case 1:
+            case 0:
                 return doacao.getId();
-            case 2:
+            case 1:
                 return doacao.getValor();
             default:
                 return "";
@@ -57,10 +58,29 @@ public class Tabela_Doacoes extends AbstractTableModel{
         listaDoacoes = new adotego.controller.DoacaoController().findAll();
         this.fireTableDataChanged();
     }
+     public void atualizarTabela(List<Doacao> listaDoacoes){
+        this.listaDoacoes = listaDoacoes;
+        this.fireTableDataChanged();
+    }
     public void inserirDoacao(Doacao doacao){
         listaDoacoes.add(doacao);
         this.fireTableDataChanged();
+    }   
+    public int getSelectedIndex(JTable jTableDoacoes){
+        return jTableDoacoes.getSelectedRow();
     }
-    
+     public int getIdIntoTheRow(JTable table){
+        
+        int row =table.getSelectedRow();
+        String val = String.valueOf(table.getValueAt(row, 0));
+        return Integer.parseInt(val);
+    }
+
+   /* public int[] getIdsIntoTheRow(JTable jTableDoacoes) {
+        int row =table.getSelectedRow();
+        String val = String.valueOf(table.getValueAt(row, 0));
+        return Integer.parseInt(val);
+    }
+    */
     
 }

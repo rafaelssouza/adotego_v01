@@ -43,7 +43,7 @@ public class AdocaoDAO {
                             .AnimalController().find(rs.getInt("adocao_idAnimal")));
                         ad.setUsuario(new adotego.controller
                             .UsuarioController().find(rs.getInt("adocao_idPessoa")));
-                        ad.setValor(rs.getDouble("valor"));
+//                        ad.setValor(rs.getDouble("valor"));
                         adocoes.add(ad);
                 }
             }
