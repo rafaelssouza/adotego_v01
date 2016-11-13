@@ -1,6 +1,7 @@
 package adotego.modelos;
 
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 public class Modelo_tabela_adocoes extends AbstractTableModel{
@@ -28,7 +29,7 @@ public class Modelo_tabela_adocoes extends AbstractTableModel{
         Adocao ad = adocoes.get(rowIndex);
         switch(columnIndex){
             case 0: return ad.getId();
-            case 1: return ad.getUsuario().getNome();
+            case 1: return ad.getUsuario().getCpf()+" - "+ad.getUsuario().getNome();
             case 2: return ad.getAnimal().getId();
             case 3: return ad.getAnimal().getNome();
             case 4: return "R$"+ad.getValor();
@@ -65,5 +66,17 @@ public class Modelo_tabela_adocoes extends AbstractTableModel{
         for (Adocao ad: adocoes) {
             incremet_doacao(ad.getValor());
         }
+    }
+    
+        public int[] getIdIntoTheRow(JTable table){
+        int[] selectedRows = table.getSelectedRows();
+        int ids[] = new int[selectedRows.length];
+        int cont=0;
+        for (int selectedRow : selectedRows) {
+            String id = String.valueOf(table.getValueAt(selectedRow, 0));
+            ids[cont] = Integer.parseInt(id);
+            cont++;        
+        }
+        return ids;
     }
 }

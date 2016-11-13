@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a9e82076-75ac-4f6e-98fe-e51d56522329">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="5"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="table_adote" uuid="5ad2c118-95bd-4757-a30e-fc370a993025">
+		<queryString language="SQL">
+			<![CDATA[SELECT ad.idadocao,p.nome,DATE_FORMAT(data_adocao, '%d/%m/%Y')as data_adocao,an.nome as nome_animal,IFNULL(d.valor,0.0) AS valor 
+FROM adocao AS ad
+INNER JOIN pessoa AS p ON p.idpessoa = ad.adocao_idpessoa
+INNER JOIN animal AS an ON an.idanimal = ad.adocao_idanimal
+LEFT JOIN doacao AS d ON d.iddoacao = ad.adocao_iddoacao;]]>
+		</queryString>
+		<field name="idadocao" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nome" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="data_adocao" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nome_animal" class="java.lang.String"/>
+		<field name="valor" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT ad.idadocao,p.nome,DATE_FORMAT(data_adocao, '%d/%m/%Y')as data_adocao,an.nome as nome_animal
+FROM adocao AS ad
+INNER JOIN pessoa AS p ON p.idpessoa = ad.adocao_idpessoa
+INNER JOIN animal AS an ON an.idanimal = ad.adocao_idanimal
+]]>
+	</queryString>
+	<field name="idadocao" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="data_adocao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome_animal" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="126" y="19" width="383" height="41" uuid="4466e884-5aa8-4623-8509-0ceab5317c9f"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE ADOÇÕES]]></text>
+			</staticText>
+			<image>
+				<reportElement x="25" y="0" width="101" height="68" uuid="cf79c74e-5871-4c8e-84e3-e05d89f929dc"/>
+				<imageExpression><![CDATA["C:\\Users\\souza\\Documents\\NetBeansProjects\\adotego_v01\\src\\icones\\Favicon.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="41" width="70" height="20" uuid="0152a2c2-8897-41ad-aa69-ed5e50fc9522"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="41" width="115" height="20" uuid="7766f351-9983-49bd-886a-03498d3e21f6"/>
+				<text><![CDATA[NOME DA PESSOA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="223" y="41" width="100" height="20" uuid="af18c2eb-d42c-4f11-890c-0ed74e94aa6c"/>
+				<text><![CDATA[DATA DA ADOÇÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="41" width="100" height="20" uuid="830eec81-9fd6-4e74-8ed1-b0eb8409155f"/>
+				<text><![CDATA[NOME DO ANIMAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="85" height="20" uuid="39b741b8-e023-40b8-875b-9087529774d9"/>
+				<text><![CDATA[Data de geração:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="85" y="0" width="100" height="20" uuid="1a1275f8-27f4-4f17-a072-045485a670df"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="223" y="0" width="100" height="20" uuid="a5755751-c1ad-4bf9-b5e1-089cc87a3f0f"/>
+				<textFieldExpression><![CDATA[$F{data_adocao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="115" height="20" uuid="7d6167ac-0e2b-49eb-85cb-bfcd97029522"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="0" width="100" height="20" uuid="52eb8d88-a3f9-4e49-96fb-807e86195530"/>
+				<textFieldExpression><![CDATA[$F{nome_animal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="70" height="20" uuid="957bce78-8166-4c9c-a0f4-d189da574aaa"/>
+				<textFieldExpression><![CDATA[$F{idadocao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="148" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
