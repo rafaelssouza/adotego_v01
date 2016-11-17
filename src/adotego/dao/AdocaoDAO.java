@@ -66,12 +66,27 @@ public class AdocaoDAO {
         return 0;
     }
 
-    public boolean delete(int id) throws SQLException {
-        String sql = "delete from adocao where idadocao = ?";
+    //atualizacao de situacao do animal para disponivel quando excluir adocao
+    public boolean atualizaSituacaoAnimalQuandoExcluiAdocao(int id) throws SQLException {
+        String sql = "update animal an set situacao_idsituacao = 1 "
+                + "where an.idanimal = (select adocao_idanimal from adocao "
+                + "where idAdocao = ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             return ps.execute();
 
         }
     }
+
+    public boolean delete(int id) throws SQLException {
+        String sql = "delete from adocao where idadocao = ?";
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            atualizaSituacaoAnimalQuandoExcluiAdocao(id);
+            ps.setInt(1, id);
+            return ps.execute();
+
+        }
+    }
+
 }
