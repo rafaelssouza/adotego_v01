@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -32,8 +33,10 @@ public class Nova_raca extends javax.swing.JFrame {
         formatador = new Formatador();
         initJComboBox_especie2();
         this.setLocationRelativeTo(null);
+        this.setTitle("Nova Raça");
         configurarFontes();
-        
+        configurar_icones();
+        this.setResizable(false);        
     }
 
     /**
@@ -62,8 +65,6 @@ public class Nova_raca extends javax.swing.JFrame {
 
         jLabelEspecie.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabelEspecie.setText("Especie");
-
-        jComboBox_especie2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabelNome.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabelNome.setText("Nome");
@@ -114,7 +115,7 @@ public class Nova_raca extends javax.swing.JFrame {
                 .addComponent(label_confirmacao_cadastro_raca, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,5 +239,10 @@ public class Nova_raca extends javax.swing.JFrame {
         jLabelEspecie.setFont(fh.getLatoRegular(14f));
         jLabelNome.setFont(fh.getLatoRegular(14f));
         label_confirmacao_cadastro_raca.setFont(fh.getLatoRegular(14f));
+    }
+    
+    private void configurar_icones() {
+      ImageIcon icon = new ImageIcon("src/icones/Favicon.png");               
+      this.setIconImage(icon.getImage());
     }
 }

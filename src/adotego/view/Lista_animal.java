@@ -35,8 +35,7 @@ public class Lista_animal extends javax.swing.JFrame {
         configurarTabelaAnimal();
         configurarFontes();
         configurar_icones();
-        
-        
+        this.setResizable(false);        
     }
 
     /**

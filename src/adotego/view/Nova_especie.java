@@ -10,6 +10,7 @@ import adotego.util.FontHelper;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -23,7 +24,11 @@ public class Nova_especie extends javax.swing.JFrame {
     public Nova_especie() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setTitle("Nova Especie");
         configurarFontes();
+        configurar_icones();
+        this.setResizable(false);
+        
     }
 
     /**
@@ -43,6 +48,7 @@ public class Nova_especie extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jInternalFrame1.setBackground(new java.awt.Color(255, 255, 255));
+        jInternalFrame1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jInternalFrame1.setTitle("Cadastro de Especie");
         jInternalFrame1.setVisible(true);
 
@@ -80,7 +86,7 @@ public class Nova_especie extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_nome_especie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_salvar_especie, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,5 +163,10 @@ public class Nova_especie extends javax.swing.JFrame {
         jLabel1.setFont(fh.getLatoRegular(16f));
         txt_nome_especie.setFont(fh.getLatoLight(15f));
         btn_salvar_especie.setFont(fh.getLatoBold(15f));
+    }
+    
+    private void configurar_icones() {
+      ImageIcon icon = new ImageIcon("src/icones/Favicon.png");               
+      this.setIconImage(icon.getImage());
     }
 }

@@ -57,9 +57,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jLabelCpf = new javax.swing.JLabel();
         txt_nome = new javax.swing.JTextField();
         txt_email = new javax.swing.JTextField();
-        txtx_nascimento = new javax.swing.JTextField();
-        txt_telefone_celular = new javax.swing.JTextField();
-        txt_cpf = new javax.swing.JTextField();
         jLabelCidade = new javax.swing.JLabel();
         jLabelUf = new javax.swing.JLabel();
         jLabelCep = new javax.swing.JLabel();
@@ -67,7 +64,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jLabelBairro = new javax.swing.JLabel();
         txt_cidade = new javax.swing.JTextField();
         txt_uf = new javax.swing.JTextField();
-        txt_cep = new javax.swing.JTextField();
         txt_rua = new javax.swing.JTextField();
         txt_bairro = new javax.swing.JTextField();
         jLabelNumero = new javax.swing.JLabel();
@@ -82,6 +78,10 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         btn_salvar_usuario = new javax.swing.JButton();
         jButton_nova_adocao = new javax.swing.JButton();
         jButton_nova_doacao = new javax.swing.JButton();
+        txt_telefone_celular = new javax.swing.JFormattedTextField();
+        txt_nascimento = new javax.swing.JFormattedTextField();
+        txt_cpf = new javax.swing.JFormattedTextField();
+        txt_cep = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Detalhes ");
@@ -128,24 +128,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
             }
         });
 
-        txtx_nascimento.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtx_nascimentoFocusLost(evt);
-            }
-        });
-
-        txt_telefone_celular.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_telefone_celularFocusLost(evt);
-            }
-        });
-
-        txt_cpf.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_cpfFocusLost(evt);
-            }
-        });
-
         jLabelCidade.setFont(new java.awt.Font("Laksaman", 1, 14)); // NOI18N
         jLabelCidade.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelCidade.setText("Cidade");
@@ -175,12 +157,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_uf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_ufFocusLost(evt);
-            }
-        });
-
-        txt_cep.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_cepFocusLost(evt);
             }
         });
 
@@ -243,6 +219,11 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txt_telefone_fixo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_telefone_fixoActionPerformed(evt);
+            }
+        });
 
         btn_salvar_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_salvar_usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -281,12 +262,75 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jButton_nova_doacao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton_nova_doacao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        try {
+            txt_telefone_celular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txt_telefone_celular.setText("(  )     -    ");
+        txt_telefone_celular.setToolTipText("");
+        txt_telefone_celular.setCaretPosition(1);
+        txt_telefone_celular.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_telefone_celularFocusLost(evt);
+            }
+        });
+        txt_telefone_celular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_telefone_celularActionPerformed(evt);
+            }
+        });
+
+        try {
+            txt_nascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txt_nascimento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_nascimentoFocusLost(evt);
+            }
+        });
+
+        try {
+            txt_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txt_cpf.setCaretPosition(14);
+        txt_cpf.setPreferredSize(new java.awt.Dimension(48, 20));
+        txt_cpf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_cpfFocusLost(evt);
+            }
+        });
+
+        try {
+            txt_cep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txt_cep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_cepFocusLost(evt);
+            }
+        });
+        txt_cep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(label_aux, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -299,16 +343,16 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_nome)
-                                    .addComponent(txt_email)
-                                    .addComponent(txtx_nascimento)
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txt_telefone_celular)
-                                    .addComponent(txt_cpf)
-                                    .addComponent(txt_telefone_fixo, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                                    .addComponent(txt_nome, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_email, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_telefone_fixo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                         .addComponent(btn_salvar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)))
+                                        .addGap(12, 12, 12))
+                                    .addComponent(txt_nascimento, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_cpf, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -330,20 +374,19 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(txt_cidade, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                                                     .addComponent(txt_uf)
-                                                    .addComponent(txt_cep)
                                                     .addComponent(txt_rua)
-                                                    .addComponent(txt_bairro))))
-                                        .addComponent(btn_add_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
+                                                    .addComponent(txt_bairro)
+                                                    .addComponent(txt_cep))))
+                                        .addComponent(btn_add_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jButton_nova_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jButton_nova_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))))
-                            .addComponent(txt_id)))
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(label_aux, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addComponent(txt_id)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -353,7 +396,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addComponent(jLabelUsuariosCadastrados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -377,8 +420,8 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelDataNascimento)
-                            .addComponent(txtx_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelCep)
+                            .addComponent(txt_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -390,17 +433,16 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCelular)
-                    .addComponent(txt_telefone_celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNumero)
-                    .addComponent(txt_numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_telefone_celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelCpf)
-                        .addComponent(txt_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelCpf)
                     .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txt_bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelBairro)))
+                        .addComponent(jLabelBairro)
+                        .addComponent(txt_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(label_aux)
                 .addGap(18, 18, 18)
@@ -408,7 +450,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                     .addComponent(btn_salvar_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .addComponent(jButton_nova_doacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton_nova_adocao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -456,7 +498,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_telefone_celularFocusLost(null);
         txt_ufFocusLost(null);
         txt_telefone_fixoFocusLost(null);
-        txtx_nascimentoFocusLost(null);
+        txt_nascimentoFocusLost(null);
         txt_ruaFocusLost(null);
         txt_cidadeFocusLost(null);
         txt_numeroFocusLost(null);
@@ -488,47 +530,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_nomeFocusLost
 
-     /*
-       Este método é invocade sempre q o txt_nascimento perde o foco, e é responsável
-       por setar no objeto usuario desta tela o valor que estiver no campo_txt_nascimento
-    */
-    private void txtx_nascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtx_nascimentoFocusLost
-        try {
-            //se o campo nao for vazio 
-            if (!txtx_nascimento.getText().isEmpty()) {
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                Date date_parse = df.parse(txtx_nascimento.getText());
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(date_parse);
-                usuario.setData_nascimento(cal);
-                
-            }
-        } catch (ParseException ex) {
-            Logger.getLogger(Detalhe_usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_txtx_nascimentoFocusLost
-    /*
-       Este método é invocade sempre q o txt_telefone_celular perde o foco, e é responsável
-       por setar no objeto usuario desta tela o valor que estiver no campo txt_telefone_celular
-    */
-    private void txt_telefone_celularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telefone_celularFocusLost
-        //se o campo nao for vazio 
-        if (!txt_telefone_celular.getText().isEmpty()) {
-            usuario.setTelefone_celular(txt_telefone_celular.getText());
-        }        
-    }//GEN-LAST:event_txt_telefone_celularFocusLost
-
-    /*
-       Este método é invocade sempre q o txt_cpf perde o foco, e é responsável
-       por setar no objeto usuario desta tela o valor que estiver no campo_txt_cpf
-    */
-    private void txt_cpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cpfFocusLost
-        //se o campo nao for vazio 
-        if (!txt_cpf.getText().isEmpty()) {
-            usuario.setCpf(txt_cpf.getText());
-        }
-    }//GEN-LAST:event_txt_cpfFocusLost
-
     /*
        Este método é invocade sempre q o txt_cidade perde o foco, e é responsável
        por setar no objeto usuario desta tela o valor que estiver no txt_cidade
@@ -550,17 +551,6 @@ public class Detalhe_usuario extends javax.swing.JFrame {
             usuario.getEndereco().setUf(txt_uf.getText());
         }
     }//GEN-LAST:event_txt_ufFocusLost
-
-    /*
-       Este método é invocade sempre q o txt_cep perde o foco, e é responsável
-       por setar no objeto usuario desta tela o valor que estiver no txt_cep
-    */
-    private void txt_cepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusLost
-        //se o campo nao for vazio 
-        if (!txt_cep.getText().isEmpty()) {
-            usuario.getEndereco().setCep(txt_cep.getText());
-        }
-    }//GEN-LAST:event_txt_cepFocusLost
 
     /*
        Este método é invocade sempre q o txt_rua perde o foco, e é responsável
@@ -610,6 +600,54 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     private void jButton_nova_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nova_adocaoActionPerformed
         new Nova_Adocao().setVisible(true);
     }//GEN-LAST:event_jButton_nova_adocaoActionPerformed
+
+    private void txt_telefone_fixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_telefone_fixoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_telefone_fixoActionPerformed
+
+    private void txt_telefone_celularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_telefone_celularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_telefone_celularActionPerformed
+
+    private void txt_cepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cepActionPerformed
+
+    private void txt_cepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusLost
+     if (!txt_cep.getText().isEmpty()) {
+            usuario.getEndereco().setCep(txt_cep.getText());
+        }
+    }//GEN-LAST:event_txt_cepFocusLost
+
+    private void txt_nascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_nascimentoFocusLost
+        try {
+            //se o campo nao for vazio 
+            if (!txt_nascimento.getText().isEmpty()) {
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                Date date_parse = df.parse(txt_nascimento.getText());
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date_parse);
+                usuario.setData_nascimento(cal);
+                
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Detalhe_usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txt_nascimentoFocusLost
+
+    private void txt_telefone_celularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telefone_celularFocusLost
+        //se o campo nao for vazio 
+        if (!txt_telefone_celular.getText().isEmpty()) {
+            usuario.setTelefone_celular(txt_telefone_celular.getText());
+        }
+    }//GEN-LAST:event_txt_telefone_celularFocusLost
+
+    private void txt_cpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cpfFocusLost
+        //se o campo nao for vazio 
+        if (!txt_cpf.getText().isEmpty()) {
+            usuario.setCpf(txt_cpf.getText());
+        }
+    }//GEN-LAST:event_txt_cpfFocusLost
 
     /**
      * @param args the command line arguments
@@ -670,18 +708,18 @@ public class Detalhe_usuario extends javax.swing.JFrame {
     private javax.swing.JTable jTable_usuarios;
     private javax.swing.JLabel label_aux;
     private javax.swing.JTextField txt_bairro;
-    private javax.swing.JTextField txt_cep;
+    private javax.swing.JFormattedTextField txt_cep;
     private javax.swing.JTextField txt_cidade;
-    private javax.swing.JTextField txt_cpf;
+    private javax.swing.JFormattedTextField txt_cpf;
     private javax.swing.JTextField txt_email;
     private javax.swing.JLabel txt_id;
+    private javax.swing.JFormattedTextField txt_nascimento;
     private javax.swing.JTextField txt_nome;
     private javax.swing.JTextField txt_numero;
     private javax.swing.JTextField txt_rua;
-    private javax.swing.JTextField txt_telefone_celular;
+    private javax.swing.JFormattedTextField txt_telefone_celular;
     private javax.swing.JFormattedTextField txt_telefone_fixo;
     private javax.swing.JTextField txt_uf;
-    private javax.swing.JTextField txtx_nascimento;
     // End of variables declaration//GEN-END:variables
 
     //atribui o Usuario passado como parametro ao Usuario da variável local
@@ -702,7 +740,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_cpf.setText(usuario.getCpf());
         txt_telefone_fixo.setText(usuario.getTelefone_fixo());
         txt_telefone_celular.setText(usuario.getTelefone_celular());
-        txtx_nascimento.setText(sdf.format(usuario.getData_nascimento().getTime()));
+        txt_nascimento.setText(sdf.format(usuario.getData_nascimento().getTime()));
         txt_bairro.setText(usuario.getEndereco().getBairro());
         txt_cidade.setText(usuario.getEndereco().getCidade());
         txt_uf.setText(usuario.getEndereco().getUf());
@@ -722,7 +760,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_cpf.setEditable(true);
         txt_telefone_fixo.setEditable(true);
         txt_telefone_celular.setEditable(true);
-        txtx_nascimento.setEditable(true);
+        txt_nascimento.setEditable(true);
         txt_bairro.setEditable(true);
         txt_cidade.setEditable(true);
         txt_uf.setEditable(true);
@@ -738,7 +776,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         txt_cpf.setEditable(false);
         txt_telefone_fixo.setEditable(false);
         txt_telefone_celular.setEditable(false);
-        txtx_nascimento.setEditable(false);
+        txt_nascimento.setEditable(false);
         txt_bairro.setEditable(false);
         txt_cidade.setEditable(false);
         txt_uf.setEditable(false);
@@ -757,7 +795,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
                 || txt_telefone_fixo.getText().isEmpty()
                 || txt_telefone_fixo.getText().isEmpty()
                 || txt_telefone_celular.getText().isEmpty()
-                || txtx_nascimento.getText().isEmpty()
+                || txt_nascimento.getText().isEmpty()
                 || txt_bairro.getText().isEmpty()
                 || txt_cep.getText().isEmpty()
                 || txt_uf.getText().isEmpty()
@@ -784,7 +822,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
         this.txt_nome.setText("");
         this.txt_telefone_fixo.setText("");
         this.txt_cpf.setText("");
-        this.txtx_nascimento.setText("");
+        this.txt_nascimento.setText("");
         this.txt_email.setText("");
         this.txt_telefone_celular.setText("");
         this.txt_cidade.setText("");
@@ -846,7 +884,7 @@ public class Detalhe_usuario extends javax.swing.JFrame {
          this.txt_nome.setFont(fh.getLatoLight(16f));
         this.txt_telefone_fixo.setFont(fh.getLatoLight(16f));
         this.txt_cpf.setFont(fh.getLatoLight(16f));
-        this.txtx_nascimento.setFont(fh.getLatoLight(16f));
+        this.txt_nascimento.setFont(fh.getLatoLight(16f));
         this.txt_email.setFont(fh.getLatoLight(16f));
         this.txt_telefone_celular.setFont(fh.getLatoLight(16f));
         this.txt_cidade.setFont(fh.getLatoLight(16f));

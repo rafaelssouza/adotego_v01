@@ -47,6 +47,7 @@ public class Detalhe_animal extends javax.swing.JFrame {
             construir_animal();
             configurarFontes();
             configurarIcone();
+            this.setResizable(false);
 
         } catch (SQLException ex) {
             Logger.getLogger(Detalhe_animal.class.getName()).log(Level.SEVERE, null, ex);

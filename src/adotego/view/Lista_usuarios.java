@@ -33,10 +33,11 @@ public class Lista_usuarios extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         model_tabela_usuario = new Modelo_Tabela_Usuario();
+        this.setTitle("Lista de Usuários");
         configurar_tabela();
         configurarFontes();
         configurar_icones();
-
+        this.setResizable(false);
     }
 
     /**

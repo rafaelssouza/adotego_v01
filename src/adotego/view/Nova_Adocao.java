@@ -47,7 +47,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
         configurarTabelas();
         configurarFontes();
         configurarIcone();
-        
+        this.setResizable(false);
     }
 
     /**
@@ -71,7 +71,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_usuario_adocao = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerar Adoção");
 
         jPanel1.setBackground(new java.awt.Color(241, 243, 244));
