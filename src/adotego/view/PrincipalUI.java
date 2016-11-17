@@ -1,4 +1,3 @@
-
 package adotego.view;
 
 import adotego.controller.UsuarioController;
@@ -46,7 +45,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private Tabela_Doacoes modelo_tabela_doacoes;
     private final Formatador formatador;
     private JButton btn_gerar_relatorio_adocao;
-    private JPanel jPanel5;
 
     /**
      * Creates new form PrincipalUI
@@ -55,7 +53,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         initComponents();
         formatador = new Formatador();
 
-       
         this.setTitle("Adotego");
         //abrir no centro da janela
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -66,12 +63,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
         configurarInputPesquisa();
         iniciar_tabelas();
 
-      
         configurarFontes();
         configurar_icones();
 
-        
-        
     }
 
     //fazendo teste para commitar @RodrigoStuani
@@ -102,8 +96,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jLabelToTtalDoacoe = new javax.swing.JLabel();
         btn_atualizar_tabela_adocoes = new javax.swing.JButton();
         jLabel_titulo_adocoes = new javax.swing.JLabel();
-        btn_gerar_relatorio_adocao = new javax.swing.JButton();
-        btn_exluir_adocao = new javax.swing.JButton();
+        btn_excluir_adocao = new javax.swing.JButton();
+        btn_editar_adocao = new javax.swing.JButton();
+        btn_editar_adocao1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jInternalFrame_usuarios = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -127,8 +122,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jComboBox_situacao_pesquisa = new javax.swing.JComboBox<>();
         btn_novo_cadastro_animal = new javax.swing.JButton();
         jButton_atualiza_animal = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel7 = new javax.swing.JPanel();
         jInternalFrameControleDoacoes = new javax.swing.JInternalFrame();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -170,8 +163,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jTabbedPane_abas.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane_abas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        jInternalFrame_informacoes.setBackground(new java.awt.Color(255, 255, 255));
-        jInternalFrame_informacoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jInternalFrame_informacoes.setVisible(true);
         jInternalFrame_informacoes.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -197,7 +188,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jButton_atualiza_informacoes.setBackground(new java.awt.Color(255, 255, 255));
         jButton_atualiza_informacoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
-        jButton_atualiza_informacoes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jButton_atualiza_informacoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_atualiza_informacoesActionPerformed(evt);
@@ -257,7 +247,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_atualizar_tabela_adocoes.setBackground(new java.awt.Color(255, 255, 255));
         btn_atualizar_tabela_adocoes.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_atualizar_tabela_adocoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
-        btn_atualizar_tabela_adocoes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_atualizar_tabela_adocoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_atualizar_tabela_adocoesActionPerformed(evt);
@@ -267,20 +256,24 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jLabel_titulo_adocoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_titulo_adocoes.setText("Adoções Realizadas");
 
-        btn_gerar_relatorio_adocao.setBackground(new java.awt.Color(255, 255, 255));
-        btn_gerar_relatorio_adocao.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btn_gerar_relatorio_adocao.setText("Gerar Relatório de Adoções");
-        btn_gerar_relatorio_adocao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        btn_gerar_relatorio_adocao.addActionListener(new java.awt.event.ActionListener() {
+        btn_excluir_adocao.setText("Excluir");
+        btn_excluir_adocao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_gerar_relatorio_adocaoActionPerformed(evt);
+                btn_excluir_adocaoActionPerformed(evt);
             }
         });
 
-        btn_exluir_adocao.setText("Excluir");
-        btn_exluir_adocao.addActionListener(new java.awt.event.ActionListener() {
+        btn_editar_adocao.setText("Editar");
+        btn_editar_adocao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_exluir_adocaoActionPerformed(evt);
+                btn_editar_adocaoActionPerformed(evt);
+            }
+        });
+
+        btn_editar_adocao1.setText("Gerar Relatório de Adoçoes");
+        btn_editar_adocao1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editar_adocao1ActionPerformed(evt);
             }
         });
 
@@ -292,17 +285,19 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(btn_exluir_adocao)
+                        .addComponent(btn_excluir_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_editar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
                     .addComponent(jLabel_titulo_adocoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(btn_gerar_relatorio_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_editar_adocao1)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -314,14 +309,16 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(btn_exluir_adocao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(btn_gerar_relatorio_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_excluir_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_editar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(btn_editar_adocao1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -359,8 +356,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jTabbedPane_abas.addTab("Informações", jPanel2);
 
-        jInternalFrame_usuarios.setBackground(new java.awt.Color(255, 255, 255));
-        jInternalFrame_usuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jInternalFrame_usuarios.setVisible(true);
 
         jTable_usuarios.setModel(new javax.swing.table.DefaultTableModel(
@@ -384,7 +379,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_excluir_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_excluir_usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_excluir_usuario.setText("Excluir");
-        btn_excluir_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_excluir_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_excluir_usuarioActionPerformed(evt);
@@ -394,7 +388,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_editar_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_editar_usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_editar_usuario.setText("Editar");
-        btn_editar_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_editar_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editar_usuarioActionPerformed(evt);
@@ -412,7 +405,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_novo_cadastro_usuario.setBackground(new java.awt.Color(255, 255, 255));
         btn_novo_cadastro_usuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_novo_cadastro_usuario.setText("Novo Cadastro");
-        btn_novo_cadastro_usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_novo_cadastro_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_novo_cadastro_usuarioActionPerformed(evt);
@@ -421,7 +413,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         btn_atualiza_tabela_usuarios.setBackground(new java.awt.Color(255, 255, 255));
         btn_atualiza_tabela_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
-        btn_atualiza_tabela_usuarios.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_atualiza_tabela_usuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_atualiza_tabela_usuariosActionPerformed(evt);
@@ -435,7 +426,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
             .addGroup(jInternalFrame_usuariosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jInternalFrame_usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 948, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1129, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame_usuariosLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jInternalFrame_usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,8 +478,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jTabbedPane_abas.addTab("Usuarios", jPanel1);
 
-        jInternalFrame_animais.setBackground(new java.awt.Color(255, 255, 255));
-        jInternalFrame_animais.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jInternalFrame_animais.setResizable(true);
         jInternalFrame_animais.setVisible(true);
 
@@ -508,7 +497,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_editar_animal.setBackground(new java.awt.Color(255, 255, 255));
         btn_editar_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_editar_animal.setText("Editar");
-        btn_editar_animal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_editar_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editar_animalActionPerformed(evt);
@@ -518,7 +506,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_excluir_animal.setBackground(new java.awt.Color(255, 255, 255));
         btn_excluir_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_excluir_animal.setText("Excluir");
-        btn_excluir_animal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_excluir_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_excluir_animalActionPerformed(evt);
@@ -528,7 +515,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_filtrar_animais.setBackground(new java.awt.Color(255, 255, 255));
         btn_filtrar_animais.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btn_filtrar_animais.setText("Filtrar");
-        btn_filtrar_animais.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_filtrar_animais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_filtrar_animaisActionPerformed(evt);
@@ -549,7 +535,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_novo_cadastro_animal.setBackground(new java.awt.Color(255, 255, 255));
         btn_novo_cadastro_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_novo_cadastro_animal.setText("Novo Cadastro");
-        btn_novo_cadastro_animal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_novo_cadastro_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_novo_cadastro_animalActionPerformed(evt);
@@ -558,7 +543,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jButton_atualiza_animal.setBackground(new java.awt.Color(255, 255, 255));
         jButton_atualiza_animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
-        jButton_atualiza_animal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jButton_atualiza_animal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_atualiza_animalActionPerformed(evt);
@@ -570,9 +554,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jInternalFrame_animaisLayout.setHorizontalGroup(
             jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame_animaisLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame_animaisLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_atualiza_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_novo_cadastro_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -618,10 +602,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addComponent(jInternalFrame_animais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+            .addComponent(jInternalFrame_animais)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -630,38 +611,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jTabbedPane_abas.addTab("Animais", jPanel3);
 
-        jInternalFrame1.setBackground(new java.awt.Color(255, 255, 255));
-        jInternalFrame1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jInternalFrame1.setVisible(true);
-
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1133, Short.MAX_VALUE)
-        );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 516, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jInternalFrame1)
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
-        );
-
-        jTabbedPane_abas.addTab("Controle de Raças", jPanel5);
-
-        jInternalFrameControleDoacoes.setBackground(new java.awt.Color(255, 255, 255));
         jInternalFrameControleDoacoes.setVisible(true);
 
         jTableDoacoes.setModel(new javax.swing.table.DefaultTableModel(
@@ -678,7 +627,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTableDoacoes);
 
         jButton_atualiza_doacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/refresh-page-option.png"))); // NOI18N
-        jButton_atualiza_doacao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jButton_atualiza_doacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_atualiza_doacaoActionPerformed(evt);
@@ -686,7 +634,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         });
 
         btn_nova_doacao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btn_nova_doacao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_nova_doacao.setLabel("Nova Doação");
         btn_nova_doacao.setMaximumSize(new java.awt.Dimension(97, 21));
         btn_nova_doacao.setMinimumSize(new java.awt.Dimension(97, 21));
@@ -700,7 +647,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_excluir_doacao.setBackground(new java.awt.Color(255, 255, 255));
         btn_excluir_doacao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_excluir_doacao.setText("Excluir");
-        btn_excluir_doacao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_excluir_doacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_excluir_doacaoActionPerformed(evt);
@@ -710,7 +656,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         btn_editar_doacao.setBackground(new java.awt.Color(255, 255, 255));
         btn_editar_doacao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_editar_doacao.setText("Editar");
-        btn_editar_doacao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         btn_editar_doacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editar_doacaoActionPerformed(evt);
@@ -840,7 +785,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         menu_relatorio.setText("Relatório");
         menu_relatorio.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        jMenuItemNovoRelatorio.setText("Adoções");
+        jMenuItemNovoRelatorio.setText("Novo Relatório");
         jMenuItemNovoRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemNovoRelatorioActionPerformed(evt);
@@ -877,7 +822,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         model_tabela_adocoes = new Modelo_tabela_adocoes();
         modelo_tabela_Informacoes = new Tabela_Informacoes();
         modelo_tabela_doacoes = new Tabela_Doacoes();
-        
 
         //Setando o modelo criado acima nas tabelas
         jTable_usuarios.setModel(model_tabela_usuarios_completa);
@@ -950,7 +894,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
     // for chamado.
     private void jCombo_box_especie_pesquisaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCombo_box_especie_pesquisaItemStateChanged
 
-        
         //se o item selecionado nao for o primeiro, pois o valor do primeiro
         //item é apenas uma título e não uma especie
         if (jCombo_box_especie_pesquisa.getSelectedIndex() != 0) {
@@ -980,15 +923,15 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private void btn_filtrar_animaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrar_animaisActionPerformed
 
         //se todos os itens estiverem padrão preecnhe a tabela como todos os animais
-             if(jCombo_box_especie_pesquisa.getSelectedIndex() == 0 
+        if (jCombo_box_especie_pesquisa.getSelectedIndex() == 0
                 && jComboBox_situacao_pesquisa.getSelectedIndex() == 0
-                     && jCombo_box_raca_pesquisa.getSelectedIndex() == 0)   {
+                && jCombo_box_raca_pesquisa.getSelectedIndex() == 0) {
 
             model_tabela_animais.atualizar_tabela();
-             }else{
+        } else {
             //recupera lista de animais    
-                List<Animal> animais_lista =  new adotego.controller.AnimalController().listarIdDesc();
-                if(jCombo_box_especie_pesquisa.getSelectedIndex() > 0){
+            List<Animal> animais_lista = new adotego.controller.AnimalController().listarIdDesc();
+            if (jCombo_box_especie_pesquisa.getSelectedIndex() > 0) {
                 //recupera o nome da especie selecionado
                 String especie_name_selected = String.valueOf(jCombo_box_especie_pesquisa
                         .getSelectedItem());
@@ -996,7 +939,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
                         .findByEspecieName(especie_name_selected);
 
                 //se estiver com a especie selecionada e com raca e situação no indice0
-                       
             }
             //remover os animais que possuir raca e situacao diferente da selecionada
             Iterator<Animal> iterator = animais_lista.iterator();
@@ -1005,14 +947,14 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
                 //se a raça selecionada for for diferente da raças
                 //selecionada anteriormente, excluímos da lista
-                    if(jCombo_box_raca_pesquisa.getSelectedIndex() > 0){
+                if (jCombo_box_raca_pesquisa.getSelectedIndex() > 0) {
                     String raca = String.valueOf(jCombo_box_raca_pesquisa.getSelectedItem());
                     if ((!animal.getRaca().getNome().equalsIgnoreCase(raca))) {
                         iterator.remove();
                     }
                 }
 
-                    if (jComboBox_situacao_pesquisa.getSelectedIndex() > 0 ){                        
+                if (jComboBox_situacao_pesquisa.getSelectedIndex() > 0) {
                     String situacao = String.valueOf(jComboBox_situacao_pesquisa.getSelectedItem());
                     if (!animal.getSituacao().getDescricao().equalsIgnoreCase(situacao)) {
                         iterator.remove();
@@ -1080,14 +1022,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         int[] ids_selecionados = model_tabela_usuarios_completa.getIdsIntoTheRow(jTable_usuarios);
         UsuarioController uc = new adotego.controller.UsuarioController();
-    
-            
-              
-        
+
         for (int i : ids_selecionados) {
             new adotego.controller.UsuarioController().verificaSePessoaEstaEmUmaAdocao(i);
-        
-        
+
         }
         model_tabela_usuarios_completa.atualizarTabela();
     }//GEN-LAST:event_btn_excluir_usuarioActionPerformed
@@ -1119,29 +1057,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         atualizar_tabela_informacoes();
     }//GEN-LAST:event_jButton_atualiza_informacoesActionPerformed
 
-    private void btn_gerar_relatorio_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerar_relatorio_adocaoActionPerformed
-        ReportUtils u = new ReportUtils();
-        try {
-            u.abrirRelatorioAdocoes();
-        } catch (JRException ex) {
-            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btn_gerar_relatorio_adocaoActionPerformed
-
-    private void btn_exluir_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exluir_adocaoActionPerformed
-        int[] ids_selecionados = model_tabela_adocoes.getIdIntoTheRow(jTable_adocoes);
-
-        for (int i : ids_selecionados) {
-            int confirma;
-            confirma = JOptionPane.showConfirmDialog(null, "Desja excluir a adocao selecionada?");
-            if (confirma == 0) {
-                new adotego.controller.AdocaoController().delete(i);
-            }
-
-        }
-        model_tabela_adocoes.atualiza();
-    }//GEN-LAST:event_btn_exluir_adocaoActionPerformed
-
 
     private void btn_nova_doacao(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nova_doacao
         new Nova_Doacao().setVisible(true);
@@ -1154,7 +1069,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private void btn_excluir_doacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_doacaoActionPerformed
         int ids_selecionados = modelo_tabela_doacoes.getIdIntoTheRow(jTableDoacoes);
         Doacao doacao = new adotego.controller.DoacaoController().find(ids_selecionados);
- 
+
         new adotego.controller.DoacaoController().delete(doacao.getId());
 
         modelo_tabela_doacoes.atualizarTabela();
@@ -1165,7 +1080,33 @@ public final class PrincipalUI extends javax.swing.JFrame {
         Doacao doacao = new adotego.controller.DoacaoController().find(id_doacao_selected);
         new Nova_Doacao().build(doacao);
     }//GEN-LAST:event_btn_editar_doacaoActionPerformed
-    
+
+    private void btn_excluir_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_adocaoActionPerformed
+        int[] ids_selecionados = model_tabela_adocoes.getIdIntoTheRow(jTable_adocoes);
+
+        for (int i : ids_selecionados) {
+            int confirma;
+            confirma = JOptionPane.showConfirmDialog(null, "Desja excluir a adocao selecionada?");
+            if (confirma == 0) {
+                new adotego.controller.AdocaoController().delete(i);
+            }
+
+        }
+        model_tabela_adocoes.atualiza();
+    }//GEN-LAST:event_btn_excluir_adocaoActionPerformed
+
+    private void btn_editar_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_adocaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_editar_adocaoActionPerformed
+
+    private void btn_editar_adocao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_adocao1ActionPerformed
+        ReportUtils u = new ReportUtils();
+        try {
+            u.abrirRelatorioAdocoes();
+        } catch (JRException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_editar_adocao1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1206,13 +1147,15 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMenuItemNovoUsuario2;
     private javax.swing.JButton btn_atualiza_tabela_usuarios;
     private javax.swing.JButton btn_atualizar_tabela_adocoes;
+    private javax.swing.JButton btn_editar_adocao;
+    private javax.swing.JButton btn_editar_adocao1;
     private javax.swing.JButton btn_editar_animal;
     private javax.swing.JButton btn_editar_doacao;
     private javax.swing.JButton btn_editar_usuario;
+    private javax.swing.JButton btn_excluir_adocao;
     private javax.swing.JButton btn_excluir_animal;
     private javax.swing.JButton btn_excluir_doacao;
     private javax.swing.JButton btn_excluir_usuario;
-    private javax.swing.JButton btn_exluir_adocao;
     private javax.swing.JButton btn_filtrar_animais;
     private javax.swing.JButton btn_nova_doacao;
     private javax.swing.JButton btn_novo_cadastro_animal;
@@ -1226,7 +1169,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCombo_box_opcoes_busca;
     private javax.swing.JComboBox<String> jCombo_box_raca_pesquisa;
     private javax.swing.JFrame jFrame1;
-    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrameControleDoacoes;
     private javax.swing.JInternalFrame jInternalFrame_animais;
     private javax.swing.JInternalFrame jInternalFrame_informacoes;
@@ -1379,7 +1321,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jTable_animais.setRowHeight(26);
         jTable_animais.getTableHeader().setBackground(Color.white);
 
-         
         int columnCount = jTable_animais.getColumnCount();
 
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
@@ -1392,30 +1333,28 @@ public final class PrincipalUI extends javax.swing.JFrame {
             switch (i) {
                 case 0:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.15))));
+                            .parseInt(String.valueOf(Math.round(width * 0.15))));
                     break;
                 case 1:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.20))));
+                            .parseInt(String.valueOf(Math.round(width * 0.20))));
                     break;
                 case 2:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.15))));
+                            .parseInt(String.valueOf(Math.round(width * 0.15))));
                     break;
                 case 3:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.30))));
+                            .parseInt(String.valueOf(Math.round(width * 0.30))));
                     break;
                 case 4:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.20))));
+                            .parseInt(String.valueOf(Math.round(width * 0.20))));
 
             }
 
         }
     }
-
-   
 
     /*
     Configura o tamanho das colunas da tabela_doações
@@ -1427,7 +1366,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jTable_adocoes.getTableHeader().setBackground(Color.WHITE);
 
-        
         int width = jTable_adocoes.getWidth();
         for (int i = 0; i < columnCount; i++) {
             TableColumn column = jTable_adocoes.getColumnModel().getColumn(i);
@@ -1436,31 +1374,31 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
                 case 0:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.10))));
+                            .parseInt(String.valueOf(Math.round(width * 0.10))));
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     break;
                 case 1:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.35))));
+                            .parseInt(String.valueOf(Math.round(width * 0.35))));
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     break;
                 case 2:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.15))));
+                            .parseInt(String.valueOf(Math.round(width * 0.15))));
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     break;
                 case 3:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.30))));
+                            .parseInt(String.valueOf(Math.round(width * 0.30))));
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     break;
                 case 4:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.10))));
+                            .parseInt(String.valueOf(Math.round(width * 0.10))));
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
 
@@ -1483,20 +1421,22 @@ public final class PrincipalUI extends javax.swing.JFrame {
             TableColumn column = jTable_informacoes.getColumnModel().getColumn(i);
             dtcr = new DefaultTableCellRenderer();
             switch (i) {
-                case 0:{
+                case 0: {
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.90))));
+                            .parseInt(String.valueOf(Math.round(width * 0.90))));
 
-                }break;
-                case 1:{
+                }
+                break;
+                case 1: {
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.10))));
+                            .parseInt(String.valueOf(Math.round(width * 0.10))));
 
-                }break;    
+                }
+                break;
 
             }
 
@@ -1597,7 +1537,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jMenuItemSair.setFont(fh.getLatoRegular(15f));
         jMenuItem_novo_animal.setFont(fh.getLatoRegular(15f));
 
-       
         jTable_adocoes.setFont(fh.getLatoLight(16f));
         jTable_adocoes.getTableHeader().setFont(fh.getLatoBold(17f));
 
@@ -1609,10 +1548,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jTable_usuarios.setFont(fh.getLatoLight(16f));
         jTable_usuarios.getTableHeader().setFont(fh.getLatoBold(17f));
-        
+
         jTableDoacoes.setFont(fh.getLatoLight(16f));
         jTableDoacoes.getTableHeader().setFont(fh.getLatoBold(17f));
-       
+
         btn_novo_cadastro_usuario.setFont(fh.getLatoBold(17f));
         btn_excluir_animal.setFont(fh.getLatoBold(17f));
         btn_excluir_usuario.setFont(fh.getLatoBold(17f));
@@ -1634,7 +1573,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jLabel_analiseDados.setFont(fh.getLatoRegular(21f));
         jLabelToTtalDoacoe.setFont(fh.getLatoRegular(18f));
 
-       
         txt_total_doacoes.setFont(fh.getLatoRegular(17f));
         txt_pesquisar.setFont(fh.getLatoLight(18f));
     }
@@ -1642,7 +1580,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private void configurar_icones() {
         ImageIcon icon = new ImageIcon("src/icones/Favicon.png");
 
-        this.setIconImage(icon.getImage());   
+        this.setIconImage(icon.getImage());
     }
 
     private void configurar_tabelas_doacoes() {
@@ -1652,7 +1590,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jTableDoacoes.getTableHeader().setBackground(Color.WHITE);
 
-        
         int width = jTableDoacoes.getWidth();
         for (int i = 0; i < columnCount; i++) {
             TableColumn column = jTableDoacoes.getColumnModel().getColumn(i);
@@ -1661,13 +1598,13 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
                 case 0:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.50))));
+                            .parseInt(String.valueOf(Math.round(width * 0.50))));
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
                     break;
                 case 1:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.50))));
+                            .parseInt(String.valueOf(Math.round(width * 0.50))));
                     dtcr.setHorizontalAlignment(SwingConstants.CENTER);
                     column.setCellRenderer(dtcr);
             }
