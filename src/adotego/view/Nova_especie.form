@@ -38,6 +38,11 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+            <EmptyBorder/>
+          </Border>
+        </Property>
         <Property name="title" type="java.lang.String" value="Cadastro de Especie"/>
         <Property name="visible" type="boolean" value="true"/>
       </Properties>
@@ -69,7 +74,7 @@
                       <Component id="txt_nome_especie" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_salvar_especie" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="33" max="32767" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
