@@ -15,6 +15,7 @@ import adotego.modelos.Tabela_usuario_completa;
 import adotego.modelos.Usuario;
 import adotego.util.FontHelper;
 import adotego.util.Formatador;
+import adotego.util.ReportUtils;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -30,6 +31,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -928,7 +930,11 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
     private void jMenuItemNovoRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoRelatorioActionPerformed
         ReportUtils u = new ReportUtils();
-        u.abrirRelatorioAdocoes();
+        try {
+            u.abrirRelatorioAdocoes();
+        } catch (JRException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItemNovoRelatorioActionPerformed
 
     private void jButton_atualiza_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atualiza_animalActionPerformed
@@ -1115,7 +1121,11 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
     private void btn_gerar_relatorio_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerar_relatorio_adocaoActionPerformed
         ReportUtils u = new ReportUtils();
-        u.abrirRelatorioAdocoes();
+        try {
+            u.abrirRelatorioAdocoes();
+        } catch (JRException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_gerar_relatorio_adocaoActionPerformed
 
     private void btn_exluir_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exluir_adocaoActionPerformed
