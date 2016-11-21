@@ -96,9 +96,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jLabelToTtalDoacoe = new javax.swing.JLabel();
         btn_atualizar_tabela_adocoes = new javax.swing.JButton();
         jLabel_titulo_adocoes = new javax.swing.JLabel();
-        btn_excluir_adocao = new javax.swing.JButton();
-        btn_editar_adocao = new javax.swing.JButton();
-        btn_editar_adocao1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jInternalFrame_usuarios = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -256,27 +253,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jLabel_titulo_adocoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_titulo_adocoes.setText("Adoções Realizadas");
 
-        btn_excluir_adocao.setText("Excluir");
-        btn_excluir_adocao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_excluir_adocaoActionPerformed(evt);
-            }
-        });
-
-        btn_editar_adocao.setText("Editar");
-        btn_editar_adocao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editar_adocaoActionPerformed(evt);
-            }
-        });
-
-        btn_editar_adocao1.setText("Gerar Relatório de Adoçoes");
-        btn_editar_adocao1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editar_adocao1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -285,20 +261,14 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(btn_excluir_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_editar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
-                    .addComponent(jLabel_titulo_adocoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(btn_editar_adocao1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+                    .addComponent(jLabel_titulo_adocoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -313,13 +283,8 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_excluir_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_editar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(btn_editar_adocao1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout jInternalFrame_informacoesLayout = new javax.swing.GroupLayout(jInternalFrame_informacoes.getContentPane());
@@ -565,7 +530,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_editar_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame_animaisLayout.createSequentialGroup()
-                        .addGap(0, 559, Short.MAX_VALUE)
+                        .addGap(0, 545, Short.MAX_VALUE)
                         .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame_animaisLayout.createSequentialGroup()
@@ -588,7 +553,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     .addComponent(jCombo_box_especie_pesquisa)
                     .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_novo_cadastro_animal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -667,7 +632,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jInternalFrameControleDoacoesLayout.setHorizontalGroup(
             jInternalFrameControleDoacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrameControleDoacoesLayout.createSequentialGroup()
-                .addContainerGap(567, Short.MAX_VALUE)
+                .addContainerGap(539, Short.MAX_VALUE)
                 .addGroup(jInternalFrameControleDoacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrameControleDoacoesLayout.createSequentialGroup()
@@ -692,7 +657,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                         .addComponent(btn_nova_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btn_excluir_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btn_editar_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         btn_editar_doacao.getAccessibleContext().setAccessibleName("Editar Doaçao");
@@ -1147,12 +1112,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMenuItemNovoUsuario2;
     private javax.swing.JButton btn_atualiza_tabela_usuarios;
     private javax.swing.JButton btn_atualizar_tabela_adocoes;
-    private javax.swing.JButton btn_editar_adocao;
-    private javax.swing.JButton btn_editar_adocao1;
     private javax.swing.JButton btn_editar_animal;
     private javax.swing.JButton btn_editar_doacao;
     private javax.swing.JButton btn_editar_usuario;
-    private javax.swing.JButton btn_excluir_adocao;
     private javax.swing.JButton btn_excluir_animal;
     private javax.swing.JButton btn_excluir_doacao;
     private javax.swing.JButton btn_excluir_usuario;
@@ -1188,7 +1150,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;

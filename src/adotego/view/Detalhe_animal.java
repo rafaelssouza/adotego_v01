@@ -179,6 +179,11 @@ public class Detalhe_animal extends javax.swing.JFrame {
         btn_gerar_adocao.setFocusable(false);
         btn_gerar_adocao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_gerar_adocao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_gerar_adocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_gerar_adocaoActionPerformed(evt);
+            }
+        });
 
         btn_salvar_animal.setBackground(new java.awt.Color(255, 255, 255));
         btn_salvar_animal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -369,6 +374,10 @@ public class Detalhe_animal extends javax.swing.JFrame {
             initJComboBox_raca(lista_raca);
        
     }//GEN-LAST:event_jComboBox_especieItemStateChanged
+
+    private void btn_gerar_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerar_adocaoActionPerformed
+        new Nova_Adocao().setVisible(true);
+    }//GEN-LAST:event_btn_gerar_adocaoActionPerformed
 
     /**
      * @param args the command line arguments
