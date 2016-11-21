@@ -45,6 +45,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private Tabela_Doacoes modelo_tabela_doacoes;
     private final Formatador formatador;
     private JButton btn_gerar_relatorio_adocao;
+    private Double total = 0.0;
 
     /**
      * Creates new form PrincipalUI
@@ -92,10 +93,12 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_adocoes = new javax.swing.JTable();
-        txt_total_doacoes = new javax.swing.JTextField();
         jLabelToTtalDoacoe = new javax.swing.JLabel();
         btn_atualizar_tabela_adocoes = new javax.swing.JButton();
         jLabel_titulo_adocoes = new javax.swing.JLabel();
+        lbl_total_doacoes = new javax.swing.JLabel();
+        btn_excluir_adocao = new javax.swing.JButton();
+        btn_editar_adocao = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jInternalFrame_usuarios = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -138,6 +141,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
         menu_pesquisar = new javax.swing.JMenu();
         menu_relatorio = new javax.swing.JMenu();
         jMenuItemNovoRelatorio = new javax.swing.JMenuItem();
+        jMenuItemNovoRelatorio1 = new javax.swing.JMenuItem();
+        jMenuItemNovoRelatorio2 = new javax.swing.JMenuItem();
+        jMenuItemNovoRelatorio3 = new javax.swing.JMenuItem();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -218,7 +224,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_atualiza_informacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -266,8 +272,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+                        .addComponent(lbl_total_doacoes)
+                        .addGap(77, 77, 77))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
                     .addComponent(jLabel_titulo_adocoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -281,11 +288,20 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_total_doacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabelToTtalDoacoe, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbl_total_doacoes))
                     .addComponent(btn_atualizar_tabela_adocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        btn_excluir_adocao.setText("Excluir");
+        btn_excluir_adocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluir_adocaoActionPerformed(evt);
+            }
+        });
+
+        btn_editar_adocao.setText("Editar");
 
         javax.swing.GroupLayout jInternalFrame_informacoesLayout = new javax.swing.GroupLayout(jInternalFrame_informacoes.getContentPane());
         jInternalFrame_informacoes.getContentPane().setLayout(jInternalFrame_informacoesLayout);
@@ -293,19 +309,30 @@ public final class PrincipalUI extends javax.swing.JFrame {
             jInternalFrame_informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame_informacoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jInternalFrame_informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame_informacoesLayout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jInternalFrame_informacoesLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_excluir_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_editar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jInternalFrame_informacoesLayout.setVerticalGroup(
             jInternalFrame_informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame_informacoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jInternalFrame_informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jInternalFrame_informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jInternalFrame_informacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_excluir_adocao, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(btn_editar_adocao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -553,7 +580,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                     .addComponent(jCombo_box_especie_pesquisa)
                     .addComponent(btn_filtrar_animais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame_animaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_novo_cadastro_animal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -657,7 +684,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
                         .addComponent(btn_nova_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btn_excluir_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btn_editar_doacao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         btn_editar_doacao.getAccessibleContext().setAccessibleName("Editar Doaçao");
@@ -750,13 +777,37 @@ public final class PrincipalUI extends javax.swing.JFrame {
         menu_relatorio.setText("Relatório");
         menu_relatorio.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        jMenuItemNovoRelatorio.setText("Novo Relatório");
+        jMenuItemNovoRelatorio.setText("Adoções");
         jMenuItemNovoRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemNovoRelatorioActionPerformed(evt);
             }
         });
         menu_relatorio.add(jMenuItemNovoRelatorio);
+
+        jMenuItemNovoRelatorio1.setText("Doações");
+        jMenuItemNovoRelatorio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNovoRelatorio1ActionPerformed(evt);
+            }
+        });
+        menu_relatorio.add(jMenuItemNovoRelatorio1);
+
+        jMenuItemNovoRelatorio2.setText("Pessoas");
+        jMenuItemNovoRelatorio2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNovoRelatorio2ActionPerformed(evt);
+            }
+        });
+        menu_relatorio.add(jMenuItemNovoRelatorio2);
+
+        jMenuItemNovoRelatorio3.setText("Animais");
+        jMenuItemNovoRelatorio3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNovoRelatorio3ActionPerformed(evt);
+            }
+        });
+        menu_relatorio.add(jMenuItemNovoRelatorio3);
 
         jMenuBar_menu.add(menu_relatorio);
 
@@ -770,7 +821,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane_abas)
+            .addComponent(jTabbedPane_abas, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
         );
 
         pack();
@@ -1013,9 +1064,8 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
     private void btn_atualizar_tabela_adocoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atualizar_tabela_adocoesActionPerformed
         model_tabela_adocoes.atualiza();
-        txt_total_doacoes.setText("");
-        txt_total_doacoes.setText("R$:" + String
-                .valueOf(model_tabela_adocoes.getTotal_doacoes()));
+        lbl_total_doacoes.setText("");
+        lbl_total_doacoes.setText("R$:" + atualizaTxtTotalDoacoes());
     }//GEN-LAST:event_btn_atualizar_tabela_adocoesActionPerformed
 
     private void jButton_atualiza_informacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atualiza_informacoesActionPerformed
@@ -1060,19 +1110,17 @@ public final class PrincipalUI extends javax.swing.JFrame {
         model_tabela_adocoes.atualiza();
     }//GEN-LAST:event_btn_excluir_adocaoActionPerformed
 
-    private void btn_editar_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_adocaoActionPerformed
+    private void jMenuItemNovoRelatorio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoRelatorio1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_editar_adocaoActionPerformed
+    }//GEN-LAST:event_jMenuItemNovoRelatorio1ActionPerformed
 
-    private void btn_editar_adocao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_adocao1ActionPerformed
-        ReportUtils u = new ReportUtils();
-        try {
-            u.abrirRelatorioAdocoes();
-        } catch (JRException ex) {
-            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btn_editar_adocao1ActionPerformed
+    private void jMenuItemNovoRelatorio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoRelatorio2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemNovoRelatorio2ActionPerformed
 
+    private void jMenuItemNovoRelatorio3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoRelatorio3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemNovoRelatorio3ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1112,9 +1160,11 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMenuItemNovoUsuario2;
     private javax.swing.JButton btn_atualiza_tabela_usuarios;
     private javax.swing.JButton btn_atualizar_tabela_adocoes;
+    private javax.swing.JButton btn_editar_adocao;
     private javax.swing.JButton btn_editar_animal;
     private javax.swing.JButton btn_editar_doacao;
     private javax.swing.JButton btn_editar_usuario;
+    private javax.swing.JButton btn_excluir_adocao;
     private javax.swing.JButton btn_excluir_animal;
     private javax.swing.JButton btn_excluir_doacao;
     private javax.swing.JButton btn_excluir_usuario;
@@ -1143,6 +1193,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemNovaAdocao;
     private javax.swing.JMenuItem jMenuItemNovaRaca;
     private javax.swing.JMenuItem jMenuItemNovoRelatorio;
+    private javax.swing.JMenuItem jMenuItemNovoRelatorio1;
+    private javax.swing.JMenuItem jMenuItemNovoRelatorio2;
+    private javax.swing.JMenuItem jMenuItemNovoRelatorio3;
     private javax.swing.JMenuItem jMenuItemNovoUsuario;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItem_novo_animal;
@@ -1164,11 +1217,11 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JTable jTable_animais;
     private javax.swing.JTable jTable_informacoes;
     private javax.swing.JTable jTable_usuarios;
+    private javax.swing.JLabel lbl_total_doacoes;
     private javax.swing.JMenu menuItemNovaRaca;
     private javax.swing.JMenu menu_pesquisar;
     private javax.swing.JMenu menu_relatorio;
     private javax.swing.JTextField txt_pesquisar;
-    private javax.swing.JTextField txt_total_doacoes;
     // End of variables declaration//GEN-END:variables
 
     //inicializa o jCombo de especia de acordo com toas as especies
@@ -1271,9 +1324,15 @@ public final class PrincipalUI extends javax.swing.JFrame {
     }
 
     //atualiza o input com o total de doações atualizado
-    public void atualizaTxtTotalDoacoes() {
-        txt_total_doacoes.setText("");
-        txt_total_doacoes.setText("R$:" + model_tabela_adocoes.getTotal_doacoes());
+    public Double atualizaTxtTotalDoacoes() {
+        total = 0.0;
+        List<Doacao> d = new adotego.controller.DoacaoController().findAll();
+        for (Doacao doacao : d) {
+            total = total + doacao.getValor();
+        }
+        lbl_total_doacoes.setText("");
+        lbl_total_doacoes.setText("R$:" + total);
+        return this.total;
     }
 
     /*
@@ -1535,7 +1594,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         jLabel_analiseDados.setFont(fh.getLatoRegular(21f));
         jLabelToTtalDoacoe.setFont(fh.getLatoRegular(18f));
 
-        txt_total_doacoes.setFont(fh.getLatoRegular(17f));
+        lbl_total_doacoes.setFont(fh.getLatoRegular(17f));
         txt_pesquisar.setFont(fh.getLatoLight(18f));
     }
 
