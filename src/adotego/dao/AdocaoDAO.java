@@ -2,6 +2,7 @@ package adotego.dao;
 
 import adotego.modelos.Adocao;
 import adotego.modelos.Animal;
+import adotego.modelos.Endereco;
 import adotego.modelos.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -86,6 +87,37 @@ public class AdocaoDAO {
             ps.setInt(1, id);
             return ps.execute();
 
+        }
+    }
+
+    public Adocao find(int id) throws SQLException {
+        Adocao adocao = new Adocao();
+
+        String sql = "select * from adocao where idAdocao = ? ";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeQuery();
+            try (ResultSet rs = ps.getResultSet()) {
+                while (rs.next()) {
+
+                    adocao.setId(rs.getInt("idadocao"));
+                }
+            }
+        }
+        return adocao;
+    }
+
+    public void update(Adocao adocao) throws SQLException {
+        atualizaSituacaoAnimalQuandoExcluiAdocao(adocao.getId());
+        String sql = "update adocao set adocao_IdPessoa = ? ,data_adocao = ?, adocao_idAnimal = ? where idadocao = ?";
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, adocao.getUsuario().getId());
+            ps.setDate(2, adocao.getData_entradaSQL());
+            ps.setInt(3, adocao.getAnimal().getId());
+            ps.setInt(4, adocao.getId());
+            //   ps.setDouble(4, adocao.getValor());
+            ps.execute();
         }
     }
 

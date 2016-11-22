@@ -19,44 +19,56 @@ import java.util.logging.Logger;
  * @author Rodrigo.Stuani
  */
 public class DoacaoController {
-    
-    
-     public Doacao find(int id) {
-        try(Connection c = new ConnectionPool().getConnection()){
+
+    public Doacao find(int id) {
+        try (Connection c = new ConnectionPool().getConnection()) {
             return new DoacaoDAO(c).find(id);
         } catch (SQLException ex) {
             Logger.getLogger(DoacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    public List<Doacao> findAll()  {
-        try(Connection c = new ConnectionPool().getConnection()){
+
+    public List<Doacao> findAll() {
+        try (Connection c = new ConnectionPool().getConnection()) {
             return new DoacaoDAO(c).findAll();
         } catch (SQLException ex) {
             Logger.getLogger(DoacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-    } 
-    public boolean delete(int id){
-        try(Connection c = new ConnectionPool().getConnection()){
+    }
+
+    public boolean delete(int id) {
+        try (Connection c = new ConnectionPool().getConnection()) {
             return new DoacaoDAO(c).delete(id);
         } catch (SQLException ex) {
             Logger.getLogger(DoacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-    public void update(Doacao doacao){
-        try(Connection c = new ConnectionPool().getConnection()){
+
+    public void update(Doacao doacao) {
+        try (Connection c = new ConnectionPool().getConnection()) {
             new DoacaoDAO(c).update(doacao);
-        } catch(SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(DoacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void save(Doacao doacao){
-        try(Connection c = new ConnectionPool().getConnection()){
+
+    public void save(Doacao doacao) {
+        try (Connection c = new ConnectionPool().getConnection()) {
             new DoacaoDAO(c).save(doacao);
         } catch (SQLException ex) {
-             Logger.getLogger(DoacaoController.class.getName()).log(Level.SEVERE, null, ex);
-         }
+            Logger.getLogger(DoacaoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public int getTotalDoacoes() {
+        try (Connection c = new ConnectionPool().getConnection()) {
+            return new adotego.dao.DoacaoDAO(c).getTotalDoacoes();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdocaoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 }

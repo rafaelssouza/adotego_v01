@@ -10,6 +10,7 @@ import adotego.modelos.Animal;
 import adotego.modelos.Usuario;
 import adotego.util.FontHelper;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -30,7 +31,8 @@ public class Nova_Adocao extends javax.swing.JFrame {
     private static Animal animal;
     private static Modelo_tabela_animal_adocao modelo_animal_adocao;
     private static Modelo_tabela_usuario_adocao modelo_usuario_adocao;
-   
+    private Adocao adocao;
+
     /**
      * Creates new form Nova_Adocao
      */
@@ -48,6 +50,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
         configurarFontes();
         configurarIcone();
         this.setResizable(false);
+        adocao = new Adocao();
     }
 
     /**
@@ -217,14 +220,20 @@ public class Nova_Adocao extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_selecionar_animalActionPerformed
 
     private void btn_gerar_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerar_adocaoActionPerformed
-        Adocao adocao = new Adocao();
+        
         adocao.setAnimal(this.animal);
         adocao.setUsuario(this.usuario);
- //       adocao.setValor(Double.parseDouble(txt_doacao.getText().trim()));
+        //       adocao.setValor(Double.parseDouble(txt_doacao.getText().trim()));
         adocao.setData(Calendar.getInstance());
-        new adotego.controller.AdocaoController().salvar(adocao);
-        new adotego.controller.AnimalController().setarComoAdotado(animal);
-        this.dispose();
+        if (adocao.getId() == 0) {
+            new adotego.controller.AdocaoController().salvar(adocao);
+            new adotego.controller.AnimalController().setarComoAdotado(animal);
+            this.dispose();
+        } else {
+            new adotego.controller.AdocaoController().update(adocao);
+            new adotego.controller.AnimalController().setarComoAdotado(animal);
+            this.dispose();
+        }
     }//GEN-LAST:event_btn_gerar_adocaoActionPerformed
 
     /**
@@ -276,29 +285,41 @@ public class Nova_Adocao extends javax.swing.JFrame {
     private javax.swing.JTextField txt_doacao;
     // End of variables declaration//GEN-END:variables
 
-    public static void setUsuario(Usuario u){
+    public static void setUsuario(Usuario u) {
         Nova_Adocao.usuario = u;
-        modelo_usuario_adocao.inserirUsuario(usuario); 
+        modelo_usuario_adocao.inserirUsuario(usuario);
     }
-    public static void setAnimal(Animal a){
+
+    public static void setAnimal(Animal a) {
         Nova_Adocao.animal = a;
         modelo_animal_adocao.inserirAnimal(animal);
-    }        
+    }
+
+    public void build(Adocao a) {
+        adocao = a;
+        preencher_campos();
+    }
+
+    private void preencher_campos() {
+
+        if (!this.isVisible()) {
+            this.setVisible(true);
+        }
+    }
 
     private void configurarFontes() {
-       FontHelper fh = new FontHelper();
-       
-       jTable_animal_adocao.setFont(fh.getLatoRegular(15f));
-            jTable_animal_adocao.getTableHeader().setFont(fh.getLatoBold(18f));
-       
-       jTable_usuario_adocao.setFont(fh.getLatoRegular(15f));
-            jTable_usuario_adocao.getTableHeader().setFont(fh.getLatoBold(18f));
-            
-            
-       btn_gerar_adocao.setFont(fh.getLatoBold(16f));
-       btn_selecionar_animal.setFont(fh.getLatoBold(16f));
-       btn_selecionar_usuario.setFont(fh.getLatoBold(16f));
-       jInternalFrameAdocao.setFont(fh.getLatoBold(17f));
+        FontHelper fh = new FontHelper();
+
+        jTable_animal_adocao.setFont(fh.getLatoRegular(15f));
+        jTable_animal_adocao.getTableHeader().setFont(fh.getLatoBold(18f));
+
+        jTable_usuario_adocao.setFont(fh.getLatoRegular(15f));
+        jTable_usuario_adocao.getTableHeader().setFont(fh.getLatoBold(18f));
+
+        btn_gerar_adocao.setFont(fh.getLatoBold(16f));
+        btn_selecionar_animal.setFont(fh.getLatoBold(16f));
+        btn_selecionar_usuario.setFont(fh.getLatoBold(16f));
+        jInternalFrameAdocao.setFont(fh.getLatoBold(17f));
     }
 
     private void configurarTabelas() {
@@ -307,77 +328,75 @@ public class Nova_Adocao extends javax.swing.JFrame {
     }
 
     private void configurarTabelaUsuarios() {
-          jTable_animal_adocao.setRowHeight(26);
+        jTable_animal_adocao.setRowHeight(26);
         jTable_animal_adocao.getTableHeader().setBackground(Color.WHITE);
         int columnCount = jTable_animal_adocao.getColumnCount();
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-            dtcr.setHorizontalAlignment(SwingConstants.CENTER);
-         
+        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+
         int width = jTable_animal_adocao.getWidth();
         for (int i = 0; i < columnCount; i++) {
-            TableColumn column = jTable_animal_adocao.getColumnModel().getColumn(i);            
+            TableColumn column = jTable_animal_adocao.getColumnModel().getColumn(i);
             column.setCellRenderer(dtcr);
-            
+
             switch (i) {
                 case 0:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.20))));
+                            .parseInt(String.valueOf(Math.round(width * 0.20))));
                     break;
                 case 1:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.80))));
+                            .parseInt(String.valueOf(Math.round(width * 0.80))));
                     break;
-                
-                    
+
             }
-            
+
         }
     }
 
     private void configurarTabelaAdocao() {
-         jTable_usuario_adocao.setRowHeight(26);
+        jTable_usuario_adocao.setRowHeight(26);
         jTable_usuario_adocao.getTableHeader().setBackground(Color.WHITE);
         int columnCount = jTable_usuario_adocao.getColumnCount();
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-            dtcr.setHorizontalAlignment(SwingConstants.CENTER);
-         
+        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+
         int width = jTable_usuario_adocao.getWidth();
         for (int i = 0; i < columnCount; i++) {
-            TableColumn column = jTable_usuario_adocao.getColumnModel().getColumn(i);            
+            TableColumn column = jTable_usuario_adocao.getColumnModel().getColumn(i);
             column.setCellRenderer(dtcr);
-            
+
             switch (i) {
                 case 0:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.20))));
+                            .parseInt(String.valueOf(Math.round(width * 0.20))));
                     break;
                 case 1:
                     column.setPreferredWidth(Integer
-                            .parseInt(String.valueOf(Math.round(width*0.80))));
+                            .parseInt(String.valueOf(Math.round(width * 0.80))));
                     break;
-                
-                    
+
             }
-            
+
         }
     }
 
     private void configurarIcone() {
         ImageIcon icon = new ImageIcon("src/icones/Favicon.png");
-        
-        
+
         this.setIconImage(icon.getImage());
     }
 }
 
-class Modelo_tabela_animal_adocao extends AbstractTableModel{
+class Modelo_tabela_animal_adocao extends AbstractTableModel {
+
     List<Animal> animais;
-    String [] colunas = new String[]{"Código", "Nome"};
+    String[] colunas = new String[]{"Código", "Nome"};
 
     public Modelo_tabela_animal_adocao() {
         animais = new ArrayList<>();
     }
-    
+
     @Override
     public int getRowCount() {
         return animais.size();
@@ -391,10 +410,13 @@ class Modelo_tabela_animal_adocao extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Animal a = animais.get(rowIndex);
-        switch(columnIndex){
-            case 0: return a.getId();
-            case 1: return a.getNome();
-            default: return "--";
+        switch (columnIndex) {
+            case 0:
+                return a.getId();
+            case 1:
+                return a.getNome();
+            default:
+                return "--";
         }
     }
 
@@ -402,39 +424,40 @@ class Modelo_tabela_animal_adocao extends AbstractTableModel{
     public String getColumnName(int column) {
         return colunas[column];
     }
-    
-    public int getIdIntoTheRow(JTable table){
-        int row =table.getSelectedRow();
+
+    public int getIdIntoTheRow(JTable table) {
+        int row = table.getSelectedRow();
         String val = String.valueOf(table.getValueAt(row, 0));
         return Integer.parseInt(val);
     }
-    
-    public void removeAll(){
+
+    public void removeAll() {
         this.animais = new ArrayList<>();
         this.fireTableDataChanged();
     }
-    public void inserirAnimal(Animal animal){
-        if(animais.isEmpty()){
+
+    public void inserirAnimal(Animal animal) {
+        if (animais.isEmpty()) {
             animais.add(animal);
             this.fireTableDataChanged();
-        }else{
+        } else {
             this.removeAll();
             animais.add(animal);
             this.fireTableDataChanged();
         }
     }
-    
+
 }
 
+class Modelo_tabela_usuario_adocao extends AbstractTableModel {
 
-class Modelo_tabela_usuario_adocao extends AbstractTableModel{
     List<Usuario> usuarios;
-    String [] colunas = new String[]{"Código", "Nome"};
+    String[] colunas = new String[]{"Código", "Nome"};
 
     public Modelo_tabela_usuario_adocao() {
         usuarios = new ArrayList<>();
     }
-    
+
     @Override
     public int getRowCount() {
         return usuarios.size();
@@ -448,10 +471,13 @@ class Modelo_tabela_usuario_adocao extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Usuario a = usuarios.get(rowIndex);
-        switch(columnIndex){
-            case 0: return a.getId();
-            case 1: return a.getNome();
-            default: return "--";
+        switch (columnIndex) {
+            case 0:
+                return a.getId();
+            case 1:
+                return a.getNome();
+            default:
+                return "--";
         }
     }
 
@@ -459,28 +485,27 @@ class Modelo_tabela_usuario_adocao extends AbstractTableModel{
     public String getColumnName(int column) {
         return colunas[column];
     }
-    
-    public int getIdIntoTheRow(JTable table){
-        int row =table.getSelectedRow();
+
+    public int getIdIntoTheRow(JTable table) {
+        int row = table.getSelectedRow();
         String val = String.valueOf(table.getValueAt(row, 0));
         return Integer.parseInt(val);
     }
-    
-    public void inserirUsuario(Usuario usuario){
-        if(usuarios.isEmpty()){
+
+    public void inserirUsuario(Usuario usuario) {
+        if (usuarios.isEmpty()) {
             usuarios.add(usuario);
             this.fireTableDataChanged();
-        }else{
+        } else {
             this.removeAll();
             usuarios.add(usuario);
             this.fireTableDataChanged();
-        }    
+        }
     }
-        
 
-   public void removeAll(){
-       usuarios  = new ArrayList<>();
-       this.fireTableDataChanged();
-   }
-    
+    public void removeAll() {
+        usuarios = new ArrayList<>();
+        this.fireTableDataChanged();
+    }
+
 }

@@ -1,6 +1,7 @@
 package adotego.view;
 
 import adotego.controller.UsuarioController;
+import adotego.modelos.Adocao;
 import adotego.modelos.Animal;
 import adotego.modelos.Doacao;
 import adotego.modelos.Especie;
@@ -44,7 +45,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private Tabela_Informacoes modelo_tabela_Informacoes;
     private Tabela_Doacoes modelo_tabela_doacoes;
     private final Formatador formatador;
-    private JButton btn_gerar_relatorio_adocao;
+    //private JButton btn_gerar_relatorio_adocao;
     private Double total = 0.0;
 
     /**
@@ -141,6 +142,8 @@ public final class PrincipalUI extends javax.swing.JFrame {
         menu_pesquisar = new javax.swing.JMenu();
         menu_relatorio = new javax.swing.JMenu();
         jMenuItemNovoRelatorio = new javax.swing.JMenuItem();
+        jMenuItemNovoRelatorio1 = new javax.swing.JMenuItem();
+        jMenuItemNovoRelatorio2 = new javax.swing.JMenuItem();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -780,13 +783,29 @@ public final class PrincipalUI extends javax.swing.JFrame {
         menu_relatorio.setText("Relatório");
         menu_relatorio.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        jMenuItemNovoRelatorio.setText("Novo Relatório");
+        jMenuItemNovoRelatorio.setText("Adoções");
         jMenuItemNovoRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemNovoRelatorioActionPerformed(evt);
             }
         });
         menu_relatorio.add(jMenuItemNovoRelatorio);
+
+        jMenuItemNovoRelatorio1.setText("Pessoas");
+        jMenuItemNovoRelatorio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNovoRelatorio1ActionPerformed(evt);
+            }
+        });
+        menu_relatorio.add(jMenuItemNovoRelatorio1);
+
+        jMenuItemNovoRelatorio2.setText("Animais");
+        jMenuItemNovoRelatorio2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNovoRelatorio2ActionPerformed(evt);
+            }
+        });
+        menu_relatorio.add(jMenuItemNovoRelatorio2);
 
         jMenuBar_menu.add(menu_relatorio);
 
@@ -1077,7 +1096,12 @@ public final class PrincipalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_editar_doacaoActionPerformed
 
     private void jMenuItemNovoRelatorio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoRelatorio1ActionPerformed
-        // TODO add your handling code here:
+        ReportUtils u = new ReportUtils();
+        try {
+            u.abrirRelatorioPessoas();
+        } catch (JRException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItemNovoRelatorio1ActionPerformed
 
     private void jMenuItemNovoRelatorio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoRelatorio2ActionPerformed
@@ -1089,21 +1113,23 @@ public final class PrincipalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemNovoRelatorio3ActionPerformed
 
     private void btn_excluir_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_adocaoActionPerformed
-        int[] ids_selecionados = model_tabela_adocoes.getIdIntoTheRow(jTable_adocoes);
-
-        for (int i : ids_selecionados) {
+        int ids_selecionados = model_tabela_adocoes.getIdIntoTheRow(jTable_adocoes);
+        int id = (int) model_tabela_adocoes.getValueAt(ids_selecionados, 0);
+        
             int confirma;
             confirma = JOptionPane.showConfirmDialog(null, "Desja excluir a adocao selecionada?");
             if (confirma == 0) {
-                new adotego.controller.AdocaoController().delete(i);
+                new adotego.controller.AdocaoController().delete(id);
             }
-
-        }
         model_tabela_adocoes.atualiza();
     }//GEN-LAST:event_btn_excluir_adocaoActionPerformed
 
     private void btn_editar_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_adocaoActionPerformed
-        // TODO add your handling code here:
+        int id_select = model_tabela_adocoes.getIdIntoTheRow(jTable_adocoes);
+        int id = (int) model_tabela_adocoes.getValueAt(id_select, 0);
+        Adocao a = new adotego.controller.AdocaoController().find(id);
+
+        new Nova_Adocao().build(a);
     }//GEN-LAST:event_btn_editar_adocaoActionPerformed
     /**
      * @param args the command line arguments
@@ -1177,6 +1203,8 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemNovaAdocao;
     private javax.swing.JMenuItem jMenuItemNovaRaca;
     private javax.swing.JMenuItem jMenuItemNovoRelatorio;
+    private javax.swing.JMenuItem jMenuItemNovoRelatorio1;
+    private javax.swing.JMenuItem jMenuItemNovoRelatorio2;
     private javax.swing.JMenuItem jMenuItemNovoUsuario;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItem_novo_animal;

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a9e82076-75ac-4f6e-98fe-e51d56522329">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="14"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="table_adote" uuid="5ad2c118-95bd-4757-a30e-fc370a993025">
+		<queryString language="SQL">
+			<![CDATA[SELECT ad.idadocao,p.nome,DATE_FORMAT(data_adocao, '%d/%m/%Y')as data_adocao,an.nome as nome_animal,IFNULL(d.valor,0.0) AS valor 
+FROM adocao AS ad
+INNER JOIN pessoa AS p ON p.idpessoa = ad.adocao_idpessoa
+INNER JOIN animal AS an ON an.idanimal = ad.adocao_idanimal
+LEFT JOIN doacao AS d ON d.iddoacao = ad.adocao_iddoacao;]]>
+		</queryString>
+		<field name="idadocao" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nome" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="data_adocao" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nome_animal" class="java.lang.String"/>
+		<field name="valor" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[select * from pessoa order by nome;]]>
+	</queryString>
+	<field name="idPessoa" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefone_fixo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefone_celular" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="data_nascimento" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cpf_cnpj" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rua" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bairro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="uf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cep" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="126" y="19" width="383" height="41" uuid="4466e884-5aa8-4623-8509-0ceab5317c9f"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE ADOÇÕES]]></text>
+			</staticText>
+			<image>
+				<reportElement x="25" y="0" width="101" height="68" uuid="cf79c74e-5871-4c8e-84e3-e05d89f929dc"/>
+				<imageExpression><![CDATA["C:\\Users\\souza\\Documents\\NetBeansProjects\\adotego_v01\\src\\icones\\Favicon.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="41" width="25" height="20" uuid="0152a2c2-8897-41ad-aa69-ed5e50fc9522"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="42" y="41" width="73" height="20" uuid="7766f351-9983-49bd-886a-03498d3e21f6"/>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="41" width="61" height="20" uuid="af18c2eb-d42c-4f11-890c-0ed74e94aa6c"/>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="41" width="52" height="20" uuid="830eec81-9fd6-4e74-8ed1-b0eb8409155f"/>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="85" height="20" uuid="39b741b8-e023-40b8-875b-9087529774d9"/>
+				<text><![CDATA[Data de geração:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="85" y="0" width="100" height="20" uuid="1a1275f8-27f4-4f17-a072-045485a670df"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="171" y="41" width="88" height="20" uuid="e7fc7655-ef5d-4b52-8bb1-16caf812354e"/>
+				<text><![CDATA[Fone Fixo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="25" height="20" uuid="9a94865d-7a1d-4503-8fb9-befc0cbbd246"/>
+				<textFieldExpression><![CDATA[$F{idPessoa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="1" width="127" height="20" uuid="c7944379-701a-4034-85a5-86a64461edc6"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="0" width="121" height="20" uuid="826c1396-cc40-44af-88be-22c0a45304d8"/>
+				<textFieldExpression><![CDATA[$F{telefone_fixo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="292" y="0" width="100" height="20" uuid="5e748fc7-0afe-431e-acd5-e2befddd196a"/>
+				<textFieldExpression><![CDATA[$F{telefone_celular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="1" width="88" height="20" uuid="2cf96f00-ea4a-44c4-8568-a84e988b72b4"/>
+				<textFieldExpression><![CDATA[$F{cpf_cnpj}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="148" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

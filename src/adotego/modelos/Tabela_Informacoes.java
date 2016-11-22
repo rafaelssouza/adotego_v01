@@ -53,20 +53,21 @@ public class Tabela_Informacoes extends AbstractTableModel{
     }
 
     public void atualizar() {
-         int totalAdocoes = new adotego.controller.AdocaoController().getTotalAdocoes();
-        Informacao info_adocoes = new Informacao("Total de doações", totalAdocoes);
+         int totalDoacoes = new adotego.controller.DoacaoController().getTotalDoacoes();
+        Informacao info_adocoes = new Informacao("Total de doações", totalDoacoes);
         
         int qtnd_animais_disponiveis = new adotego.controller.AnimalController().contarPorSituacao("disponivel");
         Informacao info_qntd_animais_disponiveis = new Informacao("Quantidade de animais disponíveis", qtnd_animais_disponiveis);
         
-        int qtnd_animais_adotados = new adotego.controller.AnimalController().contarPorSituacao("adotado");
-        Informacao info_qntd_animais_adotados = new Informacao("Quantidade de animais adotados", qtnd_animais_adotados);
+ //       Rafael Souza: Retidao pois a quantidade de animais adotados é a mesma da quantidade de adoções, pq uma adoção não existe sem um animal          
+ //       int qtnd_animais_adotados = new adotego.controller.AnimalController().contarPorSituacao("adotado");
+ //       Informacao info_qntd_animais_adotados = new Informacao("Quantidade de animais adotados", qtnd_animais_adotados);
         
         
         lista_informacoes.removeAll(lista_informacoes);
         this.fireTableDataChanged();
         
-        inserirInformacao(info_qntd_animais_adotados);
+ //       inserirInformacao(info_qntd_animais_adotados);
         inserirInformacao(info_adocoes);
         inserirInformacao(info_qntd_animais_disponiveis);
         this.fireTableDataChanged();
