@@ -1150,6 +1150,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
     private void btn_nova_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nova_adocaoActionPerformed
         new Nova_Adocao().setVisible(true);
+        
     }//GEN-LAST:event_btn_nova_adocaoActionPerformed
     /**
      * @param args the command line arguments
