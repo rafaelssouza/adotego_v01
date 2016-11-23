@@ -234,12 +234,18 @@ public class Nova_Adocao extends javax.swing.JFrame {
 
             } else {
                 doacao = new Doacao(Double.parseDouble(txt_doacao.getText().trim()));
-                new adotego.controller.DoacaoController().save(doacao,adocao.getUsuario());
+                new adotego.controller.DoacaoController().save(doacao, adocao.getUsuario());
             }
             this.dispose();
         } else {
             new adotego.controller.AdocaoController().update(adocao);
             new adotego.controller.AnimalController().setarComoAdotado(animal);
+            if (txt_doacao.getText().trim() == null || txt_doacao.getText().trim().equals("")) {
+
+            } else {
+                doacao = new Doacao(Double.parseDouble(txt_doacao.getText().trim()));
+                new adotego.controller.DoacaoController().save(doacao, adocao.getUsuario());
+            }
             this.dispose();
         }
     }//GEN-LAST:event_btn_gerar_adocaoActionPerformed

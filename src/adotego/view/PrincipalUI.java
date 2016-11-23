@@ -100,6 +100,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         lbl_total_doacoes = new javax.swing.JLabel();
         btn_excluir_adocao = new javax.swing.JButton();
         btn_editar_adocao = new javax.swing.JButton();
+        btn_nova_adocao = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jInternalFrame_usuarios = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -329,6 +330,14 @@ public final class PrincipalUI extends javax.swing.JFrame {
             }
         });
 
+        btn_nova_adocao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/animal-paw-print.png"))); // NOI18N
+        btn_nova_adocao.setText("Nova Adoção");
+        btn_nova_adocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nova_adocaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -336,8 +345,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
             .addComponent(jInternalFrame_informacoes)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_nova_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btn_editar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(btn_excluir_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -348,8 +359,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_editar_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_excluir_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_excluir_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_nova_adocao, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jTabbedPane_abas.addTab("Informações", jPanel2);
@@ -776,7 +788,6 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         jMenuBar_menu.add(menuItemNovaRaca);
 
-        menu_pesquisar.setText("Pesquisar");
         menu_pesquisar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMenuBar_menu.add(menu_pesquisar);
 
@@ -819,7 +830,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane_abas, javax.swing.GroupLayout.PREFERRED_SIZE, 605, Short.MAX_VALUE)
+            .addComponent(jTabbedPane_abas, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
         );
 
         pack();
@@ -1136,6 +1147,10 @@ public final class PrincipalUI extends javax.swing.JFrame {
 
         new Nova_Adocao().build(a);
     }//GEN-LAST:event_btn_editar_adocaoActionPerformed
+
+    private void btn_nova_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nova_adocaoActionPerformed
+        new Nova_Adocao().setVisible(true);
+    }//GEN-LAST:event_btn_nova_adocaoActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1184,6 +1199,7 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_excluir_doacao;
     private javax.swing.JButton btn_excluir_usuario;
     private javax.swing.JButton btn_filtrar_animais;
+    private javax.swing.JButton btn_nova_adocao;
     private javax.swing.JButton btn_nova_doacao;
     private javax.swing.JButton btn_novo_cadastro_animal;
     private javax.swing.JButton btn_novo_cadastro_usuario;
@@ -1566,6 +1582,9 @@ public final class PrincipalUI extends javax.swing.JFrame {
         menu_pesquisar.setFont(fh.getLatoBold(15f));
         menu_relatorio.setFont(fh.getLatoBold(15f));
 
+        jMenuItemNovoRelatorio1.setFont(fh.getLatoRegular(15f));
+        jMenuItemNovoRelatorio2.setFont(fh.getLatoRegular(15f));
+        jMenuItemNovoRelatorio.setFont(fh.getLatoRegular(15f));
         JMenuItemNovoUsuario2.setFont(fh.getLatoRegular(15f));
         jMenuItemNovaRaca.setFont(fh.getLatoRegular(15f));
         jMenuItemNovaAdocao.setFont(fh.getLatoRegular(15f));
