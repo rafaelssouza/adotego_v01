@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 public class Modelo_tabela_adocoes extends AbstractTableModel {
 
     private List<Adocao> adocoes;
-    private final String[] colunas = new String[]{"Código", "Pessoa", "IDAnimal", "Animal", "Doação"};
+    private final String[] colunas = new String[]{"Código", "Pessoa", "IDAnimal", "Animal"};
     private double total_doacoes;
 
     public Modelo_tabela_adocoes() {

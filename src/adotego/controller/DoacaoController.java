@@ -8,6 +8,7 @@ package adotego.controller;
 import adotego.dao.DoacaoDAO;
 import adotego.jdbc.ConnectionPool;
 import adotego.modelos.Doacao;
+import adotego.modelos.Usuario;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -58,6 +59,14 @@ public class DoacaoController {
     public void save(Doacao doacao) {
         try (Connection c = new ConnectionPool().getConnection()) {
             new DoacaoDAO(c).save(doacao);
+        } catch (SQLException ex) {
+            Logger.getLogger(DoacaoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+        public void save(Doacao doacao, Usuario usuario) {
+        try (Connection c = new ConnectionPool().getConnection()) {
+            new DoacaoDAO(c).save(doacao,usuario);
         } catch (SQLException ex) {
             Logger.getLogger(DoacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a9e82076-75ac-4f6e-98fe-e51d56522329">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="14"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="table_adote" uuid="5ad2c118-95bd-4757-a30e-fc370a993025">
+		<queryString language="SQL">
+			<![CDATA[SELECT ad.idadocao,p.nome,DATE_FORMAT(data_adocao, '%d/%m/%Y')as data_adocao,an.nome as nome_animal,IFNULL(d.valor,0.0) AS valor 
+FROM adocao AS ad
+INNER JOIN pessoa AS p ON p.idpessoa = ad.adocao_idpessoa
+INNER JOIN animal AS an ON an.idanimal = ad.adocao_idanimal
+LEFT JOIN doacao AS d ON d.iddoacao = ad.adocao_iddoacao;]]>
+		</queryString>
+		<field name="idadocao" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nome" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="data_adocao" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nome_animal" class="java.lang.String"/>
+		<field name="valor" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[select a.idanimal,a.nome,a.data_registro_entrada,a.porte,s.descricao,r.nome as nome_raca,e.nome as especie
+from animal a
+join situacao s on s.idsituacao = situacao_idsituacao
+join raca r on idraca = animal_idraca
+join especie e on r.raca_idEspecie = e.idEspecie;]]>
+	</queryString>
+	<field name="idanimal" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="data_registro_entrada" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="porte" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome_raca" class="java.lang.String"/>
+	<field name="especie" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="126" y="19" width="383" height="41" uuid="4466e884-5aa8-4623-8509-0ceab5317c9f"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE ADOÇÕES]]></text>
+			</staticText>
+			<image>
+				<reportElement x="25" y="0" width="101" height="68" uuid="cf79c74e-5871-4c8e-84e3-e05d89f929dc"/>
+				<imageExpression><![CDATA["C:\\Users\\souza\\Documents\\NetBeansProjects\\adotego_v01\\src\\icones\\Favicon.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="41" width="25" height="20" uuid="0152a2c2-8897-41ad-aa69-ed5e50fc9522"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="42" y="41" width="73" height="20" uuid="7766f351-9983-49bd-886a-03498d3e21f6"/>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="41" width="61" height="20" uuid="af18c2eb-d42c-4f11-890c-0ed74e94aa6c"/>
+				<text><![CDATA[Porte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="41" width="52" height="20" uuid="830eec81-9fd6-4e74-8ed1-b0eb8409155f"/>
+				<text><![CDATA[Situacao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="85" height="20" uuid="39b741b8-e023-40b8-875b-9087529774d9"/>
+				<text><![CDATA[Data de geração:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="85" y="0" width="100" height="20" uuid="1a1275f8-27f4-4f17-a072-045485a670df"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="126" y="41" width="88" height="20" uuid="e7fc7655-ef5d-4b52-8bb1-16caf812354e"/>
+				<text><![CDATA[Data Registro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="41" width="52" height="20" uuid="dc5db6d1-fd93-48ae-94b2-2b0ea46d37a6"/>
+				<text><![CDATA[Espécie]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="41" width="52" height="20" uuid="a38f1f8c-cfb8-4c75-b5c8-b61a2dcb3801"/>
+				<text><![CDATA[Raça]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="25" height="20" uuid="4c6c28c1-7280-4460-a7c9-7442e60bd727"/>
+				<textFieldExpression><![CDATA[$F{idanimal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="1" width="71" height="20" uuid="bbf81dd0-ba9e-43ca-81e8-a724a2387c25"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="0" width="88" height="20" uuid="aa4e3cfd-2d9a-498d-8354-388332a884f7"/>
+				<textFieldExpression><![CDATA[$F{data_registro_entrada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="1" width="60" height="20" uuid="688637b5-5ae9-461d-94ad-a3934bfe1a3a"/>
+				<textFieldExpression><![CDATA[$F{porte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="311" y="0" width="89" height="20" uuid="b27903bf-acd8-4127-bac5-ac1b0a8320ef"/>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="1" width="52" height="20" uuid="9ee806c1-47b4-4ab6-a036-5390b572b270"/>
+				<textFieldExpression><![CDATA[$F{especie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="0" width="86" height="20" uuid="aff60b45-cb4b-4a62-935b-1fa10c4a8910"/>
+				<textFieldExpression><![CDATA[$F{nome_raca}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="148" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -7,6 +7,7 @@ package adotego.view;
 
 import adotego.modelos.Adocao;
 import adotego.modelos.Animal;
+import adotego.modelos.Doacao;
 import adotego.modelos.Usuario;
 import adotego.util.FontHelper;
 import java.awt.Color;
@@ -32,6 +33,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
     private static Modelo_tabela_animal_adocao modelo_animal_adocao;
     private static Modelo_tabela_usuario_adocao modelo_usuario_adocao;
     private Adocao adocao;
+    private Doacao doacao;
 
     /**
      * Creates new form Nova_Adocao
@@ -220,7 +222,7 @@ public class Nova_Adocao extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_selecionar_animalActionPerformed
 
     private void btn_gerar_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerar_adocaoActionPerformed
-        
+
         adocao.setAnimal(this.animal);
         adocao.setUsuario(this.usuario);
         //       adocao.setValor(Double.parseDouble(txt_doacao.getText().trim()));
@@ -228,6 +230,12 @@ public class Nova_Adocao extends javax.swing.JFrame {
         if (adocao.getId() == 0) {
             new adotego.controller.AdocaoController().salvar(adocao);
             new adotego.controller.AnimalController().setarComoAdotado(animal);
+            if (txt_doacao.getText().trim() == null || txt_doacao.getText().trim().equals("")) {
+
+            } else {
+                doacao = new Doacao(Double.parseDouble(txt_doacao.getText().trim()));
+                new adotego.controller.DoacaoController().save(doacao,adocao.getUsuario());
+            }
             this.dispose();
         } else {
             new adotego.controller.AdocaoController().update(adocao);

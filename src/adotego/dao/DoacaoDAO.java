@@ -6,6 +6,7 @@
 package adotego.dao;
 
 import adotego.modelos.Doacao;
+import adotego.modelos.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -92,6 +93,16 @@ public class DoacaoDAO {
 
         try (PreparedStatement pstm = c.prepareStatement(sql)) {
             pstm.setDouble(1, doacao.getValor());
+            pstm.execute();
+        }
+    }
+    
+        public void save(Doacao doacao, Usuario usuario) throws SQLException {
+        String sql = "insert into doacao(valor,doacao_idpessoa) values (?,?)";
+
+        try (PreparedStatement pstm = c.prepareStatement(sql)) {
+            pstm.setDouble(1, doacao.getValor());
+            pstm.setInt(2, usuario.getId());
             pstm.execute();
         }
     }

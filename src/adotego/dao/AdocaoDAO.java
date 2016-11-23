@@ -14,12 +14,13 @@ import java.util.List;
 public class AdocaoDAO {
 
     private Connection conn;
-
+    private DoacaoDAO doacao = new DoacaoDAO(conn);
     public AdocaoDAO(Connection conn) {
         this.conn = conn;
     }
 
     public void salvar(Adocao adocao) throws SQLException {
+        
         String sql = "insert into adocao (adocao_IdPessoa ,data_adocao, adocao_idAnimal)";
         sql += "values(?,?,?)";
 
@@ -109,6 +110,7 @@ public class AdocaoDAO {
 
     public void update(Adocao adocao) throws SQLException {
         atualizaSituacaoAnimalQuandoExcluiAdocao(adocao.getId());
+        
         String sql = "update adocao set adocao_IdPessoa = ? ,data_adocao = ?, adocao_idAnimal = ? where idadocao = ?";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {

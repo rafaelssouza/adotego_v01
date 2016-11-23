@@ -1105,7 +1105,12 @@ public final class PrincipalUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemNovoRelatorio1ActionPerformed
 
     private void jMenuItemNovoRelatorio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoRelatorio2ActionPerformed
-        // TODO add your handling code here:
+        ReportUtils u = new ReportUtils();
+        try {
+            u.abrirRelatorioAnimais();
+        } catch (JRException ex) {
+            Logger.getLogger(PrincipalUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItemNovoRelatorio2ActionPerformed
 
     private void jMenuItemNovoRelatorio3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoRelatorio3ActionPerformed
@@ -1115,12 +1120,12 @@ public final class PrincipalUI extends javax.swing.JFrame {
     private void btn_excluir_adocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluir_adocaoActionPerformed
         int ids_selecionados = model_tabela_adocoes.getIdIntoTheRow(jTable_adocoes);
         int id = (int) model_tabela_adocoes.getValueAt(ids_selecionados, 0);
-        
-            int confirma;
-            confirma = JOptionPane.showConfirmDialog(null, "Desja excluir a adocao selecionada?");
-            if (confirma == 0) {
-                new adotego.controller.AdocaoController().delete(id);
-            }
+
+        int confirma;
+        confirma = JOptionPane.showConfirmDialog(null, "Desja excluir a adocao selecionada?");
+        if (confirma == 0) {
+            new adotego.controller.AdocaoController().delete(id);
+        }
         model_tabela_adocoes.atualiza();
     }//GEN-LAST:event_btn_excluir_adocaoActionPerformed
 
