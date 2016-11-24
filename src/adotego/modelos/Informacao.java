@@ -1,5 +1,9 @@
 
 package adotego.modelos;
+/**
+ * 
+ * @author thomaz
+ */
 public class Informacao {
     private String descricao;
     private double valor;

@@ -3,7 +3,10 @@ package adotego.modelos;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
+/**
+ * 
+ * @author souza
+ */
 public class Usuario {
     private Integer id;
 	private String nome;

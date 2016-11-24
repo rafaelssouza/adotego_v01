@@ -1,6 +1,9 @@
  
 package adotego.modelos;
-
+/**
+ * 
+ * @author Thomaz
+ */
  
 public class Endereco {
         private String rua;

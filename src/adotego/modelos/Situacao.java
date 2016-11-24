@@ -1,5 +1,8 @@
 package adotego.modelos;
-
+/**
+ * 
+ * @author stuani
+ */
 public class Situacao {
     private int id;
     private String descricao;

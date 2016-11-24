@@ -1,5 +1,8 @@
 package adotego.modelos;
-
+/**
+ * 
+ * @author mateus
+ */
 public class Raca {
     private int idRaca;
     private String nome;

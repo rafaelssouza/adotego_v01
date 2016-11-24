@@ -4,7 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-
+/**
+ * 
+ * @author souza
+ */
 public class Tabela_usuarios extends AbstractTableModel{
 
     List<Usuario> usuarios;

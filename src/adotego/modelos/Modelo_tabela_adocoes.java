@@ -3,7 +3,10 @@ package adotego.modelos;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-
+/**
+ * 
+ * @author mateus
+ */
 public class Modelo_tabela_adocoes extends AbstractTableModel {
 
     private List<Adocao> adocoes;

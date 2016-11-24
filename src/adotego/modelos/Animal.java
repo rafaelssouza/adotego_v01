@@ -2,7 +2,10 @@ package adotego.modelos;
  
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
+/**
+ * 
+ * @author souza
+ */
 public class Animal {
         private int id;
         private String nome;

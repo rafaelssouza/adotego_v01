@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-
+/**
+ * 
+ * @author mateus
+ */
 public class Tabela_animais extends AbstractTableModel{
     private List<Animal> linhas_animal = new ArrayList<>();
     private final String[] colunas = new String[]{"ID","Nome", "Especie", "Raça","Situação"};

@@ -1,5 +1,8 @@
 package adotego.modelos;
-
+/**
+ * 
+ * @author thomaz
+ */
 public class Especie {
     private int id;
     private String nome;

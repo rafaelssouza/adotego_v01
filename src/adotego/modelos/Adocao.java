@@ -1,7 +1,10 @@
 package adotego.modelos;
 
 import java.util.Calendar;
-
+/**
+ * 
+ * @author souza
+ */
 public class Adocao {
     private int id;
     private Usuario usuario;
